@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Защита капитала от девальвации тенге — SBF Consult Казахстан</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Защитите капитал от инфляции тенге — SBF Consult">
+  <meta property="og:description" content="15 минут с аналитиком SBF. Бесплатный брифинг для бизнес-владельцев Казахстана.">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:      #FFFFFF;
+      --gold:       #D9AA60;
+      --gold-light: #E8C88A;
+      --gold-muted: rgba(217,170,96,0.12);
+      --black:      #000000;
+      --ink:        #0A0A0A;
+      --ink-soft:   #2A2A2A;
+      --ink-muted:  #6B6B6B;
+      --border:     rgba(217,170,96,0.2);
+      --bg-soft:    #FAFAFA;
+      --sp:         96px 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Utilities ─────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header .eyebrow { display: block; margin-bottom: 16px; }
+
+    .section-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--ink-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ─── Forms ─────────────────────────────────── */
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: var(--bg-soft);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus { border-color: var(--gold); background: var(--white); }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .form-submit:hover  { background: var(--gold-light); transform: translateY(-1px); }
+    .form-submit:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 11px;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    /* ─── Nav ───────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .nav-brand span { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-cta:hover { border-color: var(--gold); }
+
+    /* ─── Hero ──────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 24px 80px;
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 60vw; height: 120%;
+      background: radial-gradient(ellipse at 70% 40%, rgba(217,170,96,0.055) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-eyebrow { margin-bottom: 24px; }
+
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.06;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-bottom: 36px;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    .trust-badge svg { flex-shrink: 0; }
+
+
+    /* Form card */
+    .hero-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      box-shadow: 0 4px 48px rgba(0,0,0,0.07);
+    }
+
+    .hero-form-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .hero-form-card > p {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 28px;
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ─── Trust band ────────────────────────────── */
+    .trust-band {
+      background: var(--ink);
+      padding: 22px 24px;
+    }
+
+    .trust-band-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .trust-band-item {
+      padding: 7px 28px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .trust-band-item:last-child { border-right: none; }
+    .trust-band-item span { color: var(--gold); }
+
+    /* ─── Statements ────────────────────────────── */
+    .statements { padding: var(--sp); background: var(--bg-soft); }
+
+    .statements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .statement-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 28px 22px;
+      position: relative;
+    }
+
+    .statement-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .statement-name  { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 3px; }
+    .statement-broker {
+      font-size: 10px;
+      color: var(--ink-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .s-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      font-size: 13px;
+    }
+    .s-row:last-child { border-bottom: none; }
+    .s-label { color: var(--ink-muted); }
+    .s-value { font-weight: 700; color: var(--ink); }
+    .s-value.pos  { color: #16A34A; }
+    .s-value.gold { color: var(--gold); }
+
+    .disclaimer {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      padding: 18px 22px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    /* ─── Approach ──────────────────────────────── */
+    .approach { padding: var(--sp); background: var(--white); }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .approach-card { background: var(--white); padding: 52px 36px; }
+
+    .approach-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 60px;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .approach-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+
+    .approach-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    /* ─── Reviews ───────────────────────────────── */
+    .reviews { padding: var(--sp); background: var(--bg-soft); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 32px 26px;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .review-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--gold-muted);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .review-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+    .review-info { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+
+    .review-stars { display: flex; gap: 2px; margin-bottom: 14px; }
+
+    .review-text {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .tp-badge {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+    .tp-logo { font-weight: 800; font-size: 18px; color: #00B67A; }
+
+    /* ─── Analytics ─────────────────────────────── */
+    .analytics { padding: var(--sp); background: var(--ink); }
+    .analytics .section-h2  { color: var(--white); }
+    .analytics .section-sub { color: rgba(255,255,255,0.45); }
+
+    .analytics-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(217,170,96,0.22);
+      padding: 40px;
+    }
+
+    .analytics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(217,170,96,0.12);
+    }
+
+    .analytics-instrument { font-weight: 700; font-size: 20px; color: var(--white); }
+    .analytics-tf { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+    .analytics-type {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #22C55E; background: rgba(34,197,94,0.1); padding: 4px 10px;
+    }
+
+    .analytics-rows {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .a-row {
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      border-left: 2px solid var(--gold);
+    }
+    .a-row-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .a-row-value { font-weight: 700; font-size: 15px; color: var(--white); }
+    .a-row-value.tp { color: #22C55E; }
+    .a-row-value.sl { color: #EF4444; }
+
+    .analytics-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.65;
+      border-top: 1px solid rgba(217,170,96,0.1);
+      padding-top: 20px;
+      margin-bottom: 28px;
+    }
+
+    .analytics-btn { text-align: center; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--black); }
+
+    /* ─── FAQ ───────────────────────────────────── */
+    .faq { padding: var(--sp); background: var(--white); }
+
+    .faq-list { max-width: 760px; margin: 0 auto; }
+
+    .faq-item { border-bottom: 1px solid rgba(0,0,0,0.07); }
+
+    .faq-q {
+      width: 100%;
+      padding: 22px 0;
+      background: none; border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .faq-icon {
+      width: 26px; height: 26px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      transition: transform 0.3s, background 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold-muted); }
+
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+    .faq-a-inner {
+      padding: 0 0 22px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    /* ─── How it works ──────────────────────────── */
+    .how { padding: var(--sp); background: var(--bg-soft); }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .how-step { background: var(--white); padding: 40px 28px; }
+
+    .how-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 700;
+      color: var(--gold); opacity: 0.35;
+      line-height: 1; margin-bottom: 16px;
+    }
+
+    .how-title { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 8px; }
+    .how-desc  { font-size: 13px; line-height: 1.65; color: var(--ink-muted); font-weight: 300; }
+    .how-time  {
+      display: inline-block; margin-top: 14px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    /* ─── Final CTA ─────────────────────────────── */
+    .final-cta {
+      padding: 120px 24px;
+      background: var(--ink);
+      text-align: center;
+    }
+
+    .final-cta .eyebrow    { display: block; margin-bottom: 20px; }
+    .final-cta .section-h2 { color: var(--white); margin-bottom: 16px; }
+    .final-cta .section-sub { color: rgba(255,255,255,0.45); margin-bottom: 52px; }
+
+    .final-form { max-width: 480px; margin: 0 auto; }
+
+    .final-form .form-group label { color: rgba(255,255,255,0.45); }
+
+    .final-form .form-group input {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--white);
+    }
+
+    .final-form .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+    .final-form .form-group input:focus { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+    .final-form .form-note { color: rgba(255,255,255,0.25); }
+
+    /* ─── Footer ────────────────────────────────── */
+    .footer { background: #050505; padding: 64px 24px 40px; }
+
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand {
+      font-weight: 800; font-size: 13px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .footer-brand span { color: var(--gold); }
+
+    .footer-addr { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; margin-bottom: 8px; }
+    .footer-lei  { font-size: 11px; letter-spacing: 1px; color: rgba(255,255,255,0.2); }
+
+    .footer-contacts { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+    .footer-contact-row { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .footer-contact-row a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-contact-row a:hover { color: var(--gold); }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 24px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ─── Responsive ────────────────────────────── */
+    @media (max-width: 1024px) {
+      .statements-grid { grid-template-columns: repeat(2, 1fr); }
+      .analytics-rows  { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --sp: 72px 20px; }
+
+      .hero { padding: 100px 20px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-h1 { font-size: clamp(36px, 10vw, 52px); }
+      .hero-sub { font-size: 15px; }
+
+      .trust-band-item { padding: 8px 14px; font-size: 10px; }
+
+      .approach-grid { grid-template-columns: 1fr; }
+      .reviews-grid  { grid-template-columns: 1fr; }
+      .how-grid      { grid-template-columns: repeat(2, 1fr); }
+
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 640px) {
+      .statements-grid { grid-template-columns: 1fr; }
+      .how-grid        { grid-template-columns: 1fr; }
+      .analytics-rows  { grid-template-columns: 1fr; }
+      .trust-badges    { gap: 8px 16px; }
+      .hero-form-card  { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">SBF <span>●</span> Consult</div>
+  <a href="#cta" class="nav-cta">Получить брифинг →</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     1. HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div>
+      <p class="eyebrow hero-eyebrow">SBF Consult · Казахстан</p>
+
+      <h1 class="hero-h1">Защитите капитал<br>от инфляции тенге</h1>
+
+      <p class="hero-sub">
+        15 минут с аналитиком SBF — разбираем как директора Алматы
+        переводят активы в доллары. Без давления, без шаблонов.
+      </p>
+
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="5.5" stroke="#D9AA60" stroke-width="1.4"/>
+            <path d="M4.5 7l2 2 3-3" stroke="#D9AA60" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          10+ лет на рынке
+        </div>
+        <div class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="2" y="2" width="10" height="10" rx="1.5" stroke="#D9AA60" stroke-width="1.4"/>
+            <path d="M5 7h4M7 5v4" stroke="#D9AA60" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          Bloomberg LEI верифицирован
+        </div>
+        <div class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="#D9AA60">
+            <path d="M7 1.5L8.5 5.2H12.5L9.4 7.5L10.5 11.2L7 9L3.5 11.2L4.6 7.5L1.5 5.2H5.5Z"/>
+          </svg>
+          5.0 Trustpilot
+        </div>
+        <div class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="5.5" stroke="#D9AA60" stroke-width="1.4"/>
+            <path d="M7 3.5V7l2.5 1.5" stroke="#D9AA60" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          Аналитик перезвонит за 10 минут
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA-форма -->
+    <div class="hero-form-card" id="cta">
+      <h3>Бесплатный брифинг рынков</h3>
+      <p>Оставьте заявку — аналитик перезвонит в течение 10 минут в рабочее время</p>
+
+      <form action="#" onsubmit="handleSubmit(event, 'hero')">
+        <div class="form-group">
+          <label for="h-name">Ваше имя</label>
+          <input type="text" id="h-name" name="name" placeholder="Имя" required>
+        </div>
+        <div class="form-group">
+          <label for="h-tel">Телефон</label>
+          <input type="tel" id="h-tel" name="phone" placeholder="+7 700 000 00 00" required>
+        </div>
+        <button type="submit" class="form-submit">Хочу бесплатный разбор рынков</button>
+      </form>
+
+      <p class="form-note">
+        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+        Данные не передаются третьим лицам.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     2. TRUST BAND
+════════════════════════════════════════════ -->
+<div class="trust-band">
+  <div class="trust-band-inner">
+    <div class="trust-band-item"><span>Bloomberg LEI</span> верифицирован</div>
+    <div class="trust-band-item">Только <span>регулируемые</span> брокеры</div>
+    <div class="trust-band-item">Ваши деньги только на <span>вашем счету</span></div>
+    <div class="trust-band-item">Клиенты из Казахстана с <span>2019 года</span></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     3. РЕАЛЬНЫЕ СТЕЙТМЕНТЫ
+════════════════════════════════════════════ -->
+<section class="statements">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Верифицированные результаты</span>
+      <h2 class="section-h2">Реальные стейтменты клиентов</h2>
+      <p class="section-sub">
+        Результаты подтверждены выгрузками из торговых платформ.
+        Имена изменены с согласия клиентов.
+      </p>
+    </div>
+
+    <div class="statements-grid">
+
+      <div class="statement-card">
+        <div class="statement-name">Андрей</div>
+        <div class="statement-broker">AvaTrade Real MT5</div>
+        <div class="s-row"><span class="s-label">Депозит</span>       <span class="s-value">$5 000</span></div>
+        <div class="s-row"><span class="s-label">Чистая прибыль</span><span class="s-value pos">+$35 654</span></div>
+        <div class="s-row"><span class="s-label">Доходность</span>    <span class="s-value gold">+713%</span></div>
+        <div class="s-row"><span class="s-label">Winrate</span>       <span class="s-value">80%</span></div>
+      </div>
+
+      <div class="statement-card">
+        <div class="statement-name">Ержан</div>
+        <div class="statement-broker">Ava-Real 1 MT5</div>
+        <div class="s-row"><span class="s-label">Депозит</span>       <span class="s-value">$1 308</span></div>
+        <div class="s-row"><span class="s-label">Чистая прибыль</span><span class="s-value pos">+$10 885</span></div>
+        <div class="s-row"><span class="s-label">Доходность</span>    <span class="s-value gold">+832%</span></div>
+        <div class="s-row"><span class="s-label">Winrate</span>       <span class="s-value">93.62%</span></div>
+      </div>
+
+      <div class="statement-card">
+        <div class="statement-name">Ахметжан</div>
+        <div class="statement-broker">Daoti.io Server</div>
+        <div class="s-row"><span class="s-label">Депозит</span>       <span class="s-value">$5 000</span></div>
+        <div class="s-row"><span class="s-label">Чистая прибыль</span><span class="s-value pos">+$17 330</span></div>
+        <div class="s-row"><span class="s-label">Доходность</span>    <span class="s-value gold">+1 733%</span></div>
+        <div class="s-row"><span class="s-label">Winrate</span>       <span class="s-value">87.57%</span></div>
+      </div>
+
+      <div class="statement-card">
+        <div class="statement-name">Михаил</div>
+        <div class="statement-broker">Capex Real</div>
+        <div class="s-row"><span class="s-label">Депозит</span>       <span class="s-value">$500</span></div>
+        <div class="s-row"><span class="s-label">Чистая прибыль</span><span class="s-value pos">+$742</span></div>
+        <div class="s-row"><span class="s-label">Доходность</span>    <span class="s-value gold">+148%</span></div>
+        <div class="s-row"><span class="s-label">Winrate</span>       <span class="s-value">95.92%</span></div>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">
+      Все результаты — реальные исторические данные верифицированных счетов.
+      Прошлые результаты не гарантируют будущих доходов.
+      Торговля финансовыми инструментами сопряжена с высоким риском потери капитала.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     4. ПОДХОД
+════════════════════════════════════════════ -->
+<section class="approach">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Методология</span>
+      <h2 class="section-h2">Три принципа работы</h2>
+    </div>
+
+    <div class="approach-grid">
+
+      <div class="approach-card">
+        <div class="approach-num">01</div>
+        <h3 class="approach-title">Математика риска</h3>
+        <p class="approach-desc">
+          Риск-менеджмент — основа любого решения. Размер позиции, стоп-лосс
+          и соотношение риска к прибыли просчитываются до входа в сделку.
+          Никакой торговли «на ощущениях».
+        </p>
+      </div>
+
+      <div class="approach-card">
+        <div class="approach-num">02</div>
+        <h3 class="approach-title">Макро-контекст</h3>
+        <p class="approach-desc">
+          Глобальная макро-картина → локальные решения для тенге. Политика ФРС,
+          сырьевые циклы, курсы EM-валют — всё это влияет на ваш капитал.
+          Мы анализируем связи между этими процессами.
+        </p>
+      </div>
+
+      <div class="approach-card">
+        <div class="approach-num">03</div>
+        <h3 class="approach-title">Прозрачность</h3>
+        <p class="approach-desc">
+          Деньги всегда на счету клиента у регулируемого брокера. SBF не управляет
+          капиталом напрямую. Решение по каждой сделке
+          остаётся за вами.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     5. TRUSTPILOT
+════════════════════════════════════════════ -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Отзывы клиентов</span>
+      <h2 class="section-h2">Что говорят о нас</h2>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Alex Medvedev</div>
+            <div class="review-info">UA · 22 Jan 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+        </div>
+        <p class="review-text">
+          «Компания даёт четкие руководства по рынку и помогает понять как работать
+          с графиком и платформами. Всегда на связи, отвечают на вопросы профессионально.»
+        </p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">B</div>
+          <div>
+            <div class="review-name">Bill Bezos</div>
+            <div class="review-info">MD · 15 Jan 2026</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+        </div>
+        <p class="review-text">
+          «Am avut un prim contact cu Ion, agent financiar al companiei SBF.
+          A fost extrem de amabil și profesionist. Mi-a explicat detaliat
+          serviciile oferite.»
+        </p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Marin Bolea</div>
+            <div class="review-info">MD · 24 Dec 2025</div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#00B67A"><path d="M9 1.5l2.1 5.3H17l-4.5 3.3 1.7 5.4L9 12.4l-5.2 3.1 1.7-5.4L1 6.8h5.9z"/></svg>
+        </div>
+        <p class="review-text">
+          «Am avut o colaborare excelentă cu echipa SBF. Servicii profesioniste,
+          comunicare transparentă și rezultate conforme așteptărilor.
+          Recomand cu încredere.»
+        </p>
+      </div>
+
+    </div>
+
+    <div class="tp-badge">
+      <span class="tp-logo">Trustpilot</span>
+      <span>Рейтинг 5.0 · Отзывы верифицированы</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     6. АНАЛИТИКА / SBFAcademy_bot
+════════════════════════════════════════════ -->
+<section class="analytics">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Ежедневная аналитика рынков</span>
+      <h2 class="section-h2">Торговые сценарии в Telegram</h2>
+      <p class="section-sub">
+        Каждый день — разбор рынка и торговые сценарии от аналитиков SBF.
+        Пример ниже.
+      </p>
+    </div>
+
+    <div class="analytics-card">
+      <div class="analytics-header">
+        <div>
+          <div class="analytics-instrument">XAU/USD &nbsp;·&nbsp; Gold</div>
+          <div class="analytics-tf">Daily · 08:00 UTC</div>
+        </div>
+        <div class="analytics-type">LONG</div>
+      </div>
+
+      <div class="analytics-rows">
+        <div class="a-row">
+          <div class="a-row-label">Зона входа</div>
+          <div class="a-row-value">3 280 – 3 295</div>
+        </div>
+        <div class="a-row">
+          <div class="a-row-label">Stop Loss</div>
+          <div class="a-row-value sl">3 262</div>
+        </div>
+        <div class="a-row">
+          <div class="a-row-label">Take Profit 1</div>
+          <div class="a-row-value tp">3 340</div>
+        </div>
+        <div class="a-row">
+          <div class="a-row-label">Take Profit 2</div>
+          <div class="a-row-value tp">3 380</div>
+        </div>
+        <div class="a-row">
+          <div class="a-row-label">Take Profit 3</div>
+          <div class="a-row-value tp">3 420</div>
+        </div>
+        <div class="a-row">
+          <div class="a-row-label">Соотношение R:R</div>
+          <div class="a-row-value">1 : 4.7</div>
+        </div>
+      </div>
+
+      <p class="analytics-note">
+        Это исторический пример торгового сценария. Не является индивидуальной
+        инвестиционной рекомендацией. Решение по сделке всегда остаётся за вами.
+      </p>
+
+      <div class="analytics-btn">
+        <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="btn-outline">
+          Подписаться на @SBFAcademy_bot →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     7. FAQ
+════════════════════════════════════════════ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2 class="section-h2">Отвечаем честно</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Я могу потерять деньги?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          Да. Торговля финансовыми инструментами сопряжена с реальным риском потери капитала.
+          Именно поэтому первое, чему мы учим — риск-менеджмент: как ограничить потери
+          на уровне 1–2% от счёта на сделку. Честный ответ важнее красивых обещаний.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Это законно для резидентов Казахстана?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          Да. SBF Company — образовательная компания, зарегистрированная в Молдове
+          (Bloomberg LEI верифицирован). Мы не управляем вашими деньгами и не являемся брокером.
+          Счёт открывается вами лично у регулируемого международного брокера. Получение
+          финансового образования и аналитики законно для резидентов РК.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          С какой суммы можно начать?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          Один из наших клиентов начал с $500. Рекомендуемый старт — от $1 000–2 000:
+          это позволяет правильно управлять рисками, не торгуя в условиях, где одна сделка
+          съедает слишком большой процент счёта. На брифинге обсудим вашу ситуацию конкретно.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Что такое «брифинг»? Это продажа?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          Нет. Это 15-минутный разговор с аналитиком: разбираем текущую ситуацию на рынке,
+          смотрим как она касается вашего капитала, отвечаем на вопросы. Никаких скриптов
+          «купи сейчас», никакого давления. Если вам не интересно продолжать —
+          просто скажите, мы не будем перезванивать.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Нужен ли опыт в трейдинге?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          Нет. Большинство клиентов начинали с нуля. Первый уровень сотрудничества —
+          обучение, где мы объясняем всё с основ: как читать график, что такое кредитное
+          плечо, как выбрать брокера. Важно только желание разобраться.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Как быстро вы перезвоните?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          В течение 10 минут в рабочее время (пн–пт, 09:00–19:00 по Алматы).
+          Если заявка пришла вечером или в выходной — свяжемся утром следующего
+          рабочего дня.
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     8. КАК ЭТО РАБОТАЕТ
+════════════════════════════════════════════ -->
+<section class="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Процесс</span>
+      <h2 class="section-h2">Как это работает</h2>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-title">Заявка</div>
+        <p class="how-desc">Оставляете имя и телефон в форме на этой странице</p>
+        <span class="how-time">1 минута</span>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-title">Звонок аналитика</div>
+        <p class="how-desc">Аналитик SBF перезванивает, разбираем вашу ситуацию и рынок</p>
+        <span class="how-time">15 минут</span>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-title">Доступ к аналитике</div>
+        <p class="how-desc">Получаете доступ к ежедневным торговым сценариям и образовательным материалам</p>
+        <span class="how-time">Сразу после</span>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-title">Первая сделка</div>
+        <p class="how-desc">Открываете счёт у брокера и делаете первые шаги под сопровождением аналитика</p>
+        <span class="how-time">В вашем темпе</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     9. FINAL CTA
+════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="container">
+    <span class="eyebrow">Начать сейчас</span>
+    <h2 class="section-h2">Бесплатный брифинг — 15 минут</h2>
+    <p class="section-sub">Без давления. Без шаблонов. Только конкретный разговор о вашем капитале.</p>
+
+    <div class="final-form">
+      <form action="#" onsubmit="handleSubmit(event, 'final')">
+        <div class="form-group">
+          <label for="f-name">Ваше имя</label>
+          <input type="text" id="f-name" name="name" placeholder="Имя" required>
+        </div>
+        <div class="form-group">
+          <label for="f-tel">Телефон</label>
+          <input type="tel" id="f-tel" name="phone" placeholder="+7 700 000 00 00" required>
+        </div>
+        <button type="submit" class="form-submit">Хочу бесплатный разбор рынков</button>
+      </form>
+      <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     10. FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">SBF <span>●</span> Company SRL</div>
+        <p class="footer-addr">Str. Alexei Sciusev 47, Chișinău, Moldova</p>
+        <p class="footer-lei">Bloomberg LEI: 254900BW4MI5M0006I30</p>
+      </div>
+      <div class="footer-contacts">
+        <div class="footer-contact-row"><a href="tel:+37369000520">+373 (69) 000 520</a></div>
+        <div class="footer-contact-row"><a href="mailto:contact@sbf.md">contact@sbf.md</a></div>
+      </div>
+    </div>
+
+    <p class="footer-disclaimer">
+      Уведомление о рисках: Все материалы SBF Company SRL предоставляются исключительно
+      в образовательных целях. Компания не является брокером, не управляет капиталом.
+      Торговля финансовыми инструментами сопряжена с риском потери капитала.
+      Прошлые результаты не гарантируют будущих доходов. Информация не является
+      индивидуальной инвестиционной рекомендацией для резидентов РК.
+    </p>
+
+    <p class="footer-copy">© 2026 SBF Company SRL · Все права защищены</p>
+
+  </div>
+</footer>
+
+
+<script>
+  /* ── FAQ accordion ── */
+  function toggleFaq(btn) {
+    const item   = btn.closest('.faq-item');
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+
+  /* ── Form submit ── */
+  function handleSubmit(e, formId) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+      name:      form.name.value,
+      phone:     form.phone.value,
+      form:      formId,
+      page:      'cons-kz',
+      timestamp: new Date().toISOString(),
+    };
+    console.log('[SBF cons-kz] form submission:', data);
+
+    const btn  = form.querySelector('button[type="submit"]');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Заявка принята — перезвоним в течение 10 минут';
+    btn.disabled = true;
+    btn.style.background = '#16A34A';
+    btn.style.color      = '#fff';
+    btn.style.letterSpacing = '1px';
+
+    setTimeout(() => {
+      btn.textContent    = orig;
+      btn.disabled       = false;
+      btn.style.background   = '';
+      btn.style.color        = '';
+      btn.style.letterSpacing = '';
+      form.reset();
+    }, 5000);
+  }
+
+  /* ── Nav compact on scroll ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 40 ? '13px 24px' : '20px 24px';
+  }, { passive: true });
+</script>
+
+</body>
+</html>

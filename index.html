@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBF Consult — Мы вычленяем сигналы</title>
+  <script>
+    (function(){
+      var p = window.location.pathname.replace(/\/+$/, '');
+      var langMap = { '/ru': 'ru', '/en': 'en', '/ro': 'en', '/uk': 'ru', '/be': 'ru', '/kk': 'ru' };
+      if (p && p !== '') {
+        var lang = langMap[p];
+        if (lang) localStorage.setItem('sbf_lang', lang);
+        window.location.replace('/');
+      }
+    })();
+  </script>
+  <script src="js/i18n.js"></script>
+
+  <script src="js/mobile-init.js" defer></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet (локально) -->
+  <link rel="stylesheet" href="vendor/leaflet.css"/>
+
+  <!-- Стили -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo/logo.svg">
+
+  <!-- Мгновенное восстановление позиции до первого рендера -->
+  <script>
+    (function () {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      var idx = parseInt(sessionStorage.getItem('sbf_snap_idx') || '0', 10);
+      if (idx > 0 && !window.matchMedia('(max-width: 767px)').matches) {
+        /* Скрываем страницу чтобы не было flash первого блока */
+        document.documentElement.style.opacity = '0';
+        document.documentElement.style.transition = 'none';
+        window.addEventListener('DOMContentLoaded', function () {
+          /* Секции 100vh, поэтому offsetTop = idx * innerHeight */
+          window.scrollTo(0, idx * window.innerHeight);
+          /* Два rAF: первый применяет скролл, второй — показывает */
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              document.documentElement.style.transition = 'opacity 0.2s ease';
+              document.documentElement.style.opacity = '1';
+            });
+          });
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- ══ NAV ════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav-brand" role="button" tabindex="0" aria-label="Наверх">SBF CONSULT <strong>●</strong> MANAGEMENT</div>
+    <ul class="nav-links">
+      <li><a href="#act-approach" data-snap-target="act-approach" data-i18n="nav.analytics">Аналитика</a></li>
+      <li><a href="#act-market"   data-snap-target="act-market"   data-i18n="nav.trading">Торговля</a></li>
+      <li><a href="#act-team"     data-snap-target="act-team"     data-i18n="nav.team">Команда</a></li>
+      <li><a href="#act-contact"  data-snap-target="act-contact"  data-i18n="nav.contacts">Контакты</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <!-- Гамбургер (только мобиле) -->
+    <button id="mobile-menu-btn" data-i18n-aria="nav.menu_aria" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══ MOBILE MENU OVERLAY ════════════════════════════════ -->
+  <div id="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Навигация">
+    <ul>
+      <li><a href="#act-approach"     data-i18n="nav.analytics">Аналитика</a></li>
+      <li><a href="#act-market-mobile" data-i18n="nav.trading">Торговля</a></li>
+      <li><a href="#act-team-grid"    data-i18n="nav.team">Команда</a></li>
+      <li><a href="#act-contact"      data-i18n="nav.contacts">Контакты</a></li>
+    </ul>
+    <div class="overlay-contacts">
+      <a href="tel:+37369000520">+373 (69) 000-520</a>
+      <a href="mailto:contact@sbf.md">contact@sbf.md</a>
+    </div>
+  </div>
+
+  <!-- ══ SNAP PROGRESS — 9 dots (десктоп) ══════════════════ -->
+  <nav id="snap-progress" class="desktop-only" data-i18n-aria="nav.nav_aria" aria-label="Навигация по разделам">
+    <button class="snap-dot active" data-idx="0" data-i18n-title="dots.0" title="Карта"></button>
+    <button class="snap-dot" data-idx="1" data-i18n-title="dots.1" title="События"></button>
+    <button class="snap-dot" data-idx="2" data-i18n-title="dots.2" title="Подход"></button>
+    <button class="snap-dot" data-idx="3" data-i18n-title="dots.3" title="Память рынков"></button>
+    <button class="snap-dot" data-idx="4" data-i18n-title="dots.4" title="Обучение"></button>
+    <button class="snap-dot" data-idx="5" data-i18n-title="dots.5" title="Сопровождение"></button>
+    <button class="snap-dot" data-idx="6" data-i18n-title="dots.6" title="Управление"></button>
+    <button class="snap-dot" data-idx="7" data-i18n-title="dots.7" title="Команда"></button>
+    <button class="snap-dot" data-idx="8" data-i18n-title="dots.8" title="Контакты"></button>
+  </nav>
+
+  <!-- ══ ЛОГОТИП (постоянный слой) ════════════════════════ -->
+  <div id="sbf-logo">
+    <div id="logo-stream"></div>
+    <div id="chart-stream">
+      <canvas id="chart-logo-canvas"></canvas>
+    </div>
+    <img id="sbf-logo-img" src="assets/logo/logo.svg" alt="SBF Consult логотип" draggable="false">
+  </div>
+
+  <!-- ══ STOP 1 — Карта + герой ════════════════════════════ -->
+  <section class="snap-stop act-hero" id="act-map">
+
+    <div id="world-map"></div>
+
+    <div class="map-headline-overlay-top">
+      <h1 class="map-headline" data-i18n-html="hero.headline">Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.</h1>
+    </div>
+
+    <div class="map-headline-overlay-bottom">
+      <p class="hero-subline" data-i18n-html="hero.subline">
+        SBF Company SRL · Кишинёв<br>
+        Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.
+      </p>
+      <p class="hero-trust" data-i18n="hero.trust">Bloomberg LEI · Эксперты с опытом 10–25 лет · Партнёры с лицензиями ЕС</p>
+      <div class="hero-cta">
+        <a href="#" class="cta-primary" data-snap-target="act-contact" data-i18n="hero.cta1">Связаться</a>
+        <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="cta-secondary" data-i18n="hero.cta2">Архив прогнозов →</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span data-i18n="hero.scroll">Прокрутите вниз</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+
+    <p class="map-attribution">
+      © <a href="https://carto.com/attributions" target="_blank">CARTO</a>
+      © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>
+    </p>
+
+    <div class="ticker-bar">
+      <span class="ticker-label">LIVE SIGNAL</span>
+      <div class="ticker-track-wrap">
+        <div class="ticker-track" id="ticker-track">
+          <span>REUTERS: Fed policy hold triggers short-term consolidation risk &nbsp;·&nbsp; </span>
+          <span>BLOOMBERG: Gold breaches $2,420/oz on intensifying safe-haven demand &nbsp;·&nbsp; </span>
+          <span>FT: ECB maintains restrictive rates, opens path for potential June pivot &nbsp;·&nbsp; </span>
+          <span>NIKKEI: BOJ acts on extreme spot spreads as Yen crosses 155 &nbsp;·&nbsp; </span>
+          <span>WSJ: US 10-Year yield climb prompts cautious macro allocation review &nbsp;·&nbsp; </span>
+          <span>CNBC: Oil contracts appreciate 2.1% on fresh supply constraints &nbsp;·&nbsp; </span>
+          <span>REUTERS: Fed policy hold triggers short-term consolidation risk &nbsp;·&nbsp; </span>
+          <span>BLOOMBERG: Gold breaches $2,420/oz on intensifying safe-haven demand &nbsp;·&nbsp; </span>
+          <span>FT: ECB maintains restrictive rates, opens path for potential June pivot &nbsp;·&nbsp; </span>
+          <span>NIKKEI: BOJ acts on extreme spot spreads as Yen crosses 155 &nbsp;·&nbsp; </span>
+          <span>WSJ: US 10-Year yield climb prompts cautious macro allocation review &nbsp;·&nbsp; </span>
+          <span>CNBC: Oil contracts appreciate 2.1% on fresh supply constraints &nbsp;·&nbsp; </span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ STOP 2 — Сбывшиеся прогнозы ══════════════════════ -->
+  <section class="snap-stop" id="act-grow">
+
+    <!-- Заголовок (над всей композицией) -->
+    <div class="forecasts-header">
+      <p class="eyebrow" data-i18n="grow.eyebrow">ПРОВЕРЯЕМЫЙ ТРЕК-РЕКОРД</p>
+      <h3 data-i18n="grow.heading">Результаты экспертов</h3>
+    </div>
+
+    <!-- SVG-нити от центра (лого) к карточкам -->
+    <svg class="forecasts-threads" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <line x1="700" y1="400" x2="280" y2="240" class="thread-line"/>
+      <line x1="700" y1="400" x2="1120" y2="240" class="thread-line"/>
+      <line x1="700" y1="400" x2="700" y2="640" class="thread-line"/>
+    </svg>
+
+    <!-- Карточка 1: верхний левый -->
+    <article class="forecast-card forecast-card--tl">
+      <div class="fc-head">
+        <span class="fc-asset" data-i18n="grow.fc1.asset">СЕРЕБРО · XAG/USD</span>
+        <span class="fc-date" data-i18n="grow.fc1.date">прогноз от 16 января 2026</span>
+      </div>
+      <div class="fc-body">
+        <div class="fc-row">
+          <span class="fc-label" data-i18n="grow.fc1.price">Цена на момент</span>
+          <span class="fc-value">$63</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-label" data-i18n="grow.fc1.fore">Прогноз на год</span>
+          <span class="fc-value fc-gold">$160</span>
+        </div>
+        <div class="fc-row fc-result">
+          <span class="fc-label" data-i18n="grow.fc1.res">Через 2 недели</span>
+          <span class="fc-value fc-gold">$120 <span class="fc-delta">+90%</span></span>
+        </div>
+      </div>
+      <p class="fc-note" data-i18n="grow.fc1.note">Годовая цель — в процессе.</p>
+    </article>
+
+    <!-- Карточка 2: верхний правый -->
+    <article class="forecast-card forecast-card--tr">
+      <div class="fc-head">
+        <span class="fc-asset" data-i18n="grow.fc2.asset">ЗОЛОТО · XAU/USD</span>
+        <span class="fc-date" data-i18n="grow.fc2.date">прогноз от декабря 2025</span>
+      </div>
+      <div class="fc-body">
+        <div class="fc-row">
+          <span class="fc-label" data-i18n="grow.fc2.price">Цена на момент</span>
+          <span class="fc-value">$4 300</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-label" data-i18n="grow.fc2.cons">Консервативно</span>
+          <span class="fc-value">$4 500</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-label" data-i18n="grow.fc2.bull">Бычий сценарий</span>
+          <span class="fc-value">$4 900</span>
+        </div>
+        <div class="fc-row fc-result">
+          <span class="fc-label" data-i18n="grow.fc2.res">Факт — максимум</span>
+          <span class="fc-value fc-gold">$5 600 ✓</span>
+        </div>
+      </div>
+      <p class="fc-note" data-i18n="grow.fc2.note">Превышен даже бычий сценарий.</p>
+    </article>
+
+    <!-- Карточка 3: нижний центр (CTA) -->
+    <article class="forecast-card forecast-card--bc forecast-card--cta">
+      <div class="fc-head">
+        <span class="fc-asset" data-i18n="grow.fc3.asset">ИНВЕСТ-ПРОГНОЗ 2026</span>
+        <span class="fc-date" data-i18n="grow.fc3.sub">10 структурных идей</span>
+      </div>
+      <div class="fc-body fc-body--list">
+        <p class="fc-list-item" data-i18n="grow.fc3.item1">Энергетический голод · атомная энергетика</p>
+        <p class="fc-list-item" data-i18n="grow.fc3.item2">Медный дефицит · металл ИИ</p>
+        <p class="fc-list-item" data-i18n="grow.fc3.item3">Европейская оборона</p>
+        <p class="fc-list-item" data-i18n="grow.fc3.item4">…и ещё 7 идей</p>
+      </div>
+      <p class="fc-note" data-i18n="grow.fc3.note">Полный разбор — в нашем боте.</p>
+    </article>
+
+    <!-- CTA -->
+    <div class="forecasts-cta">
+      <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="forecasts-tg-btn" data-i18n="grow.cta">
+        Архив прогнозов и аналитики →
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ══ STOP 3 — Подход + золотой график ══════════════════ -->
+  <section class="snap-stop" id="act-approach">
+    <div id="approach-stage">
+      <div id="approach-copy">
+        <p class="eyebrow" data-i18n="approach.eyebrow">Комплексный подход</p>
+        <h2 data-i18n="approach.heading">Индивидуальные финансовые решения для вашего будущего</h2>
+        <p data-i18n="approach.p1">Наша команда с международным опытом предоставляет услуги финансового обучения на всех видах рынков: фондовых, валютных, товарных, а также рынке деривативов и криптовалют.</p>
+        <p data-i18n="approach.p2">Мы предлагаем инструменты и стратегии, учитывая индивидуальные цели клиентов. Особый акцент делается на анализе рынков и профессиональном обучении для уверенных финансовых решений.</p>
+      </div>
+      <div id="approach-chart"></div>
+    </div>
+  </section>
+
+  <!-- ══ STOP 4 — Память рынков (carousel) ═════════════════ -->
+  <section class="snap-stop" id="act-market">
+    <div class="market-carousel desktop-only">
+      <div class="market-slide active" data-case="eurusd">
+        <canvas class="market-slide-chart"></canvas>
+        <div class="market-slide-info">
+          <p class="case-meta" data-i18n="market.eurusd.meta">EUR/USD · FOREX · 30M</p>
+          <h4 data-i18n="market.eurusd.title">EUR/USD — Выходной гэп</h4>
+          <p class="case-desc" data-i18n="market.eurusd.desc">Май 2026. Пятница 22 мая: закрытие 1.1605. Понедельник 26 мая: открытие 1.1644. Гэп +39 пунктов — постепенное закрытие за 1,5 недели.</p>
+          <div class="chart-pattern">
+            <p class="pattern-label" data-i18n="market.eurusd.pattern">ПАТТЕРН: GAP &amp; FILL</p>
+            <p class="pattern-note" data-i18n="market.eurusd.note">Выходные гэпы на ликвидных форекс-парах закрываются в ~75% случаев в течение 1–2 недель. Устойчивый среднесрочный статистический паттерн.</p>
+          </div>
+        </div>
+      </div>
+      <div class="market-slide" data-case="gold-tri">
+        <canvas class="market-slide-chart"></canvas>
+        <div class="market-slide-info">
+          <p class="case-meta" data-i18n="market.gold_tri.meta">XAU/USD · COMEX · 1H</p>
+          <h4 data-i18n="market.gold_tri.title">Золото — Пробой треугольника</h4>
+          <p class="case-desc" data-i18n="market.gold_tri.desc">Май 2026. Симметричное сжатие 20–27 мая, апекс треугольника на ~$4,440. Пробой вверх 28 мая с ускорением к $4,627.</p>
+          <div class="chart-pattern">
+            <p class="pattern-label" data-i18n="market.gold_tri.pattern">ПАТТЕРН: СИММЕТРИЧНЫЙ ТРЕУГОЛЬНИК</p>
+            <p class="pattern-note" data-i18n="market.gold_tri.note">Заужение ценового диапазона с пробоем апекса формирует направленный импульс. Паттерн накопления с измеримой проекцией движения.</p>
+          </div>
+        </div>
+      </div>
+      <div class="market-slide" data-case="gold-bol">
+        <canvas class="market-slide-chart"></canvas>
+        <div class="market-slide-info">
+          <p class="case-meta" data-i18n="market.gold_bol.meta">XAU/USD · COMEX · 1H</p>
+          <h4 data-i18n="market.gold_bol.title">Золото — Сжатие Боллинджера</h4>
+          <p class="case-desc" data-i18n="market.gold_bol.desc">Май 2026. После консолидации полосы Боллинджера сжались до минимума на ~$4,700. Двойной пробой вниз к $4,395.</p>
+          <div class="chart-pattern">
+            <p class="pattern-label" data-i18n="market.gold_bol.pattern">ПАТТЕРН: BOLLINGER SQUEEZE</p>
+            <p class="pattern-note" data-i18n="market.gold_bol.note">Заужение полос Боллинджера предшествует направленному движению. Сторона пробоя определяет направление импульса. Исторический пример нисходящего сценария.</p>
+          </div>
+        </div>
+      </div>
+      <div class="market-slide" data-case="jpy">
+        <canvas class="market-slide-chart"></canvas>
+        <div class="market-slide-info">
+          <p class="case-meta" data-i18n="market.jpy.meta">USD/JPY · FOREX · 30M</p>
+          <h4 data-i18n="market.jpy.title">Иена — Зона интервенции</h4>
+          <p class="case-desc" data-i18n="market.jpy.desc">Июнь 2026. USD/JPY достигла уровня 160.09 — исторической зоны интервенций Банка Японии. Разворот от круглого сопротивления.</p>
+          <div class="chart-pattern">
+            <p class="pattern-label" data-i18n="market.jpy.pattern">ПАТТЕРН: КРУГЛЫЙ УРОВЕНЬ + РАЗВОРОТ</p>
+            <p class="pattern-note" data-i18n="market.jpy.note">Уровень 160 — зона исторической активности BOJ. Коррекция 50–70% от предшествующего движения наблюдается как историческая закономерность у таких уровней.</p>
+          </div>
+        </div>
+      </div>
+      <div class="market-slide" data-case="copper">
+        <canvas class="market-slide-chart"></canvas>
+        <div class="market-slide-info">
+          <p class="case-meta" data-i18n="market.copper.meta">COPPER · CME · 4H</p>
+          <h4 data-i18n="market.copper.title">Медь — Пробой восходящего канала</h4>
+          <p class="case-desc" data-i18n="market.copper.desc">Март–июнь 2026. Восходящий канал с 18 марта. Ложные пробои 10 апреля и 11 мая с возвратом в канал.</p>
+          <div class="chart-pattern">
+            <p class="pattern-label" data-i18n="market.copper.pattern">ПАТТЕРН: ЦЕНОВОЙ КАНАЛ + ЛОЖНЫЙ ПРОБОЙ</p>
+            <p class="pattern-note" data-i18n="market.copper.note">Двойной ложный пробой верхней границы канала с возвратом — статистически значимый сигнал ослабления тренда. Два подтверждения повышают надёжность паттерна.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="market-nav-bar" data-no-snap>
+      <button class="market-arrow market-arrow-left" data-no-snap data-i18n-aria="market.prev" aria-label="Предыдущий кейс">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="market-dots">
+        <button class="dot active" data-idx="0" aria-label="EUR/USD"></button>
+        <button class="dot" data-idx="1" aria-label="Gold Triangle"></button>
+        <button class="dot" data-idx="2" aria-label="Gold Bollinger"></button>
+        <button class="dot" data-idx="3" aria-label="Yen"></button>
+        <button class="dot" data-idx="4" aria-label="Copper"></button>
+      </div>
+      <button class="market-arrow market-arrow-right" data-no-snap data-i18n-aria="market.next" aria-label="Следующий кейс">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="act-overlay" id="market-overlay">
+      <div class="act-overlay-inner">
+        <p class="eyebrow" data-i18n="market.eyebrow">ПАМЯТЬ РЫНКОВ</p>
+        <h3 data-i18n="market.heading">Каждое движение оставляет паттерн</h3>
+      </div>
+    </div>
+  </section>
+  <!-- ══ STOP 5 — Обучение ══════════════════════════════════ -->
+  <section class="snap-stop service-stop" id="act-service-1">
+    <div class="service-corona">
+      <p class="service-num-top">01</p>
+      <h2 class="service-title-top" data-i18n="svc.s1.title">Обучение</h2>
+      <div class="service-target-left">
+        <p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p>
+        <p class="target-text" data-i18n="svc.s1.target">Для тех, кто разбирается в инструментах рынка самостоятельно</p>
+      </div>
+      <div class="service-partners-right">
+        <p class="partners-label" data-i18n="svc.partner_label">ПАРТНЁРЫ УРОВНЯ</p>
+        <div class="partners-grid">
+          <article class="partner-card" data-partner="avatrade" tabindex="0" role="button" aria-label="Подробнее об AvaTrade">
+            <img src="assets/partners/avatrade.svg" alt="AvaTrade" class="partner-logo">
+            <p class="partner-name">AvaTrade</p>
+            <p class="partner-meta" data-i18n="svc.s1.avatrade_meta">MT4 · MT5 · Встроенное обучение</p>
+          </article>
+          <article class="partner-card" data-partner="capex" tabindex="0" role="button" aria-label="Подробнее о Capex">
+            <img src="assets/partners/capex.svg" alt="Capex" class="partner-logo">
+            <p class="partner-name">Capex</p>
+            <p class="partner-meta" data-i18n="svc.s1.capex_meta">MT5 · TradingView · WebTrader</p>
+          </article>
+        </div>
+      </div>
+      <div class="service-desc-bottom">
+        <p data-i18n="svc.s1.desc">Образовательные программы и аналитические материалы: основы рынков, выбор брокерской инфраструктуры, разбор торговых подходов. Без инвестиционных рекомендаций.</p>
+      </div>
+    </div>
+    <div class="service-corona-mobile">
+      <img src="assets/logo/logo.svg" alt="" class="service-logo-bg">
+      <div class="service-zone-top" data-fade><p class="service-num">01</p><h2 class="service-title-mobile" data-i18n="svc.s1.title">Обучение</h2></div>
+      <div class="service-zone-left" data-fade><p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p><p class="target-text" data-i18n="svc.s1.target">Для тех, кто разбирается в инструментах рынка самостоятельно</p></div>
+      <div class="service-zone-bottom" data-fade><p data-i18n="svc.s1.desc">Образовательные программы и аналитические материалы: основы рынков, выбор брокерской инфраструктуры, разбор торговых подходов. Без инвестиционных рекомендаций.</p></div>
+      <div class="service-zone-partners" data-fade>
+        <p class="partners-label" data-i18n="svc.partner_label">ПАРТНЁРЫ УРОВНЯ</p>
+        <div class="partners-grid-mobile">
+          <article class="partner-card" data-partner="avatrade" tabindex="0" role="button">
+            <img src="assets/partners/avatrade.svg" alt="AvaTrade" class="partner-logo">
+            <p class="partner-name">AvaTrade</p>
+          </article>
+          <article class="partner-card" data-partner="capex" tabindex="0" role="button">
+            <img src="assets/partners/capex.svg" alt="Capex" class="partner-logo">
+            <p class="partner-name">Capex</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STOP 6 — Сопровождение ════════════════════════════ -->
+  <section class="snap-stop service-stop" id="act-service-2">
+    <div class="service-corona">
+      <p class="service-num-top">02</p>
+      <h2 class="service-title-top" data-i18n="svc.s2.title">Сопровождение счёта</h2>
+      <div class="service-target-left">
+        <p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p>
+        <p class="target-text" data-i18n="svc.s2.target">Для активных клиентов с собственным капиталом</p>
+      </div>
+      <div class="service-partners-right">
+        <p class="partners-label" data-i18n="svc.partner_label">ПАРТНЁРЫ УРОВНЯ</p>
+        <div class="partners-grid">
+          <article class="partner-card" data-partner="naga" tabindex="0" role="button" aria-label="Подробнее о Naga">
+            <img src="assets/partners/naga.png" alt="Naga" class="partner-logo">
+            <p class="partner-name">Naga</p>
+            <p class="partner-meta" data-i18n="svc.s2.naga_meta">CySEC · MT4/MT5 · 4000+ инструментов</p>
+          </article>
+          <article class="partner-card" data-partner="instaforex" tabindex="0" role="button" aria-label="Подробнее о InstaForex">
+            <img src="assets/partners/instaforex.svg" alt="InstaForex" class="partner-logo">
+            <p class="partner-name">InstaForex</p>
+            <p class="partner-meta" data-i18n="svc.s2.instaforex_meta">CySEC · MT4/MT5 · от $100 депозит</p>
+          </article>
+        </div>
+      </div>
+      <div class="service-desc-bottom">
+        <p data-i18n="svc.s2.desc">Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.</p>
+      </div>
+    </div>
+    <div class="service-corona-mobile">
+      <img src="assets/logo/logo.svg" alt="" class="service-logo-bg">
+      <div class="service-zone-top" data-fade><p class="service-num">02</p><h2 class="service-title-mobile" data-i18n="svc.s2.title">Сопровождение счёта</h2></div>
+      <div class="service-zone-left" data-fade><p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p><p class="target-text" data-i18n="svc.s2.target">Для активных клиентов с собственным капиталом</p></div>
+      <div class="service-zone-bottom" data-fade><p data-i18n="svc.s2.desc">Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.</p></div>
+      <div class="service-zone-partners" data-fade>
+        <p class="partners-label" data-i18n="svc.partner_label">ПАРТНЁРЫ УРОВНЯ</p>
+        <div class="partners-grid-mobile">
+          <article class="partner-card" data-partner="naga" tabindex="0" role="button">
+            <img src="assets/partners/naga.png" alt="Naga" class="partner-logo">
+            <p class="partner-name">Naga</p>
+          </article>
+          <article class="partner-card" data-partner="instaforex" tabindex="0" role="button">
+            <img src="assets/partners/instaforex.svg" alt="InstaForex" class="partner-logo">
+            <p class="partner-name">InstaForex</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STOP 7 — Доверительное управление ═════════════════ -->
+  <section class="snap-stop service-stop" id="act-service-3">
+    <div class="service-corona">
+      <p class="service-num-top">03</p>
+      <h2 class="service-title-top" data-i18n="svc.s3.title">Доверительное управление</h2>
+      <div class="service-target-left">
+        <p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p>
+        <p class="target-text" data-i18n="svc.s3.target">Для тех, кто доверяет управление профессионалам</p>
+      </div>
+      <div class="service-partners-right">
+        <p class="partners-label" data-i18n="svc.partner_label_s">ПАРТНЁР УРОВНЯ</p>
+        <div class="partners-grid partners-grid--single">
+          <article class="partner-card partner-card--featured" data-partner="fxpro" tabindex="0" role="button" aria-label="Подробнее о FxPro">
+            <img src="assets/partners/fxpro.svg" alt="FxPro" class="partner-logo">
+            <p class="partner-name">FxPro</p>
+            <p class="partner-meta" data-i18n="svc.s3.fxpro_meta">FCA · CySEC · 5 регуляторов</p>
+          </article>
+        </div>
+      </div>
+      <div class="service-desc-bottom">
+        <p data-i18n="svc.s3.desc">Полное управление капиталом по согласованной с клиентом стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, согласованный риск-профиль, регулярные ревизии.</p>
+      </div>
+    </div>
+    <div class="service-corona-mobile">
+      <img src="assets/logo/logo.svg" alt="" class="service-logo-bg">
+      <div class="service-zone-top" data-fade><p class="service-num">03</p><h2 class="service-title-mobile" data-i18n="svc.s3.title">Доверительное управление</h2></div>
+      <div class="service-zone-left" data-fade><p class="target-label" data-i18n="svc.target_label">КОМУ ПОДХОДИТ</p><p class="target-text" data-i18n="svc.s3.target">Для тех, кто доверяет управление профессионалам</p></div>
+      <div class="service-zone-bottom" data-fade><p data-i18n="svc.s3.desc_m">Полное управление капиталом по согласованной стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, регулярные ревизии.</p></div>
+      <div class="service-zone-partners" data-fade>
+        <p class="partners-label" data-i18n="svc.partner_label_s">ПАРТНЁР УРОВНЯ</p>
+        <div class="partners-grid-mobile">
+          <article class="partner-card partner-card--featured" data-partner="fxpro" tabindex="0" role="button">
+            <img src="assets/partners/fxpro.svg" alt="FxPro" class="partner-logo">
+            <p class="partner-name">FxPro</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STOP 8 — Команда ═══════════════════════════════════ -->
+  <section class="snap-stop" id="act-team">
+    <div class="team-stage">
+      <div id="team-overlay" class="act-overlay">
+        <div class="act-overlay-inner">
+          <p class="eyebrow" data-i18n="team.eyebrow">КОМАНДА И НЕЙРО-ИИ</p>
+          <h3 data-i18n="team.heading">Эксперты, усиленные искусственным интеллектом</h3>
+          <p class="lead" data-i18n="team.lead">Международный опыт + системы машинного обучения, работающие 24/7. Каждое решение проходит через двойной фильтр.</p>
+        </div>
+      </div>
+
+      <!-- Orbital-узлы генерирует JS (act4-team.js) -->
+      <div id="team-orbital"></div>
+      <!-- Грид команды для телефона (≤1023px), заполняет JS initTeamGrid() -->
+      <div id="act-team-grid" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- ══ STOP 9 — Финал: глобус + контакты ════════════════ -->
+  <section class="snap-stop" id="act-contact">
+    <!-- Звёзды на фоне -->
+    <div class="cosmos-bg">
+      <div class="cosmos-stars">
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+      </div>
+    </div>
+
+    <!-- Глобус: абсолютный фон всей секции -->
+    <div class="finale-globe-wrap">
+      <div class="globe-container">
+        <div class="globe-mask"><!-- Three.js canvas injected by globe3d.js --></div>
+        <div class="globe-shading"></div>
+      </div>
+    </div>
+
+    <!-- Верхняя зона: филиалы слева и справа -->
+    <div class="finale-top">
+      <!-- Левый столбец: 2 филиала вертикально -->
+      <div class="branches-column branches-left">
+        <div class="lg-card branch-card">
+          <p class="branch-country" data-i18n="contact.ch">Швейцария</p>
+          <p class="branch-addr">Raihaltenstrasse 79, 8912 Obfelden</p>
+          <a href="https://wa.me/41755731626" target="_blank" rel="noopener" class="branch-phone">+41 75 57 31 626 · WhatsApp</a>
+        </div>
+        <div class="lg-card branch-card">
+          <p class="branch-country" data-i18n="contact.pt">Португалия</p>
+          <p class="branch-addr">Praceta José Figueiredo da Fonseca, nr. 183, Lisabon</p>
+          <a href="tel:+351939953919" class="branch-phone">+351 939 953 919</a>
+        </div>
+      </div>
+
+      <!-- Правый столбец: 2 филиала вертикально -->
+      <div class="branches-column branches-right">
+        <div class="lg-card branch-card">
+          <p class="branch-country" data-i18n="contact.md">Молдова</p>
+          <p class="branch-addr">Office 1, str. Alexei Sciusev 47, Chișinău</p>
+          <a href="https://wa.me/37360887735" target="_blank" rel="noopener" class="branch-phone">+373 60 887 735 · WhatsApp</a>
+        </div>
+        <div class="lg-card branch-card">
+          <p class="branch-country" data-i18n="contact.ae">ОАЭ</p>
+          <p class="branch-addr">Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai</p>
+          <a href="https://t.me/+971507193055" target="_blank" rel="noopener" class="branch-phone">+971 50 719 3055 · Telegram</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нижняя зона: карточка контактов -->
+    <div class="finale-bottom">
+      <div class="lg-card lg-card-strong contact-final-card">
+        <p class="modal-eyebrow" data-i18n="contact.eyebrow">СВЯЖИТЕСЬ С НАМИ</p>
+        <h2 data-i18n="contact.heading">Готовы обсудить ваш капитал</h2>
+        <div class="contact-rows">
+          <a href="tel:+37369000520" class="contact-row">
+            <span class="contact-label" data-i18n="contact.phone">Телефон</span>
+            <span class="contact-value">+373 (69) 000-520</span>
+          </a>
+          <a href="mailto:contact@sbf.md" class="contact-row">
+            <span class="contact-label" data-i18n="contact.email">Email</span>
+            <span class="contact-value">contact@sbf.md</span>
+          </a>
+          <div class="contact-row">
+            <span class="contact-label">Bloomberg</span>
+            <a class="contact-value" href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">LEI 254900BW4MI5M0006I30</a>
+          </div>
+        </div>
+        <button class="contact-cta-primary" data-open-modal data-i18n="contact.cta">ОСТАВИТЬ ЗАЯВКУ</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STICKY CTA ════════════════════════════════════════ -->
+  <button id="sticky-cta" class="sticky-cta" data-i18n-aria="contact.cta" aria-label="Оставить заявку">
+    <span data-i18n="sticky">Связаться</span>
+  </button>
+
+  <!-- ══ LEAD MODAL ════════════════════════════════════════ -->
+  <div id="lead-modal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="lead-modal-backdrop"></div>
+    <div class="lead-modal-card">
+      <button class="lead-modal-close" data-i18n-aria="modal.close_aria" aria-label="Закрыть">×</button>
+      <p class="modal-eyebrow" data-i18n="modal.eyebrow">ОСТАВИТЬ ЗАЯВКУ</p>
+      <h2 id="modal-title" data-i18n="modal.heading">Наш специалист свяжется с вами в течение часа</h2>
+      <form class="lead-form" id="lead-form">
+        <label class="field">
+          <span class="field-label" data-i18n="modal.name">Имя</span>
+          <input type="text" name="name" required minlength="2" autocomplete="given-name">
+        </label>
+        <label class="field">
+          <span class="field-label" data-i18n="modal.phone">Телефон</span>
+          <input type="tel" name="phone" required pattern="[+0-9\s\-\(\)]{7,}" placeholder="+373 ..." autocomplete="tel">
+        </label>
+        <label class="field-checkbox">
+          <input type="checkbox" name="gdpr" required>
+          <span data-i18n="modal.gdpr">Согласен на обработку персональных данных</span>
+        </label>
+        <button type="submit" class="lead-submit" disabled data-i18n="modal.submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+      </form>
+      <div class="lead-divider"><span data-i18n="modal.divider">или напишите напрямую</span></div>
+      <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="lead-telegram" data-i18n="modal.tg">
+        ✈ НАПИСАТЬ В TELEGRAM
+      </a>
+      <div class="lead-success hidden">
+        <p class="success-icon">✓</p>
+        <h3 data-i18n="modal.success_h">Заявка отправлена</h3>
+        <p data-i18n="modal.success_p">Мы свяжемся с вами в течение часа</p>
+      </div>
+      <div class="lead-error hidden">
+        <p><span data-i18n="modal.error_p">Не удалось отправить. Напишите напрямую:</span><br>
+        <a href="tel:+37369000520">+373 (69) 000-520</a> ·
+        <a href="https://t.me/SBFAcademy_bot">Telegram</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CDN ════════════════════════════════════════════════ -->
+  <script src="vendor/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- ══ App ════════════════════════════════════════════════ -->
+  <!-- Токены подставляет George вручную, не коммитить -->
+  <script>
+    window.SBF_BOT_TOKEN   = 'PLACEHOLDER_BOT_TOKEN';
+    window.SBF_LEAD_CHAT_ID = 'PLACEHOLDER_CHAT_ID';
+  </script>
+
+  <!-- ══ Попап партнёра ══════════════════════════════════════ -->
+  <div id="partner-modal" class="partner-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="partner-modal-backdrop" data-close></div>
+    <div class="partner-modal-content">
+      <button class="partner-modal-close" data-close aria-label="Закрыть">✕</button>
+      <div id="partner-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="js/snap-navigator.js"></script>
+  <script src="js/lead-modal.js"></script>
+  <script src="js/partner-modal.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script src="js/act1-map-legacy.js?v=1"></script>
+  <script type="module" src="js/acts/act2-grow.js"></script>
+  <script type="module" src="js/acts/act-approach.js"></script>
+  <script type="module" src="js/acts/act3-market.js"></script>
+  <script type="module" src="js/acts/act-services.js"></script>
+  <script type="module" src="js/acts/act4-team.js"></script>
+  <script type="module" src="js/acts/act-market-mobile.js"></script>
+  <script type="module" src="js/acts/act5-contact.js"></script>
+  <script src="js/globe3d.js"></script>
+  <script src="js/globe-mobile.js"></script>
+
+</body>
+</html>
