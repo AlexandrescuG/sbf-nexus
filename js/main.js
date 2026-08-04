@@ -114,11 +114,13 @@ if (stickyBtn) {
   stickyBtn.addEventListener('click', () => window.leadModal?.open());
 }
 
-/* ── Кликабельный лого — всегда открывает форму ────────── */
-if (logoWrap && !isMobile) {
+/* ── Кликабельный лого — переход на платформу ────────── */
+if (logoWrap) {
   logoWrap.style.pointerEvents = 'auto';
   logoWrap.style.cursor = 'pointer';
-  logoWrap.addEventListener('click', () => window.leadModal?.open());
+  logoWrap.addEventListener('click', () => {
+    window.open('https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=logo&utm_campaign=logo_click', '_blank', 'noopener');
+  });
 }
 
 /* ── CTA hero — открывает модалку (только .cta-primary, не nav-ссылки) ── */

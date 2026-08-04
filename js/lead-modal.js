@@ -66,34 +66,22 @@ class LeadModal {
     const data  = new FormData(this.form);
     const name  = data.get('name');
     const phone = data.get('phone');
+    const lang  = window.i18n?.getLang?.() || 'ru';
 
     if (this.submitBtn) {
       this.submitBtn.disabled    = true;
       this.submitBtn.textContent = window.i18n?.t('modal.submitting') || 'ОТПРАВКА…';
     }
 
-    const text = `🔥 Новый лид с сайта SBF\n\n` +
-                 `👤 Имя: ${name}\n` +
-                 `📱 Телефон: ${phone}\n` +
-                 `⏰ ${new Date().toLocaleString('ru-RU')}\n` +
-                 `🌍 Источник: ${document.referrer || 'прямой заход'}`;
-
     try {
-      const token  = window.SBF_BOT_TOKEN;
-      const chatId = window.SBF_LEAD_CHAT_ID;
-
-      if (!token || token === 'PLACEHOLDER_BOT_TOKEN') throw new Error('no token');
-
-      const res = await fetch(
-        `https://api.telegram.org/bot${token}/sendMessage`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: chatId, text }),
-        }
-      );
+      const res = await fetch('https://lp.sbf.md/submit-nexus', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ name, phone, lang }),
+      });
       if (!res.ok) throw new Error('api error');
-      this._showSuccess();
+      const result = await res.json();
+      this._showSuccess(result.book_url);
     } catch (err) {
       console.warn('[lead-modal] send failed:', err);
       this._showError();
@@ -105,10 +93,12 @@ class LeadModal {
     }
   }
 
-  _showSuccess() {
+  _showSuccess(bookUrl) {
     this.form.classList.add('hidden');
+    const bookLink = document.getElementById('lead-book-link');
+    if (bookLink) bookLink.href = bookUrl || '#';
     this.successBlock?.classList.remove('hidden');
-    setTimeout(() => this.close(), 4000);
+    setTimeout(() => this.close(), 8000);
   }
 
   _showError() {

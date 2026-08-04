@@ -19,25 +19,15 @@
     ctx.fillStyle = '#0d0b14';
     ctx.fillRect(0, 0, W, H);
 
-    function drawSVG(svgText) {
-      // Force SVG to stretch exactly to canvas — eliminates margin offsets
-      var modified = svgText.replace(/(<svg[^>]*)>/, '$1 preserveAspectRatio="none">');
-      var blob = new Blob([modified], { type: 'image/svg+xml' });
-      var url = URL.createObjectURL(blob);
-      var img = new Image();
-      img.onload = function () {
-        ctx.drawImage(img, 0, 0, W, H);
-        URL.revokeObjectURL(url);
-        onReady(new THREE.CanvasTexture(canvas));
-      };
-      img.onerror = function () { URL.revokeObjectURL(url); onReady(null); };
-      img.src = url;
-    }
-
-    fetch('assets/finale/world-map.svg')
-      .then(function (r) { return r.text(); })
-      .then(drawSVG)
-      .catch(function () { onReady(null); });
+    // Direct img.src avoids Blob URL — Chrome не применяет CSS-классы (.land)
+    // из <style>-блока SVG при рендере через Blob URL в canvas.
+    var img = new Image(W, H);
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0, W, H);
+      onReady(new THREE.CanvasTexture(canvas));
+    };
+    img.onerror = function () { onReady(null); };
+    img.src = 'assets/finale/world-map.svg';
   }
 
   function initGlobe3D() {

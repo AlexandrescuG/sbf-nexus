@@ -23,7 +23,7 @@ const PEOPLE = [
   { name: 'Елена Краузе',      role: 'Институциональные клиенты', role_en: 'Institutional Clients',      city: 'Лиссабон',  imgIdx: 11 },
 ];
 
-const AI_LABELS = ['ChatGPT', 'Claude', 'Gemini', 'DeepSeek', 'Local LLM', 'GitHub', 'Qwen'];
+const AI_LABELS = []; // WP-4: LLM-бренды убраны
 
 const INNER_R_MAX = 260;
 const OUTER_R_MAX = 370;
@@ -54,14 +54,11 @@ async function initTeamGrid() {
   teamGrid.className = 'team-grid section-animate';
   const lang = window.i18n?.getLang?.() || 'ru';
   PEOPLE.slice(0, 10).forEach(member => {
-    const imgFile  = manifest[member.imgIdx] || '';
-    const imgSrc   = imgFile ? `assets/team/${encodeURIComponent(imgFile)}` : '';
+    // WP-4 Variant B: портреты убраны
     const roleText = lang === 'en' ? (member.role_en || member.role) : member.role;
     const item = document.createElement('div');
     item.className = 'team-grid-item';
-    item.innerHTML = imgSrc
-      ? `<img src="${imgSrc}" alt="" loading="lazy"><div class="name">${member.name}</div><div class="role">${roleText}</div>`
-      : `<div style="width:80px;height:80px;border-radius:50%;background:rgba(201,162,39,0.08);border:1px solid rgba(201,162,39,0.3);margin:0 auto"></div><div class="name">${member.name}</div><div class="role">${roleText}</div>`;
+    item.innerHTML = `<div style="width:80px;height:80px;border-radius:50%;background:rgba(201,162,39,0.08);border:1px solid rgba(201,162,39,0.3);margin:0 auto"></div><div class="name">${member.name}</div><div class="role">${roleText}</div>`;
     teamGrid.appendChild(item);
   });
   grid.appendChild(teamGrid);
@@ -88,7 +85,8 @@ async function initTeamGrid() {
 
 window.initTeamGrid = initTeamGrid;
 
-if (window.matchMedia('(max-width: 1023px)').matches) {
+// Только планшет (768–1023px): мобильный грид строит mobile-init.js
+if (window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTeamGrid);
   } else {
@@ -121,19 +119,14 @@ function buildOrbital(stage, manifest) {
     const x = cx + INNER_R * Math.cos(angle);
     const y = cy + INNER_R * Math.sin(angle);
 
-    const imgFile = manifest[person.imgIdx] || '';
-    const imgSrc  = imgFile ? `assets/team/${encodeURIComponent(imgFile)}` : '';
-
+    // WP-4 Variant B: портреты убраны, только gold-ring placeholder
     const node = document.createElement('div');
     node.className = 'team-node';
     node.style.left = `${x}px`;
     node.style.top  = `${y}px`;
     node.style.opacity = '0';
     node.innerHTML = `
-      <div class="team-portrait${imgSrc ? '' : ' photo-empty'}">
-        ${imgSrc ? `<img src="${imgSrc}" alt="" loading="lazy"
-          onerror="this.parentNode.classList.add('photo-empty');this.remove()">` : ''}
-      </div>
+      <div class="team-portrait photo-empty"></div>
       <div class="team-node-info">
         <p class="team-node-name">${person.name}</p>
         <p class="team-node-role" data-role-ru="${person.role}" data-role-en="${person.role_en || person.role}">${window.i18n?.getLang?.() === 'en' ? (person.role_en || person.role) : person.role}</p>
