@@ -6,7 +6,7 @@
 /* Логотипы и ссылки — не зависят от языка */
 const PARTNER_STATIC = {
   avatrade:   { logo: 'assets/partners/avatrade.svg',   referralUrl: 'https://www.avatrade.com/?tag=184200' },
-  capex:      { logo: 'assets/partners/capex.svg',      referralUrl: 'https://account.capex.com/en/login?sidc=88EA29D5-46D9-472E-AEB2-C6E5C30E822A' },
+  xm:         { logo: 'assets/partners/xm.svg',         referralUrl: 'https://clicks.pipaffiliates.com/c?c=1258918&l=ru&p=1' },
   naga:       { logo: 'assets/partners/naga.png',       referralUrl: 'https://go.joinnaga.com/29LSS44/23JF6C/' },
   instaforex: { logo: 'assets/partners/instaforex.svg', referralUrl: 'https://www.instaforex.com/fast_open_live_account' },
   fxpro:      { logo: 'assets/partners/fxpro.svg',      referralUrl: 'https://www.fxpro-direct.org/en/register/md/cri/32TQQFd7H' },
