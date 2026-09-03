@@ -14,11 +14,19 @@ if ('scrollRestoration' in history) {
 const IS_MOBILE = window.matchMedia('(max-width: 1023px)').matches;
 window.IS_MOBILE = IS_MOBILE;
 
+/* Сайт переведён на обычный скролл: поэкранный режим больше не включается
+   ни на какой ширине. Перехват колеса, клавиш и рассылка snap-enter/leave
+   переехали в js/scroll-director.js — события те же, источник другой.
+   Здесь остаётся только показ блоков [data-fade].
+   Вернуть поэкранный режим: снять флаг и убрать scroll-director из index.html. */
+const SCROLL_MODE = true;
+const NO_SNAP = IS_MOBILE || SCROLL_MODE;
+
 const SNAP_STORAGE_KEY = 'sbf_snap_idx';
 
 class SnapNavigator {
   constructor() {
-    if (IS_MOBILE) {
+    if (NO_SNAP) {
       /* На мобиле — нативный скролл, ни одного перехватчика событий */
       document.body.style.overflow          = '';
       document.documentElement.style.overflow = '';
@@ -56,7 +64,7 @@ class SnapNavigator {
   }
 
   init() {
-    if (IS_MOBILE) return; // всё сделано в конструкторе
+    if (NO_SNAP) return; // всё сделано в конструкторе
 
     this.stops = Array.from(document.querySelectorAll('.snap-stop'));
     if (!this.stops.length) return;
