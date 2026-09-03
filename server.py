@@ -28,4 +28,7 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         pass  # тишина в логах
 
 print(f'  SBF Nexus → http://localhost:{PORT}  (no-cache, SPA routing)')
-http.server.HTTPServer(('', PORT), NoCacheHandler).serve_forever()
+# ThreadingHTTPServer, а не HTTPServer: одиночный keep-alive от браузера
+# блокировал единственный поток и весь sbfconsult.com переставал отвечать,
+# пока клиент не отвалится. Воспроизводилось живым прогоном 28.08.2026.
+http.server.ThreadingHTTPServer(('', PORT), NoCacheHandler).serve_forever()

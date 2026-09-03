@@ -62,10 +62,25 @@ class LeadModal {
     if (this.submitBtn) this.submitBtn.disabled = true;
   }
 
+  /* UTM: из текущего URL, иначе из сохранённых в этой сессии */
+  _utm() {
+    const keys  = ['utm_source', 'utm_medium', 'utm_campaign'];
+    const query = new URLSearchParams(location.search);
+    const out   = {};
+    keys.forEach(k => {
+      let v = query.get(k);
+      if (v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+      else   { try { v = sessionStorage.getItem(k); } catch (e) { v = null; } }
+      out[k] = v || '';
+    });
+    return out;
+  }
+
   async _send() {
     const data  = new FormData(this.form);
     const name  = data.get('name');
     const phone = data.get('phone');
+    const email = data.get('email');
     const lang  = window.i18n?.getLang?.() || 'ru';
 
     if (this.submitBtn) {
@@ -77,7 +92,8 @@ class LeadModal {
       const res = await fetch('https://lp.sbf.md/submit-nexus', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ name, phone, lang }),
+        body:    JSON.stringify({ name, phone, email, lang,
+                                  referrer: document.referrer || '', ...this._utm() }),
       });
       if (!res.ok) throw new Error('api error');
       const result = await res.json();

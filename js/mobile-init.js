@@ -2,9 +2,11 @@
  * mobile-init.js — вся мобильная логика SBF.
  * Запускается только на ≤767px. Никакого canvas rAF, никакого snap.
  */
-const IS_MOBILE = window.matchMedia('(max-width: 767px)').matches;
+/* Своё имя: snap-navigator.js объявляет глобальный const IS_MOBILE,
+   и второе объявление роняло весь этот файл с SyntaxError. */
+const IS_PHONE = window.matchMedia('(max-width: 767px)').matches;
 
-if (IS_MOBILE) {
+if (IS_PHONE) {
   document.body.classList.add('is-mobile');
 
   /* Отключить snap если успел инициализироваться */

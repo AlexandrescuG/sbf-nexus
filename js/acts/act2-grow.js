@@ -12,12 +12,9 @@ if (!window.matchMedia('(max-width: 767px)').matches) {
     const section  = document.getElementById('act-grow');
     if (!section || !logoWrap) return;
 
-    section.addEventListener('snap-leave', () => {
-      /* Явный сброс на случай если GSAP из другого акта залип */
-      gsap.set(logoWrap, { clearProps: 'transform,opacity' });
-      gsap.set(logoWrap, { scale: 1, xPercent: -50, yPercent: -50, opacity: 1 });
-      if (logoImg) gsap.set(logoImg, { clearProps: 'opacity' });
-    });
+    /* Сброс положения логотипа убран: теперь им единолично заведует
+       js/logo-roles.js, и «залипнуть» после чужого акта нечему —
+       роль назначается на snap-enter, который всегда позже snap-leave. */
   }
 
   if (document.readyState === 'loading') {

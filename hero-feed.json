@@ -1,0 +1,185 @@
+{
+  "updated": "2026-08-28T08:25:11.244151+00:00",
+  "items": [
+    {
+      "title": {
+        "en": "Interest Rate",
+        "ru": "Процентная ставка",
+        "ro": "Rata dobânzii"
+      },
+      "tag": {
+        "en": "USA",
+        "ru": "США",
+        "ro": "SUA"
+      },
+      "lon": -74.0,
+      "lat": 40.7,
+      "id": "cal-1787875200"
+    },
+    {
+      "title": {
+        "en": "National People's Congress",
+        "ru": "Всекитайское собрание",
+        "ro": "Congresul Național al Poporului"
+      },
+      "tag": {
+        "en": "China",
+        "ru": "Китай",
+        "ro": "China"
+      },
+      "lon": 116.4,
+      "lat": 39.9,
+      "id": "cal-1787875200"
+    },
+    {
+      "title": {
+        "en": "Housing Starts YoY",
+        "ru": "Закладки новых домов г/г",
+        "ro": "Construcții de locuințe începute a/a"
+      },
+      "tag": {
+        "en": "Japan",
+        "ru": "Япония",
+        "ro": "Japonia"
+      },
+      "lon": 139.7,
+      "lat": 35.7,
+      "id": "cal-1787893200"
+    },
+    {
+      "title": {
+        "en": "Consumer Confidence",
+        "ru": "Потребительское доверие",
+        "ro": "Încrederea consumatorilor"
+      },
+      "tag": {
+        "en": "Japan",
+        "ru": "Япония",
+        "ro": "Japonia"
+      },
+      "lon": 103.8,
+      "lat": 1.35,
+      "id": "cal-1787893200"
+    },
+    {
+      "title": {
+        "en": "Nationwide Housing Prices MoM",
+        "ru": "Общенациональные цены на жильё м/м",
+        "ro": "Prețurile naționale ale locuințelor l/l"
+      },
+      "tag": {
+        "en": "UK",
+        "ru": "Великобритания",
+        "ro": "Marea Britanie"
+      },
+      "lon": -0.13,
+      "lat": 51.5,
+      "id": "cal-1787896800"
+    },
+    {
+      "title": {
+        "en": "Nationwide Housing Prices YoY",
+        "ru": "Общенациональные цены на жильё г/г",
+        "ro": "Prețurile naționale ale locuințelor a/a"
+      },
+      "tag": {
+        "en": "UK",
+        "ru": "Великобритания",
+        "ro": "Marea Britanie"
+      },
+      "lon": 114.2,
+      "lat": 22.3,
+      "id": "cal-1787896800"
+    },
+    {
+      "title": {
+        "en": "BTC · 27 mentions",
+        "ru": "BTC · 27 упоминаний",
+        "ro": "BTC · 27 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": -118.2,
+      "lat": 34.0,
+      "id": "buzz-BTC"
+    },
+    {
+      "title": {
+        "en": "SOL · 11 mentions",
+        "ru": "SOL · 11 упоминаний",
+        "ro": "SOL · 11 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": 151.2,
+      "lat": -33.9,
+      "id": "buzz-SOL"
+    },
+    {
+      "title": {
+        "en": "ETH · 11 mentions",
+        "ru": "ETH · 11 упоминаний",
+        "ro": "ETH · 11 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": 55.3,
+      "lat": 25.2,
+      "id": "buzz-ETH"
+    },
+    {
+      "title": {
+        "en": "LINK · 6 mentions",
+        "ru": "LINK · 6 упоминаний",
+        "ro": "LINK · 6 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": -46.6,
+      "lat": -23.5,
+      "id": "buzz-LINK"
+    },
+    {
+      "title": {
+        "en": "MSTR · 6 mentions",
+        "ru": "MSTR · 6 упоминаний",
+        "ro": "MSTR · 6 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": 8.68,
+      "lat": 50.1,
+      "id": "buzz-MSTR"
+    },
+    {
+      "title": {
+        "en": "AVAX · 5 mentions",
+        "ru": "AVAX · 5 упоминаний",
+        "ro": "AVAX · 5 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": -99.1,
+      "lat": 19.4,
+      "id": "buzz-AVAX"
+    }
+  ]
+}

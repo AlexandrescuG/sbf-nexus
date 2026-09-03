@@ -14,9 +14,14 @@ export class CoreEngine {
     this._layers = []; // {update(dt), draw(ctx)} — подключаются по фазам
     this._last   = 0;
 
-    // Параметры центра логотипа (обновляются из ScrollDirector)
+    /* Центр свечения. Раньше здесь стоял комментарий «обновляются из
+       ScrollDirector» — такого модуля в коде давно нет, и координаты
+       намертво оставались серединой вьюпорта. Из-за этого корона висела
+       золотым пятном посреди экрана независимо от того, где на самом деле
+       находится логотип. Теперь центр берётся из самого знака. */
     this.cx = 0;
     this.cy = 0;
+    this.logoR = 60;   // половина ширины знака — по ней масштабируется свечение
   }
 
   init() {
@@ -97,7 +102,7 @@ export class CoreEngine {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(this.dpr, this.dpr);
 
-    // Центр по умолчанию — середина вьюпорта
+    // До первого кадра — середина вьюпорта, дальше центр даёт логотип
     this.cx = this.W / 2;
     this.cy = this.H / 2;
 
@@ -121,7 +126,22 @@ export class CoreEngine {
     this._rafId = null;
   }
 
+  /* Свечение должно жить там же, где знак: он переезжает по ролям
+     (карта → центр → угол), и промах виден сразу. Один
+     getBoundingClientRect за кадр — дешевле, чем синхронизировать
+     координаты из трёх мест. */
+  _followLogo() {
+    const el = document.getElementById('sbf-logo');
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    if (!r.width) return;
+    this.cx = r.left + r.width / 2;
+    this.cy = r.top + r.height / 2;
+    this.logoR = r.width / 2;
+  }
+
   _tick(dt) {
+    this._followLogo();
     const { ctx, W, H } = this;
     ctx.clearRect(0, 0, W, H);
 

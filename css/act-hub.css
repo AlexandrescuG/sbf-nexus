@@ -1,0 +1,90 @@
+/* act-hub.css — второй экран: «Что выходит из шума».
+   Логотип в центре — не украшение, а вход на платформу: к нему сходятся
+   нити с первого экрана и от него же расходятся четыре продукта.
+   Базовая геометрия (.forecast-card, .forecasts-threads) осталась от
+   прежнего экрана сценариев и переиспользуется — здесь только новое. */
+
+/* ── Четыре карточки крестом вокруг логотипа ─────────────────────────── */
+#act-grow .forecast-card--bl {
+  bottom: 22vh;
+  left: max(40px, calc(50% - 480px));
+}
+#act-grow .forecast-card--br {
+  bottom: 22vh;
+  right: max(40px, calc(50% - 480px));
+}
+
+/* Карточки продукта короче прежних, со сценариями: заголовок и одна мысль */
+#act-grow .hub-card { width: 300px; }
+#act-grow .hub-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+#act-grow .hub-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #55555F;
+  margin: 0;
+}
+#act-grow .hub-tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Наведение на карточку подсвечивает её нить — видно, что она идёт
+   от логотипа, а не нарисована для красоты */
+#act-grow .forecast-card { transition: border-color 0.3s, transform 0.3s; }
+#act-grow .forecast-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+#act-grow .forecast-card--bc:hover { transform: translateX(-50%) translateY(-3px); }
+#act-grow .thread-line { transition: stroke-opacity 0.35s, stroke-width 0.35s; }
+#act-grow .thread-line.thread-hot { stroke-opacity: 1; stroke-width: 2; }
+
+/* Подпись под знаком переехала в css/logo-aura.css: она нужна не
+   только здесь, а на каждом экране, где знак чем-то занят. */
+
+/* ── Полоса «терминал открыт весь» ───────────────────────────────────── */
+#act-grow .hub-open {
+  position: absolute;
+  bottom: 11vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(760px, calc(100% - 80px));
+  text-align: center;
+}
+#act-grow .hub-open-h {
+  font-family: 'Merriweather', serif;
+  font-size: 17px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+#act-grow .hub-open-p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #55555F;
+  margin: 0;
+}
+
+/* ── Мобильная укладка ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  #act-grow .hub-card { width: 90%; max-width: 360px; }
+  #act-grow .hub-open {
+    position: relative;
+    bottom: auto; left: auto; transform: none;
+    width: 100%;
+    margin-top: 18px;
+  }
+}

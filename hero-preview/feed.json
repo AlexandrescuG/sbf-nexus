@@ -1,0 +1,89 @@
+{
+  "updated": "2026-08-28T07:44:13.058209+00:00",
+  "items": [
+    {
+      "title": "Jackson Hole Symposium",
+      "tag": "Interest Rate",
+      "lon": -74.0,
+      "lat": 40.7,
+      "id": "cal-1787875200"
+    },
+    {
+      "title": "National People's Congress",
+      "tag": "Calendar",
+      "lon": 116.4,
+      "lat": 39.9,
+      "id": "cal-1787875200"
+    },
+    {
+      "title": "Housing Starts YoY",
+      "tag": "housing starts yoy",
+      "lon": 139.7,
+      "lat": 35.7,
+      "id": "cal-1787893200"
+    },
+    {
+      "title": "Consumer Confidence",
+      "tag": "Consumer Confidence",
+      "lon": 103.8,
+      "lat": 1.35,
+      "id": "cal-1787893200"
+    },
+    {
+      "title": "Nationwide Housing Prices MoM",
+      "tag": "nationwide housing prices mom",
+      "lon": -0.13,
+      "lat": 51.5,
+      "id": "cal-1787896800"
+    },
+    {
+      "title": "Nationwide Housing Prices YoY",
+      "tag": "nationwide housing prices yoy",
+      "lon": 114.2,
+      "lat": 22.3,
+      "id": "cal-1787896800"
+    },
+    {
+      "title": "BTC · 27 упоминаний",
+      "tag": "Buzz",
+      "lon": -118.2,
+      "lat": 34.0,
+      "id": "buzz-BTC"
+    },
+    {
+      "title": "SOL · 11 упоминаний",
+      "tag": "Buzz",
+      "lon": 151.2,
+      "lat": -33.9,
+      "id": "buzz-SOL"
+    },
+    {
+      "title": "ETH · 11 упоминаний",
+      "tag": "Buzz",
+      "lon": 55.3,
+      "lat": 25.2,
+      "id": "buzz-ETH"
+    },
+    {
+      "title": "LINK · 6 упоминаний",
+      "tag": "Buzz",
+      "lon": -46.6,
+      "lat": -23.5,
+      "id": "buzz-LINK"
+    },
+    {
+      "title": "MSTR · 6 упоминаний",
+      "tag": "Buzz",
+      "lon": 8.68,
+      "lat": 50.1,
+      "id": "buzz-MSTR"
+    },
+    {
+      "title": "AVAX · 5 упоминаний",
+      "tag": "Buzz",
+      "lon": -99.1,
+      "lat": 19.4,
+      "id": "buzz-AVAX"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+/* mobile-fixes.css — узкие экраны.
+   Проверялось через /mobile-probe.html: окно браузера в прогоне не
+   уменьшается ниже ~1360px, а у iframe свой вьюпорт, и медиазапросы
+   внутри считаются от его ширины. */
+
+/* ── Шапка не должна переноситься на две строки ──────────────────────────
+   При переносе она вырастает с 60 до 83px и наезжает на содержимое секций,
+   у которых верхний отступ был жёстко задан числом. Ниже — и то, и другое. */
+.nav-brand { white-space: nowrap; }
+
+/* Бургер включался только с 767px. В диапазоне 768–900 в шапку не влезали
+   бренд, четыре пункта и переключатель языка разом: «ПЛАТФОРМА» наезжала
+   на «RU». Ниже 900 переходим на бургер — разметка меню уже есть,
+   обработчик в main.js от ширины не зависит. */
+@media (max-width: 900px) {
+  .site-nav { gap: 16px; }
+  .site-nav .nav-links { display: none; }
+  .site-nav .lang-switcher { display: none; }
+
+  #mobile-menu-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px; height: 18px;
+    background: none; border: none;
+    cursor: pointer; padding: 0;
+    z-index: 60;
+  }
+  #mobile-menu-btn span {
+    display: block;
+    width: 100%; height: 2px;
+    background: var(--ink);
+    border-radius: 1px;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: center;
+  }
+  #mobile-menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  #mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+  #mobile-menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  #mobile-menu-overlay { display: flex; }
+  #mobile-menu-overlay ul {
+    list-style: none; text-align: center;
+    display: flex; flex-direction: column; gap: 28px;
+    padding: 0; margin: 0;
+  }
+  #mobile-menu-overlay ul a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 18px;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-nav { gap: 12px; }
+  .nav-brand { font-size: 9px; letter-spacing: 0.28em; }
+  /* «MANAGEMENT» — первое, чем можно пожертвовать: бренд читается и без него */
+  .nav-brand .brand-tail { display: none; }
+}
+
+/* Копия переключателя внутри мобильного меню. Обработчик в i18n.js
+   делегированный (`.lang-btn` на document), поэтому дополнительный код
+   не нужен — кнопки работают там же, где и в шапке. */
+#mobile-menu-overlay .lang-switcher {
+  display: none;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 26px;
+}
+@media (max-width: 900px) {
+  #mobile-menu-overlay .lang-switcher { display: flex; }
+}
+
+/* ── Верхний отступ секций считается от реальной высоты шапки ────────────
+   Было `padding-top: 60px !important` при шапке 60–83px: на планшете
+   заголовок уезжал под неё. --nav-h выставляет js/nav-height.js. */
+@media (max-width: 1023px) {
+  .snap-stop {
+    padding-top: calc(var(--nav-h, 68px) + 22px) !important;
+  }
+  /* У #act-grow в styles.css своя короткая запись `padding: 60px 16px 90px`
+     с !important и id-селектором — правило по классу её не перебивает. */
+  #act-grow {
+    padding-top: calc(var(--nav-h, 68px) + 22px) !important;
+  }
+  /* Первый экран и финал занимают всю высоту сами — им отступ не нужен */
+  #act-map, #act-contact { padding-top: 0 !important; }
+}
+
+/* ── Второй экран на узких ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  #act-grow .forecasts-header { margin-bottom: 6px; }
+  #act-grow .hub-card { margin-left: auto; margin-right: auto; }
+  /* Нити между знаком и карточками в столбик бессмысленны */
+  #act-grow .forecasts-threads { display: none; }
+}
+
+/* ── Знак на узких экранах ───────────────────────────────────────────────
+   В styles.css он уже скрыт правилом внутри @media (max-width: 1023px);
+   здесь повторяем явно, чтобы при чтении этого файла было видно: роли и
+   кольцо занятости — история только про широкие экраны. На узких у услуг
+   своя разметка (.service-corona-mobile) со своей подложкой-логотипом. */
+@media (max-width: 900px) {
+  #sbf-logo { display: none !important; }
+}
+
+
+/* ── Невысокие экраны на десктопе ────────────────────────────────────────
+   Найдено прогоном tools/shots.py на 1440×680 и 1280×800: у PRO-экрана
+   содержимое прижато к верху секции, и надзаголовок «СТАРТ БЕЗ РИСКА»
+   уходил под фиксированную шапку. Отступ здесь нужен на всех ширинах,
+   а не только на мобильных. */
+#act-platform-2 {
+  padding-top: calc(var(--nav-h, 69px) + 18px);
+}
+
+/* Финальный экран при высоте окна ниже ~700px не помещался в 100vh
+   и обрезался снизу на полтора десятка пикселей. */
+@media (min-width: 1024px) and (max-height: 720px) {
+  #act-contact { overflow: auto; }
+}
+
+/* `.p2-header` спозиционирован абсолютно от верха секции (`top: 5vh`),
+   поэтому padding секции его не двигает: на 680px высоты 5vh = 34px,
+   а шапка занимает 54. Считаем от неё. */
+.p2-header {
+  top: calc(var(--nav-h, 69px) + 16px) !important;
+}

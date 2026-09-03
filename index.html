@@ -54,6 +54,7 @@
     })();
   </script>
   <script src="js/i18n.js"></script>
+  <script defer src="js/nav-height.js"></script>
 
   <script src="js/mobile-init.js" defer></script>
 
@@ -67,6 +68,10 @@
 
   <!-- Стили -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/hero-map.css">
+  <link rel="stylesheet" href="css/act-hub.css">
+  <link rel="stylesheet" href="css/logo-aura.css">
+  <link rel="stylesheet" href="css/mobile-fixes.css">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml">
@@ -99,7 +104,7 @@
 <body>
   <!-- ══ NAV ════════════════════════════════════════════════ -->
   <nav class="site-nav" id="site-nav">
-    <div class="nav-brand" role="button" tabindex="0" aria-label="Наверх">SBF CONSULT <strong>●</strong> MANAGEMENT</div>
+    <div class="nav-brand" role="button" tabindex="0" aria-label="Наверх">SBF CONSULT <strong>●</strong> <span class="brand-tail">MANAGEMENT</span></div>
     <ul class="nav-links">
       <li><a href="#act-approach" data-snap-target="act-approach" data-i18n="nav.analytics">Аналитика</a></li>
       <li><a href="#act-market"   data-snap-target="act-market"   data-i18n="nav.trading">Торговля</a></li>
@@ -131,6 +136,15 @@
       <a href="tel:+37369000520">+373 (69) 000-520</a>
       <a href="mailto:contact@sbf.md">contact@sbf.md</a>
     </div>
+    <!-- На телефоне переключатель языка убран из шапки (места нет) и живёт
+         здесь. Обработчик в i18n.js делегированный, доп. кода не нужно. -->
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ru">RU</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang="ro">RO</button>
+    </div>
   </div>
 
   <!-- ══ SNAP PROGRESS — 10 dots (десктоп) ══════════════════ -->
@@ -154,41 +168,52 @@
       <canvas id="chart-logo-canvas"></canvas>
     </div>
     <img id="sbf-logo-img" src="assets/logo/logo.svg" alt="SBF Consult логотип" draggable="false">
+
+    <!-- Кольцо занятости знака. На услугах показывает, какую долю работы
+         берёт на себя SBF (1/3 → 2/3 → 3/3), на PRO-экране замыкается
+         целиком. Рисуется поверх знака и ездит вместе с ним. -->
+    <svg id="logo-ring" viewBox="0 0 100 100" aria-hidden="true">
+      <circle class="ring-track" cx="50" cy="50" r="46"/>
+      <circle class="ring-fill"  cx="50" cy="50" r="46"/>
+    </svg>
+
+    <!-- Подпись под знаком: что он делает на этом экране -->
+    <p class="logo-hint" id="logo-hint"></p>
   </div>
 
   <!-- ══ STOP 1 — Карта + герой ════════════════════════════ -->
   <section class="snap-stop act-hero" id="act-map">
 
-    <div id="world-map"></div>
-
-    <div class="hero-mobile-block">
-    <div class="map-headline-overlay-top">
-      <h1 class="map-headline" data-i18n-html="hero.headline">Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.</h1>
-    </div>
-
-    <div class="map-headline-overlay-bottom">
-      <p class="hero-subline" data-i18n-html="hero.subline">
-        SBF Company SRL · Кишинёв<br>
-        Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.
-      </p>
-      <p class="hero-trust" data-i18n="hero.trust">Bloomberg LEI · Эксперты с опытом 10–25 лет · Партнёры с лицензиями ЕС</p>
-      <div class="hero-cta">
-        <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" target="_blank" rel="noopener" class="cta-primary" data-i18n="hero.cta1">Открыть платформу →</a>
-        <a href="#" class="cta-secondary" data-snap-target="act-contact" data-i18n="hero.cta2">Связаться</a>
+<div class="hm-stage" id="hm-stage" data-hero="light-map">
+  <canvas id="hm-cv"></canvas>
+  <div class="hm-grid"></div>
+  <div class="hm-scrim"></div>
+  <div id="hm-labels"></div>
+  <div class="hm-content">
+    <div>
+      <div class="hm-hero">
+        <div class="hm-copy">
+          <div class="hm-kicker"><s></s><span data-i18n="hero.kicker">SBF Company SRL · Кишинёв</span></div>
+          <h1 data-i18n-html="hero.headline">Мир генерирует шум. <em>Мы распознаём закономерности</em>.</h1>
+          <div class="hm-sub" data-i18n="hero.sub">Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.</div>
+          <div class="hm-ctas">
+            <a class="hm-primary" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-i18n="hero.cta1">Открыть платформу →</a>
+            <a class="hm-ghost" href="#" data-snap-target="act-contact" data-i18n="hero.cta2">Связаться</a>
+          </div>
+        </div>
+        <div class="hm-side">
+          <div class="hm-t" data-i18n="hero.side_t">Старт без риска</div>
+          <div class="hm-h" data-i18n="hero.side_h">Опрос трейдера — 30 дней PRO</div>
+          <div class="hm-p" data-i18n="hero.side_p">Карта не нужна. Автосписания нет. ~3 минуты.</div>
+          <a class="hm-go" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_survey" data-i18n="hero.side_go">Начать →</a>
+        </div>
       </div>
-      <p class="hero-promo-badge" data-i18n="hero.promo_badge">БЕСПЛАТНАЯ РЕГИСТРАЦИЯ · 30 ДНЕЙ PRO ЗА ОПРОС ТРЕЙДЕРА · БЕЗ АВТОСПИСАНИЯ</p>
+      <div class="hm-foot">
+        <span data-i18n="hero.trust">Bloomberg LEI · Опыт 10–25 лет · Партнёры с лицензиями ЕС</span>
+        <a class="hm-gold" href="#act-grow"><span data-i18n="hero.scroll">Прокрутите вниз</span> ↓</a>
+      </div>
     </div>
-    </div><!-- /.hero-mobile-block -->
-
-    <div class="scroll-hint">
-      <span data-i18n="hero.scroll">Прокрутите вниз</span>
-      <div class="scroll-arrow">↓</div>
-    </div>
-
-    <p class="map-attribution">
-      © <a href="https://carto.com/attributions" target="_blank">CARTO</a>
-      © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>
-    </p>
+  </div>
 
     <div class="ticker-bar">
       <span class="ticker-label">LIVE FEED</span>
@@ -213,93 +238,58 @@
   </section>
 
   <!-- ══ STOP 2 — Сбывшиеся прогнозы ══════════════════════ -->
+  <!-- ══ STOP 2 — Что выходит из шума (платформа) ═══════════ -->
   <section class="snap-stop" id="act-grow">
 
-    <!-- Заголовок (над всей композицией) -->
     <div class="forecasts-header">
-      <p class="eyebrow" data-i18n="grow.eyebrow">АРХИВ АНАЛИТИЧЕСКИХ СЦЕНАРИЕВ</p>
-      <h3 data-i18n="grow.heading">Датированные сценарии и факты</h3>
+      <p class="eyebrow" data-i18n="grow.eyebrow">ПЛАТФОРМА · LP.SBFCONSULT.COM</p>
+      <h3 data-i18n="grow.heading">Что выходит из шума</h3>
+      <p class="grow-lead" data-i18n="grow.lead">Первый экран — поток мировых событий. Здесь — то, во что он превращается.</p>
     </div>
 
-    <!-- SVG-нити от центра (лого) к карточкам -->
-    <svg class="forecasts-threads" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <line x1="700" y1="400" x2="280" y2="240" class="thread-line"/>
-      <line x1="700" y1="400" x2="1120" y2="240" class="thread-line"/>
-      <line x1="700" y1="400" x2="700" y2="640" class="thread-line"/>
+    <!-- Нити от логотипа к продуктам: продолжение нитей первого экрана,
+         только теперь они выходят из знака, а не входят в него -->
+    <!-- Нити считает act-hub.js по фактическим позициям знака и карточек:
+         координаты в разметке разъезжались с вёрсткой при любом размере окна -->
+    <svg class="forecasts-threads" preserveAspectRatio="none" aria-hidden="true">
+      <line class="thread-line" data-thread="1"/>
+      <line class="thread-line" data-thread="2"/>
+      <line class="thread-line" data-thread="3"/>
+      <line class="thread-line" data-thread="4"/>
     </svg>
 
-    <!-- Карточка 1: верхний левый -->
-    <article class="forecast-card forecast-card--tl">
-      <div class="fc-head">
-        <span class="fc-asset" data-i18n="grow.fc1.asset">СЕРЕБРО · XAG/USD</span>
-        <span class="fc-date" data-i18n="grow.fc1.date">сценарий от 16 января 2026</span>
-      </div>
-      <div class="fc-body">
-        <div class="fc-row">
-          <span class="fc-label" data-i18n="grow.fc1.price">Цена на момент</span>
-          <span class="fc-value">$63</span>
-        </div>
-        <div class="fc-row">
-          <span class="fc-label" data-i18n="grow.fc1.fore">Сценарий на год</span>
-          <span class="fc-value fc-gold">$160</span>
-        </div>
-        <div class="fc-row fc-result">
-          <span class="fc-label" data-i18n="grow.fc1.res">Через 2 недели</span>
-          <span class="fc-value fc-gold">$120 <span class="fc-delta">+90%</span></span>
-        </div>
-      </div>
-      <p class="fc-note" data-i18n="grow.fc1.note">Годовая цель — в процессе.</p>
+    <article class="forecast-card forecast-card--tl hub-card" data-thread="1">
+      <span class="hub-tag" data-i18n="grow.c1.tag">КАЖДОЕ УТРО</span>
+      <h4 class="hub-title" data-i18n="grow.c1.title">Утренний бриф</h4>
+      <p class="hub-desc" data-i18n="grow.c1.desc">Сводка по рынкам до открытия европейской сессии: что случилось за ночь и на что это влияет.</p>
     </article>
 
-    <!-- Карточка 2: верхний правый -->
-    <article class="forecast-card forecast-card--tr">
-      <div class="fc-head">
-        <span class="fc-asset" data-i18n="grow.fc2.asset">ЗОЛОТО · XAU/USD</span>
-        <span class="fc-date" data-i18n="grow.fc2.date">сценарий от декабря 2025</span>
-      </div>
-      <div class="fc-body">
-        <div class="fc-row">
-          <span class="fc-label" data-i18n="grow.fc2.price">Цена на момент</span>
-          <span class="fc-value">$4 300</span>
-        </div>
-        <div class="fc-row">
-          <span class="fc-label" data-i18n="grow.fc2.cons">Консервативно</span>
-          <span class="fc-value">$4 500</span>
-        </div>
-        <div class="fc-row">
-          <span class="fc-label" data-i18n="grow.fc2.bull">Бычий сценарий</span>
-          <span class="fc-value">$4 900</span>
-        </div>
-        <div class="fc-row fc-result">
-          <span class="fc-label" data-i18n="grow.fc2.res">Факт — максимум</span>
-          <span class="fc-value fc-gold">$5 600 ✓</span>
-        </div>
-      </div>
-      <p class="fc-note" data-i18n="grow.fc2.note">Превышен даже бычий сценарий.</p>
+    <article class="forecast-card forecast-card--tr hub-card" data-thread="2">
+      <span class="hub-tag" data-i18n="grow.c2.tag">ПО ИНСТРУМЕНТУ</span>
+      <h4 class="hub-title" data-i18n="grow.c2.title">Анализ актива</h4>
+      <p class="hub-desc" data-i18n="grow.c2.desc">Уровни, паттерны и структура рынка по выбранному инструменту — на всех таймфреймах от M1 до W1.</p>
     </article>
 
-    <!-- Карточка 3: нижний центр (CTA) -->
-    <article class="forecast-card forecast-card--bc forecast-card--cta">
-      <div class="fc-head">
-        <span class="fc-asset" data-i18n="grow.fc3.asset">ИНВЕСТ-СЦЕНАРИЙ 2026</span>
-        <span class="fc-date" data-i18n="grow.fc3.sub">10 структурных идей</span>
-      </div>
-      <div class="fc-body fc-body--list">
-        <p class="fc-list-item" data-i18n="grow.fc3.item1">Энергетический голод · атомная энергетика</p>
-        <p class="fc-list-item" data-i18n="grow.fc3.item2">Медный дефицит · металл ИИ</p>
-        <p class="fc-list-item" data-i18n="grow.fc3.item3">Европейская оборона</p>
-        <p class="fc-list-item" data-i18n="grow.fc3.item4">…и ещё 7 идей</p>
-      </div>
-      <p class="fc-note" data-i18n="grow.fc3.note">Полный разбор — в нашем боте.</p>
+    <article class="forecast-card forecast-card--bl hub-card" data-thread="3">
+      <span class="hub-tag" data-i18n="grow.c3.tag">С ИСТОРИЕЙ</span>
+      <h4 class="hub-title" data-i18n="grow.c3.title">Библиотека паттернов</h4>
+      <p class="hub-desc" data-i18n="grow.c3.desc">Каждый паттерн — с посчитанной статистикой срабатываний, а не с картинкой из учебника.</p>
     </article>
 
-    <!-- Дисклеймер (WP-3.2) -->
-    <p class="grow-disclaimer" data-i18n="grow.disclaimer">Материалы носят информационный характер, не являются индивидуальной инвестиционной рекомендацией. Прошлые сценарии подобраны из архива публикаций; полный архив доступен по ссылке ниже.</p>
+    <article class="forecast-card forecast-card--br hub-card" data-thread="4">
+      <span class="hub-tag" data-i18n="grow.c4.tag">ВАШИ СДЕЛКИ</span>
+      <h4 class="hub-title" data-i18n="grow.c4.title">Журнал сделок</h4>
+      <p class="hub-desc" data-i18n="grow.c4.desc">Дисциплин-скор, контроль риска на сделку и разбор ошибок. Лидерборд по XP — не по прибыли.</p>
+    </article>
 
-    <!-- CTA -->
+    <div class="hub-open">
+      <p class="hub-open-h" data-i18n="grow.open_h">Терминал открыт весь. Аккаунт добавляет своё</p>
+      <p class="hub-open-p" data-i18n="grow.open_p">Котировки, графики и библиотека паттернов работают без регистрации и останутся такими.</p>
+    </div>
+
     <div class="forecasts-cta">
-      <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="forecasts-tg-btn" data-i18n="grow.cta">
-        Полный архив аналитики
+      <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=hub_platform" target="_blank" rel="noopener" class="forecasts-tg-btn" data-i18n="grow.cta">
+        Открыть платформу →
       </a>
     </div>
 
@@ -710,8 +700,12 @@
           <input type="text" name="name" required minlength="2" autocomplete="given-name">
         </label>
         <label class="field">
-          <span class="field-label" data-i18n="modal.phone">Телефон</span>
-          <input type="tel" name="phone" required pattern="[+0-9\s\-\(\)]{7,}" placeholder="+373 ..." autocomplete="tel">
+          <span class="field-label" data-i18n="modal.email">Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label class="field">
+          <span class="field-label" data-i18n="modal.phone">Телефон — необязательно</span>
+          <input type="tel" name="phone" pattern="[+0-9\s\-\(\)]{7,}" placeholder="+373 ..." autocomplete="tel">
         </label>
         <label class="field-checkbox">
           <input type="checkbox" name="gdpr" required>
@@ -762,11 +756,16 @@
 
   <script src="vendor/three.min.js"></script>
   <script src="js/snap-navigator.js"></script>
+  <script src="vendor/d3.min.js"></script>
+  <script src="vendor/topojson-client.min.js"></script>
+  <script defer src="js/hero-map.js"></script>
+  <script defer src="js/logo-roles.js"></script>
+  <script defer src="js/logo-aura.js"></script>
   <script src="js/lead-modal.js"></script>
   <script src="js/partner-modal.js"></script>
   <script type="module" src="js/main.js"></script>
-  <script src="js/act1-map-legacy.js?v=1"></script>
   <script type="module" src="js/acts/act2-grow.js"></script>
+  <script defer src="js/acts/act-hub.js"></script>
   <script type="module" src="js/acts/act-approach.js"></script>
   <script type="module" src="js/acts/act3-market.js"></script>
   <script type="module" src="js/acts/act-services.js"></script>

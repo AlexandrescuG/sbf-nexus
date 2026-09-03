@@ -165,8 +165,8 @@ body {
 }
 
 @media (min-width: 768px) and (max-height: 700px) {
-  #sbf-logo { top: 44% !important; }
-  #sbf-logo-img { width: 100px !important; }
+  #sbf-logo { top: 44%; }
+  #sbf-logo-img { width: 100px; }
   .map-headline-overlay-top { bottom: calc(44% + 50px); }
   .map-headline-overlay-bottom { bottom: calc(var(--ticker-height) + 12px); }
 }
@@ -2874,20 +2874,24 @@ body.finale-sun-active #sbf-logo-img {
    ════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════════
-   ЛОГО — ЖЁСТКАЯ ЗАЩИТА БАЗОВОГО СОСТОЯНИЯ
-   Всегда виден, 120px, fixed центр, heartbeat.
-   !important перебивает любые inline-стили GSAP.
+   ЛОГО — БАЗОВОЕ СОСТОЯНИЕ
+   Раньше здесь стояла «жёсткая защита» с !important на transform,
+   opacity и width, с комментарием «перебивает любые inline-стили GSAP».
+   Она их и перебивала: логотип был намертво пришпилен к центру экрана,
+   и ни одна пер-актовая анимация не работала — ни перелёт в солнце
+   на финале, ни что-либо ещё. Отсюда и ощущение, что лого «просто висит».
+   Защита была нужна, пока положение логотипа правили четыре файла
+   вразнобой. Теперь у него один владелец — js/logo-roles.js,
+   и перебивать больше нечего.
    ════════════════════════════════════════════════════════════ */
 
 #sbf-logo {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 50 !important;
-  display: grid !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  display: grid;
+  visibility: visible;
 }
 
 /* Исключение: на act-grow лого уходит ЗА карточки (z-index карточек: 25) */
@@ -2896,19 +2900,20 @@ body.act-act-grow-active #sbf-logo {
 }
 
 #sbf-logo-img {
-  width: 120px !important;
-  height: auto !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  display: block !important;
+  width: 120px;
+  height: auto;
+  visibility: visible;
+  display: block;
   transform-origin: 50% 50%;
   animation: sbf-heartbeat 1.6s ease-in-out infinite;
-  transition: width 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 2.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.6s ease;
+  /* width из перехода убран: его анимирует GSAP покадрово, и CSS-переход
+     поверх этого только добавлял запаздывание. */
+  transition: filter 0.6s ease;
 }
 
 /* Страховка: на команде лого не дёргается */
 body.act-act-team-active #sbf-logo-img {
-  width: 120px !important;
+  width: 120px;
 }
 
 /* sbf-logo видим на всех экранах (heartbeat-анимация) */

@@ -22,13 +22,17 @@ export class GlowLayer {
   }
 
   draw(ctx) {
-    const { cx, cy, W, H } = this.engine;
+    const { cx, cy, logoR } = this.engine;
+    /* Радиус считаем от знака, а не от экрана. Раньше было
+       min(W, H) * 0.22 — на 1119px это корона в 246px, которая оставалась
+       такой же и когда логотип уменьшался до 56px в углу. */
+    const R = (logoR || 60);
 
     const flicker = this._flickerBase +
       Math.sin(this.time * this._flickerSpeed) * this._flickerAmp;
 
     /* ── Широкая тёплая корона ───────────────────────────── */
-    const coronaR = Math.min(W, H) * 0.22;
+    const coronaR = R * 2.6;
     const corona  = ctx.createRadialGradient(cx, cy, 1, cx, cy, coronaR);
     corona.addColorStop(0.00, `rgba(230, 194, 87, ${(flicker * 0.85).toFixed(3)})`);
     corona.addColorStop(0.08, `rgba(201, 162, 39, ${(flicker * 0.55).toFixed(3)})`);
@@ -46,7 +50,7 @@ export class GlowLayer {
     const saved = ctx.globalCompositeOperation;
     ctx.globalCompositeOperation = 'lighter';
 
-    const bloomR = 52;
+    const bloomR = R * 0.9;
     const bloom  = ctx.createRadialGradient(cx, cy, 0, cx, cy, bloomR);
     bloom.addColorStop(0.00, `rgba(255, 240, 160, ${(flicker * 0.30).toFixed(3)})`);
     bloom.addColorStop(0.40, `rgba(230, 194, 87,  ${(flicker * 0.12).toFixed(3)})`);

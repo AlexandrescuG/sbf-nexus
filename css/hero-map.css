@@ -1,0 +1,124 @@
+/* hero-map.css — первый экран: карта мира с нитями новостей.
+   Собран из макета AI-дизайнера, все классы под префиксом hm-,
+   все правила заперты внутри #act-map. Править через
+   hero-preview/ и пересборку, а не здесь напрямую. */
+
+  #act-map {
+    /* Токены сайта — те же значения, что в css/styles.css */
+    --cream: #FBF6EF;
+    --ink: #2B2B33;
+    --gold: #C9A227;
+    --glow: #E6C257;
+    /* Затемнённое золото. Нужно отдельно: #C9A227 на кремовом не даёт
+       контраста для мелкого текста, а весь герой — светлый. */
+    --gold-deep: #9A7B1E;
+    --muted: #6B6B78;
+    --line: rgba(43, 43, 51, 0.16);
+  }
+  #act-map a { color: var(--gold-deep); text-decoration: none; }
+  #act-map a:hover { color: var(--gold); }
+
+
+  /* Контейнер для @container-запросов — сама секция */
+  #act-map { container-type: inline-size; }
+
+  #act-map .hm-stage {
+    position: relative; width: 100%; height: 100%;
+    overflow: hidden;
+    background: radial-gradient(122% 116% at 50% 42%, #FFFDFA 0%, #FBF6EF 36%, #F2ECE3 70%, #E7E0D5 100%);
+    
+  }
+  #act-map .hm-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #act-map .hm-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(43, 43, 51, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43, 43, 51, 0.05) 1px, transparent 1px); background-size: 44px 44px; }
+  #act-map .hm-scrim { position: absolute; inset: 0; background: linear-gradient(96deg, rgba(251, 246, 239, 0.92) 0%, rgba(251, 246, 239, 0.62) 30%, rgba(251, 246, 239, 0) 58%), linear-gradient(0deg, rgba(251, 246, 239, 0.78) 0%, rgba(251, 246, 239, 0) 38%); }
+
+  /* readability system: every size derives from container width */
+  #act-map .hm-lbl {
+    position: absolute; padding: 5px 9px;
+    background: rgba(251, 246, 239, 0.86);
+    border-left: 2px solid var(--gold);
+    font-size: clamp(9px, 0.80cqw, 11px); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap; pointer-events: none; opacity: 0;
+  }
+  #act-map .hm-lbl b { display: block; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(11px, 0.98cqw, 14px); letter-spacing: 0.01em; text-transform: none; color: var(--ink); }
+
+  /* Шапки внутри героя нет — её роль играет общая .site-nav,
+     поэтому содержимое прижато к низу, а не разнесено по краям. */
+  #act-map .hm-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(18px, 2.6cqw, 38px) clamp(20px, 4.4cqw, 64px) clamp(18px, 2.4cqw, 34px); }
+  #act-map .hm-nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  #act-map .hm-wm { display: flex; align-items: center; gap: 10px; font-size: clamp(11px, 1.05cqw, 15px); letter-spacing: 0.22em; color: var(--ink); white-space: nowrap; }
+  #act-map .hm-wm em { font-style: normal; color: var(--gold); }
+  #act-map .hm-links { display: flex; align-items: center; gap: clamp(14px, 2.1cqw, 30px); font-size: clamp(10px, 0.85cqw, 12px); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  #act-map .hm-links .hm-muted { color: var(--muted); }
+  #act-map .hm-links .hm-btn { padding: 9px 18px; border: 1px solid rgba(201, 162, 39, 0.55); color: var(--gold-deep); }
+  #act-map .hm-burger { display: none; flex-direction: column; gap: 5px; }
+  #act-map .hm-burger i { display: block; width: 22px; height: 1.5px; background: var(--ink); }
+
+  #act-map .hm-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: clamp(24px, 4cqw, 60px); }
+  #act-map .hm-copy { display: flex; flex-direction: column; gap: clamp(14px, 1.7cqw, 24px); max-width: min(660px, 52cqw); }
+  #act-map .hm-kicker { display: flex; align-items: center; gap: 12px; font-size: clamp(9px, 0.78cqw, 11px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); }
+  #act-map .hm-kicker s { display: block; width: clamp(22px, 3.2cqw, 46px); height: 1px; background: var(--gold); text-decoration: none; }
+  /* Кегль макета (86px) рассчитан на английскую фразу в две строки.
+     Русская длиннее и разъезжается на четыре, съедая карту — поэтому ниже. */
+  #act-map h1 { margin: 0; font-family: 'Merriweather', serif; font-weight: 400; font-size: clamp(24px, 3.6cqw, 52px); line-height: 1.18; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance; }
+  /* На невысоких экранах (ноутбуки 13") первый экран — это ещё и высота */
+  @media (max-height: 820px) and (min-width: 900px) { #act-map h1 { font-size: clamp(22px, 3.0cqw, 42px); } }
+  /* Подзаголовок прячем только на низком и широком экране — на телефоне он нужен */
+  @media (max-height: 680px) and (min-width: 900px) { #act-map h1 { font-size: clamp(20px, 2.6cqw, 36px); } #act-map .hm-sub { display: none; } }
+  #act-map h1 em { font-style: italic; color: var(--gold-deep); }
+  #act-map .hm-sub { font-family: 'Montserrat', sans-serif; font-size: clamp(13px, 1.2cqw, 17px); line-height: 1.6; color: #55555F; max-width: 34em; text-wrap: pretty; }
+  #act-map .hm-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(8px, 1cqw, 14px); }
+  #act-map .hm-primary { padding: clamp(12px, 1.2cqw, 17px) clamp(18px, 2.1cqw, 30px); background: var(--gold); color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 1.05cqw, 15px); font-weight: 600; }
+  #act-map .hm-primary:hover { background: var(--glow); }
+  #act-map .hm-ghost { padding: clamp(12px, 1.2cqw, 17px) clamp(18px, 2.1cqw, 30px); border: 1px solid var(--line); color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 1.05cqw, 15px); font-weight: 500; }
+  #act-map .hm-ghost:hover { border-color: var(--ink); }
+
+  #act-map .hm-side { width: clamp(200px, 19cqw, 272px); display: flex; flex-direction: column; gap: clamp(9px, 1cqw, 14px); padding: clamp(16px, 1.7cqw, 24px); background: rgba(251, 246, 239, 0.88); border: 1px solid rgba(201, 162, 39, 0.30); }
+  #act-map .hm-side .hm-t { font-size: clamp(9px, 0.72cqw, 10px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  #act-map .hm-side .hm-h { font-family: 'Merriweather', serif; font-size: clamp(19px, 1.9cqw, 27px); line-height: 1.14; color: var(--ink); }
+  #act-map .hm-side .hm-p { font-family: 'Montserrat', sans-serif; font-size: clamp(11px, 0.92cqw, 13px); line-height: 1.55; color: var(--muted); }
+  #act-map .hm-side .hm-go { padding: clamp(11px, 1cqw, 14px) 18px; background: var(--gold); color: var(--ink); text-align: center; font-family: 'Montserrat', sans-serif; font-size: clamp(11px, 0.98cqw, 14px); font-weight: 600; }
+
+  #act-map .hm-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: clamp(14px, 2cqw, 30px); padding-top: clamp(12px, 1.4cqw, 20px); border-top: 1px solid var(--line); font-size: clamp(9px, 0.76cqw, 11px); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  #act-map .hm-foot .hm-gold { color: var(--gold-deep); white-space: nowrap; }
+
+  /* ——— breakpoints of the same system ——— */
+  @container (max-width: 1080px) {
+    
+    #act-map .hm-links { display: none; }
+    #act-map .hm-burger { display: flex; }
+    #act-map .hm-hero { flex-direction: column; align-items: stretch; }
+    #act-map .hm-copy { max-width: 100%; }
+    #act-map .hm-side { width: auto; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 14px; }
+    #act-map .hm-side .hm-h { flex: 1; min-width: 180px; font-size: clamp(17px, 2.6cqw, 22px); }
+    #act-map .hm-side .hm-p { display: none; }
+    #act-map .hm-side .hm-go { margin-left: auto; }
+  }
+  @container (max-width: 860px) {
+    #act-map .hm-foot .hm-gold { display: none; }
+  }
+  @container (max-width: 560px) {
+    
+    #act-map .hm-hero { gap: 18px; }
+    #act-map h1 { font-size: clamp(22px, 7.4cqw, 34px); }
+    #act-map .hm-sub { font-size: clamp(12px, 3.4cqw, 15px); }
+    #act-map .hm-side .hm-t { display: none; }
+    #act-map .hm-side { flex-direction: column; align-items: stretch; }
+    #act-map .hm-side .hm-go { margin-left: 0; }
+    #act-map .hm-foot { letter-spacing: 0.1em; }
+  }
+
+/* ── Стыковка с остальным сайтом ─────────────────────────────────────── */
+
+/* Логотип на первом экране — тот же #sbf-logo, что и везде: он переезжает
+   на Кишинёв и становится точкой, куда сходятся нити. Ролями заведует
+   js/logo-roles.js, здесь только вид. */
+#act-map .hm-stage { --logo-halo: rgba(201, 162, 39, 0.45); }
+#sbf-logo.logo-source #sbf-logo-img { filter: drop-shadow(0 0 14px var(--logo-halo)); }
+
+/* Роль «кнопка входа» на экранах платформы — логотип в углу, но заметный */
+#sbf-logo.logo-entry #sbf-logo-img { filter: drop-shadow(0 0 10px rgba(230, 194, 87, 0.75)); }
+
+/* Бегущая строка живёт поверх секции — освобождаем под неё низ, иначе
+   она наезжает на строку доверия. */
+#act-map .hm-content { padding-bottom: calc(var(--ticker-height, 38px) + clamp(18px, 2.4cqw, 34px)); }
