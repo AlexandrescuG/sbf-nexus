@@ -16,11 +16,12 @@
   var lines = section.querySelectorAll('.thread-line[data-thread]');
 
   /* Нити рисуем от знака к карточкам по фактическим прямоугольникам.
-     Логотип — position: fixed, поэтому его координаты берём из
-     getBoundingClientRect и переводим в систему секции. */
+     Знак теперь принадлежит секции (.sect-mark) и лежит в потоке —
+     раньше здесь был общий fixed-логотип, и нити приходилось тянуть
+     к точке, которая жила в координатах вьюпорта. */
   function drawThreads() {
     var svg = section.querySelector('.forecasts-threads');
-    var logo = document.getElementById('sbf-logo');
+    var logo = section.querySelector('.sect-mark');
     if (!svg || !logo) return;
     var sr = section.getBoundingClientRect();
     if (!sr.width) return;
@@ -59,7 +60,7 @@
 
   /* Наведение на сам знак зажигает все четыре нити разом:
      видно, что они выходят именно из него. */
-  var logo = document.getElementById('sbf-logo');
+  var logo = section.querySelector('.sect-mark');
   if (logo) {
     logo.addEventListener('mouseenter', function () {
       if (!document.body.classList.contains('act-act-grow-active')) return;

@@ -11,9 +11,16 @@
   var t = 0, last = performance.now(), flare = 0;
   var keep = [], active = 6, labelsOn = true, sc = 1;
 
-  /* Логотип в центре карты рисует не канвас, а общий #sbf-logo:
-     это один и тот же объект на всех экранах. Отсюда только сообщаем,
-     куда его ставить — см. js/logo-roles.js. */
+  /* Знак в центре карты рисует сам канвас: он часть первого экрана и едет
+     вместе с ним. Общий fixed-логотип отсюда убран — при обычной прокрутке
+     он ложился на текст. */
+  var LOGO = new Image();
+  var LOGO_RATIO = 1842.27 / 1998.6;   /* из viewBox logo.svg */
+  var logoReady = false;
+  LOGO.onload = function () { logoReady = true; };
+  LOGO.onerror = function () { console.warn('[hero] знак не загрузился, ядро осталось точкой'); };
+  LOGO.src = '/assets/logo/logo.svg';
+
   function publishCore() {
     var r = cv.getBoundingClientRect();
     window.SBF_HERO_CORE = { x: r.left + core[0], y: r.top + core[1] };
@@ -398,8 +405,18 @@
     }
     ctx.restore();
 
-    /* Центр остаётся пустым: там стоит настоящий логотип, а кольцо ниже —
-       его оправа. */
+    if (logoReady) {
+      var lh = (34 + 4 * pulse + flare * 7) * sc + 13;
+      var lw = lh * LOGO_RATIO;
+      ctx.save();
+      ctx.shadowColor = 'rgba(201, 162, 39, 0.55)';
+      ctx.shadowBlur = (16 + 10 * pulse) * sc;
+      ctx.drawImage(LOGO, cx - lw / 2, cy - lh / 2, lw, lh);
+      ctx.restore();
+    } else {
+      ctx.fillStyle = 'rgba(154, 123, 30, 0.95)';
+      ctx.beginPath(); ctx.arc(cx, cy, (7 + 2.2 * pulse) * sc + 2.5, 0, Math.PI * 2); ctx.fill();
+    }
     ctx.strokeStyle = 'rgba(201, 162, 39, 0.85)';
     ctx.lineWidth = 1.4;
     ctx.beginPath(); ctx.arc(cx, cy, (26 + 3 * pulse) * sc + 9, 0, Math.PI * 2); ctx.stroke();
