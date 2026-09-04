@@ -21,7 +21,8 @@ export class CoreEngine {
        находится логотип. Теперь центр берётся из самого знака. */
     this.cx = 0;
     this.cy = 0;
-    this.logoR = 60;   // половина ширины знака — по ней масштабируется свечение
+    this.logoR = 60;
+    this.logoVisible = false;   // половина ширины знака — по ней масштабируется свечение
   }
 
   init() {
@@ -132,9 +133,13 @@ export class CoreEngine {
      координаты из трёх мест. */
   _followLogo() {
     const el = document.getElementById('sbf-logo');
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    if (!r.width) return;
+    const r = el ? el.getBoundingClientRect() : null;
+    /* Скрытый элемент отдаёт нулевой прямоугольник. Раньше мы просто
+       выходили, и координаты оставались от прошлого кадра — на планшете,
+       где знак скрыт с 900px, а движок включается с 768, ореол повисал
+       посреди экрана без всякого логотипа. */
+    this.logoVisible = !!(r && r.width);
+    if (!this.logoVisible) return;
     this.cx = r.left + r.width / 2;
     this.cy = r.top + r.height / 2;
     this.logoR = r.width / 2;

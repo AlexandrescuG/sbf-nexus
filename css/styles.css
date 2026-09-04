@@ -2955,7 +2955,8 @@ body.act-act-team-active #sbf-logo-img {
   .map-attribution, .leaflet-control-attribution { display: none !important; }
 
   /* ══ Лого: скрыто на мобиле (перемещается со скроллом — не эффектно) ══ */
-  #sbf-logo { display: none !important; }
+  /* Знак виден и на узких экранах — компактным значком,
+     правила в css/scroll-mode.css. Было: display: none. */
 
   /* ══ Hero: CTA по центру, overlay чуть выше ══════════════ */
   .map-headline-overlay-bottom { bottom: 20% !important; }
