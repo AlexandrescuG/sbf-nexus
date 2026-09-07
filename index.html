@@ -1041,15 +1041,17 @@
     <div class="finale-top">
       <!-- Левый столбец: 2 филиала вертикально -->
       <div class="branches-column branches-left">
-        <div class="lg-card branch-card">
+        <div class="lg-card branch-card" data-tz="Europe/Zurich">
           <p class="branch-country" data-i18n="contact.ch">Швейцария</p>
           <p class="branch-addr">Raihaltenstrasse 79, 8912 Obfelden</p>
           <a href="https://wa.me/41755731626" target="_blank" rel="noopener" class="branch-phone">+41 75 57 31 626 · WhatsApp</a>
+          <p class="branch-hours"><span class="bh-open" data-i18n="contact.hours">09–18</span> · <b class="bh-now">—</b></p>
         </div>
-        <div class="lg-card branch-card">
+        <div class="lg-card branch-card" data-tz="Europe/Lisbon">
           <p class="branch-country" data-i18n="contact.pt">Португалия</p>
           <p class="branch-addr">Praceta José Figueiredo da Fonseca, nr. 183, Lisabon</p>
           <a href="tel:+351939953919" class="branch-phone">+351 939 953 919</a>
+          <p class="branch-hours"><span class="bh-open" data-i18n="contact.hours">09–18</span> · <b class="bh-now">—</b></p>
         </div>
       </div>
 
@@ -1066,15 +1068,17 @@
 
       <!-- Правый столбец: 2 филиала вертикально -->
       <div class="branches-column branches-right">
-        <div class="lg-card branch-card">
+        <div class="lg-card branch-card" data-tz="Europe/Chisinau">
           <p class="branch-country" data-i18n="contact.md">Молдова</p>
           <p class="branch-addr">Office 1, str. Alexei Sciusev 47, Chișinău</p>
           <a href="https://wa.me/37360887735" target="_blank" rel="noopener" class="branch-phone">+373 60 887 735 · WhatsApp</a>
+          <p class="branch-hours"><span class="bh-open" data-i18n="contact.hours">09–18</span> · <b class="bh-now">—</b></p>
         </div>
-        <div class="lg-card branch-card">
+        <div class="lg-card branch-card" data-tz="Asia/Dubai">
           <p class="branch-country" data-i18n="contact.ae">ОАЭ</p>
           <p class="branch-addr">Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai</p>
           <a href="https://t.me/+971507193055" target="_blank" rel="noopener" class="branch-phone">+971 50 719 3055 · Telegram</a>
+          <p class="branch-hours"><span class="bh-open" data-i18n="contact.hours">09–18</span> · <b class="bh-now">—</b></p>
         </div>
       </div>
     </div>
@@ -1173,8 +1177,41 @@
     </div>
   </div>
 
-  <!-- WP-3.4: Risk warning (всегда видна на последнем экране) -->
-  <p class="risk-warning-footer" data-i18n="risk_warning">Торговля CFD и маржинальными инструментами сопряжена с высоким риском потери капитала и подходит не всем инвесторам.</p>
+  <!-- ══ Футер ═══════════════════════════════════════════════
+       До этого сайт обрывался строкой риска: ни реквизитов, по которым
+       компанию можно найти в реестре, ни политик, ни ссылки на канал.
+       Юрлицо, IDNO и адрес сверены с записью LEI (Bloomberg, 01.04.2026). -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-h" data-i18n="footer.company_h">Компания</p>
+        <p class="footer-legal">&laquo;SBF COMPANY&raquo; S.R.L.</p>
+        <p class="footer-legal">Str. Alexei Sciusev 47, MD-2012 Chișinău, Moldova</p>
+        <p class="footer-legal">IDNO 1025600035871</p>
+        <p class="footer-legal">
+          LEI <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener">254900BW4MI5M0006I30</a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-h" data-i18n="footer.docs_h">Документы</p>
+        <ul class="footer-links">
+          <li><a href="risk.html" data-i18n="footer.risk">Предупреждение о рисках</a></li>
+          <li><a href="https://lp.sbfconsult.com/privacy.html" target="_blank" rel="noopener" data-i18n="footer.privacy">Политика конфиденциальности</a></li>
+          <li><a href="#act-service-1" data-snap-target="act-service-1" data-i18n="footer.partners">Партнёры и лицензии</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-h" data-i18n="footer.contacts_h">Связь</p>
+        <ul class="footer-links">
+          <li><a href="tel:+37369000520">+373 (69) 000-520</a></li>
+          <li><a href="mailto:contact@sbf.md">contact@sbf.md</a></li>
+          <li><a href="https://t.me/SBFEconomics" target="_blank" rel="noopener">Telegram · @SBFEconomics</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-risk" data-i18n="risk_warning">Торговля CFD и маржинальными инструментами сопряжена с высоким риском потери капитала и подходит не всем инвесторам.</p>
+    <p class="footer-copy">© 2026 &laquo;SBF COMPANY&raquo; S.R.L. <span data-i18n="footer.rights">Все права защищены.</span></p>
+  </footer>
 
   <script src="vendor/three.min.js"></script>
   <script src="js/snap-navigator.js"></script>

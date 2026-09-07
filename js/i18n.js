@@ -9,6 +9,11 @@ const _LOCALES = {
 
 /* ═══════════════════════════════ РУССКИЙ ════════════════════════════════ */
 ru: {
+  footer: {
+    company_h: 'Компания', docs_h: 'Документы', contacts_h: 'Связь',
+    risk: 'Предупреждение о рисках', privacy: 'Политика конфиденциальности',
+    partners: 'Партнёры и лицензии', rights: 'Все права защищены.',
+  },
   page_title: 'SBF Consult — Мы распознаём закономерности',
   nav: {
     analytics: 'Аналитика',
@@ -230,6 +235,7 @@ ru: {
     ae:      'ОАЭ',
     eyebrow:      'СВЯЖИТЕСЬ С НАМИ',
     mark_cap:     'один центр · четыре офиса',
+    hours:        '09–18',
     heading:      'Готовы обсудить ваш капитал',
     phone:        'Телефон',
     email:        'Email',
@@ -340,6 +346,11 @@ ru: {
 
 /* ══════════════════════════════ ENGLISH ════════════════════════════════ */
 en: {
+  footer: {
+    company_h: 'Company', docs_h: 'Documents', contacts_h: 'Contact',
+    risk: 'Risk warning', privacy: 'Privacy policy',
+    partners: 'Partners and licences', rights: 'All rights reserved.',
+  },
   page_title: 'SBF Consult — We recognise patterns',
   nav: {
     analytics: 'Analytics',
@@ -561,6 +572,7 @@ en: {
     ae:      'UAE',
     eyebrow:      'CONTACT US',
     mark_cap:     'one hub · four offices',
+    hours:        '09–18',
     heading:      'Ready to discuss your capital',
     phone:        'Phone',
     email:        'Email',
@@ -671,6 +683,11 @@ en: {
 
 /* ══════════════════════════════ ROMÂNĂ ════════════════════════════════ */
 ro: {
+  footer: {
+    company_h: 'Compania', docs_h: 'Documente', contacts_h: 'Contact',
+    risk: 'Avertisment privind riscurile', privacy: 'Politica de confidențialitate',
+    partners: 'Parteneri și licențe', rights: 'Toate drepturile rezervate.',
+  },
   page_title: 'SBF Consult — Recunoaștem tipare',
   nav: {
     analytics: 'Analiză',
@@ -892,6 +909,7 @@ ro: {
     ae:      'EAU',
     eyebrow:      'CONTACTAȚI-NE',
     mark_cap:     'un centru · patru birouri',
+    hours:        '09–18',
     heading:      'Suntem gata să discutăm capitalul dvs.',
     phone:        'Telefon',
     email:        'Email',

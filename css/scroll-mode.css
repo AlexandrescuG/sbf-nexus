@@ -780,3 +780,52 @@ html { scroll-behavior: smooth; }
   .service-corona .sect-mark .mark-cap { max-width: 240px; }
   .service-corona .sect-mark { margin-bottom: 28px; }
 }
+
+/* ── Часы филиала ─────────────────────────────────────────────────────────
+   «Позвоните нам» без местного времени — лотерея: между Лиссабоном и Дубаем
+   три часа. Показываем время в офисе и открыт ли он сейчас. */
+.branch-hours {
+  margin: 6px 0 0; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.06em; color: rgba(251, 246, 239, 0.55);
+  display: flex; align-items: center; gap: 6px;
+}
+.branch-hours b { font-weight: 600; color: rgba(251, 246, 239, 0.85); }
+.branch-hours::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(251, 246, 239, 0.3); flex: none;
+}
+.branch-card.branch-open  .branch-hours::before { background: #4CAF50; box-shadow: 0 0 6px rgba(76, 175, 80, 0.7); }
+.branch-card.branch-closed .branch-hours::before { background: rgba(251, 246, 239, 0.25); }
+
+/* ── Футер ───────────────────────────────────────────────────────────────
+   Раньше страница обрывалась строкой риска: ни реквизитов, ни политик. */
+.site-footer {
+  background: #0A0810; color: rgba(251, 246, 239, 0.7);
+  padding: 44px clamp(20px, 5vw, 72px) 28px;
+  font-family: 'Montserrat', sans-serif; font-size: 12.5px; line-height: 1.6;
+  border-top: 1px solid rgba(201, 162, 39, 0.22);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(20px, 4vw, 64px); max-width: 1180px; margin: 0 auto 28px;
+}
+.footer-h {
+  margin: 0 0 10px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold, #C9A227);
+}
+.footer-legal { margin: 0 0 4px; color: rgba(251, 246, 239, 0.66); }
+.footer-legal a, .footer-links a { color: rgba(251, 246, 239, 0.82); text-decoration: none; border-bottom: 1px solid rgba(201, 162, 39, 0.3); }
+.footer-legal a:hover, .footer-links a:hover { color: var(--glow, #E6C257); border-bottom-color: currentColor; }
+.footer-links { list-style: none; margin: 0; padding: 0; }
+.footer-links li { padding: 3px 0; }
+.footer-risk {
+  max-width: 1180px; margin: 0 auto 12px; padding-top: 18px;
+  border-top: 1px solid rgba(251, 246, 239, 0.10);
+  font-size: 11.5px; line-height: 1.55; color: rgba(251, 246, 239, 0.5);
+}
+.footer-copy { max-width: 1180px; margin: 0 auto; font-size: 11px; color: rgba(251, 246, 239, 0.38); }
+@media (max-width: 767px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 22px; }
+  .site-footer { padding: 32px 20px 24px; }
+}

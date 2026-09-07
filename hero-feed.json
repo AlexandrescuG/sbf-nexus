@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T15:30:00.790134+00:00",
+  "updated": "2026-09-07T15:45:01.115513+00:00",
   "grow": {
     "brief": {
       "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
@@ -239,21 +239,6 @@
     },
     {
       "title": {
-        "en": "ZEC · 5 mentions",
-        "ru": "ZEC · 5 упоминаний",
-        "ro": "ZEC · 5 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": 151.2,
-      "lat": -33.9,
-      "id": "buzz-ZEC"
-    },
-    {
-      "title": {
         "en": "XRP · 5 mentions",
         "ru": "XRP · 5 упоминаний",
         "ro": "XRP · 5 mențiuni"
@@ -263,9 +248,24 @@
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
+      "lon": 151.2,
+      "lat": -33.9,
+      "id": "buzz-XRP"
+    },
+    {
+      "title": {
+        "en": "ZEC · 4 mentions",
+        "ru": "ZEC · 4 упоминаний",
+        "ro": "ZEC · 4 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
       "lon": 55.3,
       "lat": 25.2,
-      "id": "buzz-XRP"
+      "id": "buzz-ZEC"
     },
     {
       "title": {
@@ -284,6 +284,21 @@
     },
     {
       "title": {
+        "en": "LTC · 2 mentions",
+        "ru": "LTC · 2 упоминаний",
+        "ro": "LTC · 2 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": 8.68,
+      "lat": 50.1,
+      "id": "buzz-LTC"
+    },
+    {
+      "title": {
         "en": "CRV · 2 mentions",
         "ru": "CRV · 2 упоминаний",
         "ro": "CRV · 2 mențiuni"
@@ -293,24 +308,9 @@
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
-      "lon": 8.68,
-      "lat": 50.1,
-      "id": "buzz-CRV"
-    },
-    {
-      "title": {
-        "en": "VIX · 1 mentions",
-        "ru": "VIX · 1 упоминаний",
-        "ro": "VIX · 1 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
       "lon": -99.1,
       "lat": 19.4,
-      "id": "buzz-VIX"
+      "id": "buzz-CRV"
     }
   ],
   "today": {
@@ -322,34 +322,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.1630099999999999,
-      "chg_pct": 0.149,
+      "bid": 1.16287,
+      "chg_pct": 0.1369,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35428,
-      "chg_pct": 0.1961,
+      "bid": 1.35411,
+      "chg_pct": 0.1835,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.262,
-      "chg_pct": -1.2407,
+      "bid": 154.294,
+      "chg_pct": -1.2202,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 78997.3,
-      "chg_pct": -1.6545,
+      "bid": 78662.3,
+      "chg_pct": -2.0716,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2481.28,
-      "chg_pct": -1.296,
+      "bid": 2466.88,
+      "chg_pct": -1.8688,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-07T15:29:58.162981+00:00"
+  "quotes_updated": "2026-09-07T15:44:50.796324+00:00"
 }

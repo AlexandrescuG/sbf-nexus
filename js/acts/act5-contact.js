@@ -109,6 +109,34 @@
     logo().setState(mark, { part: 1 });
   });
 
+
+  /* ── Часы филиалов ────────────────────────────────────────────────────
+     У офиса в Дубае и офиса в Лиссабоне разница в три часа: без местного
+     времени «позвоните нам» — это лотерея. Показываем время в офисе и
+     помечаем, открыт он сейчас или нет. Обновляем раз в минуту. */
+  var clocks = Array.prototype.slice.call(section.querySelectorAll('.branch-card[data-tz]'));
+
+  function tick() {
+    var now = new Date();
+    clocks.forEach(function (card) {
+      var zone = card.dataset.tz;
+      var out  = card.querySelector('.bh-now');
+      if (!out) return;
+      var hhmm, hour;
+      try {
+        hhmm = new Intl.DateTimeFormat('ru-RU', { timeZone: zone, hour: '2-digit', minute: '2-digit' }).format(now);
+        hour = parseInt(new Intl.DateTimeFormat('en-GB', { timeZone: zone, hour: '2-digit', hour12: false }).format(now), 10);
+      } catch (e) { return; }              /* незнакомая зона — молча без часов */
+      out.textContent = hhmm;
+      var day = now.getUTCDay();
+      var open = hour >= 9 && hour < 18 && day !== 0 && day !== 6;
+      card.classList.toggle('branch-open', open);
+      card.classList.toggle('branch-closed', !open);
+    });
+  }
+
+  if (clocks.length) { tick(); setInterval(tick, 60000); }
+
   window.SBF = window.SBF || {};
   window.SBF.contact = { layout, draw };
 })();
