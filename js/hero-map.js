@@ -108,11 +108,41 @@
     return v == null ? '' : String(v);
   }
 
+  /* «сегодня 15:30» / «через 2 ч» / «40 мин назад» — время события в поясе
+     посетителя. Без этого подпись на карте была просто названием показателя
+     и ничем не отличалась от декорации. */
+  function whenText(iso, lang) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    var diff = (d - Date.now()) / 60000;               /* минуты */
+    var hhmm = d.toLocaleTimeString(lang === 'ru' ? 'ru-RU' : (lang === 'ro' ? 'ro-RO' : 'en-GB'),
+                                    { hour: '2-digit', minute: '2-digit' });
+    var T = (window.i18n && window.i18n.t) ? window.i18n.t : function () { return ''; };
+    if (diff > 90)  return T('hero.time_at').replace('{t}', hhmm);
+    if (diff > 1)   return T('hero.time_in').replace('{n}', Math.round(diff));
+    if (diff > -90) return T('hero.time_ago').replace('{n}', Math.max(1, Math.round(-diff)));
+    return T('hero.time_at').replace('{t}', hhmm);
+  }
+
+  function reactionText(r, lang) {
+    if (!r || !r.pct) return '';
+    var T = (window.i18n && window.i18n.t) ? window.i18n.t : function () { return ''; };
+    return T('hero.reaction').replace('{p}', r.pct.toFixed(2))
+                             .replace('{s}', r.symbol || '')
+                             .replace('{n}', r.n || '');
+  }
+
   function renderLabel(s) {
     if (!s.el || !s.title) return;
     var lang = curLang();
+    var when = whenText(s.ts, lang);
+    var react = reactionText(s.reaction, lang);
+    var meta = esc(trim(localized(s.tag, lang), 22)) + (when ? ' · ' + esc(when) : '');
+    s.el.dataset.impact = s.impact || '';
     s.el.innerHTML = '<b>' + esc(trim(localized(s.title, lang), 34)) + '</b>'
-                   + esc(trim(localized(s.tag, lang), 22));
+                   + '<i>' + meta + '</i>'
+                   + (react ? '<u>' + esc(react) + '</u>' : '');
   }
 
   function esc(s) {
@@ -135,7 +165,11 @@
     var hint = locate(flat + ' ' + localized(raw.tag, 'en') + ' ' + (raw.summary || ''), i);
     var ll = (typeof raw.lon === 'number' && typeof raw.lat === 'number') ? [raw.lon, raw.lat] : hint.ll;
     var tag = raw.tag || raw.category || hint.place || 'Live';
-    return { title: title, tag: tag, ll: ll, id: raw.id || raw.link || flat };
+    return { title: title, tag: tag, ll: ll, id: raw.id || raw.link || flat,
+             /* Время, важность и ожидаемая реакция — то, что отличает
+                событие от строки-заголовка. Может не быть у buzz-пунктов. */
+             ts: raw.ts_utc || null, impact: raw.impact || null,
+             reaction: raw.reaction || null };
   }
 
   function parseFeed(text, type) {
@@ -144,7 +178,10 @@
     if (trimmed[0] === '[' || trimmed[0] === '{') {
       var data = JSON.parse(trimmed);
       var arr = Array.isArray(data) ? data : (data.items || data.entries || data.news || []);
-      arr.forEach(function (o) { out.push({ title: o.title || o.headline || o.name, tag: o.tag || o.category || o.source, summary: o.summary || o.description, lon: o.lon, lat: o.lat, id: o.id || o.guid || o.link }); });
+      arr.forEach(function (o) { out.push({ title: o.title || o.headline || o.name, tag: o.tag || o.category || o.source, summary: o.summary || o.description, lon: o.lon, lat: o.lat, id: o.id || o.guid || o.link,
+        /* Время, важность и реакция идут дальше в normalize: без них
+           подпись на карте снова стала бы просто названием показателя */
+        ts_utc: o.ts_utc, impact: o.impact, reaction: o.reaction }); });
     } else {
       var doc = new DOMParser().parseFromString(trimmed, 'text/xml');
       var nodes = doc.querySelectorAll('item, entry');
@@ -155,6 +192,9 @@
     }
     return out;
   }
+
+  /* Весь ответ ленты целиком: кроме items там сегодняшний бриф и котировки */
+  var META = {};
 
   var feedStatus = document.getElementById('hm-feed-status');
   function setStatus(txt, live) {
@@ -170,11 +210,13 @@
     fetch(url, { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (txt) {
+        try { META = JSON.parse(txt) || {}; } catch (e) { META = {}; }
         var items = parseFeed(txt).map(normalize).filter(Boolean);
         if (!items.length) throw new Error('пусто');
         POOL = items;
         usedNews = {};
         setStatus('Лента: в эфире · ' + items.length + ' событий', true);
+        renderToday();
         renderTicker();
       })
       .catch(function () {
@@ -182,6 +224,9 @@
         renderTicker();   /* иначе в строке остался бы захардкоженный английский */
       });
   }
+
+  /* Доля собранного пакета: 6 дошедших нитей — полное кольцо у ядра */
+  var PACKET = 6, intake = 0;
 
   var SLOTS = [], usedCity = {}, usedNews = {};
   function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
@@ -205,6 +250,7 @@
     s.news = nid; s.city = item.ll.join(',');
     s.ll = item.ll;
     s.title = item.title; s.tag = item.tag;
+    s.ts = item.ts; s.impact = item.impact; s.reaction = item.reaction;
     s.ph = Math.random() * 6.28;
     s.amp = 0.09 + Math.random() * 0.07;
     s.phase = 'wait'; s.time = 0; s.wait = 0.4 + Math.random() * 2.6;
@@ -302,6 +348,8 @@
         flare = Math.min(2.0, flare + 0.9);
         /* Нить дошла до ядра — знак в шапке отзывается (logo.js) */
         document.dispatchEvent(new CustomEvent('sbf:thread'));
+        intake += 1 / PACKET;
+        if (intake >= 1) intake = 0;      /* пакет собран — начинаем следующий */
         reseed(s); return;
       }
     }
@@ -316,7 +364,9 @@
     for (i = 0; i <= N; i++) pts.push(pointAt(s, (i / N) * s.reach));
     for (i = 1; i <= N; i++) {
       var f = i / N;
-      var a = (0.80 * (1 - f * 0.74)) * s.alpha;
+      /* Хвост нити гас почти до нуля, и на светлой карте нить читалась
+         только у самого ядра. Держим не ниже 0.35 от исходной яркости. */
+      var a = (0.92 * (1 - f * 0.62)) * s.alpha;
       ctx.strokeStyle = 'rgba(154, 123, 30,' + a.toFixed(3) + ')';
       ctx.lineWidth = ((3.0 * sc) * (1 - f * 0.70) + 0.7) * (s.phase === 'pull' ? 1.15 : 1);
       ctx.beginPath();
@@ -422,9 +472,23 @@
       ctx.fillStyle = 'rgba(154, 123, 30, 0.95)';
       ctx.beginPath(); ctx.arc(cx, cy, (7 + 2.2 * pulse) * sc + 2.5, 0, Math.PI * 2); ctx.fill();
     }
-    ctx.strokeStyle = 'rgba(201, 162, 39, 0.85)';
+    /* Кольцо-дорожка и доля набранного пакета. Роль знака на этом экране —
+       «принимает»: каждая дошедшая нить добавляет 1/PACKET, полное кольцо
+       означает «пакет собран» и обнуляется. Раньше здесь было просто
+       декоративное кольцо, одинаковое в любой момент. */
+    var rr = (26 + 3 * pulse) * sc + 9;
+    ctx.strokeStyle = 'rgba(201, 162, 39, 0.30)';
     ctx.lineWidth = 1.4;
-    ctx.beginPath(); ctx.arc(cx, cy, (26 + 3 * pulse) * sc + 9, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
+    if (intake > 0.001) {
+      ctx.strokeStyle = 'rgba(201, 162, 39, 0.95)';
+      ctx.lineWidth = 2.6;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(cx, cy, rr, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * intake);
+      ctx.stroke();
+      ctx.lineCap = 'butt';
+    }
 
     for (var k = 0; k < 3; k++) {
       var ph = (t * 0.36 + k / 3) % 1;
@@ -477,6 +541,45 @@
   /* ── Бегущая строка внизу первого экрана ───────────────────────────────
      В разметке она была захардкожена английскими заголовками, которые
      не менялись ни по языку, ни по времени. Кормим её той же лентой. */
+  /* Строка «сегодня»: дата и заголовок утреннего брифа. Это единственное
+     место на первом экране, где видно результат работы, а не сырьё.
+     Бриф пока только на русском (META.today.lang) — на других языках
+     помечаем язык оригинала, а не выдаём его за перевод. */
+  function renderToday() {
+    var host = document.getElementById('hm-today');
+    if (!host) return;
+    var t = META.today;
+    if (!t || !t.headline) { host.hidden = true; return; }
+    var lang = curLang();
+    var T = (window.i18n && window.i18n.t) ? window.i18n.t : function () { return ''; };
+    var d = t.date ? new Date(t.date + 'T00:00:00Z') : new Date();
+    var date = d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : (lang === 'ro' ? 'ro-RO' : 'en-GB'),
+                                    { day: 'numeric', month: 'long' });
+    var mark = (t.lang && t.lang !== lang) ? ' <em>' + esc(t.lang.toUpperCase()) + '</em>' : '';
+    host.hidden = false;
+    host.innerHTML = '<b>' + esc(T('hero.today').replace('{d}', date)) + '</b> '
+                   + esc(t.headline) + mark
+                   + ' <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site'
+                   + '&utm_medium=cta&utm_campaign=hero_brief" target="_blank" rel="noopener">'
+                   + esc(T('hero.read_brief')) + ' →</a>';
+  }
+
+  /* Котировки для второй половины бегущей строки. Данные старше двух часов
+     не показываем совсем: устаревшая цена хуже отсутствующей. */
+  function quoteParts(lang) {
+    var q = META.quotes || [];
+    if (!q.length) return [];
+    var age = META.quotes_updated ? (Date.now() - new Date(META.quotes_updated)) / 3600000 : 99;
+    if (!(age < 2)) return [];
+    return q.map(function (it) {
+      var up = it.chg_pct >= 0;
+      return '<span class="tk-q"><i>' + esc(it.symbol) + '</i> '
+           + esc(Number(it.bid).toFixed(it.digits))
+           + ' <b class="' + (up ? 'up' : 'dn') + '">' + (up ? '▲' : '▼')
+           + Math.abs(it.chg_pct).toFixed(2) + '%</b> &nbsp;·&nbsp; </span>';
+    });
+  }
+
   function renderTicker() {
     var track = document.getElementById('ticker-track');
     if (!track || !POOL.length) return;
@@ -486,6 +589,9 @@
       return '<span>' + (tag ? esc(tag).toUpperCase() + ': ' : '')
            + esc(localized(it.title, lang)) + ' &nbsp;·&nbsp; </span>';
     });
+    /* Календарь и котировки идут в одной ленте попеременно: событие —
+       это «что случится», цена — «что происходит прямо сейчас». */
+    parts = quoteParts(lang).concat(parts);
     /* Дублируем список: строка крутится по кругу, без второй копии
        на стыке будет пустота. */
     track.innerHTML = parts.join('') + parts.join('');
@@ -512,6 +618,7 @@
   /* Язык переключили — подписи и бегущую строку перерисовываем на месте */
   document.addEventListener('sbf:langchange', function () {
     SLOTS.forEach(renderLabel);
+    renderToday();
     renderTicker();
   });
 })();

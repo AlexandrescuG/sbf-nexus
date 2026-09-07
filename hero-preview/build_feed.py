@@ -69,6 +69,11 @@ def load_terms():
     try:
         raw = TERMS_JS.read_text(encoding='utf-8')
         body = re.search(r'var CALENDAR_TERMS = \{(.*?)\n\};', raw, re.S).group(1)
+        # В словаре есть строки-комментарии (`// 31.08.2026: события под ...`).
+        # Без их удаления json.loads падал на первом же таком блоке, и весь
+        # календарь на карте молча оставался английским — при том что перевод
+        # для 569 показателей лежал рядом.
+        body = '\n'.join(l for l in body.split('\n') if not l.lstrip().startswith('//'))
         body = re.sub(r'([{,]\s*)(ru|ro)\s*:', r'\1"\2":', body)
         body = re.sub(r',(\s*[}\]])', r'\1', body)
         return json.loads('{' + body + '}')
@@ -159,12 +164,22 @@ for ev in (brief or {}).get('calendar', []):
             untranslated.add(name)
     country = (ev.get('country') or '').upper()
     cn = COUNTRY_NAMES.get(country)
-    items.append({
+    item = {
         'title': head,
         'tag': tri(*cn) if cn else tri('Calendar', 'Календарь', 'Calendar'),
         'lon': ll[0], 'lat': ll[1],
         'id': f"cal-{ev.get('scheduled_ts') or len(items)}",
-    })
+        'ts_utc': ev.get('ts_utc'),
+        'impact': (ev.get('impact') or '').lower() or None,
+    }
+    # Ожидаемая реакция: медиана хода за 30 минут по прошлым выходам.
+    # Меньше пяти наблюдений — это не статистика, а совпадение: не показываем.
+    pr = ev.get('past_reaction') or {}
+    if pr.get('n', 0) >= 5 and pr.get('median_atr_30m'):
+        item['reaction'] = {'symbol': pr.get('symbol'),
+                            'n': pr['n'],
+                            'pct': round(float(pr['median_atr_30m']), 3)}
+    items.append(item)
 
 # 2. Тикеры, которые сейчас обсуждают — по биржевым городам
 buzz = load('buzz.json')
@@ -194,9 +209,47 @@ for i, a in enumerate((anom or {}).get('anomalies', [])[:4]):
                   'tag': tri('Alert', 'Аномалия', 'Anomalie'),
                   'lon': ll[0], 'lat': ll[1], 'id': f'anom-{i}'})
 
+# 4. Заголовок сегодняшнего брифа — единственная строка на первом экране,
+# которая говорит «из этого шума уже что-то извлечено».
+today = None
+if brief and brief.get('headline'):
+    today = {
+        'headline': brief['headline'],
+        'date': brief.get('date'),
+        'generated_at': brief.get('generated_at'),
+        # Языки брифа: синтез приходит на русском. Пока перевода нет —
+        # честно помечаем, чтобы герой не выдавал русский за английский.
+        'lang': 'ru',
+    }
+
+# 5. Котировки для бегущей строки. Берём ликвидную корзину, а не первые 10
+# строк файла: там 842 инструмента в порядке брокера.
+QUOTE_BASKET = ['EURUSD', 'GBPUSD', 'USDJPY', 'XAUUSD', 'XAGUSD',
+                'BTCUSD', 'ETHUSD', 'USOIL', 'US500', 'GER40']
+quotes = []
+bq = load('broker_quotes.json')
+if bq and bq.get('items'):
+    fields = bq.get('fields') or ['symbol', 'bid', 'ask', 'chg_pct', 'quote_ts']
+    idx = {name: i for i, name in enumerate(fields)}
+    by_symbol = {row[idx['symbol']]: row for row in bq['items'] if row}
+    for sym in QUOTE_BASKET:
+        row = by_symbol.get(sym)
+        if not row:
+            continue
+        bid = row[idx['bid']]
+        quotes.append({'symbol': sym,
+                       'bid': bid,
+                       'chg_pct': row[idx['chg_pct']],
+                       # Знаков после запятой у металлов и индексов меньше,
+                       # чем у валют: 1.16296 против 4440.2
+                       'digits': 5 if bid < 20 else (3 if bid < 500 else 1)})
+
 payload = {
     'updated': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     'items': items,
+    'today': today,
+    'quotes': quotes,
+    'quotes_updated': (bq or {}).get('updated'),
 }
 OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
 print(f'{OUT}: {len(items)} событий')

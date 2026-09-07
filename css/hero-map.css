@@ -41,6 +41,49 @@
     color: var(--muted); white-space: nowrap; pointer-events: none; opacity: 0;
   }
   #act-map .hm-lbl b { display: block; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(11px, 0.98cqw, 14px); letter-spacing: 0.01em; text-transform: none; color: var(--ink); }
+  /* Вторая строка — страна и время события, третья — ожидаемая реакция.
+     Раньше подпись состояла из названия показателя и страны: по ней нельзя
+     было понять, случилось событие или только будет, и что оно значит. */
+  #act-map .hm-lbl i { display: block; font-style: normal; color: var(--muted); }
+  #act-map .hm-lbl u {
+    display: block; margin-top: 3px; padding-top: 3px;
+    border-top: 1px solid rgba(201, 162, 39, 0.25);
+    text-decoration: none; text-transform: none; letter-spacing: 0.01em;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.92em;
+    color: var(--gold-deep);
+  }
+  /* Важность события — цвет полосы слева */
+  #act-map .hm-lbl[data-impact="high"]   { border-left-color: #B4472B; }
+  #act-map .hm-lbl[data-impact="medium"] { border-left-color: var(--gold); }
+  #act-map .hm-lbl[data-impact="low"]    { border-left-color: rgba(154, 123, 30, 0.45); }
+
+  /* Строка «сегодня»: заголовок утреннего брифа под подзаголовком героя */
+  #act-map .hm-today {
+    margin-top: clamp(10px, 1.2cqw, 16px);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(11px, 0.95cqw, 13px); line-height: 1.5;
+    color: #55555F; max-width: 40em;
+    border-left: 2px solid var(--gold); padding-left: 10px;
+  }
+  #act-map .hm-today b { color: var(--gold-deep); font-weight: 700; }
+  #act-map .hm-today em {
+    font-style: normal; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.08em; color: var(--muted);
+    border: 1px solid var(--line); padding: 1px 4px; margin-left: 4px;
+  }
+  #act-map .hm-today a { color: var(--gold-deep); white-space: nowrap; }
+  #act-map .hm-today a:hover { text-decoration: underline; }
+
+  /* Строка доверия: утверждения кликабельны — их можно проверить */
+  #act-map .hm-trust { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  #act-map .hm-trust a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+  #act-map .hm-trust a:hover { color: var(--gold-deep); border-bottom-color: currentColor; }
+  #act-map .hm-trust s { text-decoration: none; opacity: 0.45; }
+
+  /* Котировки в бегущей строке */
+  .ticker-track .tk-q i { font-style: normal; font-weight: 700; letter-spacing: 0.08em; }
+  .ticker-track .tk-q b.up { color: #2E7D57; }
+  .ticker-track .tk-q b.dn { color: #B4472B; }
 
   /* Шапки внутри героя нет — её роль играет общая .site-nav,
      поэтому содержимое прижато к низу, а не разнесено по краям. */
@@ -98,7 +141,11 @@
     #act-map .hm-foot .hm-gold { display: none; }
   }
   @container (max-width: 560px) {
-    
+    /* На телефоне карта — фон под текстом, и карточки событий на ней
+       налезали бы на заголовок. Оставляем строку «сегодня»: она несёт
+       тот же смысл (шум уже обработан) и лежит в потоке. */
+    #act-map .hm-lbl { display: none; }
+    #act-map .hm-today { font-size: 11px; }
     #act-map .hm-hero { gap: 18px; }
     #act-map h1 { font-size: clamp(22px, 7.4cqw, 34px); }
     #act-map .hm-sub { font-size: clamp(12px, 3.4cqw, 15px); }

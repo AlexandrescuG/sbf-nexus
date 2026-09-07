@@ -1,71 +1,11 @@
 {
-  "updated": "2026-08-28T08:25:11.244151+00:00",
+  "updated": "2026-09-07T14:33:13.470364+00:00",
   "items": [
     {
       "title": {
-        "en": "Interest Rate",
-        "ru": "Процентная ставка",
-        "ro": "Rata dobânzii"
-      },
-      "tag": {
-        "en": "USA",
-        "ru": "США",
-        "ro": "SUA"
-      },
-      "lon": -74.0,
-      "lat": 40.7,
-      "id": "cal-1787875200"
-    },
-    {
-      "title": {
-        "en": "National People's Congress",
-        "ru": "Всекитайское собрание",
-        "ro": "Congresul Național al Poporului"
-      },
-      "tag": {
-        "en": "China",
-        "ru": "Китай",
-        "ro": "China"
-      },
-      "lon": 116.4,
-      "lat": 39.9,
-      "id": "cal-1787875200"
-    },
-    {
-      "title": {
-        "en": "Housing Starts YoY",
-        "ru": "Закладки новых домов г/г",
-        "ro": "Construcții de locuințe începute a/a"
-      },
-      "tag": {
-        "en": "Japan",
-        "ru": "Япония",
-        "ro": "Japonia"
-      },
-      "lon": 139.7,
-      "lat": 35.7,
-      "id": "cal-1787893200"
-    },
-    {
-      "title": {
-        "en": "Consumer Confidence",
-        "ru": "Потребительское доверие",
-        "ro": "Încrederea consumatorilor"
-      },
-      "tag": {
-        "en": "Japan",
-        "ru": "Япония",
-        "ro": "Japonia"
-      },
-      "lon": 103.8,
-      "lat": 1.35,
-      "id": "cal-1787893200"
-    },
-    {
-      "title": {
-        "en": "Nationwide Housing Prices MoM",
-        "ru": "Общенациональные цены на жильё м/м",
-        "ro": "Prețurile naționale ale locuințelor l/l"
+        "en": "House Price Index YoY",
+        "ru": "Индекс цен на жильё г/г",
+        "ro": "Indicele prețurilor locuințelor a/a"
       },
       "tag": {
         "en": "UK",
@@ -74,28 +14,125 @@
       },
       "lon": -0.13,
       "lat": 51.5,
-      "id": "cal-1787896800"
+      "id": "cal-1788760800",
+      "ts_utc": "2026-09-07T06:00:00Z",
+      "impact": "medium",
+      "reaction": {
+        "symbol": "GBPUSD",
+        "n": 7,
+        "pct": 0.084
+      }
     },
     {
       "title": {
-        "en": "Nationwide Housing Prices YoY",
-        "ru": "Общенациональные цены на жильё г/г",
-        "ro": "Prețurile naționale ale locuințelor a/a"
+        "en": "House Price Index MoM",
+        "ru": "Индекс цен на жильё м/м",
+        "ro": "Indicele prețurilor locuințelor l/l"
       },
       "tag": {
         "en": "UK",
         "ru": "Великобритания",
         "ro": "Marea Britanie"
       },
-      "lon": 114.2,
-      "lat": 22.3,
-      "id": "cal-1787896800"
+      "lon": -74.0,
+      "lat": 40.7,
+      "id": "cal-1788760800",
+      "ts_utc": "2026-09-07T06:00:00Z",
+      "impact": "medium",
+      "reaction": {
+        "symbol": "GBPUSD",
+        "n": 5,
+        "pct": 0.076
+      }
     },
     {
       "title": {
-        "en": "BTC · 27 mentions",
-        "ru": "BTC · 27 упоминаний",
-        "ro": "BTC · 27 mențiuni"
+        "en": "Unemployment Rate",
+        "ru": "Уровень безработицы",
+        "ro": "Rata șomajului"
+      },
+      "tag": {
+        "en": "Switzerland",
+        "ru": "Швейцария",
+        "ro": "Elveția"
+      },
+      "lon": 8.54,
+      "lat": 47.4,
+      "id": "cal-1788764400",
+      "ts_utc": "2026-09-07T07:00:00Z",
+      "impact": "medium",
+      "reaction": {
+        "symbol": "USDCHF",
+        "n": 7,
+        "pct": 0.719
+      }
+    },
+    {
+      "title": {
+        "en": "Chancellor John Healey Speech",
+        "ru": "Chancellor John Healey Speech",
+        "ro": "Chancellor John Healey Speech"
+      },
+      "tag": {
+        "en": "UK",
+        "ru": "Великобритания",
+        "ro": "Marea Britanie"
+      },
+      "lon": 103.8,
+      "lat": 1.35,
+      "id": "cal-1788784200",
+      "ts_utc": "2026-09-07T12:30:00Z",
+      "impact": "medium",
+      "reaction": {
+        "symbol": "EURGBP",
+        "n": 12,
+        "pct": 0.053
+      }
+    },
+    {
+      "title": {
+        "en": "BRC Retail Sales Monitor YoY",
+        "ru": "Мониторинг розничных продаж BRC (г/г)",
+        "ro": "Monitorul vânzărilor cu amănuntul BRC (a/a)"
+      },
+      "tag": {
+        "en": "UK",
+        "ru": "Великобритания",
+        "ro": "Marea Britanie"
+      },
+      "lon": 139.7,
+      "lat": 35.7,
+      "id": "cal-1788822060",
+      "ts_utc": "2026-09-07T23:01:00Z",
+      "impact": "medium"
+    },
+    {
+      "title": {
+        "en": "Current Account",
+        "ru": "Счёт текущих операций",
+        "ro": "Contul curent"
+      },
+      "tag": {
+        "en": "Japan",
+        "ru": "Япония",
+        "ro": "Japonia"
+      },
+      "lon": 114.2,
+      "lat": 22.3,
+      "id": "cal-1788825000",
+      "ts_utc": "2026-09-07T23:50:00Z",
+      "impact": "medium",
+      "reaction": {
+        "symbol": "USDJPY",
+        "n": 11,
+        "pct": 0.039
+      }
+    },
+    {
+      "title": {
+        "en": "BTC · 16 mentions",
+        "ru": "BTC · 16 упоминаний",
+        "ro": "BTC · 16 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -108,9 +145,9 @@
     },
     {
       "title": {
-        "en": "SOL · 11 mentions",
-        "ru": "SOL · 11 упоминаний",
-        "ro": "SOL · 11 mențiuni"
+        "en": "ZEC · 5 mentions",
+        "ru": "ZEC · 5 упоминаний",
+        "ro": "ZEC · 5 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -119,13 +156,13 @@
       },
       "lon": 151.2,
       "lat": -33.9,
-      "id": "buzz-SOL"
+      "id": "buzz-ZEC"
     },
     {
       "title": {
-        "en": "ETH · 11 mentions",
-        "ru": "ETH · 11 упоминаний",
-        "ro": "ETH · 11 mențiuni"
+        "en": "XRP · 5 mentions",
+        "ru": "XRP · 5 упоминаний",
+        "ro": "XRP · 5 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -134,13 +171,13 @@
       },
       "lon": 55.3,
       "lat": 25.2,
-      "id": "buzz-ETH"
+      "id": "buzz-XRP"
     },
     {
       "title": {
-        "en": "LINK · 6 mentions",
-        "ru": "LINK · 6 упоминаний",
-        "ro": "LINK · 6 mențiuni"
+        "en": "ETH · 3 mentions",
+        "ru": "ETH · 3 упоминаний",
+        "ro": "ETH · 3 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -149,13 +186,13 @@
       },
       "lon": -46.6,
       "lat": -23.5,
-      "id": "buzz-LINK"
+      "id": "buzz-ETH"
     },
     {
       "title": {
-        "en": "MSTR · 6 mentions",
-        "ru": "MSTR · 6 упоминаний",
-        "ro": "MSTR · 6 mențiuni"
+        "en": "CRV · 2 mentions",
+        "ru": "CRV · 2 упоминаний",
+        "ro": "CRV · 2 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -164,13 +201,13 @@
       },
       "lon": 8.68,
       "lat": 50.1,
-      "id": "buzz-MSTR"
+      "id": "buzz-CRV"
     },
     {
       "title": {
-        "en": "AVAX · 5 mentions",
-        "ru": "AVAX · 5 упоминаний",
-        "ro": "AVAX · 5 mențiuni"
+        "en": "VIX · 1 mentions",
+        "ru": "VIX · 1 упоминаний",
+        "ro": "VIX · 1 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -179,7 +216,46 @@
       },
       "lon": -99.1,
       "lat": 19.4,
-      "id": "buzz-AVAX"
+      "id": "buzz-VIX"
     }
-  ]
+  ],
+  "today": {
+    "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
+    "date": "2026-09-07",
+    "generated_at": "2026-09-07T03:04:58.487304+00:00",
+    "lang": "ru"
+  },
+  "quotes": [
+    {
+      "symbol": "EURUSD",
+      "bid": 1.16293,
+      "chg_pct": 0.1421,
+      "digits": 5
+    },
+    {
+      "symbol": "GBPUSD",
+      "bid": 1.35379,
+      "chg_pct": 0.1598,
+      "digits": 5
+    },
+    {
+      "symbol": "USDJPY",
+      "bid": 154.385,
+      "chg_pct": -1.162,
+      "digits": 3
+    },
+    {
+      "symbol": "BTCUSD",
+      "bid": 79031.4,
+      "chg_pct": -1.612,
+      "digits": 1
+    },
+    {
+      "symbol": "ETHUSD",
+      "bid": 2481.81,
+      "chg_pct": -1.2749,
+      "digits": 1
+    }
+  ],
+  "quotes_updated": "2026-09-07T14:33:04.763162+00:00"
 }

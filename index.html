@@ -195,6 +195,9 @@
           <div class="hm-kicker"><s></s><span data-i18n="hero.kicker">SBF Company SRL · Кишинёв</span></div>
           <h1 data-i18n-html="hero.headline">Мир генерирует шум. <em>Мы распознаём закономерности</em>.</h1>
           <div class="hm-sub" data-i18n="hero.sub">Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.</div>
+          <!-- Заголовок сегодняшнего брифа: доказательство, что из шума уже
+               что-то извлечено. Наполняет hero-map.js из hero-feed.json. -->
+          <div class="hm-today" id="hm-today" hidden></div>
           <div class="hm-ctas">
             <a class="hm-primary" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-i18n="hero.cta1">Открыть платформу →</a>
             <a class="hm-ghost" href="#" data-snap-target="act-contact" data-i18n="hero.cta2">Связаться</a>
@@ -208,7 +211,15 @@
         </div>
       </div>
       <div class="hm-foot">
-        <span data-i18n="hero.trust">Bloomberg LEI · Опыт 10–25 лет · Партнёры с лицензиями ЕС</span>
+        <!-- Строка доверия: каждое утверждение ведёт туда, где его можно
+             проверить. «Опыт 10–25 лет» снят — подтверждения нет. -->
+        <span class="hm-trust">
+          <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener">Bloomberg LEI</a>
+          <s>·</s>
+          <a href="#act-service-1" data-snap-target="act-service-1" data-i18n="hero.trust_partners">Партнёры с лицензиями ЕС</a>
+          <s>·</s>
+          <a href="#act-contact" data-snap-target="act-contact" data-i18n="hero.trust_office">Офис в Кишинёве</a>
+        </span>
         <a class="hm-gold" href="#act-grow"><span data-i18n="hero.scroll">Прокрутите вниз</span> ↓</a>
       </div>
     </div>
