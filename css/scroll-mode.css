@@ -134,6 +134,31 @@ html { scroll-behavior: smooth; }
   .sect-mark .mark-cap { font-size: 9px; max-width: min(240px, 82vw); }
 }
 
+/* ── Знак в шапке ─────────────────────────────────────────────────────────
+   Индикатор состояния: роль и доля кольца повторяют активную секцию,
+   вспышка — на событиях. Лежит в .nav-brand перед текстом, в потоке —
+   ложиться на ссылки ему негде. Отрицательные поля по вертикали: шапка
+   не растёт, кольцо (−34% со всех сторон) остаётся внутри её 69px. */
+.nav-brand { display: inline-flex; align-items: center; gap: 14px; }
+.nav-brand .nav-mark {
+  --mark-size: 28px;        /* с кольцом ≈47px — влезает и в сжатую шапку 54px */
+  margin: -9px 0;
+  flex: none;
+}
+.nav-brand .nav-mark img { filter: none; transition: filter 0.4s; }
+.nav-brand .nav-mark .mark-track { stroke: rgba(43, 43, 51, 0.16); stroke-width: 2.4; }
+.nav-brand .nav-mark .mark-fill  { stroke-width: 3; transition-duration: 0.7s; }
+/* Роль читается цветом дуги: приём — тёплое золото, обработка — глубокое,
+   выдача — светлое свечение */
+.nav-brand .nav-mark[data-role="intake"]  .mark-fill { stroke: var(--gold, #C9A227); }
+.nav-brand .nav-mark[data-role="process"] .mark-fill { stroke: var(--gold-deep, #9A7B1E); }
+.nav-brand .nav-mark[data-role="output"]  .mark-fill { stroke: var(--glow, #E6C257); }
+.nav-brand .nav-mark.mark-pulse img { filter: drop-shadow(0 0 8px rgba(230, 194, 87, 0.9)); }
+@media (max-width: 900px) {
+  .nav-brand { gap: 10px; }
+  .nav-brand .nav-mark { --mark-size: 24px; margin: -8px 0; }   /* шапка 46px, кольцо ≈40px */
+}
+
 
 /* Знак услуг встаёт в именованную ячейку композиции. Без этого grid
    раскладывал его в первую свободную — то есть в левую колонку,

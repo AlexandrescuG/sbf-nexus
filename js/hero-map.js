@@ -298,7 +298,12 @@
       var p = Math.min(1, s.time / 1.5);
       s.u = 1 - easeIn(p); s.grow = s.u; s.bloom = 1;
       s.alpha = Math.min(1, s.u * 3.4);
-      if (p >= 1) { flare = Math.min(2.0, flare + 0.9); reseed(s); return; }
+      if (p >= 1) {
+        flare = Math.min(2.0, flare + 0.9);
+        /* Нить дошла до ядра — знак в шапке отзывается (logo.js) */
+        document.dispatchEvent(new CustomEvent('sbf:thread'));
+        reseed(s); return;
+      }
     }
     s.reach = s.phase === 'pull' ? s.u : s.grow;
     if (s.phase === 'pull') { var m = pointAt(s, s.u); s.mx = m[0]; s.my = m[1]; }

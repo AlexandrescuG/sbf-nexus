@@ -106,7 +106,20 @@
 <body>
   <!-- ══ NAV ════════════════════════════════════════════════ -->
   <nav class="site-nav" id="site-nav">
-    <div class="nav-brand" role="button" tabindex="0" aria-label="Наверх">SBF CONSULT <strong>●</strong> <span class="brand-tail">MANAGEMENT</span></div>
+    <div class="nav-brand" role="button" tabindex="0" aria-label="Наверх">
+      <!-- Постоянный знак: индикатор состояния. Роль и доля кольца повторяют
+           активную секцию, вспышка — на событиях (нить на карте, слайд
+           рынков, отправка заявки). Ведёт js/logo.js. Лежит в потоке шапки,
+           поэтому не может лечь на ссылки. -->
+      <span class="sect-mark nav-mark" id="nav-mark" data-scripted aria-hidden="true">
+        <img src="assets/logo/logo.svg" alt="" draggable="false">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="mark-track" cx="50" cy="50" r="46"/>
+          <circle class="mark-fill"  cx="50" cy="50" r="46"/>
+        </svg>
+      </span>
+      <span class="brand-text">SBF CONSULT <strong>●</strong> <span class="brand-tail">MANAGEMENT</span></span>
+    </div>
     <ul class="nav-links">
       <li><a href="#act-approach" data-snap-target="act-approach" data-i18n="nav.analytics">Аналитика</a></li>
       <li><a href="#act-market"   data-snap-target="act-market"   data-i18n="nav.trading">Торговля</a></li>

@@ -196,6 +196,38 @@
 
   document.addEventListener('sbf:langchange', renderCaptions);
 
+  /* ── Знак в шапке: индикатор состояния ─────────────────────────────
+     Один постоянный знак 40px в потоке шапки. Роль и доля кольца
+     повторяют активную секцию (scroll-director шлёт sbf:section), а на
+     событиях знак вспыхивает: пришла нить на карте, сменился слайд
+     рынков, ушла заявка. Так на мобайле, где секционные знаки скрыты
+     или малы, роль всё равно видна — это требование KZ/ZA mobile-first. */
+  var navMark = document.getElementById('nav-mark');
+  if (navMark) {
+    var follow = function (id) {
+      var s = SECTIONS[id];
+      if (!s) return;
+      navMark.dataset.section = id;
+      setState(navMark, { role: s.role, part: s.part });
+    };
+    document.addEventListener('sbf:section', function (e) { follow(e.detail.id); });
+    /* Стартовое состояние — по классу на body, если директор уже отработал */
+    var m = /\bact-(\S+)-active\b/.exec(document.body.className);
+    follow(m ? m[1] : 'act-map');
+
+    document.addEventListener('sbf:thread', function () {
+      if (navMark.dataset.section === 'act-map') pulse(navMark);
+    });
+    var market = document.getElementById('act-market');
+    if (market) market.addEventListener('market:slide', function () { pulse(navMark); });
+    document.addEventListener('lead:sending', function () {
+      setState(navMark, { part: 0, animate: false });
+      requestAnimationFrame(function () { setState(navMark, { part: 0.85 }); });
+    });
+    document.addEventListener('lead:sent',   function () { setState(navMark, { part: 1, pulse: true }); });
+    document.addEventListener('lead:failed', function () { setState(navMark, { part: 1 }); });
+  }
+
   window.SBF = window.SBF || {};
   window.SBF.logo = {
     roleOf: roleOf,

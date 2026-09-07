@@ -53,6 +53,9 @@
     document.body.className = document.body.className
       .replace(/\bact-\S+-active\b/g, '').trim();
     document.body.classList.add('act-' + el.id + '-active');
+    /* Общий сигнал для тех, кому нужна только смена секции, а не сама
+       секция (знак в шапке в logo.js) */
+    document.dispatchEvent(new CustomEvent('sbf:section', { detail: { id: el.id, index: i } }));
 
     try { sessionStorage.setItem(STORAGE_KEY, i); } catch (e) {}
 
