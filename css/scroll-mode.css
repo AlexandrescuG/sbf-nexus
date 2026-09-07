@@ -140,6 +140,34 @@ html { scroll-behavior: smooth; }
    поверх блока «кому подходит». */
 .service-corona .sect-mark { grid-area: logo; }
 
+/* Разделённое кольцо «вы / мы» на услугах (data-split). Светлая дуга —
+   доля клиента, идёт следом за золотой; подписи стоят снаружи кольца
+   на середине своей дуги (координаты ставит js/logo.js). */
+.sect-mark .mark-you {
+  fill: none; stroke: rgba(43, 43, 51, 0.38); stroke-width: 1.4;   /* услуги на светлом фоне */
+  stroke-linecap: round;
+  transition: stroke-dasharray 1.1s cubic-bezier(0.22, 0.61, 0.36, 1),
+              stroke-dashoffset 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.sect-mark .mark-lbl {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  line-height: 1; padding: 3px 5px; border-radius: 2px;
+  background: rgba(251, 246, 239, 0.9);   /* прикрывает дорожку кольца под буквами */
+  transition: left 1.1s cubic-bezier(0.22, 0.61, 0.36, 1),
+              top 1.1s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.4s;
+  pointer-events: none;
+}
+.sect-mark .mark-lbl-we  { color: var(--gold, #C9A227); }
+.sect-mark .mark-lbl-you { color: rgba(43, 43, 51, 0.65); }
+/* Знак-кнопка (service-3 → партнёр FxPro) */
+.sect-mark[data-open-partner] { cursor: pointer; }
+.sect-mark[data-open-partner]:hover img,
+.sect-mark[data-open-partner]:focus-visible img { filter: drop-shadow(0 0 22px rgba(230, 194, 87, 0.75)); }
+.sect-mark[data-open-partner]:focus-visible { outline: 1px solid var(--gold, #C9A227); outline-offset: 40%; }
+
 
 /* ── Состояния знака ─────────────────────────────────────────────────────
    Роль задаёт data-role, долю кольца — data-part. Оба ставит js/logo.js,

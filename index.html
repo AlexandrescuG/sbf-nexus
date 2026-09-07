@@ -519,12 +519,17 @@
     <div class="service-corona">
       <p class="service-num-top">01</p>
       <h2 class="service-title-top" data-i18n="svc.s1.title">Обучение</h2>
-      <div class="sect-mark" data-role="hold-1">
+      <!-- Кольцо «вы / мы»: золотая дуга — доля работы на стороне SBF,
+           светлая — то, что остаётся клиенту. Подписи ставит js/logo.js. -->
+      <div class="sect-mark" data-role="hold-1" data-split>
         <img src="assets/logo/logo.svg" alt="" draggable="false">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="mark-track" cx="50" cy="50" r="46"/>
+          <circle class="mark-you"   cx="50" cy="50" r="46"/>
           <circle class="mark-fill"  cx="50" cy="50" r="46"/>
         </svg>
+        <span class="mark-lbl mark-lbl-we"  data-i18n="mark.we">мы</span>
+        <span class="mark-lbl mark-lbl-you" data-i18n="mark.you">вы</span>
         <span class="mark-cap" data-i18n="svc.logo_lvl1"></span>
       </div>
         <div class="service-target-left">
@@ -580,12 +585,15 @@
     <div class="service-corona">
       <p class="service-num-top">02</p>
       <h2 class="service-title-top" data-i18n="svc.s2.title">Сопровождение счёта</h2>
-      <div class="sect-mark" data-role="hold-2">
+      <div class="sect-mark" data-role="hold-2" data-split>
         <img src="assets/logo/logo.svg" alt="" draggable="false">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="mark-track" cx="50" cy="50" r="46"/>
+          <circle class="mark-you"   cx="50" cy="50" r="46"/>
           <circle class="mark-fill"  cx="50" cy="50" r="46"/>
         </svg>
+        <span class="mark-lbl mark-lbl-we"  data-i18n="mark.we">мы</span>
+        <span class="mark-lbl mark-lbl-you" data-i18n="mark.you">вы</span>
         <span class="mark-cap" data-i18n="svc.logo_lvl2"></span>
       </div>
         <div class="service-target-left">
@@ -637,12 +645,18 @@
     <div class="service-corona">
       <p class="service-num-top">03</p>
       <h2 class="service-title-top" data-i18n="svc.s3.title">Доверительное управление</h2>
-      <div class="sect-mark" data-role="hold-3">
+      <!-- Полное кольцо: всю работу берёт SBF. Знак здесь — кнопка к партнёру,
+           через которого услуга реализуется (FxPro), см. partner-modal.js -->
+      <div class="sect-mark" data-role="hold-3" data-split data-open-partner="fxpro"
+           tabindex="0" role="button" aria-label="Подробнее о FxPro">
         <img src="assets/logo/logo.svg" alt="" draggable="false">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="mark-track" cx="50" cy="50" r="46"/>
+          <circle class="mark-you"   cx="50" cy="50" r="46"/>
           <circle class="mark-fill"  cx="50" cy="50" r="46"/>
         </svg>
+        <span class="mark-lbl mark-lbl-we"  data-i18n="mark.we">мы</span>
+        <span class="mark-lbl mark-lbl-you" data-i18n="mark.you">вы</span>
         <span class="mark-cap" data-i18n="svc.logo_lvl3"></span>
       </div>
         <div class="service-target-left">

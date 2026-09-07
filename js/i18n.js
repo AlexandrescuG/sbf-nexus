@@ -80,6 +80,7 @@ ru: {
       ref:     'Реферальный код — в профиле. Пригласи трейдера — обоим +7 дней PRO.',
     },
   },
+  mark: { we: 'мы', you: 'вы' },
   market: {
     eyebrow:        'ПАМЯТЬ РЫНКОВ',
     mark_cap:       'знак помнит рынок · 5 с',
@@ -348,6 +349,7 @@ en: {
       ref:     'Referral code — in your profile. Invite a trader — both get +7 days PRO.',
     },
   },
+  mark: { we: 'us', you: 'you' },
   market: {
     eyebrow:        'MARKET MEMORY',
     mark_cap:       'the mark remembers the market · 5 s',
@@ -616,6 +618,7 @@ ro: {
       ref:     'Cod de referință — în profil. Invită un trader — ambii primesc +7 zile PRO.',
     },
   },
+  mark: { we: 'noi', you: 'dvs.' },
   market: {
     eyebrow:         'MEMORIA PIEȚELOR',
     mark_cap:        'semnul ține minte piața · 5 s',

@@ -95,6 +95,7 @@
       mark.dataset.part = part;
       mark.classList.toggle('mark-complete', part >= 1);
       fill(mark.querySelector('.mark-fill'), part, opts.animate !== false);
+      if (mark.hasAttribute('data-split')) fillSplit(mark, part, opts.animate !== false);
       /* Вход на платформе: доля кольца проявляет скриншот. Переменную
          ставим на контейнере, чтобы CSS сам считал blur и яркость. */
       var gate = mark.closest('.platform-gate');
@@ -105,6 +106,34 @@
       }
     }
     if (opts.pulse) pulse(mark);
+  }
+
+  /* Разделённое кольцо «вы / мы» (услуги, data-split). Золотая дуга — доля
+     работы на стороне SBF, светлая — то, что остаётся клиенту. Подписи
+     стоят на середине своей дуги; при part=1 дуги клиента нет, и её
+     подпись прячется. Угол считается от 12 часов по часовой стрелке. */
+  function fillSplit(mark, part, animate) {
+    var you = mark.querySelector('.mark-you');
+    var rest = Math.max(0, 1 - part);
+    if (you) {
+      you.style.strokeDasharray = (LEN * rest).toFixed(1) + ' ' + LEN.toFixed(1);
+      you.style.strokeDashoffset = (-LEN * part).toFixed(1);
+      you.style.transition = animate ? '' : 'none';
+    }
+    /* При полном кольце подпись «мы» упала бы на 6 часов, прямо на
+       подпись знака; полное кольцо и так значит «всё на нашей стороне». */
+    placeLabel(mark.querySelector('.mark-lbl-we'),  part / 2,        part > 0.02 && part < 0.98);
+    placeLabel(mark.querySelector('.mark-lbl-you'), part + rest / 2, rest > 0.02);
+  }
+
+  /* Ставит подпись на окружности чуть снаружи кольца: kf — доля оборота */
+  function placeLabel(el, kf, show) {
+    if (!el) return;
+    var a = kf * 2 * Math.PI - Math.PI / 2;
+    var rad = 90;                          /* % ширины знака; кольцо r=46 в svg с inset -34% → 77% */
+    el.style.left = (50 + Math.cos(a) * rad) + '%';
+    el.style.top  = (50 + Math.sin(a) * rad) + '%';
+    el.style.opacity = show ? '' : '0';
   }
 
   /* Плавно ведём CSS-переменную от текущего значения к цели: у переменных
@@ -145,6 +174,7 @@
       if (r) m.dataset.role = r;
     }
     fill(m.querySelector('.mark-fill'), 0, false);
+    if (m.hasAttribute('data-split')) fillSplit(m, 0, false);
   });
   renderCaptions();
 

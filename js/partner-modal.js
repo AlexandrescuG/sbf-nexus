@@ -115,9 +115,11 @@ function closePartnerModal() {
 }
 
 document.addEventListener('click', (e) => {
-  const card = e.target.closest('.partner-card');
+  /* Карточка партнёра или любой элемент с data-open-partner
+     (знак на «Доверительном управлении» ведёт к FxPro) */
+  const card = e.target.closest('.partner-card, [data-open-partner]');
   if (card) {
-    const id = card.dataset.partner;
+    const id = card.dataset.partner || card.dataset.openPartner;
     if (id) openPartnerModal(id);
     return;
   }
@@ -129,10 +131,10 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closePartnerModal();
   if (e.key !== 'Enter' && e.key !== ' ') return;
-  const card = document.activeElement?.closest?.('.partner-card');
+  const card = document.activeElement?.closest?.('.partner-card, [data-open-partner]');
   if (card) {
     e.preventDefault();
-    const id = card.dataset.partner;
+    const id = card.dataset.partner || card.dataset.openPartner;
     if (id) openPartnerModal(id);
   }
 });
