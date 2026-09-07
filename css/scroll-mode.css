@@ -180,3 +180,28 @@ html { scroll-behavior: smooth; }
   #act-platform-2 .sect-mark { --mark-size: 60px; top: 49vh; }
   #act-platform-2 .sect-mark .mark-cap { display: none; }
 }
+
+
+/* ── Линза на act-approach ───────────────────────────────────────────────
+   Знак стоит по центру ленты. Само изображение знака внутри линзы
+   приглушено: внутри кольца главное — размеченные свечи, а знак читается
+   как оправа. Клип по окружности делает GoldTape, здесь только положение. */
+#approach-chart { position: relative; }
+#approach-chart .approach-lens {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  --mark-size: 150px;
+  margin: 0;
+  pointer-events: none;
+}
+#approach-chart .approach-lens img { opacity: 0.16; filter: none; }
+#approach-chart .approach-lens .mark-track { stroke: rgba(201, 162, 39, 0.35); }
+#approach-chart .approach-lens .mark-fill  { stroke-width: 2.2; }
+#approach-chart .approach-lens .mark-cap   { top: calc(100% + 22px); }
+/* На узких экранах лента свечей — приглушённый фон за текстом, а не
+   отдельная колонка. Линза на фоне ложится под абзацы и читается как шум.
+   Здесь её нет; роль секции на мобайле покажет кольцо в шапке (шаг 2.2). */
+@media (max-width: 900px) {
+  #approach-chart .approach-lens { display: none; }
+}

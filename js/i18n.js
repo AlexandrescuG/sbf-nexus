@@ -50,6 +50,7 @@ ru: {
     cta:       'Открыть платформу →',
   },
   approach: {
+    lens_cap: 'Снаружи — шум. Внутри — уровни, средняя, паттерн',
     eyebrow: 'Комплексный подход',
     heading: 'Индивидуальные финансовые решения для вашего будущего',
     p1: 'Наша команда с международным опытом предоставляет услуги финансового обучения на всех видах рынков: фондовых, валютных, товарных, а также рынке деривативов и криптовалют.',
@@ -315,6 +316,7 @@ en: {
     cta:       'Open the platform →',
   },
   approach: {
+    lens_cap: 'Outside — noise. Inside — levels, average, pattern',
     eyebrow: 'Comprehensive Approach',
     heading: 'Individual financial solutions for your future',
     p1: 'Our internationally experienced team provides financial education services across equity, currency, commodity, derivative, and cryptocurrency markets.',
@@ -580,6 +582,7 @@ ro: {
     cta:       'Deschide platforma →',
   },
   approach: {
+    lens_cap: 'În afară — zgomot. Înăuntru — niveluri, medie, tipar',
     eyebrow: 'Abordare Complexă',
     heading: 'Soluții financiare personalizate pentru viitorul tău',
     p1: 'Echipa noastră cu experiență internațională oferă servicii de educație financiară pe toate tipurile de piețe: acțiuni, valutare, mărfuri, derivate și criptomonede.',
