@@ -139,3 +139,44 @@ html { scroll-behavior: smooth; }
    раскладывал его в первую свободную — то есть в левую колонку,
    поверх блока «кому подходит». */
 .service-corona .sect-mark { grid-area: logo; }
+
+
+/* ── Состояния знака ─────────────────────────────────────────────────────
+   Роль задаёт data-role, долю кольца — data-part. Оба ставит js/logo.js,
+   он же единственный, кто их меняет. */
+.sect-mark.mark-complete .mark-fill { stroke: var(--glow, #E6C257); stroke-width: 2.3; }
+
+/* Короткая вспышка: пришла нить на карте, сменился слайд, ушла форма.
+   Знак «отзывается» на событие, оставаясь на месте. */
+@keyframes sbf-mark-pulse {
+  0%   { filter: drop-shadow(0 0 14px rgba(201, 162, 39, 0.35)); }
+  35%  { filter: drop-shadow(0 0 26px rgba(230, 194, 87, 0.85)); }
+  100% { filter: drop-shadow(0 0 14px rgba(201, 162, 39, 0.35)); }
+}
+.sect-mark.mark-pulse img { animation: sbf-mark-pulse 0.9s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .sect-mark.mark-pulse img { animation: none; }
+}
+
+/* PRO-экран собран на абсолютных блоках: шаги на 26vh, текст с кнопкой на 63vh.
+   Знак в потоке между ними попадал в начало секции — на заголовок.
+   Ставим его в свободную полосу между карточками шагов и текстом. */
+#act-platform-2 .sect-mark {
+  position: absolute;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  --mark-size: 92px;
+  margin: 0;
+}
+#act-platform-2 .sect-mark .mark-cap { color: var(--glow, #E6C257); }
+@media (max-width: 1023px) {
+  /* На узких экранах блоки уже в потоке — знак тоже */
+  #act-platform-2 .sect-mark { position: relative; top: auto; left: auto; transform: none; margin: 8px auto 22px; }
+}
+/* На низком окне (680px) полоса между шагами и текстом — ~90px; знак 92px
+   с подписью в неё не помещался и ложился на абзац. */
+@media (min-width: 1024px) and (max-height: 740px) {
+  #act-platform-2 .sect-mark { --mark-size: 60px; top: 49vh; }
+  #act-platform-2 .sect-mark .mark-cap { display: none; }
+}

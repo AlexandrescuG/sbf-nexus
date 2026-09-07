@@ -20,7 +20,8 @@ Playwright уже стоит на диске (1.59, chromium + firefox + webkit)
     python3 tools/shots.py --url https://sbfconsult.com/
 
 Кладёт PNG в tools/shots/<устройство>/ и печатает отчёт: горизонтальный вылет,
-заголовки под шапкой, ошибки консоли.
+обрезка низом секции, заголовки под шапкой, опорные точки не на месте,
+ошибки консоли.
 """
 
 import argparse, sys, json
@@ -94,6 +95,57 @@ AUDIT_JS = """
 }
 """
 
+# Опорные точки: элемент не «сломан» по измеримым признакам, но стоит не там.
+# Добавлено после того, как правка разметки вложила блок точек навигации
+# внутрь <nav class="site-nav">, точки уехали в правый верхний угол, а все
+# три прежние проверки остались зелёными — поймал человек глазами.
+ANCHORS_JS = """
+() => {
+  const VW = window.innerWidth, VH = window.innerHeight;
+  const out = [];
+  const rect = s => { const e = document.querySelector(s); if (!e) return null;
+    const cs = getComputedStyle(e);
+    if (cs.display === 'none' || cs.visibility === 'hidden') return null;
+    const r = e.getBoundingClientRect();
+    return r.width ? r : null; };
+
+  const nav = rect('.site-nav');
+  if (!nav) out.push('шапка не найдена или скрыта');
+  else if (nav.top > 2) out.push('шапка не прижата к верху (top=' + Math.round(nav.top) + ')');
+
+  // Точки навигации — вертикальный столбик у правого края, а не в углу
+  const dots = rect('#snap-progress');
+  if (dots) {
+    if (dots.right < VW * 0.8) out.push('точки навигации не у правого края');
+    const mid = dots.top + dots.height / 2;
+    if (mid < VH * 0.25 || mid > VH * 0.75)
+      out.push('точки навигации не по центру по вертикали (центр=' + Math.round(mid) + ' из ' + VH + ')');
+  }
+
+  // Знак секции не должен налезать на текст своей секции
+  document.querySelectorAll('.sect-mark').forEach(m => {
+    const mr = m.getBoundingClientRect();
+    if (!mr.width) return;
+    const sec = m.closest('.snap-stop');
+    if (!sec) return;
+    sec.querySelectorAll('h1, h2, h3, p, a, .hub-card').forEach(e => {
+      if (m.contains(e) || e.contains(m)) return;
+      const cs = getComputedStyle(e);
+      if (cs.display === 'none' || cs.opacity === '0' || !e.textContent.trim()) return;
+      const r = e.getBoundingClientRect();
+      if (!r.width) return;
+      const overlap = Math.max(0, Math.min(mr.right, r.right) - Math.max(mr.left, r.left)) *
+                      Math.max(0, Math.min(mr.bottom, r.bottom) - Math.max(mr.top, r.top));
+      if (overlap > 400) {
+        const what = sec.id + ' ' + e.tagName.toLowerCase();
+        if (!out.includes('знак перекрывает ' + what)) out.push('знак перекрывает ' + what);
+      }
+    });
+  });
+  return out;
+}
+"""
+
 HEAD_JS = """
 (id) => {
   const sec = document.getElementById(id);
@@ -135,6 +187,8 @@ def run(url, engine, devices, only_section):
             page.wait_for_timeout(2500)     # карта, шрифты, первая анимация
 
             audit = page.evaluate(AUDIT_JS)
+            for a in page.evaluate(ANCHORS_JS):
+                problems.append(f'{name}: {a}')
             if audit['overflow']:
                 problems.append(f'{name}: горизонтальный вылет — ' + ', '.join(audit['overflow']))
             if audit.get('clipped'):
