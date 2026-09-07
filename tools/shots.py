@@ -122,24 +122,39 @@ ANCHORS_JS = """
       out.push('точки навигации не по центру по вертикали (центр=' + Math.round(mid) + ' из ' + VH + ')');
   }
 
-  // Знак секции не должен налезать на текст своей секции
+  // Знак секции не должен налезать на текст своей секции. Проверяем не
+  // только коробку знака, но и его подпись и кольцо: подпись стоит
+  // абсолютом ниже коробки и ложилась на абзац, пока коробка была чиста.
+  const area = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) *
+                         Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
   document.querySelectorAll('.sect-mark').forEach(m => {
     const mr = m.getBoundingClientRect();
-    if (!mr.width) return;
+    if (!mr.width || m.closest('.site-nav')) return;
     const sec = m.closest('.snap-stop');
     if (!sec) return;
-    sec.querySelectorAll('h1, h2, h3, p, a, .hub-card').forEach(e => {
+    const parts = [{ name: 'знак', r: mr }];
+    const ring = mr.width * 0.34;
+    parts.push({ name: 'кольцо', r: { left: mr.left - ring, right: mr.right + ring,
+                                     top: mr.top - ring, bottom: mr.bottom + ring } });
+    m.querySelectorAll('.mark-cap, .mark-lbl').forEach(c => {
+      const cs = getComputedStyle(c);
+      if (cs.display === 'none' || cs.opacity === '0' || !c.textContent.trim()) return;
+      const r = c.getBoundingClientRect();
+      if (r.width) parts.push({ name: 'подпись знака', r });
+    });
+    sec.querySelectorAll('h1, h2, h3, h4, p, a, li, .hub-card, .p2-card').forEach(e => {
       if (m.contains(e) || e.contains(m)) return;
       const cs = getComputedStyle(e);
       if (cs.display === 'none' || cs.opacity === '0' || !e.textContent.trim()) return;
       const r = e.getBoundingClientRect();
       if (!r.width) return;
-      const overlap = Math.max(0, Math.min(mr.right, r.right) - Math.max(mr.left, r.left)) *
-                      Math.max(0, Math.min(mr.bottom, r.bottom) - Math.max(mr.top, r.top));
-      if (overlap > 400) {
-        const what = sec.id + ' ' + e.tagName.toLowerCase();
-        if (!out.includes('знак перекрывает ' + what)) out.push('знак перекрывает ' + what);
-      }
+      parts.forEach(p => {
+        // Кольцо тонкое — считаем только заметное вторжение
+        if (area(p.r, r) > (p.name === 'кольцо' ? 1200 : 400)) {
+          const what = p.name + ' перекрывает ' + sec.id + ' ' + e.tagName.toLowerCase();
+          if (!out.includes(what)) out.push(what);
+        }
+      });
     });
   });
   return out;

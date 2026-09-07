@@ -2740,19 +2740,10 @@ body.act-act-market-active .nav-links a:hover {
    ЗАДАЧА 1 — лого не перекрывает текст в сервисах
    ════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
-  .service-stop .service-logo-bg,
-  .service-stop img[src*="logo.svg"]:not(.hero-logo) {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 180px !important;
-    height: 180px !important;
-    opacity: 0.12 !important;
-    z-index: 0 !important;
-    pointer-events: none !important;
-    filter: none !important;
-  }
+  /* Водяной знак-фон снят: на мобайле знак услуги — .sect-mark в потоке
+     (кольцо «вы / мы»), см. css/scroll-mode.css. Правило по img[src*=logo]
+     ловило и картинку внутри знака — потому его больше нет. */
+  .service-stop .service-logo-bg { display: none !important; }
 
   .service-stop > *:not(img),
   .service-stop .service-corona-mobile > *:not(img),
