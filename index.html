@@ -338,10 +338,28 @@
   <section class="snap-stop" id="act-approach">
     <div id="approach-stage">
       <div id="approach-copy">
-        <p class="eyebrow" data-i18n="approach.eyebrow">Комплексный подход</p>
-        <h2 data-i18n="approach.heading">Индивидуальные финансовые решения для вашего будущего</h2>
-        <p data-i18n="approach.p1">Наша команда с международным опытом предоставляет услуги финансового обучения на всех видах рынков: фондовых, валютных, товарных, а также рынке деривативов и криптовалют.</p>
-        <p data-i18n="approach.p2">Мы предлагаем инструменты и стратегии, учитывая индивидуальные цели клиентов. Особый акцент делается на анализе рынков и профессиональном обучении для уверенных финансовых решений.</p>
+        <p class="eyebrow" data-i18n="approach.eyebrow">Подход</p>
+        <h2 data-i18n="approach.heading">Шум снаружи — закономерность внутри</h2>
+        <!-- Три шага вместо двух абзацев, которые подошли бы любой компании.
+             В каждом шаге — число, которое можно проверить в продукте. -->
+        <ol class="approach-steps">
+          <li>
+            <span class="step-n">01</span>
+            <b data-i18n="approach.s1.t">Собираем</b>
+            <p data-i18n="approach.s1.p">842 инструмента и макро-календарь: котировки обновляются каждые 15 секунд, лента событий — каждые 15 минут.</p>
+          </li>
+          <li>
+            <span class="step-n">02</span>
+            <b data-i18n="approach.s2.t">Проверяем</b>
+            <p data-i18n="approach.s2.p">По каждому событию считаем, как рынок ходил в прошлые выходы — медиана за 30 минут. Паттерн идёт с долей срабатываний, а не с картинкой из учебника.</p>
+          </li>
+          <li>
+            <span class="step-n">03</span>
+            <b data-i18n="approach.s3.t">Выдаём</b>
+            <p data-i18n="approach.s3.p">Бриф до открытия Европы, разметку на графике и статистику паттернов. Решение о сделке принимаете вы.</p>
+          </li>
+        </ol>
+        <a class="approach-link" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/chart.html?s=XAUUSD&amp;utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=approach" data-i18n="approach.cta">Как это выглядит в терминале →</a>
       </div>
       <div id="approach-chart">
         <!-- Линза. Знак стоит на движущейся ленте свечей; снаружи кольца
@@ -356,6 +374,13 @@
           </svg>
           <span class="mark-cap" data-i18n="approach.lens_cap"></span>
         </div>
+        <!-- Что именно видно внутри кольца: цвета совпадают с отрисовкой
+             в GoldTape._renderLens. Без легенды разметка читалась как узор. -->
+        <ul class="lens-legend" aria-hidden="true">
+          <li class="lg-level"><i></i><span data-i18n="approach.lg_level">уровень</span></li>
+          <li class="lg-sma"><i></i><span data-i18n="approach.lg_sma">SMA 20</span></li>
+          <li class="lg-pat"><i></i><span data-i18n="approach.lg_pat">паттерн</span></li>
+        </ul>
       </div>
     </div>
   </section>

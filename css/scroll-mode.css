@@ -283,6 +283,69 @@ html { scroll-behavior: smooth; }
 }
 
 
+/* ── Подход: три шага ────────────────────────────────────────────────────
+   Вместо двух абзацев «про международный опыт» — конвейер из трёх шагов,
+   в каждом число, которое можно проверить в самом продукте. */
+.approach-steps { list-style: none; margin: 22px 0 0; padding: 0; }
+.approach-steps li {
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 14px;
+  padding: 14px 0; border-top: 1px solid var(--line);
+}
+.approach-steps li:last-child { border-bottom: 1px solid var(--line); }
+.approach-steps .step-n {
+  grid-row: 1 / span 2;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--gold); letter-spacing: 0.08em; padding-top: 2px;
+}
+.approach-steps b {
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  color: var(--ink); letter-spacing: 0.02em;
+}
+.approach-steps p {
+  margin: 4px 0 0; font-family: 'Montserrat', sans-serif;
+  font-size: 13px; line-height: 1.55; color: #55555F;
+}
+.approach-link {
+  display: inline-block; margin-top: 18px;
+  font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold-deep); text-decoration: none;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.4);
+}
+.approach-link:hover { border-bottom-color: currentColor; }
+/* На ноутбучном экране (800–860px) ссылка уезжала под сгиб: три шага с
+   заголовком занимали всю высоту. Поджимаем отступы, а не режем текст. */
+@media (min-width: 1024px) and (max-height: 900px) {
+  /* Колонка текста вертикально центрируется в 100vh. Пока в ней было два
+     абзаца, это выглядело спокойно; с тремя шагами и ссылкой она стала
+     выше окна и вылезала за оба края. Прижимаем к верху свободной полосы. */
+  /* Сцена жёстко 100vh: на низком окне (680px) третий шаг обрезался краем.
+     Отдаём ей естественную высоту — секция просто станет чуть выше окна. */
+  #approach-stage { align-items: start; height: auto; min-height: 100vh; padding-bottom: 28px; }
+  #approach-copy { padding-top: 10px; }
+  #approach-copy h2 { font-size: 28px; line-height: 1.15; }
+  .approach-steps { margin-top: 12px; }
+  .approach-steps li { padding: 8px 0; }
+  .approach-steps p { font-size: 12px; line-height: 1.4; }
+  .approach-link { margin-top: 10px; }
+}
+
+/* Легенда линзы: цвета совпадают с тем, что рисует GoldTape внутри кольца */
+.lens-legend {
+  position: absolute; left: 50%; bottom: 8%;
+  transform: translateX(-50%);
+  display: flex; gap: 16px; list-style: none; margin: 0; padding: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  pointer-events: none;
+}
+.lens-legend li { display: flex; align-items: center; gap: 6px; }
+.lens-legend i { width: 14px; height: 0; border-top: 2px solid currentColor; display: block; }
+.lens-legend .lg-level i { border-top-style: dashed; color: var(--gold-deep); }
+.lens-legend .lg-sma i { color: var(--gold); }
+.lens-legend .lg-pat i { border-top: 0; height: 8px; width: 8px; border-radius: 50%; background: var(--glow, #E6C257); }
+@media (max-width: 900px) { .lens-legend { display: none; } }
+
 /* ── Вход на act-platform-1 ──────────────────────────────────────────────
    --gate идёт от 0 до 1 вместе с кольцом (ставит js/logo.js через
    data-part → здесь читается как переменная). Пока 0 — скриншот размыт

@@ -220,7 +220,15 @@ async function initApproach() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeLens);
 
   /* Десктоп: snap-enter / snap-leave */
-  tape.start(); /* GoldTape всегда идёт в фоне */
+  tape.start();
+
+  /* Лента едет постоянно, и рассмотреть разметку внутри линзы не успеваешь.
+     Навёл курсор на график — лента замирает, увёл — снова идёт. */
+  var chart = document.getElementById('approach-chart');
+  if (chart && !window.matchMedia('(hover: none)').matches) {
+    chart.addEventListener('mouseenter', function () { tape.stop(); chart.classList.add('tape-held'); });
+    chart.addEventListener('mouseleave', function () { tape.start(); chart.classList.remove('tape-held'); });
+  } /* GoldTape всегда идёт в фоне */
 
   const section = document.getElementById('act-approach');
 
