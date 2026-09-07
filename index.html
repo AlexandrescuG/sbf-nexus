@@ -495,6 +495,17 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
       </button>
     </div>
+    <!-- Память: внутри силуэта знака течёт свечной поток текущего кейса
+         (маска logo.svg), кольцо — 5-секундный таймер автоплея. -->
+    <div class="sect-mark market-memory" data-role="process" data-scripted>
+      <img src="assets/logo/logo.svg" alt="" draggable="false">
+      <div class="memory-stream" aria-hidden="true"><canvas></canvas></div>
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="mark-track" cx="50" cy="50" r="46"/>
+        <circle class="mark-fill"  cx="50" cy="50" r="46"/>
+      </svg>
+      <span class="mark-cap" data-i18n="market.mark_cap">память рынка</span>
+    </div>
     <div class="act-overlay" id="market-overlay">
       <div class="act-overlay-inner">
         <p class="eyebrow" data-i18n="market.eyebrow">ПАМЯТЬ РЫНКОВ</p>
@@ -837,6 +848,7 @@
   <script type="module" src="js/main.js"></script>
   <script defer src="js/acts/act-hub.js"></script>
   <script defer src="js/acts/act-pro.js"></script>
+  <script defer src="js/acts/act-market-memory.js"></script>
   <script type="module" src="js/acts/act-approach.js"></script>
   <script type="module" src="js/acts/act3-market.js"></script>
   <script type="module" src="js/acts/act-services.js"></script>

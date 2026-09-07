@@ -278,3 +278,54 @@ html { scroll-behavior: smooth; }
 /* Пока бейджа нет — знак читается целиком; появился бейдж — знак уходит на второй план */
 .pro-issue img { transition: opacity 0.4s; }
 .pro-issue.mark-complete img { opacity: 0.35; }
+
+
+/* ── Память рынков ───────────────────────────────────────────────────────
+   Свечной поток течёт внутри силуэта знака (маска logo.svg — та самая
+   заготовка #chart-stream из styles.css, только теперь с JS). Кольцо —
+   таймер автоплея, его ведёт js/acts/act-market-memory.js. На десктопе
+   знак стоит в пустом правом верхнем углу над текстом кейса; на мобайле
+   идёт в потоке между плашкой заголовка и каруселью. */
+#act-market { position: relative; }
+#act-market .market-memory {
+  position: absolute;
+  top: calc(var(--nav-h, 69px) + 30px);
+  right: 110px;              /* подпись шире знака — запас, чтобы не резалась краем */
+  --mark-size: 104px;
+  margin: 0;
+  z-index: 3;
+}
+#act-market .market-memory img { opacity: 0.22; filter: none; }
+#act-market .market-memory .memory-stream {
+  position: absolute; inset: 0;
+  -webkit-mask-image: url(../assets/logo/logo.svg);
+          mask-image: url(../assets/logo/logo.svg);
+  -webkit-mask-size: 100% 100%;  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+#act-market .market-memory .memory-stream canvas { width: 100%; height: 100%; display: block; }
+/* Кольцо-таймер идёт без CSS-перехода: долю ставит rAF каждый кадр */
+#act-market .market-memory .mark-fill { transition: none; }
+#act-market .market-memory .mark-cap { color: var(--glow, #E6C257); }
+/* Титульная плашка секции при обычной прокрутке фиксирована у низа окна и
+   ложилась на график и абзац кейса. В потоке секция выше окна, и над
+   каруселью есть пустая полоса — плашка идёт туда, слева, знак — справа. */
+@media (min-width: 1024px) {
+  #act-market .act-overlay {
+    position: absolute; left: 32px; right: auto; bottom: auto;
+    top: calc(var(--nav-h, 69px) + 30px);
+    text-align: left; z-index: 3;
+  }
+  #act-market .act-overlay-inner { padding: 14px 22px; }
+  #act-market .act-overlay h3 { font-size: 20px; }
+}
+@media (max-width: 1023px) {
+  #act-market .market-memory {
+    position: relative; top: auto; right: auto;
+    order: -2;                 /* над плашкой заголовка (order:-1) — знак над контентом */
+    --mark-size: 72px;
+    margin: 0 auto 6px;
+  }
+  #act-market .market-memory .mark-cap { display: none; }
+}

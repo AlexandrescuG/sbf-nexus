@@ -104,6 +104,23 @@ function drawPatternOverlay(ctx, overlay, yS, P, w) {
     hline(overlay.high);
   }
 
+  /* Знак-маркер в точке срабатывания паттерна: связывает «паттерн» из
+     текста с конкретным местом на графике. Уровень — тот, о котором
+     говорит кейс: граница гэпа, апекс треугольника, уровень 160. */
+  const markLevel = overlay.type === 'gap'  ? overlay.gapHigh
+                  : overlay.type === 'band' ? (overlay.low + overlay.high) / 2
+                  : overlay.level;
+  if (markLevel != null) {
+    const mx = w - P.r - 16, my = yS(markLevel);
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(11, 11, 15, 0.85)';
+    ctx.beginPath(); ctx.arc(mx, my, 9, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(230, 194, 87, 0.95)'; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(mx, my, 9, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = '#E6C257';
+    ctx.beginPath(); ctx.arc(mx, my, 3, 0, Math.PI * 2); ctx.fill();
+  }
+
   ctx.setLineDash([]);
   ctx.restore();
 }
@@ -198,18 +215,33 @@ function initCarousel() {
     current = (idx + total) % total;
     slides[current].classList.add('active');
     dots[current]?.classList.add('active');
+    section.dispatchEvent(new CustomEvent('market:slide', {
+      detail: { index: current, caseId: slides[current].dataset.case }
+    }));
   }
 
+  /* Автоплей: если на секции есть знак-память (act-market-memory.js),
+     таймером служит его кольцо — заполняется 5 с и переключает слайд.
+     Иначе прежний setInterval. */
   function startAutoplay() {
     if (autoplay) return;
+    if (window.SBF && window.SBF.marketRing) {
+      autoplay = 'ring';
+      window.SBF.marketRing.start(5000, () => { if (!userTook) goTo(current + 1); });
+      return;
+    }
     autoplay = setInterval(() => {
       if (!userTook) goTo(current + 1);
     }, 5000);
   }
 
   function stopAutoplay() {
+    if (autoplay === 'ring') { window.SBF.marketRing.stop(); autoplay = null; return; }
     if (autoplay) { clearInterval(autoplay); autoplay = null; }
   }
+
+  window.SBF = window.SBF || {};
+  window.SBF.market = { goTo, current: () => current, charts: CHARTS, slides };
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
@@ -241,12 +273,17 @@ function initCarousel() {
     }, { passive: true });
   }
 
-  section.addEventListener('snap-enter', () => {
+  function onEnter() {
     userTook = false;
     goTo(0);
     startAutoplay();
     if (overlay) gsap.fromTo(overlay, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
-  });
+  }
+  section.addEventListener('snap-enter', onEnter);
+  /* Данные грузятся лениво, и при прыжке по якорю snap-enter успевает
+     прийти раньше этого слушателя — секция уже активна, а автоплей и
+     кольцо стоят. Догоняем по классу на body. */
+  if (document.body.classList.contains('act-act-market-active')) onEnter();
 
   section.addEventListener('snap-leave', () => {
     stopAutoplay();
@@ -262,6 +299,7 @@ async function initMarketDesktop() {
     try {
       const text   = await fetch(cfg.file).then(r => r.text());
       const data   = parseCSV(text);
+      cfg.data     = data;   /* знак-память рисует поток текущего кейса */
       const slide  = document.querySelector(`.market-slide[data-case="${cfg.caseId}"]`);
       const canvas = slide?.querySelector('.market-slide-chart');
       if (canvas && data.length) {

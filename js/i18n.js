@@ -82,6 +82,7 @@ ru: {
   },
   market: {
     eyebrow:        'ПАМЯТЬ РЫНКОВ',
+    mark_cap:       'знак помнит рынок · 5 с',
     heading:        'Каждое движение оставляет паттерн',
     cta_platform:   'Смотреть живую аналитику →',
     hist_disclaimer:'Историческая статистика не гарантирует будущих результатов и не является рекомендацией.',
@@ -349,6 +350,7 @@ en: {
   },
   market: {
     eyebrow:        'MARKET MEMORY',
+    mark_cap:       'the mark remembers the market · 5 s',
     heading:        'Every move leaves a pattern',
     cta_platform:   'View live analytics →',
     hist_disclaimer:'Past statistical patterns do not guarantee future results and do not constitute a recommendation.',
@@ -616,6 +618,7 @@ ro: {
   },
   market: {
     eyebrow:         'MEMORIA PIEȚELOR',
+    mark_cap:        'semnul ține minte piața · 5 s',
     heading:         'Fiecare mișcare lasă un tipar',
     cta_platform:    'Vezi analize în timp real →',
     hist_disclaimer: 'Tiparele statistice istorice nu garantează rezultatele viitoare și nu constituie o recomandare.',
