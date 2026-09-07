@@ -95,8 +95,30 @@
       mark.dataset.part = part;
       mark.classList.toggle('mark-complete', part >= 1);
       fill(mark.querySelector('.mark-fill'), part, opts.animate !== false);
+      /* Вход на платформе: доля кольца проявляет скриншот. Переменную
+         ставим на контейнере, чтобы CSS сам считал blur и яркость. */
+      var gate = mark.closest('.platform-gate');
+      if (gate) {
+        animateVar(gate, '--gate', part, opts.animate !== false ? 1100 : 0);
+        setTimeout(function () { gate.classList.toggle('gate-open', part >= 1); },
+                   opts.animate !== false ? 900 : 0);
+      }
     }
     if (opts.pulse) pulse(mark);
+  }
+
+  /* Плавно ведём CSS-переменную от текущего значения к цели: у переменных
+     нет transition, а картинка должна проявляться синхронно с кольцом. */
+  function animateVar(el, name, to, ms) {
+    var from = parseFloat(getComputedStyle(el).getPropertyValue(name)) || 0;
+    if (!ms) { el.style.setProperty(name, to); return; }
+    var t0 = performance.now();
+    (function step(now) {
+      var k = Math.min(1, (now - t0) / ms);
+      var e = 1 - Math.pow(1 - k, 3);
+      el.style.setProperty(name, (from + (to - from) * e).toFixed(3));
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
   }
 
   function pulse(mark) {

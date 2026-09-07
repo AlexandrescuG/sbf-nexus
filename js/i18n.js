@@ -59,6 +59,7 @@ ru: {
   platform: {
     cta: 'ОТКРЫТЬ ПЛАТФОРМУ →',
     p1: {
+      key_cap: 'Знак — вход. Нажмите, чтобы открыть терминал',
       eyebrow: 'ПЛАТФОРМА · LP.SBFCONSULT.COM',
       heading: 'Терминал, журнал и академия — в одном месте',
       lead:    'Рабочее пространство трейдера: утренний рыночный синтез, журнал сделок с аналитикой дисциплины, учебная программа и цели. Без рекомендаций — только структура и данные для ваших собственных решений.',
@@ -325,6 +326,7 @@ en: {
   platform: {
     cta: 'OPEN PLATFORM →',
     p1: {
+      key_cap: 'The mark is the entrance. Click to open the terminal',
       eyebrow: 'PLATFORM · LP.SBFCONSULT.COM',
       heading: 'Terminal, journal and academy — in one place',
       lead:    'Trader\'s workspace: morning market synthesis, trade journal with discipline analytics, study programme and goals. No recommendations — only structure and data for your own decisions.',
@@ -591,6 +593,7 @@ ro: {
   platform: {
     cta: 'DESCHIDE PLATFORMA →',
     p1: {
+      key_cap: 'Semnul este intrarea. Apasă pentru a deschide terminalul',
       eyebrow: 'PLATFORMĂ · LP.SBFCONSULT.COM',
       heading: 'Terminal, jurnal și academie — într-un singur loc',
       lead:    'Spațiu de lucru pentru trader: sinteză de piață matinală, jurnal de tranzacții cu analitică a disciplinei, program de studiu și obiective. Fără recomandări — doar structură și date pentru propriile tale decizii.',

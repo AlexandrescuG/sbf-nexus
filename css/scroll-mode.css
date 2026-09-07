@@ -205,3 +205,41 @@ html { scroll-behavior: smooth; }
 @media (max-width: 900px) {
   #approach-chart .approach-lens { display: none; }
 }
+
+
+/* ── Вход на act-platform-1 ──────────────────────────────────────────────
+   --gate идёт от 0 до 1 вместе с кольцом (ставит js/logo.js через
+   data-part → здесь читается как переменная). Пока 0 — скриншот размыт
+   и затемнён, при 1 — чистый. Знак перед ним — ключ, и он же ссылка. */
+.platform-gate {
+  position: relative;
+  display: block;
+  width: 100%; max-width: 760px;
+  --gate: 0;
+  cursor: pointer;
+}
+.platform-gate .platform-screenshot {
+  filter: blur(calc((1 - var(--gate)) * 6px)) brightness(calc(0.55 + var(--gate) * 0.45));
+  transition: filter 0.25s linear;
+}
+.platform-gate .platform-key {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  --mark-size: 112px;
+  margin: 0;
+  /* Ключ виден, пока вход «закрыт»; когда картинка проявилась —
+     уходит в угол и уменьшается, чтобы не загораживать терминал. */
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s;
+}
+.platform-gate .platform-key img { filter: drop-shadow(0 0 18px rgba(230, 194, 87, 0.8)); }
+.platform-gate .platform-key .mark-cap { color: var(--glow, #E6C257); text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+.platform-gate.gate-open .platform-key {
+  transform: translate(-50%, -50%) scale(0.45);
+  left: 14%; top: 16%;
+}
+.platform-gate.gate-open .platform-key .mark-cap { opacity: 0; }
+.platform-gate:hover .platform-screenshot { filter: none; }
+@media (max-width: 900px) {
+  .platform-gate .platform-key { --mark-size: 80px; }
+}

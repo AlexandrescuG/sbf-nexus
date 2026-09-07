@@ -344,7 +344,20 @@
         <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=platform_p1" target="_blank" rel="noopener" class="cta-primary" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
       </div>
       <div class="platform-preview">
-        <img src="assets/platform/terminal.png" alt="SBF Intelligence Terminal" class="platform-screenshot" loading="lazy" width="760" height="540">
+        <!-- Вход. Скриншот терминала приглушён, знак стоит перед ним как ключ:
+             по мере заполнения кольца картинка проявляется. Клик по знаку
+             открывает платформу — «знак = вход» здесь действие, а не подпись. -->
+        <a class="platform-gate" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=platform_gate" target="_blank" rel="noopener" aria-label="Открыть платформу">
+          <img src="assets/platform/terminal.png" alt="SBF Intelligence Terminal" class="platform-screenshot" loading="lazy" width="760" height="540">
+          <div class="sect-mark platform-key" data-role="output">
+            <img src="assets/logo/logo.svg" alt="" draggable="false">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="mark-track" cx="50" cy="50" r="46"/>
+              <circle class="mark-fill"  cx="50" cy="50" r="46"/>
+            </svg>
+            <span class="mark-cap" data-i18n="platform.p1.key_cap"></span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
