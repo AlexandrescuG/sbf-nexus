@@ -7,6 +7,12 @@
   <meta name="description" content="SBF Consult — экспертный анализ рынков, сопровождение торгового счёта и подбор брокера. SBF Company SRL, Bloomberg LEI, EU-лицензированные партнёры.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://sbfconsult.com/">
+  <!-- Языки живут в одном URL (?lang=), поэтому x-default и три варианта
+       указывают на одну страницу: так поисковик не считает их дублями. -->
+  <link rel="alternate" hreflang="ru" href="https://sbfconsult.com/?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://sbfconsult.com/?lang=en">
+  <link rel="alternate" hreflang="ro" href="https://sbfconsult.com/?lang=ro">
+  <link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SBF Consult — Мы распознаём закономерности">
   <meta property="og:description" content="Экспертный анализ рынков, сопровождение торгового счёта и подбор брокера для частных инвесторов. Bloomberg LEI · EU-лицензированные партнёры.">
@@ -27,19 +33,23 @@
     "logo": "https://sbfconsult.com/assets/logo/logo.svg",
     "description": "Экспертный анализ рынков, сопровождение торгового счёта и подбор брокера для частных инвесторов.",
     "areaServed": ["MD", "KZ", "ZA", "AE", "CH", "PT"],
-    "availableLanguage": ["ru", "en"],
-    "identifier": {
-      "@type": "PropertyValue",
-      "propertyID": "LEI",
-      "value": "254900BW4MI5M0006I30"
-    },
+    "availableLanguage": ["ru", "en", "ro"],
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "LEI",  "value": "254900BW4MI5M0006I30" },
+      { "@type": "PropertyValue", "propertyID": "IDNO", "value": "1025600035871" }
+    ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ул. Алексей Щусев 47",
-      "addressLocality": "Кишинёв",
+      "streetAddress": "Str. Alexei Sciusev 47",
+      "addressLocality": "Chișinău",
+      "postalCode": "MD-2012",
       "addressCountry": "MD"
     },
-    "sameAs": ["https://lp.sbfconsult.com/"]
+    "sameAs": [
+      "https://lp.sbfconsult.com/",
+      "https://t.me/SBFEconomics",
+      "https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30"
+    ]
   }
   </script>
   <script>
@@ -199,7 +209,7 @@
                что-то извлечено. Наполняет hero-map.js из hero-feed.json. -->
           <div class="hm-today" id="hm-today" hidden></div>
           <div class="hm-ctas">
-            <a class="hm-primary" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-i18n="hero.cta1">Открыть платформу →</a>
+            <a class="hm-primary" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-track="hero_platform" data-i18n="hero.cta1">Открыть платформу →</a>
             <a class="hm-ghost" href="#" data-snap-target="act-contact" data-i18n="hero.cta2">Связаться</a>
           </div>
         </div>
@@ -207,7 +217,7 @@
           <div class="hm-t" data-i18n="hero.side_t">Старт без риска</div>
           <div class="hm-h" data-i18n="hero.side_h">Опрос трейдера — 30 дней PRO</div>
           <div class="hm-p" data-i18n="hero.side_p">Карта не нужна. Автосписания нет. ~3 минуты.</div>
-          <a class="hm-go" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_survey" data-i18n="hero.side_go">Начать →</a>
+          <a class="hm-go" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_survey" data-track="hero_survey" data-i18n="hero.side_go">Начать →</a>
         </div>
       </div>
       <div class="hm-foot">
@@ -332,7 +342,7 @@
     </div>
 
     <div class="forecasts-cta">
-      <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=hub_platform" target="_blank" rel="noopener" class="forecasts-tg-btn" data-i18n="grow.cta">
+      <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=hub_platform" data-track="grow_platform" target="_blank" rel="noopener" class="forecasts-tg-btn" data-i18n="grow.cta">
         Открыть платформу →
       </a>
     </div>
@@ -434,7 +444,7 @@
               <circle class="mark-fill"  cx="50" cy="50" r="46"/>
             </svg>
           </a>
-          <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=platform_p1" target="_blank" rel="noopener" class="cta-primary" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
+          <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=platform_p1" data-track="platform_open" target="_blank" rel="noopener" class="cta-primary" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
         </div>
       </div>
       <div class="platform-preview">
@@ -451,7 +461,7 @@
           <span class="plat-chrome" aria-hidden="true"><i></i><i></i><i></i><b class="plat-url">lp.sbfconsult.com/chart</b></span>
           <img src="assets/platform/terminal.png" alt="SBF Intelligence Terminal" class="platform-screenshot" loading="lazy" width="1200" height="750">
         </a>
-        <button class="plat-brief-cta" type="button" data-i18n="platform.p1.brief_cta">Посмотреть сегодняшний бриф</button>
+        <button class="plat-brief-cta" type="button" data-track="brief_lightbox" data-i18n="platform.p1.brief_cta">Посмотреть сегодняшний бриф</button>
       </div>
     </div>
 
@@ -531,7 +541,7 @@
 
     <div class="p2-cta-zone">
       <p class="p2-body" data-i18n="platform.p2.body">Расскажи о своём опыте, целях и отношении к риску. Карта не нужна. Автосписания нет.</p>
-      <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=pro_offer" target="_blank" rel="noopener" class="cta-offer" data-i18n="platform.p2.cta">НАЧАТЬ →</a>
+      <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=pro_offer" data-track="pro_start" target="_blank" rel="noopener" class="cta-offer" data-i18n="platform.p2.cta">НАЧАТЬ →</a>
     </div>
 
     <!-- Низ: мелкий текст -->
@@ -641,7 +651,7 @@
       <div class="act-overlay-inner">
         <p class="eyebrow" data-i18n="market.eyebrow">ПАМЯТЬ РЫНКОВ</p>
         <h3 data-i18n="market.heading">Каждое движение оставляет паттерн</h3>
-        <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=market_section" target="_blank" rel="noopener" class="platform-cta-link" data-i18n="market.cta_platform">Смотреть живую аналитику →</a>
+        <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=market_section" data-track="market_platform" target="_blank" rel="noopener" class="platform-cta-link" data-i18n="market.cta_platform">Смотреть живую аналитику →</a>
       </div>
     </div>
   </section>
@@ -709,7 +719,7 @@
       </div>
       <div class="service-desc-bottom">
         <p data-i18n="svc.s1.desc">Образовательные программы и аналитические материалы: основы рынков, выбор брокерской инфраструктуры, разбор торговых подходов. Без инвестиционных рекомендаций.</p>
-        <a href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=edu_service" target="_blank" rel="noopener" class="platform-cta-link" data-i18n="svc.s1.cta_platform">Открыть платформу обучения →</a>
+        <a href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=edu_service" data-track="svc_edu" target="_blank" rel="noopener" class="platform-cta-link" data-i18n="svc.s1.cta_platform">Открыть платформу обучения →</a>
       </div>
     </div>
     <div class="service-corona-mobile">
@@ -832,7 +842,7 @@
       <div class="service-desc-bottom">
         <p data-i18n="svc.s2.desc">Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.</p>
         <p class="svc-fee" data-i18n="svc.s2.fee">Для клиента сопровождение бесплатно: SBF получает вознаграждение от брокера-партнёра за приведённый счёт. Мы раскрываем это прямо, чтобы вы понимали, в чём наш интерес.</p>
-        <button class="svc-cta" type="button" data-service="support" data-i18n="svc.s2.cta">Обсудить сопровождение</button>
+        <button class="svc-cta" type="button" data-track="svc_support" data-service="support" data-i18n="svc.s2.cta">Обсудить сопровождение</button>
       </div>
     </div>
     <div class="service-corona-mobile">
@@ -873,7 +883,7 @@
       </div>
       <div class="service-zone-bottom" data-fade><p data-i18n="svc.s2.desc">Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.</p>
         <p class="svc-fee" data-i18n="svc.s2.fee"></p>
-        <button class="svc-cta" type="button" data-service="support" data-i18n="svc.s2.cta">Обсудить сопровождение</button></div>
+        <button class="svc-cta" type="button" data-track="svc_support" data-service="support" data-i18n="svc.s2.cta">Обсудить сопровождение</button></div>
       <div class="service-zone-partners" data-fade>
         <p class="partners-label" data-i18n="svc.partner_label">ПАРТНЁРЫ УРОВНЯ</p>
         <div class="partners-grid-mobile">
@@ -952,7 +962,7 @@
       <div class="service-desc-bottom">
         <p data-i18n="svc.s3.desc">Полное управление капиталом по согласованной с клиентом стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, согласованный риск-профиль, регулярные ревизии.</p>
         <p class="svc-disclaimer" data-i18n="svc_du_disclaimer">SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через партнёров, регулируемых в ЕС (FCA, CySEC). SBF выступает консультантом и не принимает клиентские средства на свои счета.</p>
-        <button class="svc-cta" type="button" data-service="management" data-i18n="svc.s3.cta">Обсудить управление</button>
+        <button class="svc-cta" type="button" data-track="svc_management" data-service="management" data-i18n="svc.s3.cta">Обсудить управление</button>
       </div>
     </div>
     <div class="service-corona-mobile">
@@ -995,7 +1005,7 @@
       <div class="service-zone-bottom" data-fade>
         <p data-i18n="svc.s3.desc_m">Полное управление капиталом по согласованной стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, регулярные ревизии.</p>
         <p class="svc-disclaimer" data-i18n="svc_du_disclaimer">SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через партнёров, регулируемых в ЕС (FCA, CySEC). SBF выступает консультантом и не принимает клиентские средства на свои счета.</p>
-        <button class="svc-cta" type="button" data-service="management" data-i18n="svc.s3.cta">Обсудить управление</button>
+        <button class="svc-cta" type="button" data-track="svc_management" data-service="management" data-i18n="svc.s3.cta">Обсудить управление</button>
       </div>
       <div class="service-zone-partners" data-fade>
         <p class="partners-label" data-i18n="svc.partner_label_s">ПАРТНЁР УРОВНЯ</p>
@@ -1102,7 +1112,7 @@
             <span class="contact-value contact-value--lei">254900BW4MI5M0006I30</span>
           </a>
         </div>
-        <button class="contact-cta-primary" data-open-modal data-i18n="contact.cta">ОСТАВИТЬ ЗАЯВКУ</button>
+        <button class="contact-cta-primary" data-track="contact_form" data-open-modal data-i18n="contact.cta">ОСТАВИТЬ ЗАЯВКУ</button>
         <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=footer" target="_blank" rel="noopener" class="platform-cta-link platform-cta-link--footer" data-i18n="contact.platform_cta">Работать с платформой самостоятельно →</a>
       </div>
     </div>
@@ -1213,7 +1223,11 @@
     <p class="footer-copy">© 2026 &laquo;SBF COMPANY&raquo; S.R.L. <span data-i18n="footer.rights">Все права защищены.</span></p>
   </footer>
 
-  <script src="vendor/three.min.js"></script>
+  <!-- Номер счётчика Яндекс.Метрики. Пустая строка = счётчик выключен,
+       модуль ничего не грузит (см. js/analytics.js). -->
+  <script>window.SBF_METRIKA_ID = '';</script>
+  <script defer src="js/analytics.js"></script>
+
   <script src="js/snap-navigator.js"></script>
   <script defer src="js/scroll-director.js"></script>
   <script src="vendor/d3.min.js"></script>
@@ -1232,8 +1246,33 @@
   <script type="module" src="js/acts/act-services.js"></script>
   <script type="module" src="js/acts/act-market-mobile.js"></script>
   <script type="module" src="js/acts/act5-contact.js"></script>
-  <script src="js/globe3d.js"></script>
-  <script src="js/globe-mobile.js"></script>
+  <!-- Глобус нужен только на последнем экране, а three.min.js — самый
+       тяжёлый файл на странице. Грузим его и оба скрипта глобуса, когда
+       человек подходит к контактам: до этого они впустую занимали старт. -->
+  <script>
+  (function () {
+    var sec = document.getElementById('act-contact');
+    if (!sec) return;
+    var loaded = false;
+    function load() {
+      if (loaded) return; loaded = true;
+      var chain = ['vendor/three.min.js', 'js/globe3d.js', 'js/globe-mobile.js'];
+      (function next(i) {
+        if (i >= chain.length) return;
+        var el = document.createElement('script');
+        el.src = chain[i];
+        el.onload = function () { next(i + 1); };
+        el.onerror = function () { console.warn('[globe] не загрузился:', chain[i]); };
+        document.body.appendChild(el);
+      })(0);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries, obs) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { obs.disconnect(); load(); }
+      }, { rootMargin: '900px' }).observe(sec);
+    } else { load(); }
+  })();
+  </script>
 
 </body>
 </html>

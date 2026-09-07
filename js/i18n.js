@@ -15,10 +15,10 @@ ru: {
     partners: 'Партнёры и лицензии', rights: 'Все права защищены.',
   },
   page_title: 'SBF Consult — Мы распознаём закономерности',
+  page_desc: 'Утренний бриф по рынкам, разметка на графике и статистика паттернов. Обучение, сопровождение счёта и доверительное управление через партнёров с лицензиями ЕС. «SBF COMPANY» S.R.L., Кишинёв.',
   nav: {
     analytics: 'Аналитика',
     trading:   'Торговля',
-    team:      'Команда',
     contacts:  'Контакты',
     platform:  'Платформа',
     menu_aria: 'Меню',
@@ -28,8 +28,6 @@ ru: {
   ticker: { loading: 'Рыночная сводка обновляется' },
   hero: {
     headline:  'Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.',
-    subline:   'SBF Company SRL · Кишинёв<br>Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.',
-    trust:     'Bloomberg LEI · Эксперты с опытом 10–25 лет · Партнёры с лицензиями ЕС',
     trust_partners: 'Партнёры с лицензиями ЕС',
     trust_office:   'Офис в Кишинёве',
     today:       'Сегодня · {d}',
@@ -40,7 +38,6 @@ ru: {
     reaction:    'обычно ±{p}% за 30 мин по {s} (n={n})',
     cta1:        'Открыть платформу →',
     cta2:        'Связаться',
-    promo_badge: 'БЕСПЛАТНАЯ РЕГИСТРАЦИЯ · 30 ДНЕЙ PRO ЗА ОПРОС ТРЕЙДЕРА · БЕЗ АВТОСПИСАНИЯ',
     scroll:      'Прокрутите вниз',
     kicker:      'SBF Company SRL · Кишинёв',
     sub:         'Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.',
@@ -68,7 +65,6 @@ ru: {
            r_ta: 'Теханализ на графике',
            edu_free: 'главы 1–5', edu_pro: 'главы 1–15', soon: 'в разработке' },
     open_h:    'Терминал открыт весь. Аккаунт добавляет своё',
-    open_p:    'Котировки, графики и библиотека паттернов работают без регистрации и останутся такими.',
     logo_hint: 'Нажмите на знак — откроется платформа',
     cta:       'Открыть платформу →',
   },
@@ -85,7 +81,6 @@ ru: {
   platform: {
     cta: 'ОТКРЫТЬ ПЛАТФОРМУ →',
     p1: {
-      key_cap: 'Знак — вход. Нажмите, чтобы открыть терминал',
       eyebrow: 'ПЛАТФОРМА · LP.SBFCONSULT.COM',
       heading: 'Терминал, журнал и академия — в одном месте',
       lead:    'Рабочее пространство трейдера: утренний рыночный синтез, журнал сделок с аналитикой дисциплины, учебная программа и цели. Без рекомендаций — только структура и данные для ваших собственных решений.',
@@ -123,7 +118,6 @@ ru: {
   mark: { we: 'мы', you: 'вы' },
   market: {
     eyebrow:        'ПАМЯТЬ РЫНКОВ',
-    mark_cap:       'знак помнит рынок · 5 с',
     heading:        'Каждое движение оставляет паттерн',
     cta_platform:   'Смотреть живую аналитику →',
     hist_disclaimer:'Историческая статистика не гарантирует будущих результатов и не является рекомендацией.',
@@ -221,12 +215,6 @@ ru: {
       desc_m:          'Полное управление капиталом по согласованной стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, регулярные ревизии.',
       fxpro_meta:      'FCA · CySEC · 5 регуляторов',
     },
-  },
-  team: {
-    eyebrow:     'КОМАНДА И НЕЙРО-ИИ',
-    heading:     'Эксперты, усиленные искусственным интеллектом',
-    lead:        'Международный опыт аналитиков + собственный мультимодельный аналитический контур, работающий 24/7. Каждый материал проходит двойную верификацию: модели → человек.',
-    mob_heading: 'Эксперты,<br>усиленные ИИ',
   },
   contact: {
     ch:      'Швейцария',
@@ -352,10 +340,10 @@ en: {
     partners: 'Partners and licences', rights: 'All rights reserved.',
   },
   page_title: 'SBF Consult — We recognise patterns',
+  page_desc: 'Morning market brief, chart markup and pattern statistics. Education, account supervision and discretionary management through EU-licensed partners. «SBF COMPANY» S.R.L., Chișinău.',
   nav: {
     analytics: 'Analytics',
     trading:   'Trading',
-    team:      'Team',
     contacts:  'Contacts',
     platform:  'Platform',
     menu_aria: 'Menu',
@@ -365,8 +353,6 @@ en: {
   ticker: { loading: 'Market summary is updating' },
   hero: {
     headline:  'The world generates noise.<br><em>We recognise patterns</em>.',
-    subline:   'SBF Company SRL · Chișinău<br>Expert analysis, trading account support, and discretionary management through EU-licensed partners.',
-    trust:     'Bloomberg LEI · Experts with 10–25 years of experience · EU-licensed partners',
     trust_partners: 'EU-licensed partners',
     trust_office:   'Office in Chișinău',
     today:       'Today · {d}',
@@ -377,7 +363,6 @@ en: {
     reaction:    'typically ±{p}% in 30 min on {s} (n={n})',
     cta1:        'Open Platform →',
     cta2:        'Contact Us',
-    promo_badge: 'FREE REGISTRATION · 30 DAYS PRO FOR TRADER SURVEY · NO AUTO-CHARGE',
     scroll:      'Scroll down',
     kicker:      'SBF Company SRL · Chișinău',
     sub:         'Expert analysis, trading account support, and discretionary management through EU-licensed partners.',
@@ -405,7 +390,6 @@ en: {
            r_ta: 'Technical markup on chart',
            edu_free: 'chapters 1–5', edu_pro: 'chapters 1–15', soon: 'in progress' },
     open_h:    'The terminal is fully open. An account adds to it',
-    open_p:    'Quotes, charts and the pattern library work without registration — and will stay that way.',
     logo_hint: 'Click the mark — the platform opens',
     cta:       'Open the platform →',
   },
@@ -422,7 +406,6 @@ en: {
   platform: {
     cta: 'OPEN PLATFORM →',
     p1: {
-      key_cap: 'The mark is the entrance. Click to open the terminal',
       eyebrow: 'PLATFORM · LP.SBFCONSULT.COM',
       heading: 'Terminal, journal and academy — in one place',
       lead:    'Trader\'s workspace: morning market synthesis, trade journal with discipline analytics, study programme and goals. No recommendations — only structure and data for your own decisions.',
@@ -460,7 +443,6 @@ en: {
   mark: { we: 'us', you: 'you' },
   market: {
     eyebrow:        'MARKET MEMORY',
-    mark_cap:       'the mark remembers the market · 5 s',
     heading:        'Every move leaves a pattern',
     cta_platform:   'View live analytics →',
     hist_disclaimer:'Past statistical patterns do not guarantee future results and do not constitute a recommendation.',
@@ -558,12 +540,6 @@ en: {
       desc_m:          'Full capital management under an agreed strategy within a partnership contract with the broker. Transparent reporting, regular reviews.',
       fxpro_meta:      'FCA · CySEC · 5 regulators',
     },
-  },
-  team: {
-    eyebrow:     'TEAM & NEURO-AI',
-    heading:     'Experts amplified by artificial intelligence',
-    lead:        'International experience of analysts + proprietary multi-model analytical layer operating 24/7. Every piece of content passes dual verification: models → human.',
-    mob_heading: 'Experts<br>amplified by AI',
   },
   contact: {
     ch:      'Switzerland',
@@ -689,10 +665,10 @@ ro: {
     partners: 'Parteneri și licențe', rights: 'Toate drepturile rezervate.',
   },
   page_title: 'SBF Consult — Recunoaștem tipare',
+  page_desc: 'Briefing de dimineață, marcaj pe grafic și statistica tiparelor. Instruire, însoțirea contului și administrare prin parteneri licențiați UE. «SBF COMPANY» S.R.L., Chișinău.',
   nav: {
     analytics: 'Analiză',
     trading:   'Tranzacționare',
-    team:      'Echipă',
     contacts:  'Contacte',
     platform:  'Platformă',
     menu_aria: 'Meniu',
@@ -702,8 +678,6 @@ ro: {
   ticker: { loading: 'Sinteza pieței se actualizează' },
   hero: {
     headline:    'Lumea generează zgomot.<br><em>Noi recunoaștem tipare</em>.',
-    subline:     'SBF Company SRL · Chișinău<br>Analiză de specialitate, suport pentru conturi de tranzacționare și management discreționare prin parteneri autorizați UE.',
-    trust:       'Bloomberg LEI · Experți cu 10–25 ani experiență · Parteneri licențiați UE',
     trust_partners: 'Parteneri licențiați UE',
     trust_office:   'Birou în Chișinău',
     today:       'Astăzi · {d}',
@@ -714,7 +688,6 @@ ro: {
     reaction:    'de obicei ±{p}% în 30 min pe {s} (n={n})',
     cta1:        'Deschide Platforma →',
     cta2:        'Contactează-ne',
-    promo_badge: 'ÎNREGISTRARE GRATUITĂ · 30 ZILE PRO PENTRU SONDAJ TRADER · FĂRĂ ABONAMENT AUTO',
     scroll:      'Derulați în jos',
     kicker:      'SBF Company SRL · Chișinău',
     sub:         'Analiză de la experți, asistență pentru conturi de tranzacționare și administrare discreționară prin parteneri licențiați în UE.',
@@ -742,7 +715,6 @@ ro: {
            r_ta: 'Marcaj tehnic pe grafic',
            edu_free: 'capitolele 1–5', edu_pro: 'capitolele 1–15', soon: 'în lucru' },
     open_h:    'Terminalul este deschis integral. Contul adaugă ceva în plus',
-    open_p:    'Cotațiile, graficele și biblioteca de tipare funcționează fără înregistrare și așa vor rămâne.',
     logo_hint: 'Apasă pe semn — se deschide platforma',
     cta:       'Deschide platforma →',
   },
@@ -759,7 +731,6 @@ ro: {
   platform: {
     cta: 'DESCHIDE PLATFORMA →',
     p1: {
-      key_cap: 'Semnul este intrarea. Apasă pentru a deschide terminalul',
       eyebrow: 'PLATFORMĂ · LP.SBFCONSULT.COM',
       heading: 'Terminal, jurnal și academie — într-un singur loc',
       lead:    'Spațiu de lucru pentru trader: sinteză de piață matinală, jurnal de tranzacții cu analitică a disciplinei, program de studiu și obiective. Fără recomandări — doar structură și date pentru propriile tale decizii.',
@@ -797,7 +768,6 @@ ro: {
   mark: { we: 'noi', you: 'dvs.' },
   market: {
     eyebrow:         'MEMORIA PIEȚELOR',
-    mark_cap:        'semnul ține minte piața · 5 s',
     heading:         'Fiecare mișcare lasă un tipar',
     cta_platform:    'Vezi analize în timp real →',
     hist_disclaimer: 'Tiparele statistice istorice nu garantează rezultatele viitoare și nu constituie o recomandare.',
@@ -895,12 +865,6 @@ ro: {
       desc_m:          'Management complet al capitalului conform strategiei agreate în cadrul contractului de parteneriat cu brokerul. Raportare transparentă, revizuiri periodice.',
       fxpro_meta:      'FCA · CySEC · 5 regulatori',
     },
-  },
-  team: {
-    eyebrow:     'ECHIPA ȘI NEURO-AI',
-    heading:     'Experți amplificați de inteligența artificială',
-    lead:        'Experiența internațională a analiștilor + strat analitic multi-model propriu, funcționând 24/7. Fiecare conținut trece prin verificare dublă: modele → om.',
-    mob_heading: 'Experți<br>amplificați de AI',
   },
   contact: {
     ch:      'Elveția',
@@ -1049,6 +1013,21 @@ ro: {
   function applyTranslations() {
     document.title = t('page_title');
     document.documentElement.lang = _lang;
+
+    /* Описание и og-теги тоже язычные: страница одна на три языка, и в
+       выдаче/превью ссылки всегда показывался русский вариант. */
+    var desc = t('page_desc');
+    var setMeta = function (sel, val) {
+      var el = document.querySelector(sel);
+      if (el && val) el.setAttribute('content', val);
+    };
+    setMeta('meta[name="description"]', desc);
+    setMeta('meta[property="og:description"]', desc);
+    setMeta('meta[property="og:title"]', t('page_title'));
+    setMeta('meta[name="twitter:title"]', t('page_title'));
+    setMeta('meta[name="twitter:description"]', desc);
+    setMeta('meta[property="og:locale"]',
+            _lang === 'ru' ? 'ru_RU' : (_lang === 'ro' ? 'ro_RO' : 'en_US'));
 
     /* Простой текст */
     document.querySelectorAll('[data-i18n]').forEach(el => {
