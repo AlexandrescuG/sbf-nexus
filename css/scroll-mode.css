@@ -829,3 +829,34 @@ html { scroll-behavior: smooth; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .site-footer { padding: 32px 20px 24px; }
 }
+
+/* ── PRO-экран: поток вместо абсолютных блоков ───────────────────────────
+   Заголовок, шаги, знак, текст и подвал стояли на фиксированных vh-отметках
+   (5 / 26 / 53.5 / 63). Пока между ними ничего не добавлялось, это держалось;
+   блок «Что входит в PRO» встал в поток и оказался под заголовком. Ставим
+   всё в колонку — экран сам считает высоту. */
+@media (min-width: 1024px) {
+  #act-platform-2 {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 22px; padding-bottom: 40px;
+  }
+  #act-platform-2 .p2-header,
+  #act-platform-2 .p2-steps,
+  #act-platform-2 .p2-cta-zone,
+  #act-platform-2 .p2-footer {
+    position: relative; inset: auto; top: auto; bottom: auto; left: auto;
+    transform: none; width: 100%; max-width: 980px;
+  }
+  #act-platform-2 .p2-header { max-width: 640px; }
+  #act-platform-2 .p2-steps { display: flex; justify-content: center; }
+  /* Знак стоял абсолютом на 53.5vh — в потоке ему нужна только своя строка */
+  #act-platform-2 .sect-mark {
+    position: relative; top: auto; left: auto; transform: none;
+    margin: 6px auto 30px; --mark-size: 84px;
+  }
+  #act-platform-2 .sect-mark .mark-cap {
+    top: calc(100% + 0.34 * var(--mark-size, 84px) + 10px);
+    left: auto; right: auto; text-align: center; max-width: 300px;
+  }
+  .pro-value { margin-top: 4px; }
+}
