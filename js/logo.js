@@ -152,7 +152,10 @@
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        setState(e.target, {});
+        /* Знаки со своим сценарием (data-scripted) заполняет их акт —
+           например PRO-оффер ведёт кольцо по шагам. */
+        if (!e.target.hasAttribute('data-scripted')) setState(e.target, {});
+        e.target.dispatchEvent(new CustomEvent('mark:visible'));
         obs.unobserve(e.target);
       });
     }, { threshold: 0.4 });

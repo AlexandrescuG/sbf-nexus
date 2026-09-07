@@ -373,27 +373,32 @@
 
     <!-- Три шага — горизонтальная строка над логотипом -->
     <div class="p2-steps">
-      <div class="p2-card">
+      <div class="p2-card" data-step="1">
         <span class="p2-card-num">01</span>
         <p class="p2-card-text" data-i18n="platform.p2.s1">Регистрация — 2 шага, email + пароль.</p>
       </div>
-      <div class="p2-card">
+      <div class="p2-card" data-step="2">
         <span class="p2-card-num">02</span>
         <p class="p2-card-text" data-i18n="platform.p2.s2">Опрос — блоки «Опыт · Цели · Риск», ~3 минуты.</p>
       </div>
-      <div class="p2-card">
+      <div class="p2-card" data-step="3">
         <span class="p2-card-num">03</span>
         <p class="p2-card-text" data-i18n="platform.p2.s3">«Твой путь» — рекомендации + бейдж PRO.</p>
       </div>
     </div>
 
     <!-- CTA зона под логотипом -->
-    <div class="sect-mark" data-role="issue">
+    <!-- Знак выдаёт доступ. Кольцо замыкается по шагам: карточка 01 → треть,
+         02 → две трети, 03 → полное кольцо и бейдж PRO·30 в центре. Тот же
+         язык, что на услугах (доля = состояние), но здесь доля растёт по мере
+         пути пользователя. Логика — js/acts/act-pro.js. -->
+    <div class="sect-mark pro-issue" data-role="output" data-part="0" data-scripted>
         <img src="assets/logo/logo.svg" alt="" draggable="false">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="mark-track" cx="50" cy="50" r="46"/>
           <circle class="mark-fill"  cx="50" cy="50" r="46"/>
         </svg>
+        <span class="pro-badge" aria-hidden="true"><b>PRO</b><i>30</i></span>
         <span class="mark-cap" data-i18n="svc.logo_issue"></span>
       </div>
 
@@ -831,6 +836,7 @@
   <script src="js/partner-modal.js"></script>
   <script type="module" src="js/main.js"></script>
   <script defer src="js/acts/act-hub.js"></script>
+  <script defer src="js/acts/act-pro.js"></script>
   <script type="module" src="js/acts/act-approach.js"></script>
   <script type="module" src="js/acts/act3-market.js"></script>
   <script type="module" src="js/acts/act-services.js"></script>
