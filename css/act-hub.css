@@ -43,6 +43,100 @@
 
 /* Наведение на карточку подсвечивает её нить — видно, что она идёт
    от логотипа, а не нарисована для красоты */
+/* ── Раскладка сеткой вместо абсолютных углов ────────────────────────────
+   Карточки стояли на фиксированных отступах вокруг знака. Пока в них было
+   по одной фразе, это работало; с уликами (спарклайн, список событий,
+   таблица) они выросли и наехали друг на друга и на таблицу доступа.
+   Сетка сама разводит колонки: слева две карточки, в центре знак,
+   справа две, ниже — таблица и кнопка. Нити рисуются поверх (absolute). */
+@media (min-width: 1024px) {
+  #act-grow {
+    display: grid !important;
+    grid-template-columns: minmax(260px, 320px) minmax(200px, 1fr) minmax(260px, 320px);
+    grid-template-areas:
+      'head head head'
+      'c1   mark  c2'
+      'c3   mark  c4'
+      'open open open'
+      'cta  cta   cta';
+    align-items: start; justify-items: stretch;
+    gap: 18px clamp(24px, 4vw, 64px);
+    padding: calc(var(--nav-h, 69px) + 26px) clamp(24px, 5vw, 72px) 40px;
+    height: auto; min-height: 100vh; overflow: visible;
+  }
+  #act-grow .forecasts-header { grid-area: head; position: relative !important; inset: auto !important; transform: none !important; text-align: center; }
+  #act-grow .forecast-card {
+    position: relative !important;
+    inset: auto !important; width: auto !important;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+  #act-grow .forecast-card--tl { grid-area: c1; }
+  #act-grow .forecast-card--tr { grid-area: c2; }
+  #act-grow .forecast-card--bl { grid-area: c3; }
+  #act-grow .forecast-card--br { grid-area: c4; }
+  #act-grow .sect-mark { grid-area: mark; align-self: center; justify-self: center; }
+  #act-grow .hub-open {
+    grid-area: open; position: relative !important;
+    inset: auto !important; transform: none !important; width: 100% !important;
+    max-width: 760px; margin: 8px auto 0;
+  }
+  #act-grow .forecasts-cta { grid-area: cta; text-align: center; }
+  #act-grow .forecasts-threads { position: absolute; inset: 0; pointer-events: none; }
+}
+
+/* ── Улики в карточках ───────────────────────────────────────────────────
+   Каждая карточка показывает сегодняшний материал платформы, а не только
+   описание: заголовок брифа с ближайшими событиями, ход инструмента со
+   спарклайном, паттерн с долей срабатываний, формат строки журнала. */
+#act-grow .hub-proof:empty { display: none; }
+#act-grow .hub-proof {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid rgba(201, 162, 39, 0.22);
+  font-family: 'Montserrat', sans-serif; font-size: 12px; line-height: 1.45;
+}
+#act-grow .proof-head { margin: 0 0 6px; color: var(--ink); font-weight: 600; font-size: 12px; }
+#act-grow .proof-list { margin: 0; padding: 0; list-style: none; }
+#act-grow .proof-list li { color: #55555F; font-size: 11px; padding: 1px 0; }
+#act-grow .proof-list i { font-style: normal; font-family: 'JetBrains Mono', monospace; color: var(--gold-deep); }
+#act-grow .proof-note { margin: 6px 0 0; font-size: 10px; color: var(--muted); letter-spacing: 0.02em; }
+#act-grow .proof-row { display: flex; align-items: baseline; gap: 8px; font-family: 'JetBrains Mono', monospace; }
+#act-grow .proof-row b { font-size: 13px; letter-spacing: 0.06em; color: var(--ink); }
+#act-grow .proof-spark { display: block; width: 100%; height: 38px; margin-top: 6px; }
+#act-grow .proof-spark polyline { fill: none; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+#act-grow .proof-spark .up { stroke: #2E7D57; }
+#act-grow .proof-spark .dn { stroke: #B4472B; }
+#act-grow .up { color: #2E7D57; } #act-grow .dn { color: #B4472B; }
+#act-grow .proof-chip {
+  display: inline-block; padding: 4px 9px;
+  border: 1px solid rgba(201, 162, 39, 0.45); border-radius: 2px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-deep);
+}
+#act-grow .proof-journal {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #55555F;
+  padding: 6px 8px; background: rgba(201, 162, 39, 0.06);
+}
+#act-grow .proof-journal b { color: var(--ink); letter-spacing: 0.06em; }
+#act-grow .proof-journal .dir { color: var(--gold-deep); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* ── Таблица доступа ─────────────────────────────────────────────────── */
+#act-grow .access-table {
+  width: 100%; margin-top: 12px; border-collapse: collapse;
+  font-family: 'Montserrat', sans-serif; font-size: 12px;
+}
+#act-grow .access-table th, #act-grow .access-table td {
+  padding: 6px 8px; text-align: center; border-bottom: 1px solid var(--line);
+}
+#act-grow .access-table th { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+#act-grow .access-table td:first-child, #act-grow .access-table th:first-child { text-align: left; color: #55555F; }
+#act-grow .access-table .y { color: var(--gold-deep); font-weight: 700; }
+#act-grow .access-table .n { color: var(--muted); }
+#act-grow .access-table .soon { font-size: 10px; color: var(--muted); font-style: italic; }
+@media (max-width: 767px) {
+  #act-grow .access-table { font-size: 11px; }
+  #act-grow .access-table th, #act-grow .access-table td { padding: 5px 4px; }
+}
+
 #act-grow .forecast-card { transition: border-color 0.3s, transform 0.3s; }
 #act-grow .forecast-card:hover {
   border-color: var(--gold);

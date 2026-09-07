@@ -277,29 +277,53 @@
       <span class="hub-tag" data-i18n="grow.c1.tag">КАЖДОЕ УТРО</span>
       <h4 class="hub-title" data-i18n="grow.c1.title">Утренний бриф</h4>
       <p class="hub-desc" data-i18n="grow.c1.desc">Сводка по рынкам до открытия европейской сессии: что случилось за ночь и на что это влияет.</p>
+      <div class="hub-proof" data-proof="brief"></div>
     </article>
 
     <article class="forecast-card forecast-card--tr hub-card" data-thread="2">
       <span class="hub-tag" data-i18n="grow.c2.tag">ПО ИНСТРУМЕНТУ</span>
       <h4 class="hub-title" data-i18n="grow.c2.title">Анализ актива</h4>
       <p class="hub-desc" data-i18n="grow.c2.desc">Уровни, паттерны и структура рынка по выбранному инструменту — на всех таймфреймах от M1 до W1.</p>
+      <div class="hub-proof" data-proof="mover"></div>
     </article>
 
     <article class="forecast-card forecast-card--bl hub-card" data-thread="3">
       <span class="hub-tag" data-i18n="grow.c3.tag">С ИСТОРИЕЙ</span>
       <h4 class="hub-title" data-i18n="grow.c3.title">Библиотека паттернов</h4>
       <p class="hub-desc" data-i18n="grow.c3.desc">Каждый паттерн — с посчитанной статистикой срабатываний, а не с картинкой из учебника.</p>
+      <div class="hub-proof" data-proof="pattern"></div>
     </article>
 
     <article class="forecast-card forecast-card--br hub-card" data-thread="4">
       <span class="hub-tag" data-i18n="grow.c4.tag">ВАШИ СДЕЛКИ</span>
       <h4 class="hub-title" data-i18n="grow.c4.title">Журнал сделок</h4>
       <p class="hub-desc" data-i18n="grow.c4.desc">Дисциплин-скор, контроль риска на сделку и разбор ошибок. Лидерборд по XP — не по прибыли.</p>
+      <div class="hub-proof" data-proof="journal"></div>
     </article>
 
+    <!-- Что открыто без аккаунта, что даёт аккаунт, что даёт PRO.
+         Состав сверен по коду платформы (serve.py::_handle_edu + is_pro,
+         core/journal_auth.py): за PRO сейчас главы академии 6-15. -->
     <div class="hub-open">
       <p class="hub-open-h" data-i18n="grow.open_h">Терминал открыт весь. Аккаунт добавляет своё</p>
-      <p class="hub-open-p" data-i18n="grow.open_p">Котировки, графики и библиотека паттернов работают без регистрации и останутся такими.</p>
+      <table class="access-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th data-i18n="grow.acc.anon">Без аккаунта</th>
+            <th data-i18n="grow.acc.user">С аккаунтом</th>
+            <th data-i18n="grow.acc.pro">PRO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="grow.acc.r_brief">Утренний бриф</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td data-i18n="grow.acc.r_charts">Графики и котировки</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td data-i18n="grow.acc.r_edu">Академия</td><td data-i18n="grow.acc.edu_free">главы 1–5</td><td data-i18n="grow.acc.edu_free">главы 1–5</td><td class="y" data-i18n="grow.acc.edu_pro">главы 1–15</td></tr>
+          <tr><td data-i18n="grow.acc.r_journal">Журнал сделок</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td data-i18n="grow.acc.r_prefs">Настройки графика, Telegram</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td data-i18n="grow.acc.r_ta">Теханализ на графике</td><td class="n">—</td><td class="n">—</td><td class="soon" data-i18n="grow.acc.soon">в разработке</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="forecasts-cta">

@@ -1,5 +1,97 @@
 {
-  "updated": "2026-09-07T14:33:13.470364+00:00",
+  "updated": "2026-09-07T14:45:00.250195+00:00",
+  "grow": {
+    "brief": {
+      "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
+      "date": "2026-09-07",
+      "lang": "ru",
+      "events": [
+        {
+          "ts_utc": "2026-09-07T06:00:00Z",
+          "country": {
+            "en": "UK",
+            "ru": "Великобритания",
+            "ro": "Marea Britanie"
+          },
+          "title": {
+            "en": "House Price Index YoY",
+            "ru": "Индекс цен на жильё г/г",
+            "ro": "Indicele prețurilor locuințelor a/a"
+          },
+          "impact": "medium"
+        },
+        {
+          "ts_utc": "2026-09-07T06:00:00Z",
+          "country": {
+            "en": "UK",
+            "ru": "Великобритания",
+            "ro": "Marea Britanie"
+          },
+          "title": {
+            "en": "House Price Index MoM",
+            "ru": "Индекс цен на жильё м/м",
+            "ro": "Indicele prețurilor locuințelor l/l"
+          },
+          "impact": "medium"
+        },
+        {
+          "ts_utc": "2026-09-07T07:00:00Z",
+          "country": {
+            "en": "Switzerland",
+            "ru": "Швейцария",
+            "ro": "Elveția"
+          },
+          "title": {
+            "en": "Unemployment Rate",
+            "ru": "Уровень безработицы",
+            "ro": "Rata șomajului"
+          },
+          "impact": "medium"
+        }
+      ]
+    },
+    "mover": {
+      "symbol": "USDRUB",
+      "chg_pct": -0.76,
+      "close": 86.6342,
+      "date": "2026-09-04",
+      "spark": [
+        86.8059,
+        87.049,
+        86.5803,
+        86.439,
+        86.7219,
+        86.1581,
+        86.1926,
+        86.1494,
+        85.95,
+        85.955,
+        85.5278,
+        86.4811,
+        86.0472,
+        85.8906,
+        85.9013,
+        85.6916,
+        85.5502,
+        85.519,
+        85.716,
+        85.7107,
+        85.7814,
+        85.7319,
+        85.4506,
+        85.6467
+      ]
+    },
+    "pattern": {
+      "symbol": "EURUSD",
+      "tf": "D1",
+      "name_ru": "Пин-бар снизу",
+      "key": "pin_bar_bottom",
+      "direction": "bullish",
+      "share": 0.3929,
+      "n": 84
+    }
+  },
   "items": [
     {
       "title": {
@@ -228,34 +320,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16293,
-      "chg_pct": 0.1421,
+      "bid": 1.16296,
+      "chg_pct": 0.1447,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35379,
-      "chg_pct": 0.1598,
+      "bid": 1.3538999999999999,
+      "chg_pct": 0.1679,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.385,
-      "chg_pct": -1.162,
+      "bid": 154.392,
+      "chg_pct": -1.1575,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79031.4,
-      "chg_pct": -1.612,
+      "bid": 79008.1,
+      "chg_pct": -1.6411,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2481.81,
-      "chg_pct": -1.2749,
+      "bid": 2480.68,
+      "chg_pct": -1.3199,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-07T14:33:04.763162+00:00"
+  "quotes_updated": "2026-09-07T14:44:54.303303+00:00"
 }

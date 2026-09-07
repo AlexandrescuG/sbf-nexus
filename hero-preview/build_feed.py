@@ -244,8 +244,53 @@ if bq and bq.get('items'):
                        # чем у валют: 1.16296 против 4440.2
                        'digits': 5 if bid < 20 else (3 if bid < 500 else 1)})
 
+# 6. Материал для второго экрана: каждой карточке — своя улика.
+# Раньше там были четыре описания без единого числа.
+grow = {}
+if brief:
+    # 6.1 Бриф: заголовок дня и три ближайших события
+    ev = []
+    for e in (brief.get('calendar') or [])[:3]:
+        name = (e.get('indicator') or e.get('title') or '').strip()
+        head = tri(*EVENT_NAMES[name]) if name in EVENT_NAMES else tri_term(name)
+        cn = COUNTRY_NAMES.get((e.get('country') or '').upper())
+        ev.append({'ts_utc': e.get('ts_utc'),
+                   'country': tri(*cn) if cn else tri('', '', ''),
+                   'title': head,
+                   'impact': (e.get('impact') or '').lower() or None})
+    grow['brief'] = {'headline': brief.get('headline'), 'date': brief.get('date'),
+                     'lang': 'ru', 'events': ev}
+
+    # 6.2 Инструмент дня: самый сильный ход + спарклайн часовых закрытий
+    ups = (brief.get('movers') or {}).get('up') or []
+    downs = (brief.get('movers') or {}).get('down') or []
+    # Спарклайны есть не для всех инструментов (82 из 842): берём самый
+    # сильный ход из тех, что можно нарисовать, иначе карточка была бы
+    # с числом, но без графика.
+    series = (load('broker_sparklines.json') or {}).get('series') or {}
+    have = [m for m in ups + downs if series.get(m.get('symbol'))]
+    best = max(have or ups + downs, key=lambda m: abs(m.get('chg_pct') or 0), default=None)
+    if best:
+        spark = series.get(best['symbol'])
+        grow['mover'] = {'symbol': best['symbol'],
+                         'chg_pct': best.get('chg_pct'),
+                         'close': best.get('close'),
+                         'date': best.get('bar_date'),
+                         'spark': [round(float(x), 6) for x in (spark or [])][-24:]}
+
+    # 6.3 Паттерн дня: у него есть посчитанная доля срабатываний, а не картинка
+    pats = brief.get('patterns') or []
+    pat = max(pats, key=lambda p: p.get('n') or 0, default=None)
+    if pat:
+        grow['pattern'] = {'symbol': pat.get('symbol'), 'tf': pat.get('tf'),
+                           'name_ru': pat.get('display_name_ru'),
+                           'key': pat.get('pattern_key'),
+                           'direction': pat.get('direction'),
+                           'share': pat.get('agree_share_5'), 'n': pat.get('n')}
+
 payload = {
     'updated': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'grow': grow,
     'items': items,
     'today': today,
     'quotes': quotes,
