@@ -37,3 +37,13 @@ if (!window.matchMedia('(max-width: 767px)').matches) {
 });
 
 }
+
+/* Кнопки «обсудить» на услугах: открывают ту же форму, но помечают услугу.
+   Без пометки в CRM не видно, с какого экрана пришёл человек, и первый
+   вопрос менеджера — «а вы по какому вопросу?». */
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest && e.target.closest('.svc-cta[data-service]');
+  if (!btn) return;
+  e.preventDefault();
+  if (window.leadModal) window.leadModal.open(btn.dataset.service);
+});

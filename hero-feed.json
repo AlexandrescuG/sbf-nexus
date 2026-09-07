@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T15:15:00.925994+00:00",
+  "updated": "2026-09-07T15:30:00.790134+00:00",
   "grow": {
     "brief": {
       "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
@@ -224,9 +224,9 @@
     },
     {
       "title": {
-        "en": "BTC · 16 mentions",
-        "ru": "BTC · 16 упоминаний",
-        "ro": "BTC · 16 mențiuni"
+        "en": "BTC · 17 mentions",
+        "ru": "BTC · 17 упоминаний",
+        "ro": "BTC · 17 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -322,34 +322,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16268,
-      "chg_pct": 0.1206,
+      "bid": 1.1630099999999999,
+      "chg_pct": 0.149,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.3542399999999999,
-      "chg_pct": 0.1931,
+      "bid": 1.35428,
+      "chg_pct": 0.1961,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.341,
-      "chg_pct": -1.1901,
+      "bid": 154.262,
+      "chg_pct": -1.2407,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79024.9,
-      "chg_pct": -1.6200999999999999,
+      "bid": 78997.3,
+      "chg_pct": -1.6545,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2482.96,
-      "chg_pct": -1.2292,
+      "bid": 2481.28,
+      "chg_pct": -1.296,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-07T15:14:49.416276+00:00"
+  "quotes_updated": "2026-09-07T15:29:58.162981+00:00"
 }

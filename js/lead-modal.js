@@ -38,7 +38,11 @@ class LeadModal {
     });
   }
 
-  open() {
+  /* Заявка с экрана услуги должна приходить с пометкой, какая это услуга,
+     иначе в CRM все лиды выглядят одинаково и разбирать их некому.
+     Значение уезжает в поле service вместе с UTM. */
+  open(service) {
+    this.service = service || null;
     this.modal.classList.remove('hidden');
     requestAnimationFrame(() => this.modal.classList.add('visible'));
     /* Замораживаем snap-навигацию */
@@ -96,6 +100,7 @@ class LeadModal {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ name, phone, email, lang,
+                                  service: this.service || '',
                                   referrer: document.referrer || '', ...this._utm() }),
       });
       if (!res.ok) throw new Error('api error');

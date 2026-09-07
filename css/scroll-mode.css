@@ -699,3 +699,84 @@ html { scroll-behavior: smooth; }
   }
   #act-market .market-memory .mark-cap { display: none; }
 }
+
+/* ── Услуги: формат, состав, шаги ────────────────────────────────────────
+   Экран услуги состоял из номера, заголовка, одной строки «кому подходит»
+   и абзаца — 70% площади пустовало, и ни на один практический вопрос
+   (что именно, в каком виде, с чего начать) ответа не было. */
+.svc-offer {
+  grid-area: desc;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 3vw, 44px);
+  max-width: 900px; justify-self: center; width: 100%;
+  margin-bottom: 14px;
+  font-family: 'Montserrat', sans-serif; text-align: left;
+}
+.svc-col-h {
+  margin: 0 0 8px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.svc-format { margin: 0; font-size: 12.5px; line-height: 1.55; color: #55555F; }
+.svc-list, .svc-steps { margin: 0; padding: 0; list-style: none; counter-reset: st; }
+.svc-list li, .svc-steps li {
+  position: relative; padding: 3px 0 3px 18px;
+  font-size: 12.5px; line-height: 1.5; color: #55555F;
+}
+.svc-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 11px; }
+.svc-steps li { counter-increment: st; }
+.svc-steps li::before {
+  content: counter(st); position: absolute; left: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold);
+}
+/* Сетка услуги: под блок оффера нужен свой ряд, иначе он делит ячейку
+   с описанием и наезжает на него */
+.service-corona {
+  grid-template-areas:
+    ". numtitle ."
+    "left logo right"
+    "desc desc desc"
+    "text text text";
+}
+.service-corona .service-desc-bottom { grid-area: text; }
+@media (max-width: 1023px) {
+  .svc-offer { grid-template-columns: 1fr; gap: 16px; max-width: 420px; margin: 8px auto 12px; }
+}
+
+/* Кнопка «обсудить» на услугах и строка о вознаграждении партнёра */
+.svc-cta {
+  display: inline-block; margin-top: 12px; padding: 11px 26px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); background: var(--gold);
+  border: 0; border-radius: 3px; cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.svc-cta:hover { background: var(--glow, #E6C257); transform: translateY(-1px); }
+.svc-fee {
+  margin: 10px auto 0; max-width: 680px;
+  font-family: 'Montserrat', sans-serif; font-size: 11.5px; line-height: 1.55;
+  color: var(--muted);
+  border-left: 2px solid rgba(201, 162, 39, 0.35); padding-left: 10px; text-align: left;
+}
+
+/* Сетка услуги стояла `position:absolute; inset:0` и центрировалась в 100vh.
+   С блоком оффера содержимое стало выше окна и полезло вверх — номер услуги
+   уходил под шапку (поймано shots.py на 1280×800 и 1440×680). Отдаём
+   секции естественный поток: она просто станет длиннее экрана. */
+@media (min-width: 1024px) {
+  .service-stop .service-corona {
+    position: relative; inset: auto;
+    align-content: start; row-gap: 1.6vh;
+    padding-bottom: 28px;
+  }
+  .service-stop { display: block; }
+}
+
+/* Подпись знака услуги («Треть кольца — столько работы на нашей стороне»)
+   в румынском длиннее и доставала до колонки «Формат». Ограничиваем ширину
+   и добавляем зазор снизу — ряд знака и так задан сеткой. */
+@media (min-width: 1024px) {
+  .service-corona .sect-mark .mark-cap { max-width: 240px; }
+  .service-corona .sect-mark { margin-bottom: 28px; }
+}
