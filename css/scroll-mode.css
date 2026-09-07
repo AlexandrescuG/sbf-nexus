@@ -202,6 +202,33 @@ html { scroll-behavior: smooth; }
 /* Мобильная раскладка услуг: знак в потоке сразу под заголовком, вместо
    водяного знака-фона, который ничего не делал и лежал под текстом */
 .svc-mark-mobile { --mark-size: 72px; margin: 26px auto 66px; }
+/* ── Блок партнёров ──────────────────────────────────────────────────────
+   Логотипы приходят разной высоты и веса (широкий AVATRADE против
+   квадратного XM), поэтому карточки выглядели случайным набором. Держим
+   для логотипа фиксированную площадку, а под сеткой — строка о том, где
+   лежат деньги клиента: это первый вопрос к любому «партнёрству». */
+.partner-card .partner-logo {
+  height: 34px; max-width: 100%;
+  object-fit: contain; object-position: center;
+  filter: none; opacity: 0.92;
+}
+.partner-card--featured .partner-logo { height: 40px; }
+.partner-card { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.partner-card .partner-meta { font-size: 10px; line-height: 1.4; }
+.partners-note {
+  margin: 10px 0 0; max-width: 320px;
+  font-family: 'Montserrat', sans-serif; font-size: 10.5px; line-height: 1.5;
+  color: var(--muted);
+}
+.service-zone-partners .partners-note { max-width: none; text-align: center; }
+@media (max-width: 767px) { .partners-note { font-size: 10px; } }
+
+/* Знак-ссылка (на «Что выходит из шума» ведёт на платформу) */
+.sect-mark.mark-link { text-decoration: none; cursor: pointer; }
+.sect-mark.mark-link:hover img { filter: drop-shadow(0 0 22px rgba(230, 194, 87, 0.75)); }
+.sect-mark.mark-link:hover .mark-cap { color: var(--gold-deep); }
+.sect-mark.mark-link:focus-visible { outline: 1px solid var(--gold, #C9A227); outline-offset: 34%; }
+
 /* Знак-кнопка (service-3 → партнёр FxPro) */
 .sect-mark[data-open-partner] { cursor: pointer; }
 .sect-mark[data-open-partner]:hover img,
@@ -273,6 +300,26 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 #approach-chart .approach-lens img { opacity: 0.16; filter: none; }
+/* Подпись линзы шла тонким золотом прямо по свечам и не читалась.
+   Даём ей плашку и полный контраст — это объяснение к картинке. */
+#approach-chart .approach-lens .mark-cap {
+  background: rgba(251, 246, 239, 0.94);
+  padding: 6px 10px; border-radius: 2px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  color: var(--ink, #2B2B33); font-size: 11px; letter-spacing: 0.08em;
+  max-width: 210px;
+  top: calc(100% + 0.34 * var(--mark-size, 150px) + 16px);
+}
+/* На невысоком окне колонка шагов длиннее, и подпись линзы доставала до
+   неё в румынском (текст длиннее). Легенда под графиком объясняет то же. */
+@media (max-height: 760px) {
+  #approach-chart .approach-lens .mark-cap { display: none; }
+}
+.lens-legend {
+  background: rgba(251, 246, 239, 0.94);
+  padding: 6px 12px; border-radius: 2px;
+  border: 1px solid rgba(201, 162, 39, 0.22);
+}
 #approach-chart .approach-lens .mark-track { stroke: rgba(201, 162, 39, 0.35); }
 #approach-chart .approach-lens .mark-fill  { stroke-width: 2.2; }
 /* На узких экранах лента свечей — приглушённый фон за текстом, а не
@@ -347,42 +394,98 @@ html { scroll-behavior: smooth; }
 @media (max-width: 900px) { .lens-legend { display: none; } }
 
 /* ── Вход на act-platform-1 ──────────────────────────────────────────────
-   --gate идёт от 0 до 1 вместе с кольцом (ставит js/logo.js через
-   data-part → здесь читается как переменная). Пока 0 — скриншот размыт
-   и затемнён, при 1 — чистый. Знак перед ним — ключ, и он же ссылка. */
-.platform-gate {
-  position: relative;
-  display: block;
-  width: 100%; max-width: 760px;
-  --gate: 0;
-  cursor: pointer;
-}
-.platform-gate .platform-screenshot {
-  filter: blur(calc((1 - var(--gate)) * 6px)) brightness(calc(0.55 + var(--gate) * 0.45));
-  transition: filter 0.25s linear;
-}
-.platform-gate .platform-key {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  --mark-size: 112px;
-  margin: 0;
-  /* Ключ виден, пока вход «закрыт»; когда картинка проявилась —
-     уходит в угол и уменьшается, чтобы не загораживать терминал. */
-  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s;
-}
-.platform-gate .platform-key img { filter: drop-shadow(0 0 18px rgba(230, 194, 87, 0.8)); }
-.platform-gate .platform-key .mark-cap { color: var(--glow, #E6C257); text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
-.platform-gate.gate-open .platform-key {
-  transform: translate(-50%, -50%) scale(0.45);
-  left: 14%; top: 16%;
-}
-.platform-gate.gate-open .platform-key .mark-cap { opacity: 0; }
-.platform-gate:hover .platform-screenshot { filter: none; }
-@media (max-width: 900px) {
-  .platform-gate .platform-key { --mark-size: 80px; }
+   Знак больше не лежит поверх скриншота (читался как водяной знак на чужом
+   интерфейсе, и было непонятно, зачем он там). Он стоит в колонке текста
+   рядом с кнопкой: кольцо заполняется при появлении, клик ведёт в терминал.
+   Скриншот при этом просто скриншот — приглушать его нечем и незачем. */
+.platform-entry { display: flex; align-items: center; gap: 16px; margin-top: 18px; }
+.platform-entry .platform-key { --mark-size: 44px; margin: 0; flex: none; }
+.platform-entry .platform-key img { filter: drop-shadow(0 0 10px rgba(201, 162, 39, 0.4)); }
+.platform-entry .cta-primary { margin: 0; }
+@media (max-width: 767px) {
+  .platform-entry { gap: 12px; }
+  .platform-entry .platform-key { --mark-size: 36px; }
 }
 
+/* ── Платформа: вкладки, рамка браузера, лайтбокс брифа ────────────────── */
+.plat-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.plat-tab {
+  flex: 1; padding: 8px 10px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 2px;
+  cursor: pointer; transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.plat-tab:hover { color: var(--gold-deep); border-color: rgba(201, 162, 39, 0.5); }
+.plat-tab.is-active { color: var(--ink); border-color: var(--gold); background: rgba(201, 162, 39, 0.10); }
+
+/* Рамка окна браузера: без неё скриншот читался как картинка из стока,
+   а не как настоящий интерфейс продукта. */
+.plat-chrome {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 10px; background: #EDE7DE;
+  border: 1px solid var(--line); border-bottom: 0; border-radius: 3px 3px 0 0;
+}
+.plat-chrome i { width: 8px; height: 8px; border-radius: 50%; background: rgba(43, 43, 51, 0.18); }
+.plat-chrome .plat-url {
+  margin-left: 8px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.04em; color: var(--muted); font-weight: 400;
+}
+/* Колонка превью: вкладки, окно со скриншотом, кнопка брифа — стопкой.
+   Без этого они разъезжались в строку: вкладки слева, кнопка справа. */
+.platform-preview { display: flex; flex-direction: column; align-items: stretch;
+                    gap: 0; width: 100%; max-width: 660px; margin-left: auto; }
+.platform-gate { display: block; text-decoration: none; }
+.platform-gate .plat-chrome, .platform-gate .plat-url { text-decoration: none; }
+.platform-gate .platform-screenshot { border-radius: 0 0 3px 3px; display: block; width: 100%; height: auto; }
+
+.plat-brief-cta {
+  display: block; width: 100%; margin-top: 10px; padding: 10px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-deep); background: transparent;
+  border: 1px solid rgba(201, 162, 39, 0.45); border-radius: 2px; cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.plat-brief-cta:hover { background: var(--gold); color: var(--ink); }
+
+.plat-lightbox {
+  position: fixed; inset: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4vh 4vw; background: rgba(10, 8, 16, 0.88);
+}
+.plat-lightbox[hidden] { display: none; }
+.plat-lightbox figure { margin: 0; max-width: min(1100px, 92vw); text-align: center; }
+.plat-lightbox img { max-width: 100%; max-height: 82vh; display: block; border: 1px solid rgba(201, 162, 39, 0.35); }
+.plat-lightbox figcaption {
+  margin-top: 10px; font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.06em; color: rgba(251, 246, 239, 0.75);
+}
+.plat-lb-close {
+  position: absolute; top: 16px; right: 20px;
+  width: 40px; height: 40px; line-height: 1;
+  font-size: 26px; color: rgba(251, 246, 239, 0.8);
+  background: transparent; border: 1px solid rgba(251, 246, 239, 0.25);
+  border-radius: 2px; cursor: pointer;
+}
+.plat-lb-close:hover { color: var(--glow, #E6C257); border-color: currentColor; }
+
+/* Карточки платформы стали ссылками — базовое подчёркивание красило и
+   заголовок, и описание: блок читался как список гиперссылок. */
+.platform-features .pf-card,
+.platform-features .pf-card * { text-decoration: none; }
+.platform-features .pf-card { display: block; transition: border-color 0.25s, transform 0.25s; }
+.platform-features .pf-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.platform-features .pf-num {
+  margin: 4px 0 6px; font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.04em; color: var(--gold-deep);
+}
+@media (max-width: 767px) {
+  .plat-tab { font-size: 10px; letter-spacing: 0.06em; padding: 7px 6px; }
+  .plat-chrome .plat-url { display: none; }
+  .plat-lightbox { padding: 2vh 2vw; }
+}
 
 /* ── PRO-оффер: кольцо по шагам ───────────────────────────────────────────
    Шаг подсвечивается, когда его доля дошла до кольца; бейдж появляется
@@ -394,6 +497,35 @@ html { scroll-behavior: smooth; }
   transform: translateY(-3px);
 }
 #act-platform-2 .p2-card.step-lit .p2-card-num { color: var(--glow, #E6C257); }
+
+/* ── PRO: что входит и что после 30 дней ─────────────────────────────── */
+.pro-value {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px);
+  max-width: 880px; margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  font-family: 'Montserrat', sans-serif; text-align: left;
+}
+.pro-col-h {
+  margin: 0 0 10px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--glow, #E6C257);
+}
+.pro-list { margin: 0; padding: 0; list-style: none; }
+.pro-list li {
+  position: relative; padding: 4px 0 4px 18px;
+  font-size: 13px; line-height: 1.5; color: rgba(251, 246, 239, 0.86);
+}
+.pro-list li::before {
+  content: '✓'; position: absolute; left: 0; top: 4px;
+  color: var(--gold, #C9A227); font-size: 12px;
+}
+.pro-list li.soon { color: rgba(251, 246, 239, 0.5); }
+.pro-list li.soon::before { content: '·'; font-size: 18px; top: 0; }
+.pro-after { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(251, 246, 239, 0.86); }
+.pro-after-note { margin: 10px 0 0; font-size: 11.5px; line-height: 1.5; color: rgba(251, 246, 239, 0.55); }
+@media (max-width: 900px) {
+  .pro-value { grid-template-columns: 1fr; gap: 20px; margin-top: 4px; }
+}
 
 .pro-issue .pro-badge {
   position: absolute;
@@ -493,6 +625,17 @@ html { scroll-behavior: smooth; }
    знак стоит в пустом правом верхнем углу над текстом кейса; на мобайле
    идёт в потоке между плашкой заголовка и каруселью. */
 #act-market { position: relative; }
+/* Карусель была ровно 100vh с графиком в 80vh: на любом окне ниже ~900px
+   низ графика и панель точек уходили за край. Отдаём секции естественную
+   высоту, график ограничиваем по содержимому. */
+@media (min-width: 1024px) {
+  #act-market .market-carousel { height: auto; min-height: 0; }
+  #act-market .market-slide { position: relative; inset: auto; }
+  #act-market .market-slide:not(.active) { position: absolute; inset: 0; }
+  #act-market .market-slide-chart { height: min(62vh, 520px); }
+  #act-market .market-nav-bar { position: relative; bottom: auto; left: auto; transform: none;
+                                margin: 14px auto 0; justify-content: center; }
+}
 #act-market .market-memory {
   position: absolute;
   top: calc(var(--nav-h, 69px) + 30px);
@@ -513,18 +656,39 @@ html { scroll-behavior: smooth; }
 #act-market .market-memory .memory-stream canvas { width: 100%; height: 100%; display: block; }
 /* Кольцо-таймер идёт без CSS-перехода: долю ставит rAF каждый кадр */
 #act-market .market-memory .mark-fill { transition: none; }
-#act-market .market-memory .mark-cap { color: var(--glow, #E6C257); }
+#act-market .market-memory .mark-cap {
+  color: var(--glow, #E6C257);
+  /* Счётчик кейсов ставим над знаком: под ним на невысоком окне он падал
+     на абзац описания кейса (поймано прогоном 1440×680 на EN). */
+  top: auto; bottom: calc(100% + 0.34 * var(--mark-size, 104px) + 6px);
+  letter-spacing: 0.2em;
+}
 /* Титульная плашка секции при обычной прокрутке фиксирована у низа окна и
    ложилась на график и абзац кейса. В потоке секция выше окна, и над
    каруселью есть пустая полоса — плашка идёт туда, слева, знак — справа. */
 @media (min-width: 1024px) {
-  #act-market .act-overlay {
-    position: absolute; left: 32px; right: auto; bottom: auto;
-    top: calc(var(--nav-h, 69px) + 30px);
-    text-align: left; z-index: 3;
+  /* Плашка заголовка стояла абсолютом и ложилась то на график, то на текст
+     кейса. Ставим её в поток над каруселью — это обычный заголовок секции. */
+  #act-market {
+    display: flex; flex-direction: column;
+    padding-left: clamp(24px, 4vw, 56px); padding-right: clamp(24px, 4vw, 56px);
   }
-  #act-market .act-overlay-inner { padding: 14px 22px; }
-  #act-market .act-overlay h3 { font-size: 20px; }
+  #act-market .act-overlay {
+    position: relative; inset: auto; opacity: 1 !important;
+    text-align: left; z-index: 3; order: -1; margin-bottom: 14px;
+    /* Секция — flex-колонка с центрированием: без align-self заголовок
+       сжимался по содержимому и вставал по центру, а не над графиком. */
+    align-self: stretch; width: 100%;
+  }
+  /* Знак-память стоит абсолютом в правом верхнем углу; текст заголовка
+     тянулся во всю ширину и оказывался под ним. Оставляем ему полосу. */
+  #act-market .act-overlay-inner {
+    display: block; padding: 0; background: none; border: 0; backdrop-filter: none;
+    max-width: calc(100% - 230px);
+  }
+  #act-market .act-overlay h3 { font-size: 22px; margin-bottom: 6px; }
+  /* Панель точек карусели уезжала под общий столбик навигации справа */
+  #act-market .market-nav-bar { max-width: 520px; }
 }
 @media (max-width: 1023px) {
   #act-market .market-memory {

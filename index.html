@@ -264,14 +264,19 @@
 
     <!-- Крупный знак в центре: раньше сюда «приезжал» общий fixed-логотип,
          теперь знак принадлежит секции и едет вместе с ней -->
-    <div class="sect-mark" data-role="spread">
+    <!-- Знак — ссылка на платформу. Подпись «нажмите на знак» висела с тех
+         пор, когда клик обрабатывал main.js для общего fixed-логотипа; тот
+         код сняли вместе с логотипом, и подпись врала. Теперь это <a>. -->
+    <a class="sect-mark mark-link" data-role="spread"
+       href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=grow_logo"
+       target="_blank" rel="noopener">
         <img src="assets/logo/logo.svg" alt="" draggable="false">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <circle class="mark-track" cx="50" cy="50" r="46"/>
           <circle class="mark-fill"  cx="50" cy="50" r="46"/>
         </svg>
         <span class="mark-cap" data-i18n="grow.logo_hint"></span>
-      </div>
+      </a>
 
     <article class="forecast-card forecast-card--tl hub-card" data-thread="1">
       <span class="hub-tag" data-i18n="grow.c1.tag">КАЖДОЕ УТРО</span>
@@ -359,7 +364,7 @@
             <p data-i18n="approach.s3.p">Бриф до открытия Европы, разметку на графике и статистику паттернов. Решение о сделке принимаете вы.</p>
           </li>
         </ol>
-        <a class="approach-link" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/chart.html?s=XAUUSD&amp;utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=approach" data-i18n="approach.cta">Как это выглядит в терминале →</a>
+        <a class="approach-link" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/chart.html?s=GOLD&amp;utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=approach" data-i18n="approach.cta">Как это выглядит в терминале →</a>
       </div>
       <div id="approach-chart">
         <!-- Линза. Знак стоит на движущейся ленте свечей; снаружи кольца
@@ -392,30 +397,73 @@
         <p class="eyebrow" data-i18n="platform.p1.eyebrow">ПЛАТФОРМА · LP.SBFCONSULT.COM</p>
         <h2 data-i18n="platform.p1.heading">Терминал, журнал и академия — в одном месте</h2>
         <p class="platform-lead" data-i18n="platform.p1.lead">Рабочее пространство трейдера: утренний рыночный синтез, журнал сделок с аналитикой дисциплины, учебная программа и цели. Без рекомендаций — только структура и данные для ваших собственных решений.</p>
+        <!-- В каждой карточке одно проверяемое число и ссылка в свой раздел:
+             раньше это были четыре описания без единой цифры. -->
         <div class="platform-features">
-          <div class="pf-card"><p class="pf-title" data-i18n="platform.p1.f1t">Журнал сделок</p><p class="pf-desc" data-i18n="platform.p1.f1d">Статистика, сезоны торговли с итоговыми отчётами, разбор ошибок.</p></div>
-          <div class="pf-card"><p class="pf-title" data-i18n="platform.p1.f2t">Утренний синтез</p><p class="pf-desc" data-i18n="platform.p1.f2d">Аналитическая сводка по рынкам каждое утро до открытия европейской сессии.</p></div>
-          <div class="pf-card"><p class="pf-title" data-i18n="platform.p1.f3t">SBF Academy</p><p class="pf-desc" data-i18n="platform.p1.f3d">Учебные главы от основ до продвинутых тем. Прогресс сохраняется.</p></div>
-          <div class="pf-card"><p class="pf-title" data-i18n="platform.p1.f4t">Цели и дисциплина</p><p class="pf-desc" data-i18n="platform.p1.f4d">Стрики ведения журнала, контроль риска на сделку, дисциплин-скор. Лидерборд по XP — не по прибыли.</p></div>
+          <a class="pf-card" href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_journal" target="_blank" rel="noopener">
+            <p class="pf-title" data-i18n="platform.p1.f1t">Журнал сделок</p>
+            <p class="pf-num" data-i18n="platform.p1.f1n">7 полей на сделку</p>
+            <p class="pf-desc" data-i18n="platform.p1.f1d">Статистика, сезоны торговли с итоговыми отчётами, разбор ошибок.</p>
+          </a>
+          <a class="pf-card" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_brief" target="_blank" rel="noopener">
+            <p class="pf-title" data-i18n="platform.p1.f2t">Утренний синтез</p>
+            <p class="pf-num" data-i18n="platform.p1.f2n">06:00 CET, каждый будний день</p>
+            <p class="pf-desc" data-i18n="platform.p1.f2d">Аналитическая сводка по рынкам каждое утро до открытия европейской сессии.</p>
+          </a>
+          <a class="pf-card" href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_edu" target="_blank" rel="noopener">
+            <p class="pf-title" data-i18n="platform.p1.f3t">SBF Academy</p>
+            <p class="pf-num" data-i18n="platform.p1.f3n">15 глав, 1–5 открыты всем</p>
+            <p class="pf-desc" data-i18n="platform.p1.f3d">Учебные главы от основ до продвинутых тем. Прогресс сохраняется.</p>
+          </a>
+          <a class="pf-card" href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_discipline" target="_blank" rel="noopener">
+            <p class="pf-title" data-i18n="platform.p1.f4t">Цели и дисциплина</p>
+            <p class="pf-num" data-i18n="platform.p1.f4n">лимит риска на сделку</p>
+            <p class="pf-desc" data-i18n="platform.p1.f4d">Стрики ведения журнала, контроль риска на сделку, дисциплин-скор. Лидерборд по XP — не по прибыли.</p>
+          </a>
         </div>
-        <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=platform_p1" target="_blank" rel="noopener" class="cta-primary" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
-      </div>
-      <div class="platform-preview">
-        <!-- Вход. Скриншот терминала приглушён, знак стоит перед ним как ключ:
-             по мере заполнения кольца картинка проявляется. Клик по знаку
-             открывает платформу — «знак = вход» здесь действие, а не подпись. -->
-        <a class="platform-gate" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=platform_gate" target="_blank" rel="noopener" aria-label="Открыть платформу">
-          <img src="assets/platform/terminal.png" alt="SBF Intelligence Terminal" class="platform-screenshot" loading="lazy" width="760" height="540">
-          <div class="sect-mark platform-key" data-role="output">
+        <!-- Знак стоял поверх скриншота и читался как водяной знак на
+             чужом интерфейсе. Здесь у него есть работа: кольцо заполняется
+             при появлении блока, сам знак — вторая дверь на платформу. -->
+        <div class="platform-entry">
+          <a class="sect-mark platform-key mark-link" data-role="output"
+             href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=platform_gate"
+             target="_blank" rel="noopener">
             <img src="assets/logo/logo.svg" alt="" draggable="false">
             <svg viewBox="0 0 100 100" aria-hidden="true">
               <circle class="mark-track" cx="50" cy="50" r="46"/>
               <circle class="mark-fill"  cx="50" cy="50" r="46"/>
             </svg>
-            <span class="mark-cap" data-i18n="platform.p1.key_cap"></span>
-          </div>
-        </a>
+          </a>
+          <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=platform_p1" target="_blank" rel="noopener" class="cta-primary" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
+        </div>
       </div>
+      <div class="platform-preview">
+        <!-- Три экрана платформы вместо одного статичного скриншота: терминал,
+             журнал и академия — снято с живой lp.sbfconsult.com. Механика
+             «ключа» осталась: первое проявление идёт по кольцу, дальше вкладки
+             переключаются без размытия. -->
+        <div class="plat-tabs" role="tablist">
+          <button class="plat-tab is-active" type="button" role="tab" data-tab="terminal" data-url="lp.sbfconsult.com/chart" data-i18n="platform.p1.tab_terminal">Терминал</button>
+          <button class="plat-tab" type="button" role="tab" data-tab="journal" data-url="lp.sbfconsult.com/journal" data-i18n="platform.p1.tab_journal">Журнал</button>
+          <button class="plat-tab" type="button" role="tab" data-tab="academy" data-url="lp.sbfconsult.com/edu" data-i18n="platform.p1.tab_academy">Академия</button>
+        </div>
+        <a class="platform-gate" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=platform_gate" target="_blank" rel="noopener" aria-label="Открыть платформу">
+          <span class="plat-chrome" aria-hidden="true"><i></i><i></i><i></i><b class="plat-url">lp.sbfconsult.com/chart</b></span>
+          <img src="assets/platform/terminal.png" alt="SBF Intelligence Terminal" class="platform-screenshot" loading="lazy" width="1200" height="750">
+        </a>
+        <button class="plat-brief-cta" type="button" data-i18n="platform.p1.brief_cta">Посмотреть сегодняшний бриф</button>
+      </div>
+    </div>
+
+    <!-- Лайтбокс с картинкой утреннего брифа: единственное место на сайте,
+         где продукт показан целиком и без регистрации. Картинку рисует
+         market_intel (brief_image_<дата>.png), берём последнюю доступную. -->
+    <div class="plat-lightbox" id="plat-lightbox" hidden>
+      <button class="plat-lb-close" type="button" aria-label="Закрыть">×</button>
+      <figure>
+        <img id="plat-lb-img" src="" alt="Утренний бриф SBF">
+        <figcaption id="plat-lb-cap"></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -459,6 +507,28 @@
         <span class="mark-cap" data-i18n="svc.logo_issue"></span>
       </div>
 
+    <!-- Что даёт PRO и что будет после 30 дней. Раньше экран отвечал только
+         на «как получить» и молчал о содержании — из-за этого три коробки
+         с цифрами выглядели рамкой без предложения. Состав сверен по коду
+         платформы: за PRO сейчас главы академии 6–15. -->
+    <div class="pro-value">
+      <div class="pro-col">
+        <p class="pro-col-h" data-i18n="platform.p2.inc_h">Что входит в PRO</p>
+        <ul class="pro-list">
+          <li data-i18n="platform.p2.inc1">Академия целиком — главы 1–15</li>
+          <li data-i18n="platform.p2.inc2">Журнал сделок и разбор дисциплины</li>
+          <li data-i18n="platform.p2.inc3">Настройки графика и связка с Telegram</li>
+          <li class="soon" data-i18n="platform.p2.inc4">Теханализ на графике — в разработке</li>
+          <li class="soon" data-i18n="platform.p2.inc5">Выкладки торгового бота — в разработке</li>
+        </ul>
+      </div>
+      <div class="pro-col">
+        <p class="pro-col-h" data-i18n="platform.p2.after_h">Через 30 дней</p>
+        <p class="pro-after" data-i18n="platform.p2.after_p">PRO отключается сам. Бриф, графики и первые главы академии остаются открытыми — их не закрывают никогда. Условия продления объявим на платформе.</p>
+        <p class="pro-after-note" data-i18n="platform.p2.after_note">Карта не нужна. Автосписаний нет. Отписываться не от чего.</p>
+      </div>
+    </div>
+
     <div class="p2-cta-zone">
       <p class="p2-body" data-i18n="platform.p2.body">Расскажи о своём опыте, целях и отношении к риску. Карта не нужна. Автосписания нет.</p>
       <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=pro_offer" target="_blank" rel="noopener" class="cta-offer" data-i18n="platform.p2.cta">НАЧАТЬ →</a>
@@ -497,6 +567,7 @@
           <div class="chart-pattern">
             <p class="pattern-label" data-i18n="market.gold_tri.pattern">ПАТТЕРН: СИММЕТРИЧНЫЙ ТРЕУГОЛЬНИК</p>
             <p class="pattern-note" data-i18n="market.gold_tri.note">Заужение ценового диапазона с пробоем апекса формирует направленный импульс. Паттерн накопления с измеримой проекцией движения.</p>
+          <p class="pattern-disclaimer" data-i18n="market.hist_disclaimer">Историческая статистика не гарантирует будущих результатов и не является рекомендацией.</p>
           </div>
         </div>
       </div>
@@ -509,6 +580,7 @@
           <div class="chart-pattern">
             <p class="pattern-label" data-i18n="market.gold_bol.pattern">ПАТТЕРН: BOLLINGER SQUEEZE</p>
             <p class="pattern-note" data-i18n="market.gold_bol.note">Заужение полос Боллинджера предшествует направленному движению. Сторона пробоя определяет направление импульса. Исторический пример нисходящего сценария.</p>
+          <p class="pattern-disclaimer" data-i18n="market.hist_disclaimer">Историческая статистика не гарантирует будущих результатов и не является рекомендацией.</p>
           </div>
         </div>
       </div>
@@ -521,6 +593,7 @@
           <div class="chart-pattern">
             <p class="pattern-label" data-i18n="market.jpy.pattern">ПАТТЕРН: КРУГЛЫЙ УРОВЕНЬ + РАЗВОРОТ</p>
             <p class="pattern-note" data-i18n="market.jpy.note">Уровень 160 — зона исторической активности BOJ. Коррекция 50–70% от предшествующего движения наблюдается как историческая закономерность у таких уровней.</p>
+          <p class="pattern-disclaimer" data-i18n="market.hist_disclaimer">Историческая статистика не гарантирует будущих результатов и не является рекомендацией.</p>
           </div>
         </div>
       </div>
@@ -533,6 +606,7 @@
           <div class="chart-pattern">
             <p class="pattern-label" data-i18n="market.copper.pattern">ПАТТЕРН: ЦЕНОВОЙ КАНАЛ + ЛОЖНЫЙ ПРОБОЙ</p>
             <p class="pattern-note" data-i18n="market.copper.note">Двойной ложный пробой верхней границы канала с возвратом — статистически значимый сигнал ослабления тренда. Два подтверждения повышают надёжность паттерна.</p>
+          <p class="pattern-disclaimer" data-i18n="market.hist_disclaimer">Историческая статистика не гарантирует будущих результатов и не является рекомендацией.</p>
           </div>
         </div>
       </div>
@@ -561,7 +635,7 @@
         <circle class="mark-track" cx="50" cy="50" r="46"/>
         <circle class="mark-fill"  cx="50" cy="50" r="46"/>
       </svg>
-      <span class="mark-cap" data-i18n="market.mark_cap">память рынка</span>
+      <span class="mark-cap market-counter" aria-live="off">1 / 5</span>
     </div>
     <div class="act-overlay" id="market-overlay">
       <div class="act-overlay-inner">
@@ -607,6 +681,7 @@
             <p class="partner-meta" data-i18n="svc.s1.xm_meta">MT4 · MT5 · WebTrader</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
       <div class="service-desc-bottom">
         <p data-i18n="svc.s1.desc">Образовательные программы и аналитические материалы: основы рынков, выбор брокерской инфраструктуры, разбор торговых подходов. Без инвестиционных рекомендаций.</p>
@@ -643,6 +718,7 @@
             <p class="partner-name">XM</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
     </div>
   </section>
@@ -681,6 +757,7 @@
             <p class="partner-meta" data-i18n="svc.s2.instaforex_meta">CySEC · MT4/MT5 · от $100 депозит</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
       <div class="service-desc-bottom">
         <p data-i18n="svc.s2.desc">Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.</p>
@@ -713,6 +790,7 @@
             <p class="partner-name">InstaForex</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
     </div>
   </section>
@@ -749,6 +827,7 @@
             <p class="partner-meta" data-i18n="svc.s3.fxpro_meta">FCA · CySEC · 5 регуляторов</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
       <div class="service-desc-bottom">
         <p data-i18n="svc.s3.desc">Полное управление капиталом по согласованной с клиентом стратегии в рамках партнёрского контракта с брокером. Прозрачная отчётность, согласованный риск-профиль, регулярные ревизии.</p>
@@ -782,6 +861,7 @@
             <p class="partner-name">FxPro</p>
           </article>
         </div>
+        <p class="partners-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
       </div>
     </div>
   </section>
@@ -965,6 +1045,7 @@
   <script defer src="js/acts/act-hub.js"></script>
   <script defer src="js/acts/act-pro.js"></script>
   <script defer src="js/acts/act-market-memory.js"></script>
+  <script defer src="js/acts/act-platform.js"></script>
   <script type="module" src="js/acts/act-approach.js"></script>
   <script type="module" src="js/acts/act3-market.js"></script>
   <script type="module" src="js/acts/act-services.js"></script>

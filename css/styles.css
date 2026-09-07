@@ -3257,12 +3257,11 @@ body.act-act-market-active .nav-links a:hover {
 
 /* ── WP-3.1: Market section historical disclaimer ─────── */
 .pattern-disclaimer {
-  margin-top: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-style: italic;
-  color: rgba(43, 43, 51, 0.5);
-  line-height: 1.4;
+  /* Дисклеймер набирался почти прозрачным и на тёмном фоне не читался —
+     это единственная строка на экране, которую регулятор смотрит первой. */
+  font-size: 11px; line-height: 1.5; font-style: italic;
+  color: rgba(251, 246, 239, 0.62); margin: 10px 0 0;
+  border-left: 2px solid rgba(201, 162, 39, 0.35); padding-left: 10px;
 }
 
 /* ── WP-3.3: Service ДУ disclaimer ─────────────────────── */

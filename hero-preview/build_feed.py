@@ -258,8 +258,15 @@ if brief:
                    'country': tri(*cn) if cn else tri('', '', ''),
                    'title': head,
                    'impact': (e.get('impact') or '').lower() or None})
+    # Картинка брифа: её рисует brief_image_job раз в сутки. Берём последнюю
+    # существующую, а не «сегодня» — если утренний прогон не отработал,
+    # лучше вчерашний бриф с честной датой, чем битая картинка.
+    imgs = sorted(SRC_DIR.glob('brief_image_*.png'))
+    img = imgs[-1].name if imgs else None
     grow['brief'] = {'headline': brief.get('headline'), 'date': brief.get('date'),
-                     'lang': 'ru', 'events': ev}
+                     'lang': 'ru', 'events': ev,
+                     'image': ('https://lp.sbfconsult.com/data/' + img) if img else None,
+                     'image_date': img.replace('brief_image_', '').replace('.png', '') if img else None}
 
     # 6.2 Инструмент дня: самый сильный ход + спарклайн часовых закрытий
     ups = (brief.get('movers') or {}).get('up') or []

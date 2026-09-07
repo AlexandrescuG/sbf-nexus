@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T14:45:00.250195+00:00",
+  "updated": "2026-09-07T15:15:00.925994+00:00",
   "grow": {
     "brief": {
       "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
@@ -48,7 +48,9 @@
           },
           "impact": "medium"
         }
-      ]
+      ],
+      "image": "https://lp.sbfconsult.com/data/brief_image_2026-09-07.png",
+      "image_date": "2026-09-07"
     },
     "mover": {
       "symbol": "USDRUB",
@@ -320,34 +322,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16296,
-      "chg_pct": 0.1447,
+      "bid": 1.16268,
+      "chg_pct": 0.1206,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.3538999999999999,
-      "chg_pct": 0.1679,
+      "bid": 1.3542399999999999,
+      "chg_pct": 0.1931,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.392,
-      "chg_pct": -1.1575,
+      "bid": 154.341,
+      "chg_pct": -1.1901,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79008.1,
-      "chg_pct": -1.6411,
+      "bid": 79024.9,
+      "chg_pct": -1.6200999999999999,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2480.68,
-      "chg_pct": -1.3199,
+      "bid": 2482.96,
+      "chg_pct": -1.2292,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-07T14:44:54.303303+00:00"
+  "quotes_updated": "2026-09-07T15:14:49.416276+00:00"
 }

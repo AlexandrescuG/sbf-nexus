@@ -55,15 +55,11 @@ function parseCSV(text) {
     const v = line.split(',');
     const r = {};
     hdr.forEach((h, i) => { r[h] = v[i]?.trim(); });
-    /* Дату раньше выбрасывали — из-за этого под графиком не было оси
-       времени, и «Май 2026» в тексте нечем было подтвердить. */
-    const dt = (r.DateTime || r.Date || r.datetime || r.date || '').slice(0, 10);
     return {
       open : parseFloat(r.Open  || r.open),
       high : parseFloat(r.High  || r.high),
       low  : parseFloat(r.Low   || r.low),
       close: parseFloat(r.Close || r.close),
-      date : dt,
     };
   }).filter(d => !isNaN(d.open));
 }
@@ -108,35 +104,11 @@ function drawPatternOverlay(ctx, overlay, yS, P, w) {
     hline(overlay.high);
   }
 
-  /* Знак-маркер в точке срабатывания паттерна: связывает «паттерн» из
-     текста с конкретным местом на графике. Уровень — тот, о котором
-     говорит кейс: граница гэпа, апекс треугольника, уровень 160. */
-  const markLevel = overlay.type === 'gap'  ? overlay.gapHigh
-                  : overlay.type === 'band' ? (overlay.low + overlay.high) / 2
-                  : overlay.level;
-  if (markLevel != null) {
-    const mx = w - P.r - 16, my = yS(markLevel);
-    ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(11, 11, 15, 0.85)';
-    ctx.beginPath(); ctx.arc(mx, my, 9, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = 'rgba(230, 194, 87, 0.95)'; ctx.lineWidth = 1.4;
-    ctx.beginPath(); ctx.arc(mx, my, 9, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = '#E6C257';
-    ctx.beginPath(); ctx.arc(mx, my, 3, 0, Math.PI * 2); ctx.fill();
-  }
-
   ctx.setLineDash([]);
   ctx.restore();
 }
 
 /* ── Статичный рендер свечей на canvas ──────────────────── */
-/* Цена на шкале: 1.16293 у валют, 4440.2 у золота — один формат на всех
-   давал либо мусор из нулей, либо потерю знаков. */
-function fmtPrice(v) {
-  const a = Math.abs(v);
-  return a < 20 ? v.toFixed(4) : (a < 500 ? v.toFixed(2) : v.toFixed(1));
-}
-
 function drawStatic(canvas, data, cfg) {
   const overlay = cfg?.overlay;
   const maxBars = cfg?.maxBars || 80;
@@ -170,32 +142,12 @@ function drawStatic(canvas, data, cfg) {
   ctx.fillStyle = 'rgba(8, 6, 14, 0.90)';
   ctx.fillRect(0, 0, w, h);
 
-  /* Сетка и ценовая шкала. Без подписей график читался как узор: нельзя
-     было понять ни уровня цены, ни масштаба движения. */
+  /* Сетка */
   ctx.strokeStyle = 'rgba(201,162,39,0.07)';
   ctx.lineWidth   = 0.5;
-  ctx.font = '10px "JetBrains Mono", monospace';
-  ctx.textBaseline = 'middle';
   for (let i = 0; i <= 4; i++) {
     const y = P.t + (i / 4) * cH;
-    ctx.beginPath(); ctx.moveTo(P.l, y); ctx.lineTo(w - P.r - 46, y); ctx.stroke();
-    const v = vTop - (i / 4) * vSpan;
-    ctx.fillStyle = 'rgba(251,246,239,0.42)';
-    ctx.textAlign = 'left';
-    ctx.fillText(fmtPrice(v), w - P.r - 42, y);
-  }
-  /* Даты по нижнему краю: начало, середина, конец окна */
-  if (slice[0] && slice[0].date) {
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    [0, Math.floor(n / 2), n - 1].forEach((idx, k) => {
-      const d = slice[idx];
-      if (!d || !d.date) return;
-      const x = P.l + (idx + 0.5) * slotW;
-      ctx.fillStyle = 'rgba(251,246,239,0.35)';
-      ctx.fillText(d.date, Math.min(Math.max(x, 30), w - P.r - 60), h - P.b + 4);
-    });
-    ctx.textBaseline = 'middle';
+    ctx.beginPath(); ctx.moveTo(P.l, y); ctx.lineTo(w - P.r, y); ctx.stroke();
   }
 
   /* Оверлей паттерна (рисуется ДО свечей, чтобы свечи были сверху) */
@@ -246,33 +198,18 @@ function initCarousel() {
     current = (idx + total) % total;
     slides[current].classList.add('active');
     dots[current]?.classList.add('active');
-    section.dispatchEvent(new CustomEvent('market:slide', {
-      detail: { index: current, caseId: slides[current].dataset.case }
-    }));
   }
 
-  /* Автоплей: если на секции есть знак-память (act-market-memory.js),
-     таймером служит его кольцо — заполняется 5 с и переключает слайд.
-     Иначе прежний setInterval. */
   function startAutoplay() {
     if (autoplay) return;
-    if (window.SBF && window.SBF.marketRing) {
-      autoplay = 'ring';
-      window.SBF.marketRing.start(5000, () => { if (!userTook) goTo(current + 1); });
-      return;
-    }
     autoplay = setInterval(() => {
       if (!userTook) goTo(current + 1);
     }, 5000);
   }
 
   function stopAutoplay() {
-    if (autoplay === 'ring') { window.SBF.marketRing.stop(); autoplay = null; return; }
     if (autoplay) { clearInterval(autoplay); autoplay = null; }
   }
-
-  window.SBF = window.SBF || {};
-  window.SBF.market = { goTo, current: () => current, charts: CHARTS, slides };
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
@@ -304,17 +241,12 @@ function initCarousel() {
     }, { passive: true });
   }
 
-  function onEnter() {
+  section.addEventListener('snap-enter', () => {
     userTook = false;
     goTo(0);
     startAutoplay();
     if (overlay) gsap.fromTo(overlay, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
-  }
-  section.addEventListener('snap-enter', onEnter);
-  /* Данные грузятся лениво, и при прыжке по якорю snap-enter успевает
-     прийти раньше этого слушателя — секция уже активна, а автоплей и
-     кольцо стоят. Догоняем по классу на body. */
-  if (document.body.classList.contains('act-act-market-active')) onEnter();
+  });
 
   section.addEventListener('snap-leave', () => {
     stopAutoplay();
@@ -330,7 +262,6 @@ async function initMarketDesktop() {
     try {
       const text   = await fetch(cfg.file).then(r => r.text());
       const data   = parseCSV(text);
-      cfg.data     = data;   /* знак-память рисует поток текущего кейса */
       const slide  = document.querySelector(`.market-slide[data-case="${cfg.caseId}"]`);
       const canvas = slide?.querySelector('.market-slide-chart');
       if (canvas && data.length) {

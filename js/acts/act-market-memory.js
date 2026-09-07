@@ -118,9 +118,16 @@
   };
 
   /* ── Связь со слайдами ─────────────────────────────────────────────── */
+  var counter = mark.querySelector('.market-counter');
   section.addEventListener('market:slide', function (e) {
     setCase(e.detail.caseId);
     window.SBF.logo.pulse(mark);          /* тик при смене слайда */
+    /* Подпись «5 с» объясняла таймер, а не пользу. Номер кейса говорит
+       то же самое (кольцо = переход к следующему), но по-человечески. */
+    if (counter) {
+      var slides = section.querySelectorAll('.market-slide');
+      counter.textContent = (e.detail.index + 1) + ' / ' + slides.length;
+    }
   });
   section.addEventListener('snap-leave', stop);
   window.addEventListener('resize', size);
