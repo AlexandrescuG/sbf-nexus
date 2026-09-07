@@ -20,6 +20,7 @@ ru: {
     nav_aria:  'Навигация по разделам',
   },
   dots: ['Карта','Платформа','Подход','Платформа','PRO-оффер','Память рынков','Обучение','Сопровождение','Управление','Контакты'],
+  ticker: { loading: 'Рыночная сводка обновляется' },
   hero: {
     headline:  'Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.',
     subline:   'SBF Company SRL · Кишинёв<br>Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.',
@@ -284,6 +285,7 @@ en: {
     nav_aria:  'Section navigation',
   },
   dots: ['Map','Platform','Approach','Platform','PRO Offer','Market Memory','Education','Account Support','Management','Contacts'],
+  ticker: { loading: 'Market summary is updating' },
   hero: {
     headline:  'The world generates noise.<br><em>We recognise patterns</em>.',
     subline:   'SBF Company SRL · Chișinău<br>Expert analysis, trading account support, and discretionary management through EU-licensed partners.',
@@ -548,6 +550,7 @@ ro: {
     nav_aria:  'Navigare pe secțiuni',
   },
   dots: ['Hartă','Platformă','Abordare','Platformă','Ofertă PRO','Memoria Piețelor','Educație','Suport Cont','Management','Contacte'],
+  ticker: { loading: 'Sinteza pieței se actualizează' },
   hero: {
     headline:    'Lumea generează zgomot.<br><em>Noi recunoaștem tipare</em>.',
     subline:     'SBF Company SRL · Chișinău<br>Analiză de specialitate, suport pentru conturi de tranzacționare și management discreționare prin parteneri autorizați UE.',

@@ -115,6 +115,37 @@
       <li><a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=nav" target="_blank" rel="noopener" class="nav-platform-link" data-i18n="nav.platform">Платформа</a></li>
     </ul>
 
+  <!-- ══ SNAP PROGRESS — 10 dots (десктоп) ══════════════════ -->
+  <nav id="snap-progress" class="desktop-only" data-i18n-aria="nav.nav_aria" aria-label="Навигация по разделам">
+    <button class="snap-dot active" data-idx="0"  data-i18n-title="dots.0"  title="Карта"></button>
+    <button class="snap-dot" data-idx="1"  data-i18n-title="dots.1"  title="События"></button>
+    <button class="snap-dot" data-idx="2"  data-i18n-title="dots.2"  title="Подход"></button>
+    <button class="snap-dot" data-idx="3"  data-i18n-title="dots.3"  title="Платформа"></button>
+    <button class="snap-dot" data-idx="4"  data-i18n-title="dots.4"  title="PRO-оффер"></button>
+    <button class="snap-dot" data-idx="5"  data-i18n-title="dots.5"  title="Память рынков"></button>
+    <button class="snap-dot" data-idx="6"  data-i18n-title="dots.6"  title="Обучение"></button>
+    <button class="snap-dot" data-idx="7"  data-i18n-title="dots.7"  title="Сопровождение"></button>
+    <button class="snap-dot" data-idx="8"  data-i18n-title="dots.8"  title="Управление"></button>
+    <button class="snap-dot" data-idx="9"  data-i18n-title="dots.9"  title="Контакты"></button>
+  </nav>
+  <div id="sbf-logo">
+      <div id="logo-stream"></div>
+      <div id="chart-stream">
+        <canvas id="chart-logo-canvas"></canvas>
+      </div>
+      <img id="sbf-logo-img" src="assets/logo/logo.svg" alt="SBF Consult логотип" draggable="false">
+
+      <!-- Кольцо занятости знака. На услугах показывает, какую долю работы
+           берёт на себя SBF (1/3 → 2/3 → 3/3), на PRO-экране замыкается
+           целиком. Рисуется поверх знака и ездит вместе с ним. -->
+      <svg id="logo-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="ring-track" cx="50" cy="50" r="46"/>
+        <circle class="ring-fill"  cx="50" cy="50" r="46"/>
+      </svg>
+
+      <!-- Подпись под знаком: что он делает на этом экране -->
+      <p class="logo-hint" id="logo-hint"></p>
+    </div>
     <div class="lang-switcher">
       <button class="lang-btn active" data-lang="ru">RU</button>
       <span class="lang-sep">·</span>
@@ -151,38 +182,7 @@
     </div>
   </div>
 
-  <!-- ══ SNAP PROGRESS — 10 dots (десктоп) ══════════════════ -->
-  <nav id="snap-progress" class="desktop-only" data-i18n-aria="nav.nav_aria" aria-label="Навигация по разделам">
-  <button class="snap-dot active" data-idx="0"  data-i18n-title="dots.0"  title="Карта"></button>
-  <button class="snap-dot" data-idx="1"  data-i18n-title="dots.1"  title="События"></button>
-  <button class="snap-dot" data-idx="2"  data-i18n-title="dots.2"  title="Подход"></button>
-  <button class="snap-dot" data-idx="3"  data-i18n-title="dots.3"  title="Платформа"></button>
-  <button class="snap-dot" data-idx="4"  data-i18n-title="dots.4"  title="PRO-оффер"></button>
-  <button class="snap-dot" data-idx="5"  data-i18n-title="dots.5"  title="Память рынков"></button>
-  <button class="snap-dot" data-idx="6"  data-i18n-title="dots.6"  title="Обучение"></button>
-  <button class="snap-dot" data-idx="7"  data-i18n-title="dots.7"  title="Сопровождение"></button>
-  <button class="snap-dot" data-idx="8"  data-i18n-title="dots.8"  title="Управление"></button>
-  <button class="snap-dot" data-idx="9"  data-i18n-title="dots.9"  title="Контакты"></button>
-  </nav>
-  <div id="sbf-logo">
-    <div id="logo-stream"></div>
-    <div id="chart-stream">
-      <canvas id="chart-logo-canvas"></canvas>
-    </div>
-    <img id="sbf-logo-img" src="assets/logo/logo.svg" alt="SBF Consult логотип" draggable="false">
-
-    <!-- Кольцо занятости знака. На услугах показывает, какую долю работы
-         берёт на себя SBF (1/3 → 2/3 → 3/3), на PRO-экране замыкается
-         целиком. Рисуется поверх знака и ездит вместе с ним. -->
-    <svg id="logo-ring" viewBox="0 0 100 100" aria-hidden="true">
-      <circle class="ring-track" cx="50" cy="50" r="46"/>
-      <circle class="ring-fill"  cx="50" cy="50" r="46"/>
-    </svg>
-
-    <!-- Подпись под знаком: что он делает на этом экране -->
-    <p class="logo-hint" id="logo-hint"></p>
-  </div>
-
+  <!-- ══ ЛОГОТИП (постоянный слой) ════════════════════════ -->
 
   <!-- ══ STOP 1 — Карта + герой ════════════════════════════ -->
   <section class="snap-stop act-hero" id="act-map">
