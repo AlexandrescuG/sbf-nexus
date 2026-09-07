@@ -220,7 +220,6 @@ async function initApproach() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeLens);
 
   /* Десктоп: snap-enter / snap-leave */
-  const logoWrap = document.getElementById('sbf-logo');
   tape.start(); /* GoldTape всегда идёт в фоне */
 
   const section = document.getElementById('act-approach');

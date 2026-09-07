@@ -1,16 +1,11 @@
 /**
- * main.js — bootstrap.
- * Snap-навигация управляет переходами; этот файл запускает CoreEngine,
- * слои и логотип. Lenis удалён.
+ * main.js — bootstrap: шапка, бургер, CTA, мелкие хуки.
+ *
+ * Раньше отсюда стартовали CoreEngine и четыре слоя (glow, thread, pulse,
+ * signal) вокруг общего fixed-логотипа #sbf-logo. Общего логотипа больше
+ * нет — знак принадлежит секции (js/logo.js), холст #core-canvas скрыт, и
+ * движок рисовал в пустоту каждый кадр. Снят вместе со слоями.
  */
-import { CoreEngine   } from './core-engine.js';
-import { GlowLayer    } from './glow-layer.js';
-import { ThreadLayer  } from './thread-layer.js';
-import { PulseLayer   } from './pulse-layer.js';
-import { SignalLayer  } from './signal-layer.js';
-import { CITIES       } from './data/cities.js';
-
-window._sbfCities = CITIES;
 
 /* ── Reduced motion ─────────────────────────────────────── */
 window._sbfReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,27 +16,6 @@ window._sbfMobile = isMobile;
 
 /* ── Forced light color scheme ──────────────────────────── */
 document.documentElement.style.colorScheme = 'light';
-
-/* ── CoreEngine — только десктоп ────────────────────────── */
-const engine = new CoreEngine();
-if (!isMobile) {
-  engine.init();
-  window._sbfEngine = engine;
-  if (!window._sbfReducedMotion) engine.addLayer(new GlowLayer(engine));
-  const threadLayer = new ThreadLayer(engine);
-  engine.addLayer(threadLayer);
-  window._sbfThreadLayer = threadLayer;
-  if (!window._sbfReducedMotion) engine.addLayer(new PulseLayer(engine));
-  engine.addLayer(new SignalLayer(engine));
-}
-
-/* ── Логотип: центровка (heartbeat — через CSS @keyframes sbf-heartbeat) ── */
-const logoWrap = document.getElementById('sbf-logo');
-const logoImg  = document.getElementById('sbf-logo-img');
-
-if (logoWrap) {
-  gsap.set(logoWrap, { xPercent: -50, yPercent: -50 });
-}
 
 /* ── Nav: scrolled-class ────────────────────────────────── */
 const navEl = document.getElementById('site-nav');
@@ -114,15 +88,6 @@ if (stickyBtn) {
   stickyBtn.addEventListener('click', () => window.leadModal?.open());
 }
 
-/* ── Кликабельный лого — переход на платформу ────────── */
-if (logoWrap) {
-  logoWrap.style.pointerEvents = 'auto';
-  logoWrap.style.cursor = 'pointer';
-  logoWrap.addEventListener('click', () => {
-    window.open('https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=logo&utm_campaign=logo_click', '_blank', 'noopener');
-  });
-}
-
 /* ── CTA hero — открывает модалку (только .cta-primary, не nav-ссылки) ── */
 document.querySelectorAll('a.cta-primary[data-snap-target="act-contact"]').forEach(el => {
   el.addEventListener('click', e => {
@@ -130,12 +95,6 @@ document.querySelectorAll('a.cta-primary[data-snap-target="act-contact"]').forEa
     e.stopPropagation();
     window.leadModal?.open();
   }, true);
-});
-
-/* ── Canvas pause при скрытой вкладке ───────────────────── */
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) engine.pause?.();
-  else                 engine.resume?.();
 });
 
 /* ── Lazy preload карты глобуса при входе на act-grow ────── */

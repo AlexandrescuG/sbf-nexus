@@ -176,24 +176,8 @@
   <button class="snap-dot" data-idx="8"  data-i18n-title="dots.8"  title="Управление"></button>
   <button class="snap-dot" data-idx="9"  data-i18n-title="dots.9"  title="Контакты"></button>
   </nav>
-  <div id="sbf-logo">
-    <div id="logo-stream"></div>
-    <div id="chart-stream">
-      <canvas id="chart-logo-canvas"></canvas>
-    </div>
-    <img id="sbf-logo-img" src="assets/logo/logo.svg" alt="SBF Consult логотип" draggable="false">
-
-    <!-- Кольцо занятости знака. На услугах показывает, какую долю работы
-         берёт на себя SBF (1/3 → 2/3 → 3/3), на PRO-экране замыкается
-         целиком. Рисуется поверх знака и ездит вместе с ним. -->
-    <svg id="logo-ring" viewBox="0 0 100 100" aria-hidden="true">
-      <circle class="ring-track" cx="50" cy="50" r="46"/>
-      <circle class="ring-fill"  cx="50" cy="50" r="46"/>
-    </svg>
-
-    <!-- Подпись под знаком: что он делает на этом экране -->
-    <p class="logo-hint" id="logo-hint"></p>
-  </div>
+  <!-- Общего fixed-логотипа #sbf-logo здесь больше нет: знак принадлежит
+       секции (.sect-mark) и шапке (#nav-mark), поведение — в js/logo.js -->
 
 
   <!-- ══ STOP 1 — Карта + герой ════════════════════════════ -->

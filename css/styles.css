@@ -52,46 +52,6 @@ body {
   opacity: 0.5;
 }
 
-/* ── Логотип (z2) ───────────────────────────────────────── */
-/* will-change убран: с ним браузер растеризует SVG → при scale видны пиксели */
-#sbf-logo {
-  position: fixed;
-  left: 50%; top: 50%;
-  z-index: 20;
-  pointer-events: auto;   /* кликабелен по умолчанию, отключается через body-класс */
-  display: grid;
-  grid-template-areas: 'stack';
-}
-
-#sbf-logo > * {
-  grid-area: stack;
-}
-
-#sbf-logo-img {
-  display: block;
-  width: 120px;
-  height: auto;
-  /* НЕТ will-change: SVG растеризуется при промоции слоя и теряет чёткость при scale */
-  filter: drop-shadow(0 0 3px rgba(201,162,39,0.5));
-  transform-origin: 50% 50%;
-  animation: sbf-heartbeat 1.6s ease-in-out infinite;
-  animation-delay: 0.2s;
-}
-@keyframes sbf-heartbeat {
-  0%   { transform: scale(1); }
-  14%  { transform: scale(1.07); }
-  28%  { transform: scale(1); }
-  42%  { transform: scale(1.05); }
-  70%  { transform: scale(1); }
-  100% { transform: scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  #sbf-logo-img { animation: none; }
-}
-
-@media (max-width: 768px) {
-  #sbf-logo-img { width: 72px; height: 72px; }
-}
 
 /* ── Snap-stop: каждая секция = 1 viewport ──────────────── */
 .snap-stop {
@@ -165,8 +125,8 @@ body {
 }
 
 @media (min-width: 768px) and (max-height: 700px) {
-  #sbf-logo { top: 44%; }
-  #sbf-logo-img { width: 100px; }
+
+
   .map-headline-overlay-top { bottom: calc(44% + 50px); }
   .map-headline-overlay-bottom { bottom: calc(var(--ticker-height) + 12px); }
 }
@@ -322,25 +282,6 @@ body {
   z-index: 30;
 }
 
-/* ── Logo stream: поток картинок, обрезанный по силуэту лого ── */
-#logo-stream {
-  /* Размер берётся от grid-родителя (совпадает с #sbf-logo-img) */
-  position: relative;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-
-  /* CSS-маска: форма лого. mask-mode:alpha → прозрачный фон SVG скрывает,
-     золотые пути (fill-opacity:1) — показывают. */
-  -webkit-mask-image: url(../assets/logo/logo.svg);
-          mask-image: url(../assets/logo/logo.svg);
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-mode: alpha;
-          mask-mode: alpha;
-}
 
 .stream-img {
   position: absolute;
@@ -765,30 +706,6 @@ body {
   /* Фазы 3–7: пульсы и вспышки отключаются в JS через window._sbfReducedMotion */
 }
 
-/* ── Act 3: chart-stream (OHLC внутри силуэта лого) ─────── */
-#chart-stream {
-  position: relative;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-
-  -webkit-mask-image: url(../assets/logo/logo.svg);
-          mask-image: url(../assets/logo/logo.svg);
-  -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-mode: alpha;
-          mask-mode: alpha;
-}
-
-#chart-logo-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 
 /* ── Act 3: инфо-оверлей (заголовок + описание актива) ─── */
 .market-info-overlay {
@@ -1159,7 +1076,7 @@ body {
   .hero-subline { font-size: 13px; max-width: 320px; padding: 0 8px; }
   .hero-cta     { width: calc(100% - 48px); max-width: 320px; }
   .cta-primary  { width: 100%; text-align: center; justify-content: center; }
-  #sbf-logo-img { width: 80px; }
+
   .ticker-bar   { height: 28px; }
   .ticker-track span { font-size: 10px; }
   .map-headline-overlay { pointer-events: auto; }
@@ -1195,7 +1112,6 @@ body {
     opacity: 1 !important;
   }
 }
-
 
 
 /* ── Contact mobile ──────────────────────────────────────── */
@@ -1420,8 +1336,6 @@ body {
 }
 .snap-dot:hover { background: rgba(201,162,39,0.6); }
 
-/* ── Grow stop — Сбывшиеся прогнозы ─────────────────────── */
-#logo-stream { display: none !important; }
 
 #act-grow {
   background: var(--cream);
@@ -1920,17 +1834,6 @@ body {
 
 @media (max-width: 767px) { .sticky-cta { display: none; } }
 
-/* ════════════════════════════════════════════════════════════
-   ЛОГО — hover-эффект + cursor pointer
-   ════════════════════════════════════════════════════════════ */
-
-#sbf-logo {
-  cursor: pointer;
-  transition: filter 0.3s;
-}
-#sbf-logo:hover {
-  filter: drop-shadow(0 0 16px rgba(230,194,87,0.8));
-}
 
 /* Навбар на финале скрываем — не нужен поверх карты */
 body.act-act-contact-active .site-nav {
@@ -2476,11 +2379,6 @@ body.act-act-market-active .nav-links a:hover {
   .finale-bottom { height: 40vh; }
 }
 
-@media (max-width: 767px) {
-  body.act-act-contact-active #sbf-logo-img {
-    width: 180px !important;
-  }
-}
 
 /* ══════════════════════════════════════════════════════════
    MOBILE OPTIMIZATION — все правки ниже только мобиле
@@ -2854,48 +2752,6 @@ body.act-act-market-active .nav-links a:hover {
    РАЗДЕЛЫ 1–7 — Стили мобильных блоков (m-*)
    ════════════════════════════════════════════════════════ */
 
-/* ════════════════════════════════════════════════════════════
-   ЛОГО — БАЗОВОЕ СОСТОЯНИЕ
-   Раньше здесь стояла «жёсткая защита» с !important на transform,
-   opacity и width, с комментарием «перебивает любые inline-стили GSAP».
-   Она их и перебивала: логотип был намертво пришпилен к центру экрана,
-   и ни одна пер-актовая анимация не работала — ни перелёт в солнце
-   на финале, ни что-либо ещё. Отсюда и ощущение, что лого «просто висит».
-   Защита была нужна, пока положение логотипа правили четыре файла
-   вразнобой. Теперь у него один владелец — js/logo-roles.js,
-   и перебивать больше нечего.
-   ════════════════════════════════════════════════════════════ */
-
-#sbf-logo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 50;
-  display: grid;
-  visibility: visible;
-}
-
-/* Исключение: на act-grow лого уходит ЗА карточки (z-index карточек: 25) */
-body.act-act-grow-active #sbf-logo {
-  z-index: 20 !important;
-}
-
-#sbf-logo-img {
-  width: 120px;
-  height: auto;
-  visibility: visible;
-  display: block;
-  transform-origin: 50% 50%;
-  animation: sbf-heartbeat 1.6s ease-in-out infinite;
-  /* width из перехода убран: его анимирует GSAP покадрово, и CSS-переход
-     поверх этого только добавлял запаздывание. */
-  transition: filter 0.6s ease;
-}
-
-/* Страховка: на команде лого не дёргается */
-body.act-act-team-active #sbf-logo-img {
-  width: 120px;
-}
 
 /* sbf-logo видим на всех экранах (heartbeat-анимация) */
 
