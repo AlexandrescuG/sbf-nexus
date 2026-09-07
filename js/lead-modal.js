@@ -87,6 +87,9 @@ class LeadModal {
       this.submitBtn.disabled    = true;
       this.submitBtn.textContent = window.i18n?.t('modal.submitting') || 'ОТПРАВКА…';
     }
+    /* Ход отправки слушает знак на финальном экране (act5-contact.js):
+       кольцо идёт вместе с запросом и вспыхивает на успехе. */
+    document.dispatchEvent(new CustomEvent('lead:sending'));
 
     try {
       const res = await fetch('https://lp.sbf.md/submit-nexus', {
@@ -98,9 +101,11 @@ class LeadModal {
       if (!res.ok) throw new Error('api error');
       const result = await res.json();
       this._showSuccess(result.book_url);
+      document.dispatchEvent(new CustomEvent('lead:sent'));
     } catch (err) {
       console.warn('[lead-modal] send failed:', err);
       this._showError();
+      document.dispatchEvent(new CustomEvent('lead:failed'));
     } finally {
       if (this.submitBtn) {
         this.submitBtn.disabled    = false;

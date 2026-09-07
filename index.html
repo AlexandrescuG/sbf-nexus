@@ -722,6 +722,9 @@
       </div>
     </div>
 
+    <!-- Нити от знака к филиалам: координаты считает act5-contact.js -->
+    <svg class="contact-threads" aria-hidden="true"></svg>
+
     <!-- Верхняя зона: филиалы слева и справа -->
     <div class="finale-top">
       <!-- Левый столбец: 2 филиала вертикально -->
@@ -736,6 +739,17 @@
           <p class="branch-addr">Praceta José Figueiredo da Fonseca, nr. 183, Lisabon</p>
           <a href="tel:+351939953919" class="branch-phone">+351 939 953 919</a>
         </div>
+      </div>
+
+      <!-- Центр: знак-узел. Из него нити к четырём филиалам; кольцо идёт
+           вместе с отправкой заявки и вспыхивает на успехе (act5-contact.js) -->
+      <div class="sect-mark contact-hub" data-role="output" data-scripted>
+        <img src="assets/logo/logo.svg" alt="" draggable="false">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="mark-track" cx="50" cy="50" r="46"/>
+          <circle class="mark-fill"  cx="50" cy="50" r="46"/>
+        </svg>
+        <span class="mark-cap" data-i18n="contact.mark_cap"></span>
       </div>
 
       <!-- Правый столбец: 2 филиала вертикально -->

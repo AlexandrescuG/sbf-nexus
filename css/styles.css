@@ -2232,16 +2232,6 @@ body.act-act-market-active .nav-links a:hover {
   .contact-final-card .contact-cta-primary { font-size: 13px; width: 100%; }
 }
 
-/* ── Лого = «солнце» в правом углу на финале ─────────────── */
-body.finale-sun-active #sbf-logo-img {
-  filter:
-    brightness(1.25)
-    drop-shadow(0 0 12px rgba(255,230,120,1.0))
-    drop-shadow(0 0 32px rgba(230,194,87,0.95))
-    drop-shadow(0 0 80px rgba(201,162,39,0.7))
-    drop-shadow(0 0 140px rgba(201,162,39,0.35));
-  transition: filter 1.0s ease;
-}
 
 /* ═══ LIQUID GLASS — карточки в Bloom-стиле ═══ */
 .lg-card {
