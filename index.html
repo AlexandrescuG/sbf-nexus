@@ -376,27 +376,37 @@
         </ol>
         <a class="approach-link" target="_blank" rel="noopener" href="https://lp.sbfconsult.com/chart.html?s=GOLD&amp;utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=approach" data-i18n="approach.cta">Как это выглядит в терминале →</a>
       </div>
-      <div id="approach-chart">
-        <!-- Линза. Знак стоит на движущейся ленте свечей; снаружи кольца
-             свечи сырые, внутри тот же поток дорисовывается с разметкой:
-             уровни, скользящая, подсвеченный паттерн. Единственная секция,
-             чей заголовок буквально описывает функцию знака. -->
-        <div class="sect-mark approach-lens" data-role="process">
-          <img src="assets/logo/logo.svg" alt="" draggable="false">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <circle class="mark-track" cx="50" cy="50" r="46"/>
-            <circle class="mark-fill"  cx="50" cy="50" r="46"/>
-          </svg>
-          <span class="mark-cap" data-i18n="approach.lens_cap"></span>
+      <!-- Колонка графика: подпись сверху, лента с линзой, легенда снизу.
+           Раньше подпись и легенда висели поверх свечей, а под графиком
+           оставалась пустая половина экрана — блок читался как незаконченный. -->
+      <div class="approach-side">
+        <p class="chart-head">
+          <b>XAU/USD · H1</b>
+          <span data-i18n="approach.chart_head">пример разметки на исторических данных</span>
+        </p>
+        <div id="approach-chart">
+          <!-- Линза. Знак стоит на движущейся ленте свечей; снаружи кольца
+               свечи сырые, внутри тот же поток дорисовывается с разметкой:
+               уровни, скользящая, подсвеченный паттерн. -->
+          <div class="sect-mark approach-lens" data-role="process">
+            <img src="assets/logo/logo.svg" alt="" draggable="false">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="mark-track" cx="50" cy="50" r="46"/>
+              <circle class="mark-fill"  cx="50" cy="50" r="46"/>
+            </svg>
+            <span class="mark-cap" data-i18n="approach.lens_cap"></span>
+          </div>
         </div>
-        <!-- Что именно видно внутри кольца: цвета совпадают с отрисовкой
-             в GoldTape._renderLens. Без легенды разметка читалась как узор. -->
-        <ul class="lens-legend" aria-hidden="true">
-          <li class="lg-level"><i></i><span data-i18n="approach.lg_level">уровень</span></li>
-          <li class="lg-sma"><i></i><span data-i18n="approach.lg_sma">SMA 20</span></li>
-          <li class="lg-pat"><i></i><span data-i18n="approach.lg_pat">паттерн</span></li>
-        </ul>
+        <div class="chart-foot">
+          <ul class="lens-legend">
+            <li class="lg-level"><i></i><span data-i18n="approach.lg_level">уровень</span></li>
+            <li class="lg-sma"><i></i><span data-i18n="approach.lg_sma">SMA 20</span></li>
+            <li class="lg-pat"><i></i><span data-i18n="approach.lg_pat">паттерн</span></li>
+          </ul>
+          <span class="chart-hint" data-i18n="approach.hint">наведите — лента остановится</span>
+        </div>
       </div>
+    </div>
     </div>
   </section>
 

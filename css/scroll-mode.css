@@ -286,11 +286,54 @@ html { scroll-behavior: smooth; }
 }
 
 
-/* ── Линза на act-approach ───────────────────────────────────────────────
-   Знак стоит по центру ленты. Само изображение знака внутри линзы
-   приглушено: внутри кольца главное — размеченные свечи, а знак читается
-   как оправа. Клип по окружности делает GoldTape, здесь только положение. */
-#approach-chart { position: relative; }
+/* ── Колонка графика на act-approach ─────────────────────────────────────
+   Раньше здесь был только холст на всю правую половину: подпись линзы и
+   легенда висели поверх свечей, а под графиком оставалась пустая половина
+   экрана — блок читался как незаконченный. Теперь это подписанный график:
+   шапка с инструментом сверху, лента посередине, легенда и подсказка снизу. */
+/* Сцена — ровно 100vh, но секция ещё добавляет отступ под шапку, поэтому
+   низ колонки (легенда и подсказка) уходил на 93px ниже сгиба. Вычитаем
+   шапку из высоты сцены. */
+@media (min-width: 901px) {
+  /* В styles.css высота задана как `#act-approach #approach-stage` —
+     без такой же специфичности правило ниже не применялось. */
+  #act-approach #approach-stage { height: calc(100vh - var(--nav-h, 69px) - 46px); min-height: 520px; }
+}
+.approach-side {
+  display: flex; flex-direction: column;
+  height: 100%; min-height: 0;
+  padding: clamp(16px, 2vw, 28px) clamp(16px, 3vw, 40px) clamp(16px, 2vw, 26px) 0;
+  gap: 10px;
+  pointer-events: auto;
+}
+.chart-head {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin: 0; padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.chart-head b { color: var(--gold-deep); font-weight: 700; letter-spacing: 0.1em; }
+
+/* height:70vh и padding-right:5vw заданы в styles.css для старой раскладки,
+   где холст был прямой колонкой сетки; теперь размер даёт flex-контейнер. */
+#approach-chart {
+  position: relative; flex: 1 1 auto;
+  height: auto !important; min-height: 240px; padding-right: 0 !important;
+}
+
+.chart-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px 16px; flex-wrap: wrap; line-height: 1.6;
+  padding-top: 10px; border-top: 1px solid var(--line);
+}
+.chart-hint {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+
+/* Линза: знак стоит по центру ленты, изображение приглушено — внутри
+   кольца главное размеченные свечи, знак читается как оправа. */
 #approach-chart .approach-lens {
   position: absolute;
   left: 50%; top: 50%;
@@ -300,35 +343,43 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 #approach-chart .approach-lens img { opacity: 0.16; filter: none; }
-/* Подпись линзы шла тонким золотом прямо по свечам и не читалась.
-   Даём ей плашку и полный контраст — это объяснение к картинке. */
+/* Подпись шла тонким золотом прямо по свечам. Плашка того же цвета, что
+   фон страницы, была не видна — даём рамку, тень и тёмный текст. */
 #approach-chart .approach-lens .mark-cap {
-  background: rgba(251, 246, 239, 0.94);
-  padding: 6px 10px; border-radius: 2px;
-  border: 1px solid rgba(201, 162, 39, 0.3);
-  color: var(--ink, #2B2B33); font-size: 11px; letter-spacing: 0.08em;
-  max-width: 210px;
-  top: calc(100% + 0.34 * var(--mark-size, 150px) + 16px);
-}
-/* На невысоком окне колонка шагов длиннее, и подпись линзы доставала до
-   неё в румынском (текст длиннее). Легенда под графиком объясняет то же. */
-@media (max-height: 760px) {
-  #approach-chart .approach-lens .mark-cap { display: none; }
-}
-.lens-legend {
-  background: rgba(251, 246, 239, 0.94);
-  padding: 6px 12px; border-radius: 2px;
-  border: 1px solid rgba(201, 162, 39, 0.22);
+  background: #FFFDF9;
+  padding: 7px 12px; border-radius: 3px;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  border-left: 3px solid var(--gold, #C9A227);
+  box-shadow: 0 6px 18px rgba(43, 43, 51, 0.10);
+  color: var(--ink, #2B2B33); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: none; line-height: 1.45; max-width: 230px;
+  top: calc(100% + 0.34 * var(--mark-size, 150px) + 14px);
 }
 #approach-chart .approach-lens .mark-track { stroke: rgba(201, 162, 39, 0.35); }
 #approach-chart .approach-lens .mark-fill  { stroke-width: 2.2; }
-/* На узких экранах лента свечей — приглушённый фон за текстом, а не
-   отдельная колонка. Линза на фоне ложится под абзацы и читается как шум.
-   Здесь её нет; роль секции на мобайле покажет кольцо в шапке (шаг 2.2). */
+
+.lens-legend {
+  display: flex; gap: 16px; list-style: none; margin: 0; padding: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.lens-legend li { display: flex; align-items: center; gap: 6px; }
+.lens-legend i { width: 14px; height: 0; border-top: 2px solid currentColor; display: block; }
+.lens-legend .lg-level i { border-top-style: dashed; color: var(--gold-deep); }
+.lens-legend .lg-sma i { color: var(--gold); }
+.lens-legend .lg-pat i { border-top: 0; height: 8px; width: 8px; border-radius: 50%; background: var(--glow, #E6C257); }
+
+/* На узких экранах лента — приглушённый фон за текстом, а не колонка:
+   линза, шапка и легенда там только мешали бы. */
 @media (max-width: 900px) {
   #approach-chart .approach-lens { display: none; }
+  .chart-head, .chart-foot { display: none; }
+  .approach-side { padding: 0; }
 }
-
+/* На низком окне подпись линзы упиралась в колонку шагов */
+@media (max-height: 760px) {
+  #approach-chart .approach-lens .mark-cap { display: none; }
+}
 
 /* ── Подход: три шага ────────────────────────────────────────────────────
    Вместо двух абзацев «про международный опыт» — конвейер из трёх шагов,
@@ -377,21 +428,6 @@ html { scroll-behavior: smooth; }
   .approach-link { margin-top: 10px; }
 }
 
-/* Легенда линзы: цвета совпадают с тем, что рисует GoldTape внутри кольца */
-.lens-legend {
-  position: absolute; left: 50%; bottom: 8%;
-  transform: translateX(-50%);
-  display: flex; gap: 16px; list-style: none; margin: 0; padding: 0;
-  font-family: 'JetBrains Mono', monospace; font-size: 10px;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-  pointer-events: none;
-}
-.lens-legend li { display: flex; align-items: center; gap: 6px; }
-.lens-legend i { width: 14px; height: 0; border-top: 2px solid currentColor; display: block; }
-.lens-legend .lg-level i { border-top-style: dashed; color: var(--gold-deep); }
-.lens-legend .lg-sma i { color: var(--gold); }
-.lens-legend .lg-pat i { border-top: 0; height: 8px; width: 8px; border-radius: 50%; background: var(--glow, #E6C257); }
-@media (max-width: 900px) { .lens-legend { display: none; } }
 
 /* ── Вход на act-platform-1 ──────────────────────────────────────────────
    Знак больше не лежит поверх скриншота (читался как водяной знак на чужом

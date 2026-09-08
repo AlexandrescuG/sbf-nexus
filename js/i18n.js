@@ -70,6 +70,8 @@ ru: {
   },
   approach: {
     lens_cap: 'Снаружи — шум. Внутри — уровни, средняя, паттерн',
+    chart_head: 'пример разметки на исторических данных',
+    hint: 'наведите — лента остановится',
     eyebrow: 'Подход',
     heading: 'Шум снаружи — закономерность внутри',
     s1: { t: 'Собираем', p: '842 инструмента и макро-календарь: котировки обновляются каждые 15 секунд, лента событий — каждые 15 минут.' },
@@ -395,6 +397,8 @@ en: {
   },
   approach: {
     lens_cap: 'Outside — noise. Inside — levels, average, pattern',
+    chart_head: 'sample markup on historical data',
+    hint: 'hover to pause the tape',
     eyebrow: 'Approach',
     heading: 'Noise outside — pattern inside',
     s1: { t: 'We collect', p: '842 instruments and the macro calendar: quotes refresh every 15 seconds, the event feed every 15 minutes.' },
@@ -720,6 +724,8 @@ ro: {
   },
   approach: {
     lens_cap: 'În exterior — zgomot. În interior — niveluri, media, tipar',
+    chart_head: 'exemplu de marcaj pe date istorice',
+    hint: 'treceți cursorul — banda se oprește',
     eyebrow: 'Abordare',
     heading: 'Zgomot în exterior — tipar în interior',
     s1: { t: 'Colectăm', p: '842 de instrumente și calendarul macro: cotațiile se actualizează la 15 secunde, fluxul de evenimente la 15 minute.' },

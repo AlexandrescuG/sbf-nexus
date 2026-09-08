@@ -1,225 +1,225 @@
 {
-  "updated": "2026-09-07T16:00:00.272419+00:00",
+  "updated": "2026-09-08T11:30:00.734214+00:00",
   "grow": {
     "brief": {
-      "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
-      "date": "2026-09-07",
+      "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
+      "date": "2026-09-08",
       "lang": "ru",
       "events": [
         {
-          "ts_utc": "2026-09-07T06:00:00Z",
+          "ts_utc": "2026-09-08T00:30:00Z",
           "country": {
-            "en": "UK",
-            "ru": "Великобритания",
-            "ro": "Marea Britanie"
+            "en": "Australia",
+            "ru": "Австралия",
+            "ro": "Australia"
           },
           "title": {
-            "en": "House Price Index YoY",
-            "ru": "Индекс цен на жильё г/г",
-            "ro": "Indicele prețurilor locuințelor a/a"
+            "en": "Consumer Confidence MoM",
+            "ru": "Потребительское доверие (м/м)",
+            "ro": "Încrederea consumatorilor (l/l)"
+          },
+          "impact": "high"
+        },
+        {
+          "ts_utc": "2026-09-08T00:30:00Z",
+          "country": {
+            "en": "Australia",
+            "ru": "Австралия",
+            "ro": "Australia"
+          },
+          "title": {
+            "en": "Consumer Confidence",
+            "ru": "Потребительское доверие",
+            "ro": "Încrederea consumatorilor"
           },
           "impact": "medium"
         },
         {
-          "ts_utc": "2026-09-07T06:00:00Z",
+          "ts_utc": "2026-09-08T01:30:00Z",
           "country": {
-            "en": "UK",
-            "ru": "Великобритания",
-            "ro": "Marea Britanie"
+            "en": "Australia",
+            "ru": "Австралия",
+            "ro": "Australia"
           },
           "title": {
-            "en": "House Price Index MoM",
-            "ru": "Индекс цен на жильё м/м",
-            "ro": "Indicele prețurilor locuințelor l/l"
+            "en": "Business Confidence",
+            "ru": "Деловая уверенность",
+            "ro": "Încrederea în afaceri"
           },
-          "impact": "medium"
-        },
-        {
-          "ts_utc": "2026-09-07T07:00:00Z",
-          "country": {
-            "en": "Switzerland",
-            "ru": "Швейцария",
-            "ro": "Elveția"
-          },
-          "title": {
-            "en": "Unemployment Rate",
-            "ru": "Уровень безработицы",
-            "ro": "Rata șomajului"
-          },
-          "impact": "medium"
+          "impact": "high"
         }
       ],
-      "image": "https://lp.sbfconsult.com/data/brief_image_2026-09-07.png",
-      "image_date": "2026-09-07"
+      "image": "https://lp.sbfconsult.com/data/brief_image_2026-09-08.png",
+      "image_date": "2026-09-08"
     },
     "mover": {
-      "symbol": "USDRUB",
-      "chg_pct": -0.76,
-      "close": 86.6342,
-      "date": "2026-09-04",
+      "symbol": "USDJPY",
+      "chg_pct": -1.52,
+      "close": 153.821,
+      "date": "2026-09-07",
       "spark": [
-        86.8059,
-        87.049,
-        86.5803,
-        86.439,
-        86.7219,
-        86.1581,
-        86.1926,
-        86.1494,
-        85.95,
-        85.955,
-        85.5278,
-        86.4811,
-        86.0472,
-        85.8906,
-        85.9013,
-        85.6916,
-        85.5502,
-        85.519,
-        85.716,
-        85.7107,
-        85.7814,
-        85.7319,
-        85.4506,
-        85.6467
+        154.728,
+        154.488,
+        154.513,
+        154.286,
+        154.391,
+        154.293,
+        154.355,
+        154.339,
+        154.358,
+        154.323,
+        154.31,
+        154.156,
+        153.823,
+        153.79,
+        153.352,
+        153.351,
+        153.331,
+        153.469,
+        153.324,
+        153.779,
+        153.802,
+        154.172,
+        153.914,
+        154.243
       ]
     },
     "pattern": {
-      "symbol": "EURUSD",
+      "symbol": "USDJPY",
       "tf": "D1",
-      "name_ru": "Пин-бар снизу",
-      "key": "pin_bar_bottom",
-      "direction": "bullish",
-      "share": 0.3929,
-      "n": 84
+      "name_ru": "Медвежье поглощение",
+      "key": "bearish_engulfing",
+      "direction": "bearish",
+      "share": 0.5215,
+      "n": 163
     }
   },
   "items": [
     {
       "title": {
-        "en": "House Price Index YoY",
-        "ru": "Индекс цен на жильё г/г",
-        "ro": "Indicele prețurilor locuințelor a/a"
+        "en": "Consumer Confidence MoM",
+        "ru": "Потребительское доверие (м/м)",
+        "ro": "Încrederea consumatorilor (l/l)"
       },
       "tag": {
-        "en": "UK",
-        "ru": "Великобритания",
-        "ro": "Marea Britanie"
+        "en": "Australia",
+        "ru": "Австралия",
+        "ro": "Australia"
       },
-      "lon": -0.13,
-      "lat": 51.5,
-      "id": "cal-1788760800",
-      "ts_utc": "2026-09-07T06:00:00Z",
-      "impact": "medium",
-      "reaction": {
-        "symbol": "GBPUSD",
-        "n": 7,
-        "pct": 0.084
-      }
+      "lon": 151.2,
+      "lat": -33.9,
+      "id": "cal-1788827400",
+      "ts_utc": "2026-09-08T00:30:00Z",
+      "impact": "high"
     },
     {
       "title": {
-        "en": "House Price Index MoM",
-        "ru": "Индекс цен на жильё м/м",
-        "ro": "Indicele prețurilor locuințelor l/l"
+        "en": "Consumer Confidence",
+        "ru": "Потребительское доверие",
+        "ro": "Încrederea consumatorilor"
       },
       "tag": {
-        "en": "UK",
-        "ru": "Великобритания",
-        "ro": "Marea Britanie"
+        "en": "Australia",
+        "ru": "Австралия",
+        "ro": "Australia"
       },
       "lon": -74.0,
       "lat": 40.7,
-      "id": "cal-1788760800",
-      "ts_utc": "2026-09-07T06:00:00Z",
+      "id": "cal-1788827400",
+      "ts_utc": "2026-09-08T00:30:00Z",
       "impact": "medium",
       "reaction": {
-        "symbol": "GBPUSD",
-        "n": 5,
-        "pct": 0.076
+        "symbol": "AUDUSD",
+        "n": 9,
+        "pct": 0.092
       }
     },
     {
       "title": {
-        "en": "Unemployment Rate",
-        "ru": "Уровень безработицы",
-        "ro": "Rata șomajului"
+        "en": "Business Confidence",
+        "ru": "Деловая уверенность",
+        "ro": "Încrederea în afaceri"
       },
       "tag": {
-        "en": "Switzerland",
-        "ru": "Швейцария",
-        "ro": "Elveția"
-      },
-      "lon": 8.54,
-      "lat": 47.4,
-      "id": "cal-1788764400",
-      "ts_utc": "2026-09-07T07:00:00Z",
-      "impact": "medium",
-      "reaction": {
-        "symbol": "USDCHF",
-        "n": 7,
-        "pct": 0.719
-      }
-    },
-    {
-      "title": {
-        "en": "Chancellor John Healey Speech",
-        "ru": "Chancellor John Healey Speech",
-        "ro": "Chancellor John Healey Speech"
-      },
-      "tag": {
-        "en": "UK",
-        "ru": "Великобритания",
-        "ro": "Marea Britanie"
+        "en": "Australia",
+        "ru": "Австралия",
+        "ro": "Australia"
       },
       "lon": 103.8,
       "lat": 1.35,
-      "id": "cal-1788784200",
-      "ts_utc": "2026-09-07T12:30:00Z",
-      "impact": "medium",
+      "id": "cal-1788831000",
+      "ts_utc": "2026-09-08T01:30:00Z",
+      "impact": "high",
       "reaction": {
-        "symbol": "EURGBP",
-        "n": 12,
-        "pct": 0.053
+        "symbol": "AUDUSD",
+        "n": 7,
+        "pct": 0.168
       }
     },
     {
       "title": {
-        "en": "BRC Retail Sales Monitor YoY",
-        "ru": "Мониторинг розничных продаж BRC (г/г)",
-        "ro": "Monitorul vânzărilor cu amănuntul BRC (a/a)"
+        "en": "Exports YoY",
+        "ru": "Экспорт г/г",
+        "ro": "Exporturi a/a"
       },
       "tag": {
-        "en": "UK",
-        "ru": "Великобритания",
-        "ro": "Marea Britanie"
+        "en": "China",
+        "ru": "Китай",
+        "ro": "China"
       },
-      "lon": 139.7,
-      "lat": 35.7,
-      "id": "cal-1788822060",
-      "ts_utc": "2026-09-07T23:01:00Z",
-      "impact": "medium"
+      "lon": 116.4,
+      "lat": 39.9,
+      "id": "cal-1788836400",
+      "ts_utc": "2026-09-08T03:00:00Z",
+      "impact": "high",
+      "reaction": {
+        "symbol": "USDCNY",
+        "n": 6,
+        "pct": 0.061
+      }
     },
     {
       "title": {
-        "en": "Current Account",
-        "ru": "Счёт текущих операций",
-        "ro": "Contul curent"
+        "en": "Balance of Trade",
+        "ru": "Торговый баланс",
+        "ro": "Balanța comercială"
       },
       "tag": {
-        "en": "Japan",
-        "ru": "Япония",
-        "ro": "Japonia"
+        "en": "China",
+        "ru": "Китай",
+        "ro": "China"
       },
-      "lon": 114.2,
-      "lat": 22.3,
-      "id": "cal-1788825000",
-      "ts_utc": "2026-09-07T23:50:00Z",
-      "impact": "medium",
+      "lon": -0.13,
+      "lat": 51.5,
+      "id": "cal-1788836400",
+      "ts_utc": "2026-09-08T03:00:00Z",
+      "impact": "high",
       "reaction": {
-        "symbol": "USDJPY",
-        "n": 11,
-        "pct": 0.039
+        "symbol": "USDCNY",
+        "n": 12,
+        "pct": 0.078
+      }
+    },
+    {
+      "title": {
+        "en": "Imports YoY",
+        "ru": "Импорт г/г",
+        "ro": "Importuri a/a"
+      },
+      "tag": {
+        "en": "China",
+        "ru": "Китай",
+        "ro": "China"
+      },
+      "lon": 139.7,
+      "lat": 35.7,
+      "id": "cal-1788836400",
+      "ts_utc": "2026-09-08T03:00:00Z",
+      "impact": "high",
+      "reaction": {
+        "symbol": "USDCNY",
+        "n": 6,
+        "pct": 0.061
       }
     },
     {
@@ -233,39 +233,9 @@
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
-      "lon": -118.2,
-      "lat": 34.0,
+      "lon": 114.2,
+      "lat": 22.3,
       "id": "buzz-BTC"
-    },
-    {
-      "title": {
-        "en": "XRP · 5 mentions",
-        "ru": "XRP · 5 упоминаний",
-        "ro": "XRP · 5 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": 151.2,
-      "lat": -33.9,
-      "id": "buzz-XRP"
-    },
-    {
-      "title": {
-        "en": "ZEC · 4 mentions",
-        "ru": "ZEC · 4 упоминаний",
-        "ro": "ZEC · 4 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": 55.3,
-      "lat": 25.2,
-      "id": "buzz-ZEC"
     },
     {
       "title": {
@@ -278,24 +248,39 @@
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
-      "lon": -46.6,
-      "lat": -23.5,
+      "lon": -118.2,
+      "lat": 34.0,
       "id": "buzz-ETH"
     },
     {
       "title": {
-        "en": "LTC · 2 mentions",
-        "ru": "LTC · 2 упоминаний",
-        "ro": "LTC · 2 mențiuni"
+        "en": "ZEC · 3 mentions",
+        "ru": "ZEC · 3 упоминаний",
+        "ro": "ZEC · 3 mențiuni"
       },
       "tag": {
         "en": "Buzz",
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
-      "lon": 8.68,
-      "lat": 50.1,
-      "id": "buzz-LTC"
+      "lon": 55.3,
+      "lat": 25.2,
+      "id": "buzz-ZEC"
+    },
+    {
+      "title": {
+        "en": "KAS · 2 mentions",
+        "ru": "KAS · 2 упоминаний",
+        "ro": "KAS · 2 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
+      "lon": -46.6,
+      "lat": -23.5,
+      "id": "buzz-KAS"
     },
     {
       "title": {
@@ -308,48 +293,63 @@
         "ru": "В обсуждениях",
         "ro": "În discuții"
       },
+      "lon": 8.68,
+      "lat": 50.1,
+      "id": "buzz-CRV"
+    },
+    {
+      "title": {
+        "en": "VIX · 1 mentions",
+        "ru": "VIX · 1 упоминаний",
+        "ro": "VIX · 1 mențiuni"
+      },
+      "tag": {
+        "en": "Buzz",
+        "ru": "В обсуждениях",
+        "ro": "În discuții"
+      },
       "lon": -99.1,
       "lat": 19.4,
-      "id": "buzz-CRV"
+      "id": "buzz-VIX"
     }
   ],
   "today": {
-    "headline": "Сильная занятость США подняла шансы на повышение ставки ФРС; тенге ослаб на 3,3% до 455,55",
-    "date": "2026-09-07",
-    "generated_at": "2026-09-07T03:04:58.487304+00:00",
+    "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
+    "date": "2026-09-08",
+    "generated_at": "2026-09-08T03:04:32.292692+00:00",
     "lang": "ru"
   },
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16272,
-      "chg_pct": 0.124,
+      "bid": 1.16151,
+      "chg_pct": -0.1075,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35393,
-      "chg_pct": 0.1702,
+      "bid": 1.3535,
+      "chg_pct": -0.0819,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.388,
-      "chg_pct": -1.1601,
+      "bid": 154.221,
+      "chg_pct": 0.26,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 78783.9,
-      "chg_pct": -1.9202,
+      "bid": 78400.8,
+      "chg_pct": -0.8536,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2468.81,
-      "chg_pct": -1.7921,
+      "bid": 2473.5,
+      "chg_pct": -1.6055000000000001,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-07T15:59:54.910060+00:00"
+  "quotes_updated": "2026-09-08T11:29:49.995681+00:00"
 }
