@@ -192,6 +192,12 @@
            чем пунктов, и не больше шести. */
         active = Math.max(3, Math.min(6, items.length));
         setStatus('Лента: в эфире · ' + items.length + ' событий', true);
+        /* Те же точки нужны глобусу в контактах. Отдаём разобранную ленту,
+           а не адрес файла: сервер отдаёт его с no-cache, и второй запрос
+           был бы вторым сетевым походом за тем же самым. Глобус грузится
+           лениво и почти всегда опаздывает — поэтому и событие, и склад. */
+        window.SBF_GEO_POINTS = items;
+        document.dispatchEvent(new CustomEvent('sbf:geofeed', { detail: items }));
         startSlots();
         renderToday();
         renderTicker();

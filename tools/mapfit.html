@@ -1,0 +1,26 @@
+<!DOCTYPE html><meta charset="utf-8"><body style="margin:0;background:#000">
+<!-- Эталон: world-atlas в равнопромежуточной проекции ровно на [-180,180]×[-90,90].
+     Нужен один раз — чтобы подобрать, как assets/finale/world-map.svg ложится
+     на широту и долготу. Инструмент, не часть сайта. -->
+<canvas id="c" width="2752" height="1538"></canvas>
+<script src="../vendor/d3.min.js"></script>
+<script src="../vendor/topojson-client.min.js"></script>
+<script>
+(async () => {
+  const W = 2752, H = 1538;
+  const c = document.getElementById('c'), ctx = c.getContext('2d');
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+  const topo = await fetch('../vendor/countries-110m.json').then(r => r.json());
+  const geo = topojson.feature(topo, topo.objects.countries);
+  const proj = d3.geoEquirectangular()
+    .scale(W / (2 * Math.PI)).translate([W / 2, H / 2])
+    .rotate([0, 0]);
+  // растянуть по вертикали так, чтобы 180° широты заняли ровно H
+  const path = d3.geoPath(proj, ctx);
+  ctx.save();
+  ctx.translate(0, H / 2); ctx.scale(1, (H / 2) / (W / 4)); ctx.translate(0, -H / 2);
+  ctx.beginPath(); path(geo); ctx.fillStyle = '#fff'; ctx.fill();
+  ctx.restore();
+  window.done = true;
+})();
+</script></body>

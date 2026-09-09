@@ -7,8 +7,51 @@
   'use strict';
 
   const GOLD       = 0xC9A227;
+  /* Ядро офисной точки — светлее фирменного золота: на этой карте океан
+     сам золотой, и точка цвета C9A227 над водой пропадает. */
+  const OFFICE_DOT = 0xFFE9A8;
+  const NEWS       = 0xBFD2E0;   /* холодный — «мир», в отличие от золота «мы» */
   const DARK_BG    = 0x07060c;
   const AUTO_SPEED = 0.0028;
+
+  /* Четыре офиса. Координаты держим здесь, а не в общем справочнике: это
+     наши адреса из разметки секции, а не страны из ленты. */
+  const OFFICES = [
+    { lon:  8.42, lat: 47.28 },   /* Obfelden */
+    { lon: -9.14, lat: 38.72 },   /* Lisboa   */
+    { lon: 28.86, lat: 47.01 },   /* Chișinău */
+    { lon: 55.27, lat: 25.20 },   /* Dubai    */
+  ];
+
+  const NEWS_SLOTS = 5;           /* больше — глобус превращается в гирлянду */
+
+  /* Куда на текстуре попадает точка с координатами lon/lat.
+
+     Наивная формула «u = (lon+180)/360, v = (90−lat)/180» здесь неверна:
+     assets/finale/world-map.svg — не чистая равнопромежуточная картинка на
+     весь viewBox. Карта занимает 91% его ширины и 90% высоты, со сдвигом
+     вниз и вправо (внизу ещё полоса-градиент под Антарктиду). С наивной
+     формулой офис в Обфельдене вставал в Данию, а Кишинёв — под Минск:
+     ошибка в 4° по широте и 14° по долготе, ровно на глаз.
+
+     Коэффициенты подобраны сопоставлением этой SVG с эталоном world-atlas
+     в равнопромежуточной проекции — tools/mapfit.html; совпадение профилей
+     0.994 по долготе и 0.9985 по широте, проверено по мысу Игольному
+     (20.02E, 34.83S): расчёт 1419×1029 px, на картинке 1416×1028. */
+  const TEX_U_K = 0.909747, TEX_U_B = 0.010172;
+  const TEX_V_K = 0.905217, TEX_V_B = 0.041687;
+
+  function llToVec(THREE, lon, lat, r) {
+    /* u — вдоль экватора, v — сверху вниз, как строки картинки */
+    const u = TEX_U_K * (lon + 180) / 360 + TEX_U_B;
+    const v = TEX_V_K * (90 - lat) / 180 + TEX_V_B;
+    const phi = u * Math.PI * 2, theta = v * Math.PI;
+    return new THREE.Vector3(
+      -r * Math.cos(phi) * Math.sin(theta),
+       r * Math.cos(theta),
+       r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
 
   /* ── Build canvas texture from world-map.svg ─────────────── */
   function buildGlobeTexture(THREE, onReady) {
@@ -122,6 +165,123 @@
       root.add(grp);
     })();
 
+    /* ── Точки: четыре офиса и живая гео-лента ───────────────
+       Две разные вещи на одном шаре, и их нельзя путать. Офисы — золото,
+       ровный свет, всегда на месте: это мы. Новости — холодные, мельче и
+       вспыхивают по одной: это мир, который сейчас шумит. Если бы точки
+       ленты были такими же золотыми, четыре наших адреса растворились бы
+       среди сорока чужих, а секция называется «контакты».
+
+       Точки живут внутри root и крутятся вместе с глобусом, а шар
+       непрозрачный — обратная сторона гаснет сама, без ручного отсечения. */
+    const marks = new THREE.Group();
+    root.add(marks);
+
+    /* Размеры точек задаём в пикселях, а не в долях радиуса: контейнер
+       глобуса — min(96vh, 96vw), и одна и та же доля даёт на ноутбуке
+       аккуратную точку, а на большом мониторе кляксу. Шар при camera.z=3.3
+       и fov 38° занимает ≈0.44 высоты кадра на радиус. */
+    const unit = 2.27 / H;
+
+    function addDot(v, color, radius, opacity) {
+      const m = new THREE.Mesh(
+        new THREE.SphereGeometry(radius, 12, 12),
+        new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: opacity })
+      );
+      m.position.copy(v);
+      marks.add(m);
+      return m;
+    }
+    function addRing(v, color, inner, outer, opacity) {
+      const m = new THREE.Mesh(
+        new THREE.RingGeometry(inner, outer, 32),
+        new THREE.MeshBasicMaterial({ color: color, transparent: true,
+                                      opacity: opacity, side: THREE.DoubleSide })
+      );
+      m.position.copy(v);
+      m.lookAt(0, 0, 0);
+      marks.add(m);
+      return m;
+    }
+
+    OFFICES.forEach(function (o) {
+      const v = llToVec(THREE, o.lon, o.lat, 1.012);
+      /* Тёмный ободок вокруг точки, а не подложка под ней: суша на карте
+         золотая, и светлая точка над Португалией без него теряется. Кольцом,
+         а не диском — диск при взгляде вкось выезжал из-под точки тенью. */
+      addRing(v, 0x08060c, 4.8 * unit, 7.4 * unit, 0.55);
+      addDot(v, OFFICE_DOT, 4.5 * unit, 0.95);
+      addRing(v, GOLD, 7.6 * unit, 9.2 * unit, 0.7);
+    });
+
+    /* Слоты ленты: точка + расходящееся кольцо. Заводим их сразу и
+       переставляем по координатам — создавать геометрию на каждую новость
+       значит собирать мусор прямо в кадре. */
+    const newsSlots = [];
+    for (let i = 0; i < NEWS_SLOTS; i++) {
+      const zero = new THREE.Vector3(0, 0, 0);
+      newsSlots.push({
+        dot:  addDot(zero, NEWS, 3 * unit, 0),
+        ring: addRing(zero, NEWS, 5 * unit, 6 * unit, 0),
+        t: 0, life: 0, wait: i * 0.9, point: null,
+      });
+    }
+
+    let geoPool = [];
+    function setPool(items) {
+      geoPool = (items || []).filter(function (o) {
+        return o && o.ll && typeof o.ll[0] === 'number' && typeof o.ll[1] === 'number';
+      });
+    }
+    setPool(window.SBF_GEO_POINTS);
+    document.addEventListener('sbf:geofeed', function (e) { setPool(e.detail); });
+
+    function pickPoint(taken) {
+      if (!geoPool.length) return null;
+      for (let n = 0; n < 12; n++) {
+        const p = geoPool[Math.floor(Math.random() * geoPool.length)];
+        if (taken.indexOf(p.id) === -1) return p;
+      }
+      return null;
+    }
+
+    function stepNews(dt) {
+      const taken = newsSlots.map(function (s) { return s.point ? s.point.id : null; });
+      newsSlots.forEach(function (s) {
+        if (!s.point) {
+          s.wait -= dt;
+          if (s.wait > 0) return;
+          const p = pickPoint(taken);
+          if (!p) { s.wait = 1.5; return; }
+          s.point = p;
+          s.t = 0;
+          s.life = 5.5 + Math.random() * 2.5;
+          const v = llToVec(THREE, p.ll[0], p.ll[1], 1.012);
+          s.dot.position.copy(v);
+          s.ring.position.copy(v);
+          s.ring.lookAt(0, 0, 0);
+          return;
+        }
+        s.t += dt;
+        const u = s.t / s.life;
+        if (u >= 1) {
+          s.point = null;
+          s.dot.material.opacity = 0;
+          s.ring.material.opacity = 0;
+          s.wait = 0.4 + Math.random() * 1.2;
+          return;
+        }
+        /* Появление и уход — по краям жизни, между ними ровный свет */
+        const fade = Math.min(1, u / 0.14) * Math.min(1, (1 - u) / 0.18);
+        s.dot.material.opacity = 0.62 * fade;
+        /* Кольцо расходится один раз, в начале: это «здесь только что
+           произошло», а не мигающая лампочка */
+        const r = Math.min(1, u / 0.45);
+        s.ring.scale.setScalar(1 + r * 2.6);
+        s.ring.material.opacity = 0.5 * (1 - r) * Math.min(1, u / 0.1);
+      });
+    }
+
     /* ── Atmosphere — gold rim glow ─────────────────────────── */
     root.add(new THREE.Mesh(
       new THREE.SphereGeometry(1.18, 64, 64),
@@ -154,7 +314,10 @@
 
     /* ── Drag interaction ───────────────────────────────────── */
     let drag = false, px = 0, py = 0;
-    let rotY = 0.3, rotX = -0.08;
+    /* Начальный поворот — Европа и Ближний Восток лицом к зрителю: три из
+       четырёх офисов и почти вся лента живут там. При прежнем 0.3 секция
+       контактов открывалась пустой Атлантикой и золотых точек ждали полминуты. */
+    let rotY = -1.9, rotX = -0.08;
 
     canvas.style.cursor = 'grab';
     canvas.addEventListener('pointerdown', e => {
@@ -176,10 +339,15 @@
     });
 
     /* ── Animation loop ─────────────────────────────────────── */
-    let raf = null, active = false;
+    let raf = null, active = false, prev = 0;
 
-    function animate() {
+    function animate(now) {
       raf = requestAnimationFrame(animate);
+      /* Метка rAF бывает раньше performance.now(): без клампа dt уходит в
+         минус и вспышки ленты идут назад по времени. */
+      const dt = prev ? Math.max(0, Math.min(0.05, (now - prev) / 1000)) : 0;
+      prev = now;
+      stepNews(dt);
       if (!drag) rotY += AUTO_SPEED;
       root.rotation.y = rotY;
       root.rotation.x = rotX;

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T11:54:12.310939+00:00",
+  "updated": "2026-09-09T12:20:01.362579+00:00",
   "grow": {
     "brief": {
       "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
@@ -135,9 +135,9 @@
     },
     {
       "title": {
-        "ru": "Занятость ADP, за неделю · США",
-        "en": "ADP Employment Change Weekly",
-        "ro": "ADP Employment Change Weekly"
+        "ru": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high",
+        "en": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high",
+        "ro": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -146,11 +146,265 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "ev-9faeccc15ec43a80",
-      "kind": "event",
-      "rule": "calendar",
-      "impact": "medium",
-      "ts_utc": "2026-09-09T12:15:00Z"
+      "id": "nw-882721437",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:20:01Z",
+      "source": "CoinTelegraph",
+      "url": "https://cointelegraph.com/markets/bitcoin-faces-key-support-test-at-783k-as-us-crude-oil-hits-three-month-high?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+    },
+    {
+      "title": {
+        "ru": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin",
+        "en": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin",
+        "ro": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-554966201",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:59Z",
+      "source": "CoinTelegraph",
+      "url": "https://cointelegraph.com/news/block-us-trust-bank-charter-bitcoin-stablecoin-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+    },
+    {
+      "title": {
+        "ru": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes",
+        "en": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes",
+        "ro": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-106218554",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:56Z",
+      "source": "CoinDesk",
+      "url": "https://www.coindesk.com/markets/2026/09/09/bitcoin-climbs-as-oil-tops-usd100-equities-drop-after-iran-strikes"
+    },
+    {
+      "title": {
+        "ru": "China exports match forecast in August, imports fall short as domestic demand stays soft",
+        "en": "China exports match forecast in August, imports fall short as domestic demand stays soft",
+        "ro": "China exports match forecast in August, imports fall short as domestic demand stays soft"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-558543206",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:55Z",
+      "source": "ForexLive",
+      "url": "https://investinglive.com/news/china-exports-match-forecast-in-august-imports-fall-short-as-domestic-demand-stays-soft/"
+    },
+    {
+      "title": {
+        "ru": "Germany's trade surplus widens sharply in July as imports slump",
+        "en": "Germany's trade surplus widens sharply in July as imports slump",
+        "ro": "Germany's trade surplus widens sharply in July as imports slump"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-287945000",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:55Z",
+      "source": "ForexLive",
+      "url": "https://investinglive.com/news/germany-s-trade-surplus-widens-sharply-in-july-as-imports-slump/"
+    },
+    {
+      "title": {
+        "ru": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
+        "en": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
+        "ro": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites"
+      },
+      "tag": {
+        "en": "Эр-Рияд",
+        "ru": "Эр-Рияд",
+        "ro": "Эр-Рияд"
+      },
+      "lon": 46.72,
+      "lat": 24.71,
+      "id": "nw-599538047",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:54Z",
+      "source": "ForexLive",
+      "url": "https://investinglive.com/news/oil-prices-extend-gains-as-yemen-s-houthis-threaten-broader-saudi-operation-after-attacks-hit-energy-sites/"
+    },
+    {
+      "title": {
+        "ru": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
+        "en": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
+        "ro": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets"
+      },
+      "tag": {
+        "en": "Эр-Рияд",
+        "ru": "Эр-Рияд",
+        "ro": "Эр-Рияд"
+      },
+      "lon": 46.72,
+      "lat": 24.71,
+      "id": "nw-721943027",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:54Z",
+      "source": "ForexLive",
+      "url": "https://investinglive.com/news/investinglive-european-news-wrap-oil-prices-rise-as-houthis-escalate-attacks-on-saudi-targets/"
+    },
+    {
+      "title": {
+        "ru": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)",
+        "en": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)",
+        "ro": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-682303059",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:53Z",
+      "source": "ForexLive",
+      "url": "https://investinglive.com/news/china-august-cpi-y-y-expected-0-8-prior-0-5/"
+    },
+    {
+      "title": {
+        "ru": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale",
+        "en": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale",
+        "ro": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale"
+      },
+      "tag": {
+        "en": "Варшава",
+        "ru": "Варшава",
+        "ro": "Варшава"
+      },
+      "lon": 21.01,
+      "lat": 52.23,
+      "id": "nw-693988734",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:52Z",
+      "source": "FXStreet",
+      "url": "https://www.fxstreet.com/news/polish-zloty-policy-on-hold-keeps-pln-supported-against-euro-societe-generale-202609090941"
+    },
+    {
+      "title": {
+        "ru": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow",
+        "en": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow",
+        "ro": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow"
+      },
+      "tag": {
+        "en": "Токио",
+        "ru": "Токио",
+        "ro": "Токио"
+      },
+      "lon": 139.69,
+      "lat": 35.69,
+      "id": "nw-761242415",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:52Z",
+      "source": "FXStreet",
+      "url": "https://www.fxstreet.com/news/australian-dollar-slips-against-japanese-yen-as-boj-rate-hike-bets-grow-202609090946"
+    },
+    {
+      "title": {
+        "ru": "Norges Bank: One more hike then gradual cuts – Nomura",
+        "en": "Norges Bank: One more hike then gradual cuts – Nomura",
+        "ro": "Norges Bank: One more hike then gradual cuts – Nomura"
+      },
+      "tag": {
+        "en": "Осло",
+        "ru": "Осло",
+        "ro": "Осло"
+      },
+      "lon": 10.75,
+      "lat": 59.91,
+      "id": "nw-641527201",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:51Z",
+      "source": "FXStreet",
+      "url": "https://www.fxstreet.com/news/norges-bank-one-more-hike-then-gradual-cuts-nomura-202609091114"
+    },
+    {
+      "title": {
+        "ru": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level",
+        "en": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level",
+        "ro": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level"
+      },
+      "tag": {
+        "en": "Веллингтон",
+        "ru": "Веллингтон",
+        "ro": "Веллингтон"
+      },
+      "lon": 174.78,
+      "lat": -41.29,
+      "id": "nw-216808956",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:19:51Z",
+      "source": "FXStreet",
+      "url": "https://www.fxstreet.com/news/new-zealand-dollar-extends-losses-below-05850-as-oil-prices-approach-the-100-level-202609091155"
+    },
+    {
+      "title": {
+        "ru": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran",
+        "en": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran",
+        "ro": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-951870986",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T12:17:45Z",
+      "source": "Yahoo Personal Finance",
+      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-tuesday-september-8-2026-gold-moves-lower-following-fresh-escalations-with-iran-111035525.html"
     },
     {
       "title": {
@@ -169,156 +423,9 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T11:53:39Z",
+      "ts_utc": "2026-09-09T12:17:44Z",
       "source": "Reuters",
       "url": "https://finance.yahoo.com/news/argentinas-corn-exports-set-record-101814752.html"
-    },
-    {
-      "title": {
-        "ru": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
-        "en": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
-        "ro": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-685162095",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:38Z",
-      "source": "Yahoo Personal Finance",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html"
-    },
-    {
-      "title": {
-        "ru": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
-        "en": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
-        "ro": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-277415981",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:36Z",
-      "source": "CNBC Finance",
-      "url": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html"
-    },
-    {
-      "title": {
-        "ru": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
-        "en": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
-        "ro": "China just pumped $54 billion into banks and insurers — but their stocks still fell"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-710564423",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:35Z",
-      "source": "CNBC Finance",
-      "url": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html"
-    },
-    {
-      "title": {
-        "ru": "Brent crude reaches $100 as war in Iran intensifies",
-        "en": "Brent crude reaches $100 as war in Iran intensifies",
-        "ro": "Brent crude reaches $100 as war in Iran intensifies"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-95385153",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:34Z",
-      "source": "MarketWatch",
-      "url": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories"
-    },
-    {
-      "title": {
-        "ru": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates",
-        "en": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates",
-        "ro": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-203251628",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:31Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/business/2026/sep/09/oil-prices-rise-iran-war-brent-crude-inflation-higher-interest-rates"
-    },
-    {
-      "title": {
-        "ru": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
-        "en": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
-        "ro": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’"
-      },
-      "tag": {
-        "en": "Лондон",
-        "ru": "Лондон",
-        "ro": "Лондон"
-      },
-      "lon": -0.13,
-      "lat": 51.51,
-      "id": "nw-15472837",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:29Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/australia-news/2026/sep/09/australia-considers-new-israel-sanctions-but-wont-join-uk-in-banning-trade-with-settler-terrorists-ntwnfb"
-    },
-    {
-      "title": {
-        "ru": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
-        "en": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
-        "ro": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-977406786",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T11:53:28Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/world/2026/sep/07/canada-tariffs-us-trump"
     }
   ],
   "today": {
@@ -330,34 +437,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16441,
-      "chg_pct": 0.1428,
+      "bid": 1.1651799999999999,
+      "chg_pct": 0.209,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35577,
-      "chg_pct": 0.1085,
+      "bid": 1.35603,
+      "chg_pct": 0.1277,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 153.292,
-      "chg_pct": -0.1017,
+      "bid": 153.284,
+      "chg_pct": -0.1069,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79294.2,
-      "chg_pct": 1.0981,
+      "bid": 79336.7,
+      "chg_pct": 1.1522999999999999,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2501.47,
-      "chg_pct": -0.4929,
+      "bid": 2499.32,
+      "chg_pct": -0.5784,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-09T11:53:58.964065+00:00"
+  "quotes_updated": "2026-09-09T12:19:59.228308+00:00"
 }
