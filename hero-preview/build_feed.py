@@ -1,42 +1,123 @@
 #!/usr/bin/env python3
-"""Готовит ленту для первого экрана из данных market_intel.
+"""Готовит ленту для первого экрана: точки на карте, бриф дня, котировки.
 
-Читает (только на чтение, чужая зона) календарь макро-событий и тикеры,
-которые обсуждают, и складывает их в формат, который понимает герой:
-{"items": [{"title": {ru,en,ro}, "tag": {ru,en,ro}, "lon", "lat", "id"}]}
+Точки на карте берутся из /api/geo/feed платформы — там уже посчитана
+географическая привязка с указанием основания (поле `rule`). Своего
+справочника координат здесь нет и быть не должно: два справочника
+разъезжаются, и одна страна оказывается в разных местах на карте и на
+глобусе.
 
-Каждый пункт несёт сразу три языка: на карте не должно быть смеси.
-Названия макро-показателей переводит словарь `calendar-terms.js` из
-market_intel — 569 индикаторов, ключ совпадает с полем `indicator`.
+Что показываем на карте и почему:
+
+  calendar  событие макро-календаря, страна взята из данных.  Показываем.
+  headline  место названо в самом заголовке новости.          Показываем.
+  symbol    страна инструмента, опознанного в тексте.         НЕ показываем:
+            «Fortum Shares Jump on Google Nuclear Deal» уезжает в Нью-Йорк,
+            хотя Fortum финская. Ошибка такого рода проверяется одним
+            взглядом и бьёт по доверию сильнее, чем отсутствие точки.
+
+До 09.09.2026 вторая половина ленты (обсуждаемые тикеры) расставлялась
+функцией `free_ll()` — «возьми следующий свободный город из списка», лишь
+бы подписи не наложились. Это давало Intel во Франкфурте и Amazon в
+Гонконге: шесть точек из шести мимо. Блок удалён вместе с обоими
+справочниками координат.
+
+Формат на выходе понимает js/hero-map.js:
+{"items": [{"title": {ru,en,ro}, "tag": {ru,en,ro}, "lon", "lat", "id", ...}]}
 
 Запуск: python3 build_feed.py   → sbf-nexus/hero-feed.json
-Источник обновляется кроном market_intel, поэтому запускать по расписанию,
-например раз в 15 минут.
+Крон каждые 15 минут, со сдвигом от sbf-news-geo.timer, чтобы лента
+собиралась уже по свежей привязке.
 """
-import json, pathlib, datetime, re
+import json, pathlib, datetime, re, sys, urllib.request, urllib.error
 
 SRC_DIR = pathlib.Path('/mnt/sbfdata/sbf-platform/market_intel/web/data')
 TERMS_JS = pathlib.Path('/mnt/sbfdata/sbf-platform/market_intel/web/edu/assets/calendar-terms.js')
 OUT = pathlib.Path('/mnt/sbfdata/sbf-nexus/hero-feed.json')
 
-# Столицы/финансовые центры — куда ставить точку для события страны
-COUNTRY_LL = {
-    'US': (-74.0, 40.7), 'EU': (8.68, 50.1), 'DE': (13.4, 52.5), 'FR': (2.35, 48.9),
-    'GB': (-0.13, 51.5), 'UK': (-0.13, 51.5), 'JP': (139.7, 35.7), 'CN': (116.4, 39.9),
-    'CH': (8.54, 47.4), 'CA': (-79.4, 43.7), 'AU': (151.2, -33.9), 'NZ': (174.8, -41.3),
-    'IT': (12.5, 41.9), 'ES': (-3.70, 40.4), 'RU': (37.6, 55.7), 'IN': (72.8, 19.1),
-    'BR': (-46.6, -23.5), 'MX': (-99.1, 19.4), 'TR': (32.9, 39.9), 'ZA': (28.0, -26.2),
-    'SG': (103.8, 1.35), 'HK': (114.2, 22.3), 'AE': (55.3, 25.2), 'MD': (28.86, 47.0),
-}
-# Криптo и металлы страны не имеют — раскидываем по биржевым городам.
-# Точек нарочно много и они разнесены: герой рисует нити от Кишинёва к точке,
-# и на близких координатах подписи налезают друг на друга.
-ASSET_LL = [
-    (-74.0, 40.7), (103.8, 1.35), (-0.13, 51.5), (139.7, 35.7), (114.2, 22.3),
-    (-118.2, 34.0), (151.2, -33.9), (55.3, 25.2), (-46.6, -23.5), (8.68, 50.1),
-    (-99.1, 19.4), (72.8, 19.1),
-]
+GEO_API = 'https://lp.sbfconsult.com/api/geo/feed?hours=24&limit=60&kind=all'
 
+# Ярусы привязки, которым доверяем настолько, чтобы ставить точку на карту.
+# `symbol` намеренно вне списка — см. шапку файла.
+TRUSTED_RULES = ('calendar', 'headline')
+
+# Карта первого экрана — про рынок. В ленту новостей приходит и то, что к
+# рынку отношения не имеет: «Print Edition | Wall Street Journal» (служебный
+# заголовок рубрики), регби, гобелен из Байё. Пропускаем заголовок, если в
+# нём есть рыночный маркер и нет служебного шаблона.
+MARKET_WORDS = (
+    'stock', 'share', 'market', 'bond', 'yield', 'treasur', 'oil', 'brent', 'crude',
+    'gas', 'gold', 'dollar', 'euro', 'yen', 'currenc', 'inflation', 'cpi', 'gdp',
+    'rate', 'fed', 'ecb', 'central bank', 'tariff', 'trade', 'export', 'import',
+    'earning', 'revenue', 'profit', 'ipo', 'merger', 'deal', 'invest', 'fund',
+    'economy', 'economic', 'jobs', 'unemploy', 'budget', 'debt', 'bank',
+    'акци', 'рынок', 'рынк', 'ставк', 'инфляц', 'ввп', 'нефт', 'газ', 'золот',
+    'доллар', 'евро', 'иен', 'облигац', 'бирж', 'тариф', 'торгов', 'экспорт',
+    'импорт', 'прибыл', 'выручк', 'банк', 'бюджет', 'долг', 'занятост',
+)
+JUNK_PATTERNS = ('print edition', 'photos of', 'what to watch', 'quiz', 'crossword',
+                 'west bank',      # «West Bank» — это не банк, а Западный берег
+                 'luncheon', 'walks by', 'helps organize', 'to host', 'photo')
+
+# Рыночного слова мало: «Kentucky State to Host Annual Federal Reserve
+# Luncheon» и подпись к фото «A man walks by the Federal Reserve Bank» его
+# содержат, но новостями рынка не являются. Требуем ещё и признак события —
+# число (цена, процент, объём) или глагол движения. Заголовок рыночной
+# новости почти всегда несёт одно из двух.
+NUMBERS = re.compile(r'[$€£¥]\s?\d|\d+(?:[.,]\d+)?\s?%|\b\d{2,}\b')
+ACTION_WORDS = (
+    'rise', 'rises', 'rose', 'fall', 'falls', 'fell', 'jump', 'jumps', 'surge',
+    'surges', 'drop', 'drops', 'plunge', 'plunges', 'rally', 'rallies', 'tumble',
+    'slump', 'climb', 'gain', 'gains', 'lose', 'loses', 'cut', 'cuts', 'hike',
+    'hikes', 'raise', 'raises', 'hold', 'holds', 'halt', 'halts', 'ban', 'bans',
+    'impose', 'imposes', 'take effect', 'takes effect', 'hit', 'hits', 'top',
+    'tops', 'reach', 'reaches', 'sign', 'signs', 'launch', 'launches', 'set for',
+    'record', 'beat', 'beats', 'miss', 'misses', 'warn', 'warns', 'pump', 'pumps',
+    'вырос', 'упал', 'подорожал', 'подешевел', 'снизил', 'повысил', 'сократил',
+    'рекорд', 'обвал', 'скачок',
+)
+_ACTION = re.compile(r'\b(' + '|'.join(
+    w.replace(' ', r'\s') for w in ACTION_WORDS if w.isascii()) + r')', re.I)
+_ACTION_CYR = tuple(w for w in ACTION_WORDS if not w.isascii())
+
+# Одна страна не должна занимать всю карту: в один прогон приходило шесть
+# заголовков про ФРС, и все шесть вставали в Нью-Йорк.
+MAX_PER_PLACE = 2
+
+# Латинские маркеры ищем по началу слова, кириллические — как корни.
+# Без границы слова 'bank' находился в «West Bank», и новость про санкции
+# на Западном берегу уезжала на карту как рыночная.
+_LATIN = re.compile(r'\b(' + '|'.join(
+    w for w in MARKET_WORDS if w.isascii()) + r')', re.I)
+_CYR = tuple(w for w in MARKET_WORDS if not w.isascii())
+
+
+def market_related(title: str) -> bool:
+    t = (title or '').lower()
+    if any(j in t for j in JUNK_PATTERNS):
+        return False
+    topic = bool(_LATIN.search(t)) or any(w in t for w in _CYR)
+    event = bool(NUMBERS.search(t)) or bool(_ACTION.search(t)) \
+        or any(w in t for w in _ACTION_CYR)
+    return topic and event
+
+
+def fetch_geo():
+    """Лента привязок платформы. Молча подставлять старьё нельзя: если ручка
+    недоступна, лучше не трогать hero-feed.json и сказать об этом вслух."""
+    # Без своего User-Agent ручка отвечает 403: клиент urllib по умолчанию
+    # представляется «Python-urllib/3.x», и фронт lp его отсекает. С любым
+    # осмысленным UA (проверено тремя) приходит 200.
+    req = urllib.request.Request(GEO_API, headers={
+        'User-Agent': 'sbf-nexus/build_feed (+https://sbfconsult.com)',
+        'Accept': 'application/json',
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read().decode('utf-8'))
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError) as exc:
+        print(f'  /api/geo/feed недоступен ({exc}) — лента не перезаписана')
+        return None
 
 # Названия стран для подписи под событием
 COUNTRY_NAMES = {
@@ -123,91 +204,87 @@ def load(name):
         return None
 
 
-items, seen = [], set()
-used_ll = set()
+items = []
 untranslated = set()
 
-
-def free_ll(preferred=None):
-    """Свободная точка на карте. Две новости в одном городе — это две подписи
-    друг на друге, поэтому координаты не переиспользуются."""
-    if preferred and preferred not in used_ll:
-        used_ll.add(preferred)
-        return preferred
-    for ll in ASSET_LL:
-        if ll not in used_ll:
-            used_ll.add(ll)
-            return ll
-    return preferred or ASSET_LL[len(used_ll) % len(ASSET_LL)]
-
-# 1. Макро-календарь: у события есть страна — ставим точку по ней
 brief = load('brief_today.json')
+
+# ── Точки на карте: одна ручка платформы, один справочник координат ──────
+geo = fetch_geo()
+if geo is None:
+    sys.exit(1)          # не переписываем ленту старьём и не молчим
+
+# Ожидаемая реакция рынка есть только в brief_today (медиана хода за 30 минут
+# по прошлым выходам показателя). Сопоставляем с событием календаря по стране
+# и времени: у геоленты этих чисел нет, а на карточке они главное.
+reactions = {}
 for ev in (brief or {}).get('calendar', []):
-    title = (ev.get('title') or '').strip()
-    if not title or title in seen:
-        continue
-    ll = COUNTRY_LL.get((ev.get('country') or '').upper())
-    if not ll:
-        continue
-    ll = free_ll(ll)
-    seen.add(title)
-    indicator = (ev.get('indicator') or '').strip()
-    if indicator.lower() in PLACEHOLDER_INDICATORS:
-        indicator = ''
-    name = indicator or title
-    if name in EVENT_NAMES:
-        en, ru, ro = EVENT_NAMES[name]
-        head = tri(en, ru, ro)
-    else:
-        head = tri_term(name)
-        if name not in TERMS:
-            untranslated.add(name)
-    country = (ev.get('country') or '').upper()
-    cn = COUNTRY_NAMES.get(country)
-    item = {
-        'title': head,
-        'tag': tri(*cn) if cn else tri('Calendar', 'Календарь', 'Calendar'),
-        'lon': ll[0], 'lat': ll[1],
-        'id': f"cal-{ev.get('scheduled_ts') or len(items)}",
-        'ts_utc': ev.get('ts_utc'),
-        'impact': (ev.get('impact') or '').lower() or None,
-    }
-    # Ожидаемая реакция: медиана хода за 30 минут по прошлым выходам.
-    # Меньше пяти наблюдений — это не статистика, а совпадение: не показываем.
     pr = ev.get('past_reaction') or {}
-    if pr.get('n', 0) >= 5 and pr.get('median_atr_30m'):
-        item['reaction'] = {'symbol': pr.get('symbol'),
-                            'n': pr['n'],
-                            'pct': round(float(pr['median_atr_30m']), 3)}
+    if pr.get('n', 0) < 5 or not pr.get('median_atr_30m'):
+        continue          # меньше пяти наблюдений — совпадение, а не статистика
+    ts = ev.get('scheduled_ts')
+    key = ((ev.get('country') or '').upper(), int(ts) if ts else None)
+    reactions[key] = {'symbol': pr.get('symbol'), 'n': pr['n'],
+                      'pct': round(float(pr['median_atr_30m']), 3)}
+
+skipped = {'rule': 0, 'offtopic': 0, 'crowded': 0}
+per_place = {}
+for it in geo.get('items', []):
+    rule = it.get('rule')
+    if rule not in TRUSTED_RULES:
+        skipped['rule'] += 1
+        continue
+    if it.get('lon') is None or it.get('lat') is None:
+        continue
+
+    ru = (it.get('title') or '').strip()
+    en = (it.get('title_en') or '').strip() or ru
+    if not ru:
+        continue
+
+    if it.get('kind') == 'news' and not market_related(ru):
+        skipped['offtopic'] += 1
+        continue
+
+    country = (it.get('country') or '').upper()
+    place   = (it.get('place') or '').strip()
+
+    # События календаря пропускаем всегда: их немного и они — факт.
+    # Новости из уже занятого города придержим, иначе карта превращается
+    # в один Нью-Йорк.
+    if it.get('kind') == 'news':
+        key = place or country
+        if per_place.get(key, 0) >= MAX_PER_PLACE:
+            skipped['crowded'] += 1
+            continue
+        per_place[key] = per_place.get(key, 0) + 1
+    # Румынского в ленте нет: у новостей его взять неоткуда, а выдумывать
+    # перевод заголовка нельзя — показываем английский.
+    item = {
+        'title': {'ru': ru, 'en': en, 'ro': en},
+        'tag': tri(place or country, place or country, place or country),
+        'lon': it['lon'], 'lat': it['lat'],
+        'id': it.get('id') or f"{rule}-{len(items)}",
+        'kind': it.get('kind'),
+        'rule': rule,
+        'impact': (it.get('impact') or '').lower() or None,
+    }
+    if it.get('ts'):
+        item['ts_utc'] = datetime.datetime.fromtimestamp(
+            it['ts'], datetime.timezone.utc).isoformat().replace('+00:00', 'Z')
+    if it.get('source'):
+        item['source'] = it['source']
+    if it.get('url'):
+        item['url'] = it['url']
+
+    r = reactions.get((country, it.get('ts')))
+    if r:
+        item['reaction'] = r
     items.append(item)
 
-# 2. Тикеры, которые сейчас обсуждают — по биржевым городам
-buzz = load('buzz.json')
-for i, t in enumerate((buzz or {}).get('tickers', [])[:6]):
-    tag = (t.get('tag') or '').strip()
-    if not tag or tag in seen:
-        continue
-    seen.add(tag)
-    ll = free_ll()
-    n = t.get('mentions', 0)
-    items.append({
-        'title': tri(f'{tag} · {n} mentions', f'{tag} · {n} упоминаний', f'{tag} · {n} mențiuni'),
-        'tag': tri('Buzz', 'В обсуждениях', 'În discuții'),
-        'lon': ll[0], 'lat': ll[1],
-        'id': f'buzz-{tag}',
-    })
-
-# 3. Аномалии — если есть, они интереснее всего
-anom = load('anomalies.json')
-for i, a in enumerate((anom or {}).get('anomalies', [])[:4]):
-    title = (a.get('title') or a.get('symbol') or '').strip()
-    if not title or title in seen:
-        continue
-    seen.add(title)
-    ll = free_ll()
-    items.append({'title': tri_term(title),
-                  'tag': tri('Alert', 'Аномалия', 'Anomalie'),
-                  'lon': ll[0], 'lat': ll[1], 'id': f'anom-{i}'})
+print(f'  точек на карту: {len(items)}  '
+      f"(отброшено: ярус symbol {skipped['rule']}, "
+      f"не про рынок {skipped['offtopic']}, город занят {skipped['crowded']})")
 
 # 4. Заголовок сегодняшнего брифа — единственная строка на первом экране,
 # которая говорит «из этого шума уже что-то извлечено».
@@ -253,6 +330,10 @@ if brief:
     for e in (brief.get('calendar') or [])[:3]:
         name = (e.get('indicator') or e.get('title') or '').strip()
         head = tri(*EVENT_NAMES[name]) if name in EVENT_NAMES else tri_term(name)
+        # Учёт непереведённых показателей раньше вёлся в блоке карты; тот
+        # блок ушёл вместе с buzz-тикерами, и сигнал бы потерялся молча.
+        if name and name not in EVENT_NAMES and name not in TERMS:
+            untranslated.add(name)
         cn = COUNTRY_NAMES.get((e.get('country') or '').upper())
         ev.append({'ts_utc': e.get('ts_utc'),
                    'country': tri(*cn) if cn else tri('', '', ''),

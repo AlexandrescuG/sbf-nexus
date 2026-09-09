@@ -42,55 +42,18 @@
   var FEED_URL = '/hero-feed.json';
   var POLL_MS = 60000;
 
-  var GEO = [
-    [/\b(fed|fomc|powell|treasur|доллар|фрс)\b/i,            [-77.0, 38.9],  'Washington'],
-    [/\b(spx|s&p|nasdaq|dow|wall street|nyse|equit)\b/i,     [-74.0, 40.7],  'New York'],
-    [/\b(cme|chicago|futures|фьючерс)\b/i,                   [-87.6, 41.9],  'Chicago'],
-    [/\b(ecb|euro|eur|frankfurt|lagarde|ецб|евро)\b/i,       [8.68, 50.1],   'Frankfurt'],
-    [/\b(boe|gbp|london|ftse|sterling|фунт)\b/i,             [-0.13, 51.5],  'London'],
-    [/\b(gold|xau|silver|xag|золот|серебр)\b/i,              [-0.13, 51.5],  'London'],
-    [/\b(snb|chf|zurich|swiss)\b/i,                          [8.54, 47.4],   'Zurich'],
-    [/\b(boj|jpy|yen|tokyo|nikkei|иена)\b/i,                 [139.7, 35.7],  'Tokyo'],
-    [/\b(pboc|yuan|cny|china|shanghai|copper|медь|китай)\b/i,[121.5, 31.2],  'Shanghai'],
-    [/\b(hkd|hong kong|hang seng)\b/i,                       [114.2, 22.3],  'Hong Kong'],
-    [/\b(opec|oil|brent|wti|crude|нефт)\b/i,                 [55.3, 25.2],   'Dubai'],
-    [/\b(rbi|inr|india|mumbai|индия)\b/i,                    [72.8, 19.1],   'Mumbai'],
-    [/\b(sgd|singapore)\b/i,                                 [103.8, 1.35],  'Singapore'],
-    [/\b(rba|aud|sydney|australia)\b/i,                      [151.2, -33.9], 'Sydney'],
-    [/\b(brl|brazil|bovespa|бразил)\b/i,                     [-46.6, -23.5], 'Sao Paulo'],
-    [/\b(mxn|mexico)\b/i,                                    [-99.1, 19.4],  'Mexico City'],
-    [/\b(cad|canada|toronto)\b/i,                            [-79.4, 43.7],  'Toronto'],
-    [/\b(zar|south africa|platinum|платин)\b/i,              [28.0, -26.2],  'Johannesburg'],
-    [/\b(rub|moscow|росси|рубл)\b/i,                         [37.6, 55.7],   'Moscow'],
-    [/\b(try|turkey|ankara|лира)\b/i,                        [32.9, 39.9],   'Ankara'],
-    [/\b(eur\/usd|forex|fx|валютн)\b/i,                      [-9.14, 38.7],  'Lisbon'],
-    [/\b(btc|eth|crypto|крипт)\b/i,                          [-118.2, 34.0], 'Los Angeles']
-  ];
-  var GEO_FALLBACK = [
-    [-74.0, 40.7], [-0.13, 51.5], [8.68, 50.1], [139.7, 35.7], [55.3, 25.2],
-    [121.5, 31.2], [151.2, -33.9], [-46.6, -23.5], [37.6, 55.7], [103.8, 1.35]
-  ];
+  /* Словаря координат здесь больше нет. Он ставил точку по ключевым словам
+     заголовка («oil» → Дубай, «crypto» → Лос-Анджелес) и был вторым
+     справочником рядом с платформенным — то есть гарантированным
+     расхождением: одна страна оказывалась в разных местах на карте и на
+     глобусе. Координаты приходят готовыми из /api/geo/feed вместе с
+     основанием привязки (поле rule).
 
-  /* Запасная лента — показывается, когда hero-feed.json недоступен.
-     Три языка, потому что на карте не должно быть смеси. */
-  var DEMO = [
-    [{ru:'Голова и плечи',        en:'Head &amp; Shoulders',  ro:'Cap și umeri'},        {ru:'Медвежий',    en:'Bearish',     ro:'Ursesc'},       [-74.0, 40.7]],
-    [{ru:'Бычий разворот',        en:'Bullish Reversal',      ro:'Revenire bullish'},    {ru:'Подтверждён', en:'Confirmed',   ro:'Confirmat'},    [151.2, -33.9]],
-    [{ru:'ФРС снижает ставку',    en:'Fed Rate Cut',          ro:'Fed reduce dobânda'},  {ru:'Макро',       en:'Macro',       ro:'Macro'},        [-77.0, 38.9]],
-    [{ru:'Сдвиг мировых рынков',  en:'Global Market Shift',   ro:'Schimbare globală'},   {ru:'Тревога',     en:'Alert',       ro:'Alertă'},       [-0.13, 51.5]],
-    [{ru:'ЕЦБ сохранил ставку',   en:'ECB Rate Hold',         ro:'BCE menține dobânda'}, {ru:'Ставки',      en:'Rates',       ro:'Dobânzi'},      [8.68, 50.1]],
-    [{ru:'Интервенция Банка Японии', en:'BOJ Intervention',   ro:'Intervenție BOJ'},     {ru:'USD/JPY 160', en:'USD/JPY 160', ro:'USD/JPY 160'},  [139.7, 35.7]],
-    [{ru:'Дефицит меди',          en:'Copper Deficit',        ro:'Deficit de cupru'},    {ru:'Металлы',     en:'Metals',      ro:'Metale'},       [121.5, 31.2]],
-    [{ru:'XAU $5,600',            en:'XAU $5,600',            ro:'XAU $5,600'},          {ru:'Золото',      en:'Gold',        ro:'Aur'},          [-0.13, 51.5]],
-    [{ru:'Нефть +2.1%',           en:'Oil +2.1%',             ro:'Petrol +2.1%'},        {ru:'Поставки',    en:'Supply',      ro:'Ofertă'},       [55.3, 25.2]],
-    [{ru:'SPX &minus;0.78%',      en:'SPX &minus;0.78%',      ro:'SPX &minus;0.78%'},    {ru:'Акции',       en:'Equities',    ro:'Acțiuni'},      [-74.0, 40.7]],
-    [{ru:'Сжатие Боллинджера',    en:'Bollinger Squeeze',     ro:'Compresie Bollinger'}, {ru:'Волатильность', en:'Volatility', ro:'Volatilitate'},[8.54, 47.4]],
-    [{ru:'Гэп и закрытие',        en:'Gap &amp; Fill',        ro:'Gap și umplere'},      {ru:'Форекс',      en:'FX',          ro:'Valutar'},      [-9.14, 38.7]],
-    [{ru:'Симметричный треугольник', en:'Symmetric Triangle', ro:'Triunghi simetric'},   {ru:'Пробой',      en:'Breakout',    ro:'Străpungere'},  [103.8, 1.35]],
-    [{ru:'Спрос на чипы Nvidia',  en:'Nvidia Chip Demand',    ro:'Cerere cipuri Nvidia'},{ru:'Технологии',  en:'Tech',        ro:'Tehnologie'},   [-118.2, 34.0]]
-  ];
-
-  var POOL = DEMO.map(function (d, i) { return { title: d[0], tag: d[1], ll: d[2], id: 'demo' + i }; });
+     Демо-лента («XAU $5,600», «Дефицит меди») тоже убрана. Это были
+     выдуманные заголовки в выдуманных городах: сайт продаёт рыночную
+     аналитику, и подпись, которую нельзя проверить, стоит дороже пустого
+     места. Нет ленты — нет подписей. */
+  var POOL = [];   /* наполняется только из ленты; пусто — подписей нет */
 
   /* ── Язык подписей ────────────────────────────────────────────────────
      Пункт ленты хранит все три языка; на экран попадает текущий. */
@@ -137,12 +100,16 @@
     if (!s.el || !s.title) return;
     var lang = curLang();
     var when = whenText(s.ts, lang);
-    var react = reactionText(s.reaction, lang);
+    /* Третья строка: у события — ожидаемая реакция рынка, у новости —
+       источник. Пустой строки быть не должно: карточка тогда выглядит
+       обрезанной. */
+    var extra = reactionText(s.reaction, lang) || (s.source || '');
     var meta = esc(trim(localized(s.tag, lang), 22)) + (when ? ' · ' + esc(when) : '');
     s.el.dataset.impact = s.impact || '';
-    s.el.innerHTML = '<b>' + esc(trim(localized(s.title, lang), 34)) + '</b>'
+    s.el.dataset.kind = s.kind || '';
+    s.el.innerHTML = '<b>' + esc(trim(localized(s.title, lang), 38)) + '</b>'
                    + '<i>' + meta + '</i>'
-                   + (react ? '<u>' + esc(react) + '</u>' : '');
+                   + (extra ? '<u>' + esc(trim(extra, 40)) + '</u>' : '');
   }
 
   function esc(s) {
@@ -152,24 +119,26 @@
     s = String(s || '').replace(/\s+/g, ' ').trim();
     return s.length > n ? s.slice(0, n - 1).replace(/[\s,;:—-]+$/, '') + '…' : s;
   }
-  function locate(text, i) {
-    for (var g = 0; g < GEO.length; g++) if (GEO[g][0].test(text)) return { ll: GEO[g][1], place: GEO[g][2] };
-    return { ll: GEO_FALLBACK[i % GEO_FALLBACK.length], place: '' };
-  }
   function normalize(raw, i) {
     /* title и tag могут быть объектами {ru,en,ro} — их нельзя ни обрезать,
        ни экранировать здесь: это делает renderLabel уже на нужном языке. */
     var title = raw.title;
     var flat = localized(title, 'en') || localized(title, 'ru');
     if (!flat) return null;
-    var hint = locate(flat + ' ' + localized(raw.tag, 'en') + ' ' + (raw.summary || ''), i);
-    var ll = (typeof raw.lon === 'number' && typeof raw.lat === 'number') ? [raw.lon, raw.lat] : hint.ll;
-    var tag = raw.tag || raw.category || hint.place || 'Live';
+    /* Точка ставится только по готовым координатам. Угадывать место по
+       словам в заголовке — как раз тот способ, которым Intel оказывался
+       во Франкфурте, а Amazon в Гонконге. */
+    if (typeof raw.lon !== 'number' || typeof raw.lat !== 'number') return null;
+    var ll = [raw.lon, raw.lat];
+    var tag = raw.tag || raw.category || 'Live';
     return { title: title, tag: tag, ll: ll, id: raw.id || raw.link || flat,
              /* Время, важность и ожидаемая реакция — то, что отличает
-                событие от строки-заголовка. Может не быть у buzz-пунктов. */
+                событие от строки-заголовка. У новости реакции нет: вместо
+                неё показываем источник, иначе третья строка пустует. */
              ts: raw.ts_utc || null, impact: raw.impact || null,
-             reaction: raw.reaction || null };
+             reaction: raw.reaction || null,
+             kind: raw.kind || null, rule: raw.rule || null,
+             source: raw.source || null };
   }
 
   function parseFeed(text, type) {
@@ -178,10 +147,11 @@
     if (trimmed[0] === '[' || trimmed[0] === '{') {
       var data = JSON.parse(trimmed);
       var arr = Array.isArray(data) ? data : (data.items || data.entries || data.news || []);
-      arr.forEach(function (o) { out.push({ title: o.title || o.headline || o.name, tag: o.tag || o.category || o.source, summary: o.summary || o.description, lon: o.lon, lat: o.lat, id: o.id || o.guid || o.link,
-        /* Время, важность и реакция идут дальше в normalize: без них
-           подпись на карте снова стала бы просто названием показателя */
-        ts_utc: o.ts_utc, impact: o.impact, reaction: o.reaction }); });
+      arr.forEach(function (o) { out.push({ title: o.title || o.headline || o.name, tag: o.tag || o.category, summary: o.summary || o.description, lon: o.lon, lat: o.lat, id: o.id || o.guid || o.link,
+        /* Время, важность, реакция и происхождение идут дальше в normalize:
+           без них подпись на карте снова стала бы просто заголовком */
+        ts_utc: o.ts_utc, impact: o.impact, reaction: o.reaction,
+        kind: o.kind, rule: o.rule, source: o.source }); });
     } else {
       var doc = new DOMParser().parseFromString(trimmed, 'text/xml');
       var nodes = doc.querySelectorAll('item, entry');
@@ -198,6 +168,9 @@
 
   var feedStatus = document.getElementById('hm-feed-status');
   function setStatus(txt, live) {
+    /* Элемента #hm-feed-status в разметке сайта нет (остался от прототипа),
+       поэтому статус ещё и в консоль: иначе о недоступной ленте не узнать. */
+    console.info('[hero] ' + txt);
     if (!feedStatus) return;
     feedStatus.textContent = txt;
     feedStatus.dataset.live = live ? '1' : '0';
@@ -205,7 +178,7 @@
 
   function loadFeed() {
     var url = new URLSearchParams(location.search).get('feed') || window.SBF_FEED_URL || FEED_URL;
-    if (!url) { setStatus('Лента: демо-данные', false); return; }
+    if (!url) { setStatus('Лента не задана', false); return; }
     setStatus('Лента: подключение…', false);
     fetch(url, { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
@@ -215,13 +188,19 @@
         if (!items.length) throw new Error('пусто');
         POOL = items;
         usedNews = {};
+        /* Шесть слотов на четыре новости дают дубли. Активных — не больше,
+           чем пунктов, и не больше шести. */
+        active = Math.max(3, Math.min(6, items.length));
         setStatus('Лента: в эфире · ' + items.length + ' событий', true);
+        startSlots();
         renderToday();
         renderTicker();
       })
       .catch(function () {
-        setStatus('Лента недоступна — демо-данные', false);
-        renderTicker();   /* иначе в строке остался бы захардкоженный английский */
+        /* Молча подставить выдуманные строки нельзя — на карте это будет
+           неправдой. Показываем карту без подписей и говорим об этом. */
+        setStatus('Лента недоступна', false);
+        renderTicker();
       });
   }
 
@@ -239,10 +218,57 @@
     SLOTS.push({ el: el, city: null, news: null, ll: null });
   }
 
+  /* Пока ленты нет, слотам нечего показывать: без этого reseed выбирал бы
+     пункт из пустого массива и подписи приходили бы пустыми. */
+  var slotsStarted = false;
+  function startSlots() {
+    if (slotsStarted || !POOL.length || !proj) return;
+    slotsStarted = true;
+    SLOTS.forEach(function (s, i) { reseed(s); s.wait = 0.2 + i * 0.7; });
+    SLOTS.forEach(project);
+  }
+
   function reseed(s) {
+    if (!POOL.length) return;
+    /* Один и тот же заголовок в двух точках карты читается как ошибка
+       данных. Пунктов бывает меньше, чем слотов (лента фильтруется по
+       достоверности), поэтому сверяемся ещё и по id соседних слотов. */
+    var shown = {}, taken = [];
+    SLOTS.forEach(function (o) {
+      if (o === s || o.news == null || !POOL[o.news]) return;
+      shown[POOL[o.news].id] = true;
+      /* Города бывают рядом: Лондон и Франкфурт на карте почти касаются, и
+         их подписи налезали друг на друга. Держим экранную дистанцию —
+         раньше её обеспечивал разнос выдуманных координат. */
+      if (proj && o.ll) { var q = proj(o.ll); if (q) taken.push(q); }
+    });
+    /* 150px разводили точки так, что на карте оставалась одна подпись из
+       шести: свободных мест не находилось. 105 — компромисс между
+       «не наезжают» и «карта живая». */
+    var MIN_GAP = 105;
+    function tooClose(ll) {
+      if (!proj) return false;
+      var q = proj(ll);
+      if (!q) return true;
+      for (var i = 0; i < taken.length; i++)
+        if (Math.hypot(q[0] - taken[i][0], q[1] - taken[i][1]) < MIN_GAP) return true;
+      return false;
+    }
     var nid, g2 = 0;
     do { nid = Math.floor(Math.random() * POOL.length); g2++; }
-    while (g2 < 60 && (usedNews[nid] || usedCity[POOL[nid].ll.join(',')]));
+    while (g2 < 60 && (usedNews[nid] || shown[POOL[nid].id] ||
+                       usedCity[POOL[nid].ll.join(',')] || tooClose(POOL[nid].ll)));
+    /* Ничего подходящего не нашлось — слот молчит до следующего круга.
+       Пустое место честнее, чем две подписи одна на другой. Слот при этом
+       обязан остаться в согласованном состоянии: без ll его координаты
+       остаются NaN, и градиент ядра падает с «non-finite value». */
+    if (shown[POOL[nid].id] || tooClose(POOL[nid].ll)) {
+      s.news = null; s.ll = null; s.title = null;
+      s.alpha = 0; s.bloom = 0; s.grow = 0; s.u = 1;
+      s.phase = 'wait'; s.time = 0; s.wait = 0.6 + Math.random() * 0.8;
+      if (s.el) s.el.style.opacity = 0;
+      return;
+    }
     if (s.news != null && POOL[s.news]) { usedNews[s.news] = false; usedCity[POOL[s.news].ll.join(',')] = false; }
     if (s.city != null) usedCity[s.city] = false;
     var item = POOL[nid];
@@ -251,6 +277,7 @@
     s.ll = item.ll;
     s.title = item.title; s.tag = item.tag;
     s.ts = item.ts; s.impact = item.impact; s.reaction = item.reaction;
+    s.kind = item.kind; s.rule = item.rule; s.source = item.source;
     s.ph = Math.random() * 6.28;
     s.amp = 0.09 + Math.random() * 0.07;
     s.phase = 'wait'; s.time = 0; s.wait = 0.4 + Math.random() * 2.6;
@@ -325,6 +352,7 @@
   }
 
   function step(s, dt) {
+    if (!s.ll) { s.time += dt; if (s.time >= s.wait) reseed(s); return; }
     s.time += dt;
     if (s.phase === 'wait') {
       s.alpha = 0; s.bloom = 0; s.grow = 0;
@@ -359,7 +387,7 @@
   }
 
   function drawThread(s) {
-    if (s.reach <= 0.01) return;
+    if (!s.ll || s.reach <= 0.01) return;
     var N = 40, pts = [], i;
     for (i = 0; i <= N; i++) pts.push(pointAt(s, (i / N) * s.reach));
     for (i = 1; i <= N; i++) {
@@ -382,6 +410,7 @@
   }
 
   function drawMarker(s) {
+    if (!s.ll) return;
     if (s.bloom <= 0.01) return;
     var x = s.mx, y = s.my;
     var live = s.phase === 'pull' ? s.u : 1;
@@ -406,6 +435,7 @@
   }
 
   function placeLabel(s, on) {
+    if (!s.ll) { if (s.el) s.el.style.opacity = 0; return; }
     var el = s.el;
     if (!on || !labelsOn || s.bloom <= 0.02 || s.alpha <= 0.04 || s.lx == null) { el.style.opacity = 0; return; }
     var lw = el.offsetWidth, lh = el.offsetHeight;
@@ -527,8 +557,7 @@
     world = topojson.feature(topo, topo.objects.countries);
     graticule = d3.geoGraticule10();
     fit();
-    SLOTS.forEach(function (s, i) { reseed(s); s.wait = 0.2 + i * 0.7; });
-    SLOTS.forEach(project);
+    startSlots();
     requestAnimationFrame(frame);
   });
 

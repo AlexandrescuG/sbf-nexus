@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T11:15:00.404829+00:00",
+  "updated": "2026-09-09T11:54:12.310939+00:00",
   "grow": {
     "brief": {
       "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
@@ -58,7 +58,6 @@
       "close": 153.821,
       "date": "2026-09-07",
       "spark": [
-        154.243,
         154.265,
         153.801,
         153.812,
@@ -81,7 +80,8 @@
         153.345,
         153.112,
         153.649,
-        153.647
+        153.647,
+        153.556
       ]
     },
     "pattern": {
@@ -97,220 +97,228 @@
   "items": [
     {
       "title": {
-        "en": "Consumer Confidence MoM",
-        "ru": "Потребительское доверие (м/м)",
-        "ro": "Încrederea consumatorilor (l/l)"
+        "ru": "ECB President Lagarde Speaks",
+        "en": "ECB President Lagarde Speaks",
+        "ro": "ECB President Lagarde Speaks"
       },
       "tag": {
-        "en": "Australia",
-        "ru": "Австралия",
-        "ro": "Australia"
-      },
-      "lon": 151.2,
-      "lat": -33.9,
-      "id": "cal-1788827400",
-      "ts_utc": "2026-09-08T00:30:00Z",
-      "impact": "high"
-    },
-    {
-      "title": {
-        "en": "Consumer Confidence",
-        "ru": "Потребительское доверие",
-        "ro": "Încrederea consumatorilor"
-      },
-      "tag": {
-        "en": "Australia",
-        "ru": "Австралия",
-        "ro": "Australia"
-      },
-      "lon": -74.0,
-      "lat": 40.7,
-      "id": "cal-1788827400",
-      "ts_utc": "2026-09-08T00:30:00Z",
-      "impact": "medium",
-      "reaction": {
-        "symbol": "AUDUSD",
-        "n": 9,
-        "pct": 0.092
-      }
-    },
-    {
-      "title": {
-        "en": "Business Confidence",
-        "ru": "Деловая уверенность",
-        "ro": "Încrederea în afaceri"
-      },
-      "tag": {
-        "en": "Australia",
-        "ru": "Австралия",
-        "ro": "Australia"
-      },
-      "lon": 103.8,
-      "lat": 1.35,
-      "id": "cal-1788831000",
-      "ts_utc": "2026-09-08T01:30:00Z",
-      "impact": "high",
-      "reaction": {
-        "symbol": "AUDUSD",
-        "n": 7,
-        "pct": 0.168
-      }
-    },
-    {
-      "title": {
-        "en": "Exports YoY",
-        "ru": "Экспорт г/г",
-        "ro": "Exporturi a/a"
-      },
-      "tag": {
-        "en": "China",
-        "ru": "Китай",
-        "ro": "China"
-      },
-      "lon": 116.4,
-      "lat": 39.9,
-      "id": "cal-1788836400",
-      "ts_utc": "2026-09-08T03:00:00Z",
-      "impact": "high",
-      "reaction": {
-        "symbol": "USDCNY",
-        "n": 6,
-        "pct": 0.061
-      }
-    },
-    {
-      "title": {
-        "en": "Balance of Trade",
-        "ru": "Торговый баланс",
-        "ro": "Balanța comercială"
-      },
-      "tag": {
-        "en": "China",
-        "ru": "Китай",
-        "ro": "China"
-      },
-      "lon": -0.13,
-      "lat": 51.5,
-      "id": "cal-1788836400",
-      "ts_utc": "2026-09-08T03:00:00Z",
-      "impact": "high",
-      "reaction": {
-        "symbol": "USDCNY",
-        "n": 12,
-        "pct": 0.078
-      }
-    },
-    {
-      "title": {
-        "en": "Imports YoY",
-        "ru": "Импорт г/г",
-        "ro": "Importuri a/a"
-      },
-      "tag": {
-        "en": "China",
-        "ru": "Китай",
-        "ro": "China"
-      },
-      "lon": 139.7,
-      "lat": 35.7,
-      "id": "cal-1788836400",
-      "ts_utc": "2026-09-08T03:00:00Z",
-      "impact": "high",
-      "reaction": {
-        "symbol": "USDCNY",
-        "n": 6,
-        "pct": 0.061
-      }
-    },
-    {
-      "title": {
-        "en": "AMZN · 19 mentions",
-        "ru": "AMZN · 19 упоминаний",
-        "ro": "AMZN · 19 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": 114.2,
-      "lat": 22.3,
-      "id": "buzz-AMZN"
-    },
-    {
-      "title": {
-        "en": "JPM · 16 mentions",
-        "ru": "JPM · 16 упоминаний",
-        "ro": "JPM · 16 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": -118.2,
-      "lat": 34.0,
-      "id": "buzz-JPM"
-    },
-    {
-      "title": {
-        "en": "BTC · 15 mentions",
-        "ru": "BTC · 15 упоминаний",
-        "ro": "BTC · 15 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": 55.3,
-      "lat": 25.2,
-      "id": "buzz-BTC"
-    },
-    {
-      "title": {
-        "en": "TSLA · 13 mentions",
-        "ru": "TSLA · 13 упоминаний",
-        "ro": "TSLA · 13 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
-      },
-      "lon": -46.6,
-      "lat": -23.5,
-      "id": "buzz-TSLA"
-    },
-    {
-      "title": {
-        "en": "INTC · 11 mentions",
-        "ru": "INTC · 11 упоминаний",
-        "ro": "INTC · 11 mențiuni"
-      },
-      "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
       },
       "lon": 8.68,
-      "lat": 50.1,
-      "id": "buzz-INTC"
+      "lat": 50.11,
+      "id": "ev-605685a7e38382dc",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-09T17:00:00Z"
     },
     {
       "title": {
-        "en": "WMT · 10 mentions",
-        "ru": "WMT · 10 упоминаний",
-        "ro": "WMT · 10 mențiuni"
+        "ru": "Ставка ЦБ · еврозона",
+        "en": "ECB President Lagarde Speech",
+        "ro": "ECB President Lagarde Speech"
       },
       "tag": {
-        "en": "Buzz",
-        "ru": "В обсуждениях",
-        "ro": "În discuții"
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
       },
-      "lon": -99.1,
-      "lat": 19.4,
-      "id": "buzz-WMT"
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "ev-e500c0fef2d457ce",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-09T17:00:00Z"
+    },
+    {
+      "title": {
+        "ru": "Занятость ADP, за неделю · США",
+        "en": "ADP Employment Change Weekly",
+        "ro": "ADP Employment Change Weekly"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-9faeccc15ec43a80",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-09T12:15:00Z"
+    },
+    {
+      "title": {
+        "ru": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade",
+        "en": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade",
+        "ro": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade"
+      },
+      "tag": {
+        "en": "Буэнос-Айрес",
+        "ru": "Буэнос-Айрес",
+        "ro": "Буэнос-Айрес"
+      },
+      "lon": -58.38,
+      "lat": -34.6,
+      "id": "nw-895693657",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:39Z",
+      "source": "Reuters",
+      "url": "https://finance.yahoo.com/news/argentinas-corn-exports-set-record-101814752.html"
+    },
+    {
+      "title": {
+        "ru": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+        "en": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+        "ro": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-685162095",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:38Z",
+      "source": "Yahoo Personal Finance",
+      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html"
+    },
+    {
+      "title": {
+        "ru": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
+        "en": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
+        "ro": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-277415981",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:36Z",
+      "source": "CNBC Finance",
+      "url": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html"
+    },
+    {
+      "title": {
+        "ru": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
+        "en": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
+        "ro": "China just pumped $54 billion into banks and insurers — but their stocks still fell"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-710564423",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:35Z",
+      "source": "CNBC Finance",
+      "url": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html"
+    },
+    {
+      "title": {
+        "ru": "Brent crude reaches $100 as war in Iran intensifies",
+        "en": "Brent crude reaches $100 as war in Iran intensifies",
+        "ro": "Brent crude reaches $100 as war in Iran intensifies"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-95385153",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:34Z",
+      "source": "MarketWatch",
+      "url": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories"
+    },
+    {
+      "title": {
+        "ru": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates",
+        "en": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates",
+        "ro": "Oil prices rise above $100 a barrel for first time since July as Iran war escalates"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-203251628",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:31Z",
+      "source": "Guardian World",
+      "url": "https://www.theguardian.com/business/2026/sep/09/oil-prices-rise-iran-war-brent-crude-inflation-higher-interest-rates"
+    },
+    {
+      "title": {
+        "ru": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
+        "en": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
+        "ro": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’"
+      },
+      "tag": {
+        "en": "Лондон",
+        "ru": "Лондон",
+        "ro": "Лондон"
+      },
+      "lon": -0.13,
+      "lat": 51.51,
+      "id": "nw-15472837",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:29Z",
+      "source": "Guardian World",
+      "url": "https://www.theguardian.com/australia-news/2026/sep/09/australia-considers-new-israel-sanctions-but-wont-join-uk-in-banning-trade-with-settler-terrorists-ntwnfb"
+    },
+    {
+      "title": {
+        "ru": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
+        "en": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
+        "ro": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-977406786",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T11:53:28Z",
+      "source": "Guardian World",
+      "url": "https://www.theguardian.com/world/2026/sep/07/canada-tariffs-us-trump"
     }
   ],
   "today": {
@@ -322,34 +330,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16326,
-      "chg_pct": 0.0439,
+      "bid": 1.16441,
+      "chg_pct": 0.1428,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35381,
-      "chg_pct": -0.0362,
+      "bid": 1.35577,
+      "chg_pct": 0.1085,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 153.459,
-      "chg_pct": 0.0072,
+      "bid": 153.292,
+      "chg_pct": -0.1017,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 78862.7,
-      "chg_pct": 0.548,
+      "bid": 79294.2,
+      "chg_pct": 1.0981,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2486.8,
-      "chg_pct": -1.0764,
+      "bid": 2501.47,
+      "chg_pct": -0.4929,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-09T11:14:57.629789+00:00"
+  "quotes_updated": "2026-09-09T11:53:58.964065+00:00"
 }
