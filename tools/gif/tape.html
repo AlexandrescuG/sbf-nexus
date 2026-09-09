@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>SBF — лента и знак (кадры для GIF)</title>
+<!--
+  Кадровый рендер ленты свечей со знаком-линзой. Отдельная страница, а не
+  скриншот живого сайта, по одной причине: на сайте лента идёт 0.5 свечи в
+  секунду, и за пять секунд GIF картинка почти не меняется, а скриншоты
+  живого rAF идут с неровным шагом. Здесь позиция задаётся снаружи —
+  tools/gif/make.py вызывает draw(position) и снимает кадр.
+
+  Геометрия и цвета повторяют GoldTape из js/acts/act-approach.js.
+  Это осознанная копия: тул не должен зависеть от модуля, который
+  привязан к DOM сайта и к gsap.
+-->
+<style>
+  html, body { margin: 0; background: #FBF6EF; }
+  #stage { position: relative; width: 900px; height: 520px; }
+  canvas { display: block; width: 900px; height: 520px; }
+  /* Знак стоит в центре ленты. Кольцо рисуется SVG поверх, как на сайте. */
+  #mark {
+    position: absolute; left: 50%; top: 50%;
+    width: 190px; height: 190px; transform: translate(-50%, -50%);
+    display: grid; place-items: center;
+  }
+  #mark img { width: 100%; opacity: 0.34; filter: drop-shadow(0 0 12px rgba(201,162,39,0.4)); }
+  #mark svg { position: absolute; inset: -34%; transform: rotate(-90deg); overflow: visible; }
+  .ring-track { fill: none; stroke: rgba(201,162,39,0.35); stroke-width: 1.4; }
+  .ring-fill  { fill: none; stroke: #C9A227; stroke-width: 2.2; stroke-linecap: round; }
+  #tag {
+    position: absolute; left: 24px; bottom: 20px;
+    font: 10px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #9A7B1E;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="cv" width="1800" height="1040"></canvas>
+  <div id="mark">
+    <img src="../../assets/logo/logo.svg" alt="">
+    <svg viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="46"/><circle class="ring-fill" cx="50" cy="50" r="46"/></svg>
+  </div>
+  <div id="tag">XAU/USD · H4 · исторические данные</div>
+</div>
+<script>
+const W = 900, H = 520, DPR = 2, VISIBLE = 110;
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+ctx.scale(DPR, DPR);
+
+let DATA = [];
+window.ready = false;
+
+fetch('../../assets/data/XAUUSD_4H_uptrend.csv').then(r => r.text()).then(txt => {
+  const lines = txt.trim().split('\n');
+  const hdr = lines[0].split(',').map(s => s.trim());
+  DATA = lines.slice(1).map(l => {
+    const v = l.split(','), r = {};
+    hdr.forEach((h, i) => r[h] = v[i]);
+    return { open: +(r.Open || r.open), high: +(r.High || r.high),
+             low: +(r.Low || r.low), close: +(r.Close || r.close) };
+  }).filter(d => !isNaN(d.open));
+  window.ready = true;
+  draw(0);
+});
+
+/* Кольцо линзы в координатах канваса: те же 190px коробки и inset -34%,
+   что в CSS знака — радиус кольца = 0.5 * 190 * 1.68 * 0.92. */
+const LENS = { x: W / 2, y: H / 2, r: 0.5 * 190 * 1.68 * 0.92 };
+
+function draw(position) {
+  if (!DATA.length) return;
+  const data = DATA, w = W, h = H;
+  const slotW = w / VISIBLE, bodyW = slotW * 0.7;
+  const pos = ((position % data.length) + data.length) % data.length;
+  const startIdx = Math.floor(pos), offset = (pos - startIdx) * slotW;
+
+  const visible = [];
+  for (let i = 0; i <= VISIBLE + 1; i++) visible.push(data[(startIdx + i) % data.length]);
+  const minP = Math.min(...visible.map(c => c.low));
+  const maxP = Math.max(...visible.map(c => c.high));
+  const range = maxP - minP || 1;
+  const padT = h * 0.10, padB = h * 0.10;
+  const yS = p => padT + (1 - (p - minP) / range) * (h - padT - padB);
+
+  ctx.clearRect(0, 0, w, h);
+
+  /* Свечи: края ленты гаснут, чтобы кадр не обрывался вертикальной стеной */
+  for (let i = 0; i <= VISIBLE + 1; i++) {
+    const c = data[(startIdx + i) % data.length];
+    const x = i * slotW - offset;
+    const fadeL = Math.min(1, x / (slotW * 8));
+    const fadeR = Math.min(1, (w - x) / (slotW * 8));
+    ctx.globalAlpha = Math.max(0, Math.min(fadeL, fadeR));
+    const bull = c.close >= c.open;
+    ctx.strokeStyle = ctx.fillStyle = bull ? '#26a69a' : '#ef5350';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, yS(c.high)); ctx.lineTo(x, yS(c.low)); ctx.stroke();
+    const yO = yS(c.open), yC = yS(c.close);
+    ctx.fillRect(x - bodyW / 2, Math.min(yO, yC), bodyW, Math.max(1, Math.abs(yC - yO)));
+  }
+  ctx.globalAlpha = 1;
+
+  /* ── Линза: тот же поток, но с разметкой ─────────────────────────── */
+  const { x: lx, y: ly, r: lr } = LENS;
+  ctx.save();
+  ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI * 2); ctx.clip();
+  ctx.fillStyle = 'rgba(251, 246, 239, 0.55)';
+  ctx.fillRect(lx - lr, ly - lr, lr * 2, lr * 2);
+
+  const yHi = yS(maxP), yLo = yS(minP);
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(154, 123, 30, 0.75)'; ctx.lineWidth = 1;
+  [yHi, yLo].forEach(y => { ctx.beginPath(); ctx.moveTo(lx - lr, y); ctx.lineTo(lx + lr, y); ctx.stroke(); });
+  ctx.setLineDash([]);
+
+  /* Скользящая по 20 свечам */
+  ctx.strokeStyle = '#C9A227'; ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  for (let i = 0; i < visible.length; i++) {
+    let sum = 0, n = 0;
+    for (let k = 0; k < 20; k++) {
+      const c = data[(startIdx + i - k + data.length) % data.length];
+      if (c) { sum += c.close; n++; }
+    }
+    const x = i * slotW - offset, y = yS(sum / n);
+    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+  }
+  ctx.stroke();
+
+  /* Свечи внутри кольца — ярче и толще: это и есть «проявление» */
+  let hiIdx = 0, hiVal = -Infinity;
+  for (let i = 0; i <= VISIBLE + 1; i++) {
+    const c = data[(startIdx + i) % data.length];
+    const x = i * slotW - offset;
+    if (Math.abs(x - lx) > lr) continue;
+    if (c.high > hiVal) { hiVal = c.high; hiIdx = i; }
+    const bull = c.close >= c.open;
+    ctx.strokeStyle = ctx.fillStyle = bull ? '#1f8e83' : '#d8433f';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(x, yS(c.high)); ctx.lineTo(x, yS(c.low)); ctx.stroke();
+    const yO = yS(c.open), yC = yS(c.close);
+    ctx.fillRect(x - bodyW / 2, Math.min(yO, yC), bodyW, Math.max(1, Math.abs(yC - yO)));
+  }
+  /* Точка паттерна: самая высокая свеча в окне линзы */
+  const px = hiIdx * slotW - offset, py = yS(hiVal);
+  ctx.fillStyle = '#E6C257';
+  ctx.beginPath(); ctx.arc(px, py, 3.4, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = 'rgba(230,194,87,0.9)'; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.stroke();
+  ctx.restore();
+
+  /* Обод линзы */
+  ctx.strokeStyle = 'rgba(201,162,39,0.5)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI * 2); ctx.stroke();
+}
+window.draw = draw;
+</script>
+</body>
+</html>

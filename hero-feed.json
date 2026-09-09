@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T11:30:00.734214+00:00",
+  "updated": "2026-09-09T11:00:00.215669+00:00",
   "grow": {
     "brief": {
       "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
@@ -58,30 +58,30 @@
       "close": 153.821,
       "date": "2026-09-07",
       "spark": [
-        154.728,
-        154.488,
-        154.513,
-        154.286,
-        154.391,
-        154.293,
-        154.355,
-        154.339,
-        154.358,
-        154.323,
-        154.31,
-        154.156,
-        153.823,
-        153.79,
-        153.352,
-        153.351,
-        153.331,
-        153.469,
-        153.324,
-        153.779,
-        153.802,
-        154.172,
-        153.914,
-        154.243
+        154.243,
+        154.265,
+        153.801,
+        153.812,
+        154.004,
+        154.245,
+        154.267,
+        154.222,
+        153.596,
+        153.984,
+        153.992,
+        153.839,
+        153.732,
+        153.449,
+        153.572,
+        153.55,
+        153.508,
+        153.446,
+        153.46,
+        153.304,
+        153.345,
+        153.112,
+        153.649,
+        153.647
       ]
     },
     "pattern": {
@@ -224,9 +224,9 @@
     },
     {
       "title": {
-        "en": "BTC · 17 mentions",
-        "ru": "BTC · 17 упоминаний",
-        "ro": "BTC · 17 mențiuni"
+        "en": "AMZN · 19 mentions",
+        "ru": "AMZN · 19 упоминаний",
+        "ro": "AMZN · 19 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -235,13 +235,13 @@
       },
       "lon": 114.2,
       "lat": 22.3,
-      "id": "buzz-BTC"
+      "id": "buzz-AMZN"
     },
     {
       "title": {
-        "en": "ETH · 3 mentions",
-        "ru": "ETH · 3 упоминаний",
-        "ro": "ETH · 3 mențiuni"
+        "en": "JPM · 16 mentions",
+        "ru": "JPM · 16 упоминаний",
+        "ro": "JPM · 16 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -250,13 +250,13 @@
       },
       "lon": -118.2,
       "lat": 34.0,
-      "id": "buzz-ETH"
+      "id": "buzz-JPM"
     },
     {
       "title": {
-        "en": "ZEC · 3 mentions",
-        "ru": "ZEC · 3 упоминаний",
-        "ro": "ZEC · 3 mențiuni"
+        "en": "BTC · 15 mentions",
+        "ru": "BTC · 15 упоминаний",
+        "ro": "BTC · 15 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -265,13 +265,13 @@
       },
       "lon": 55.3,
       "lat": 25.2,
-      "id": "buzz-ZEC"
+      "id": "buzz-BTC"
     },
     {
       "title": {
-        "en": "KAS · 2 mentions",
-        "ru": "KAS · 2 упоминаний",
-        "ro": "KAS · 2 mențiuni"
+        "en": "TSLA · 13 mentions",
+        "ru": "TSLA · 13 упоминаний",
+        "ro": "TSLA · 13 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -280,13 +280,13 @@
       },
       "lon": -46.6,
       "lat": -23.5,
-      "id": "buzz-KAS"
+      "id": "buzz-TSLA"
     },
     {
       "title": {
-        "en": "CRV · 2 mentions",
-        "ru": "CRV · 2 упоминаний",
-        "ro": "CRV · 2 mențiuni"
+        "en": "INTC · 11 mentions",
+        "ru": "INTC · 11 упоминаний",
+        "ro": "INTC · 11 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -295,13 +295,13 @@
       },
       "lon": 8.68,
       "lat": 50.1,
-      "id": "buzz-CRV"
+      "id": "buzz-INTC"
     },
     {
       "title": {
-        "en": "VIX · 1 mentions",
-        "ru": "VIX · 1 упоминаний",
-        "ro": "VIX · 1 mențiuni"
+        "en": "WMT · 10 mentions",
+        "ru": "WMT · 10 упоминаний",
+        "ro": "WMT · 10 mențiuni"
       },
       "tag": {
         "en": "Buzz",
@@ -310,7 +310,7 @@
       },
       "lon": -99.1,
       "lat": 19.4,
-      "id": "buzz-VIX"
+      "id": "buzz-WMT"
     }
   ],
   "today": {
@@ -322,34 +322,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16151,
-      "chg_pct": -0.1075,
+      "bid": 1.163,
+      "chg_pct": 0.0215,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.3535,
-      "chg_pct": -0.0819,
+      "bid": 1.35359,
+      "chg_pct": -0.0524,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 154.221,
-      "chg_pct": 0.26,
+      "bid": 153.55,
+      "chg_pct": 0.0665,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 78400.8,
-      "chg_pct": -0.8536,
+      "bid": 78898.4,
+      "chg_pct": 0.5935,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2473.5,
-      "chg_pct": -1.6055000000000001,
+      "bid": 2486.29,
+      "chg_pct": -1.0967,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-08T11:29:49.995681+00:00"
+  "quotes_updated": "2026-09-09T10:59:53.176402+00:00"
 }

@@ -322,10 +322,14 @@ html { scroll-behavior: smooth; }
   height: auto !important; min-height: 240px; padding-right: 0 !important;
 }
 
+/* Легенда и подсказка прижаты влево, а не разведены по краям: в правом
+   нижнем углу висит плавающая кнопка «Связаться» (position: fixed), и
+   любой контент, прижатый к правому краю, оказывался под ней. */
 .chart-foot {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 8px 16px; flex-wrap: wrap; line-height: 1.6;
-  padding-top: 10px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: flex-start;
+  gap: 8px 28px; flex-wrap: wrap; line-height: 1.6;
+  padding-top: 10px; padding-right: 240px;
+  border-top: 1px solid var(--line);
 }
 .chart-hint {
   font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -342,7 +346,13 @@ html { scroll-behavior: smooth; }
   margin: 0;
   pointer-events: none;
 }
-#approach-chart .approach-lens img { opacity: 0.16; filter: none; }
+/* Знак внутри линзы: 0.16 читалось как грязь на стекле — на светлом фоне
+   его почти не было видно. Держим 0.34 и лёгкое свечение: знак виден как
+   оправа, но свечи внутри кольца всё ещё главные. */
+#approach-chart .approach-lens img {
+  opacity: 0.34;
+  filter: drop-shadow(0 0 10px rgba(201, 162, 39, 0.35));
+}
 /* Подпись шла тонким золотом прямо по свечам. Плашка того же цвета, что
    фон страницы, была не видна — даём рамку, тень и тёмный текст. */
 #approach-chart .approach-lens .mark-cap {
