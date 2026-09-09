@@ -186,9 +186,27 @@
         try { META = JSON.parse(txt) || {}; } catch (e) { META = {}; }
         var items = parseFeed(txt).map(normalize).filter(Boolean);
         if (!items.length) throw new Error('пусто');
+        /* Что пришло впервые — покажем раньше остального. */
+        var fresh = items.filter(function (it) { return !knownIds[it.id]; })
+                         .map(function (it) { return it.id; });
         POOL = items;
-        usedNews = {};
-        refillQueue();
+        items.forEach(function (it) { knownIds[it.id] = true; });
+        /* Слоты держат индексы в старом массиве — после перезагрузки ленты
+           тот же индекс указывает уже на другую новость. Пересобираем по id,
+           иначе слот освободит чужой пункт, а свой оставит занятым навсегда. */
+        usedNews = {}; usedCity = {};
+        SLOTS.forEach(function (s) {
+          s.news = null;
+          if (!s.id) return;
+          for (var i = 0; i < POOL.length; i++) {
+            if (POOL[i].id === s.id) { s.news = i; break; }
+          }
+          if (s.news != null) {
+            usedNews[s.news] = true;
+            usedCity[POOL[s.news].ll.join(',')] = true;
+          }
+        });
+        refillQueue(fresh);
         /* Шесть слотов на четыре новости дают дубли. Активных — не больше,
            чем пунктов, и не больше шести. */
         active = Math.max(3, Math.min(6, items.length));
@@ -241,13 +259,42 @@
      чаще всего натыкался на Нью-Йорк, которым забита половина ленты.
      Очередь даёт правило: пока не показаны все, ни один не повторяется. */
   var queue = [];
-  function refillQueue() {
-    queue = POOL.map(function (_, i) { return i; });
-    for (var i = queue.length - 1; i > 0; i--) {          /* Фишер — Йетс */
+  /* Показанное в текущем круге и всё, что лента приносила за сеанс.
+     Круг считается по id, а не по индексу: лента перечитывается раз в
+     минуту, и после перечитывания индексы означают уже другие новости. */
+  var shownIds = {}, knownIds = {};
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {              /* Фишер — Йетс */
       var j = Math.floor(Math.random() * (i + 1));
-      var t = queue[i]; queue[i] = queue[j]; queue[j] = t;
+      var t = a[i]; a[i] = a[j]; a[j] = t;
     }
+    return a;
   }
+
+  /* Очередь собирается из непоказанного. Раньше она пересобиралась целиком
+     при каждой перезагрузке ленты — то есть раз в минуту круг начинался
+     заново, и уже показанные заголовки возвращались, а до дальней части
+     ленты очередь не доходила никогда. Отсюда и «одни и те же новости, пока
+     не обновишь страницу». */
+  function refillQueue(freshFirst) {
+    var rest = [];
+    POOL.forEach(function (it, i) { if (!shownIds[it.id]) rest.push(i); });
+    if (!rest.length) {                 /* круг пройден — начинаем новый */
+      shownIds = {};
+      POOL.forEach(function (_, i) { rest.push(i); });
+    }
+    shuffle(rest);
+    if (freshFirst && freshFirst.length) {
+      var head = [], tail = [];
+      rest.forEach(function (i) {
+        (freshFirst.indexOf(POOL[i].id) >= 0 ? head : tail).push(i);
+      });
+      rest = head.concat(tail);         /* свежее — вперёд */
+    }
+    queue = rest;
+  }
+
   /* Берём первый подходящий, непошедшие возвращаем в хвост — они дождутся
      своей очереди, а не выпадут из ротации. */
   function pickFromQueue(fits) {
@@ -303,7 +350,7 @@
       usedCity[POOL[s.news].ll.join(',')] = false;
     }
     if (s.city != null) usedCity[s.city] = false;
-    s.news = null; s.city = null;
+    s.news = null; s.city = null; s.id = null;
     /* 150px разводили точки так, что на карте оставалась одна подпись из
        шести: свободных мест не находилось. 105 — компромисс между
        «не наезжают» и «карта живая». Слоту, который не нашёл места дважды
@@ -339,8 +386,9 @@
     }
     s.miss = 0;
     var item = POOL[nid];
+    shownIds[item.id] = true;
     usedNews[nid] = true; usedCity[item.ll.join(',')] = true;
-    s.news = nid; s.city = item.ll.join(',');
+    s.news = nid; s.id = item.id; s.city = item.ll.join(',');
     s.ll = item.ll;
     s.title = item.title; s.tag = item.tag;
     s.ts = item.ts; s.impact = item.impact; s.reaction = item.reaction;

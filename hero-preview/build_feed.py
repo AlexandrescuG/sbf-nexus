@@ -105,11 +105,15 @@ WEAK_TOPIC = ('bank', 'trade', 'deal', 'rate', 'fund', 'invest', 'price',
               'loan', 'billion', 'million', 'shipping', 'supply', 'demand',
               'банк', 'торгов', 'цен', 'поставк', 'спрос')
 
-# Одна страна не должна занимать всю карту: в один прогон приходило шесть
-# заголовков про ФРС, и все шесть вставали в Нью-Йорк. Три вместо двух —
-# после того, как ослабленный фильтр дал больше материала: при двух карта
-# крутила один и тот же десяток заголовков по кругу.
-MAX_PER_PLACE = 3
+# Порог «сколько новостей с одного места» поднимался трижды: 2 → 3 → 8.
+# Смысл его при этом изменился. Сначала он спасал экран: шесть заголовков
+# про ФРС вставали в одну точку Нью-Йорка и подписи наезжали. Но экран с тех
+# пор защищён иначе — hero-map.js разводит подписи по экранной дистанции и
+# держит не больше одной новости на город одновременно. Осталась вторая
+# роль: не дать одному городу вытеснить остальные из ротации. Для неё
+# хватает восьми, а лента выходит вдвое длиннее — именно её длина и
+# определяет, как скоро заголовок вернётся на экран.
+MAX_PER_PLACE = 8
 
 _STRONG = re.compile(
     r'\b(?:' + '|'.join(w.replace(' ', r'\s') for w in MARKET_WORDS) + r')(?:e?s)?\b'
@@ -321,6 +325,41 @@ for it in geo.get('items', []):
 print(f'  точек на карту: {len(items)}  '
       f"(отброшено: ярус symbol {skipped['rule']}, "
       f"не про рынок {skipped['offtopic']}, город занят {skipped['crowded']})")
+
+# Копим ленту, а не заменяем её целиком. Ручка отдаёт максимум 60 пунктов за
+# запрос, после фильтров остаётся два десятка — на экране это значит, что
+# заголовок возвращается примерно раз в полминуты, и посетитель видит
+# «одни и те же новости по кругу». Прогон идёт каждые 15 минут и почти
+# всегда приносит что-то новое; сохраняя прошлые пункты, за пару часов
+# набираем полную суточную ленту вместо среза на 60 штук.
+KEEP_HOURS = 24
+KEEP_MAX = 90
+
+
+def _ts(o):
+    s = (o or {}).get('ts_utc') or ''
+    try:
+        return datetime.datetime.fromisoformat(s.replace('Z', '+00:00'))
+    except ValueError:
+        return datetime.datetime.now(datetime.timezone.utc)
+
+
+if OUT.exists():
+    try:
+        old = json.loads(OUT.read_text(encoding='utf-8')).get('items', [])
+    except (ValueError, OSError):
+        old = []
+    fresh_ids = {o.get('id') for o in items}
+    edge = datetime.datetime.now(datetime.timezone.utc) - \
+        datetime.timedelta(hours=KEEP_HOURS)
+    kept = [o for o in old
+            if o.get('id') not in fresh_ids        # свежая версия важнее
+            and o.get('lon') is not None
+            and _ts(o) > edge]                     # сутки — и на выход
+    before = len(items)
+    items = sorted(items + kept, key=_ts, reverse=True)[:KEEP_MAX]
+    print(f'  из прошлых прогонов: +{len(items) - before} '
+          f'(итого в ленте {len(items)})')
 
 # 4. Заголовок сегодняшнего брифа — единственная строка на первом экране,
 # которая говорит «из этого шума уже что-то извлечено».
