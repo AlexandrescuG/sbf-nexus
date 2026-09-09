@@ -2,159 +2,234 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>SBF — лента и знак (кадры для GIF)</title>
+<title>SBF — знак и лента (кадры для GIF)</title>
 <!--
-  Кадровый рендер ленты свечей со знаком-линзой. Отдельная страница, а не
-  скриншот живого сайта, по одной причине: на сайте лента идёт 0.5 свечи в
-  секунду, и за пять секунд GIF картинка почти не меняется, а скриншоты
-  живого rAF идут с неровным шагом. Здесь позиция задаётся снаружи —
-  tools/gif/make.py вызывает draw(position) и снимает кадр.
+  Кадровый рендер: крупный план кольца, сквозь которое идёт лента свечей.
 
-  Геометрия и цвета повторяют GoldTape из js/acts/act-approach.js.
-  Это осознанная копия: тул не должен зависеть от модуля, который
-  привязан к DOM сайта и к gsap.
+  Две вещи, ради которых это отдельная страница, а не скриншоты сайта:
+
+  1) Скорость. На сайте лента идёт 0.5 свечи в секунду — за пять секунд
+     ролика картинка почти не менялась бы, а шаг между скриншотами живого
+     rAF неровный. Здесь позицию задаёт снаружи tools/gif/make.py.
+
+  2) Бесшовный цикл. Лента едет по кольцу из L свечей: кадр при position=0
+     и при position=L совпадают попиксельно, поэтому склейки нет вообще —
+     ни скачка, ни растворения. Сегмент из L свечей подбирается поиском:
+     берётся тот, где цена в начале и в конце кольца сходится (стык между
+     последней и первой свечой не читается) и при этом внутри есть
+     движение, иначе кадр получается мёртвым.
+
+     Ценовая шкала считается один раз по всему кольцу, а не по видимому
+     окну: иначе масштаб «дышал» бы при каждом кадре.
+
+  Геометрия и цвета — те же, что у GoldTape в js/acts/act-approach.js.
+  Осознанная копия: тул не должен зависеть от модуля, привязанного к DOM
+  сайта и к gsap.
 -->
 <style>
   html, body { margin: 0; background: #FBF6EF; }
-  #stage { position: relative; width: 900px; height: 520px; }
-  canvas { display: block; width: 900px; height: 520px; }
-  /* Знак стоит в центре ленты. Кольцо рисуется SVG поверх, как на сайте. */
-  #mark {
-    position: absolute; left: 50%; top: 50%;
-    width: 190px; height: 190px; transform: translate(-50%, -50%);
-    display: grid; place-items: center;
-  }
-  #mark img { width: 100%; opacity: 0.34; filter: drop-shadow(0 0 12px rgba(201,162,39,0.4)); }
-  #mark svg { position: absolute; inset: -34%; transform: rotate(-90deg); overflow: visible; }
-  .ring-track { fill: none; stroke: rgba(201,162,39,0.35); stroke-width: 1.4; }
-  .ring-fill  { fill: none; stroke: #C9A227; stroke-width: 2.2; stroke-linecap: round; }
+  #stage { position: relative; width: 720px; height: 720px; overflow: hidden; }
+  canvas { display: block; width: 720px; height: 720px; }
   #tag {
-    position: absolute; left: 24px; bottom: 20px;
-    font: 10px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.14em;
-    text-transform: uppercase; color: #9A7B1E;
+    position: absolute; left: 0; right: 0; bottom: 26px; text-align: center;
+    font: 10px/1.4 'JetBrains Mono', monospace; letter-spacing: 0.22em;
+    text-transform: uppercase; color: #9A7B1E; opacity: 0.85;
   }
 </style>
 </head>
 <body>
 <div id="stage">
-  <canvas id="cv" width="1800" height="1040"></canvas>
-  <div id="mark">
-    <img src="../../assets/logo/logo.svg" alt="">
-    <svg viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="46"/><circle class="ring-fill" cx="50" cy="50" r="46"/></svg>
-  </div>
+  <canvas id="cv" width="1440" height="1440"></canvas>
   <div id="tag">XAU/USD · H4 · исторические данные</div>
 </div>
 <script>
-const W = 900, H = 520, DPR = 2, VISIBLE = 110;
+const W = 720, H = 720, DPR = 2;
+const VISIBLE = 26;          /* свечей в кадре — крупный план */
+const RING    = 34;          /* длина кольца данных: цикл замыкается через него */
+const LENS    = { x: W / 2, y: H / 2, r: 236 };
+
 const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
 ctx.scale(DPR, DPR);
 
-let DATA = [];
+let SEG = [], SCALE = null, LOGO = null;
 window.ready = false;
+window.ringLength = RING;
+
+/* Знак рисуем на канвасе, а не DOM-картинкой поверх него: сверху он
+   читался как наклейка, а нужно, чтобы лента шла сквозь знак. */
+const logoImg = new Image();
+logoImg.onload = () => { LOGO = logoImg; if (SEG.length) draw(0); };
+logoImg.src = '../../assets/logo/logo.svg';
 
 fetch('../../assets/data/XAUUSD_4H_uptrend.csv').then(r => r.text()).then(txt => {
   const lines = txt.trim().split('\n');
   const hdr = lines[0].split(',').map(s => s.trim());
-  DATA = lines.slice(1).map(l => {
+  const all = lines.slice(1).map(l => {
     const v = l.split(','), r = {};
     hdr.forEach((h, i) => r[h] = v[i]);
     return { open: +(r.Open || r.open), high: +(r.High || r.high),
              low: +(r.Low || r.low), close: +(r.Close || r.close) };
   }).filter(d => !isNaN(d.open));
+
+  SEG = pickRing(all, RING);
+  const lo = Math.min(...SEG.map(c => c.low));
+  const hi = Math.max(...SEG.map(c => c.high));
+  SCALE = { lo, hi, range: (hi - lo) || 1 };
   window.ready = true;
   draw(0);
 });
 
-/* Кольцо линзы в координатах канваса: те же 190px коробки и inset -34%,
-   что в CSS знака — радиус кольца = 0.5 * 190 * 1.68 * 0.92. */
-const LENS = { x: W / 2, y: H / 2, r: 0.5 * 190 * 1.68 * 0.92 };
+/* Сегмент под кольцо: стык (последняя свеча → первая) не должен читаться,
+   а внутри должно быть движение. Оценка = «насколько сошлась цена» минус
+   «насколько живой участок». */
+function pickRing(all, n) {
+  let best = null, bestScore = Infinity;
+  for (let s = 0; s + n < all.length; s++) {
+    const seg = all.slice(s, s + n);
+    const lo = Math.min(...seg.map(c => c.low));
+    const hi = Math.max(...seg.map(c => c.high));
+    const range = hi - lo;
+    if (!range) continue;
+    const gap = Math.abs(seg[n - 1].close - seg[0].open) / range;   /* стык */
+    const life = range / seg[0].open;                               /* амплитуда */
+    const score = gap * 3 - life * 12;
+    if (score < bestScore) { bestScore = score; best = seg; }
+  }
+  return best || all.slice(0, n);
+}
 
 function draw(position) {
-  if (!DATA.length) return;
-  const data = DATA, w = W, h = H;
-  const slotW = w / VISIBLE, bodyW = slotW * 0.7;
-  const pos = ((position % data.length) + data.length) % data.length;
+  if (!SEG.length) return;
+  const data = SEG, n = data.length;
+  const slotW = W / VISIBLE, bodyW = slotW * 0.62;
+  const pos = ((position % n) + n) % n;
   const startIdx = Math.floor(pos), offset = (pos - startIdx) * slotW;
 
-  const visible = [];
-  for (let i = 0; i <= VISIBLE + 1; i++) visible.push(data[(startIdx + i) % data.length]);
-  const minP = Math.min(...visible.map(c => c.low));
-  const maxP = Math.max(...visible.map(c => c.high));
-  const range = maxP - minP || 1;
-  const padT = h * 0.10, padB = h * 0.10;
-  const yS = p => padT + (1 - (p - minP) / range) * (h - padT - padB);
+  const padT = H * 0.13, padB = H * 0.13;   /* амплитуда свечей: с 0.16 лента была плоской */
+  const yS = p => padT + (1 - (p - SCALE.lo) / SCALE.range) * (H - padT - padB);
 
-  ctx.clearRect(0, 0, w, h);
+  ctx.clearRect(0, 0, W, H);
 
-  /* Свечи: края ленты гаснут, чтобы кадр не обрывался вертикальной стеной */
-  for (let i = 0; i <= VISIBLE + 1; i++) {
-    const c = data[(startIdx + i) % data.length];
+  const { x: lx, y: ly, r: lr } = LENS;
+
+  /* ── Лента снаружи кольца: приглушена, это фон ───────────────────────
+     Раньше свечи снаружи были такими же яркими, и глаз не понимал, куда
+     смотреть. Здесь главный объект — круг. */
+  for (let i = -1; i <= VISIBLE + 1; i++) {
+    const c = data[((startIdx + i) % n + n) % n];
     const x = i * slotW - offset;
-    const fadeL = Math.min(1, x / (slotW * 8));
-    const fadeR = Math.min(1, (w - x) / (slotW * 8));
-    ctx.globalAlpha = Math.max(0, Math.min(fadeL, fadeR));
-    const bull = c.close >= c.open;
-    ctx.strokeStyle = ctx.fillStyle = bull ? '#26a69a' : '#ef5350';
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(x, yS(c.high)); ctx.lineTo(x, yS(c.low)); ctx.stroke();
-    const yO = yS(c.open), yC = yS(c.close);
-    ctx.fillRect(x - bodyW / 2, Math.min(yO, yC), bodyW, Math.max(1, Math.abs(yC - yO)));
+    const fade = Math.min(1, Math.min(x, W - x) / (slotW * 3));
+    ctx.globalAlpha = Math.max(0, fade) * 0.30;
+    paintCandle(c, x, yS, bodyW, false);
   }
   ctx.globalAlpha = 1;
 
-  /* ── Линза: тот же поток, но с разметкой ─────────────────────────── */
-  const { x: lx, y: ly, r: lr } = LENS;
+  /* ── Внутри кольца: тот же поток, но с разметкой ─────────────────── */
   ctx.save();
   ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI * 2); ctx.clip();
-  ctx.fillStyle = 'rgba(251, 246, 239, 0.55)';
+
+  ctx.fillStyle = 'rgba(255, 253, 249, 0.80)';
   ctx.fillRect(lx - lr, ly - lr, lr * 2, lr * 2);
 
-  const yHi = yS(maxP), yLo = yS(minP);
-  ctx.setLineDash([4, 4]);
-  ctx.strokeStyle = 'rgba(154, 123, 30, 0.75)'; ctx.lineWidth = 1;
-  [yHi, yLo].forEach(y => { ctx.beginPath(); ctx.moveTo(lx - lr, y); ctx.lineTo(lx + lr, y); ctx.stroke(); });
+  /* Знак — подложка внутри кольца, лента пойдёт поверх него */
+  if (LOGO) {
+    const lw = lr * 1.22, lh = lw * ((LOGO.naturalHeight / LOGO.naturalWidth) || 1);
+    ctx.globalAlpha = 0.36;
+    ctx.drawImage(LOGO, lx - lw / 2, ly - lh / 2, lw, lh);
+    ctx.globalAlpha = 1;
+  }
+
+  /* Уровни считаем по видимому окну, а не по всему кольцу: границы кольца
+     почти всегда оказываются за краем круга, и разметки просто не было
+     видно. Масштаб при этом общий — картинка не «дышит». */
+  let wHi = -Infinity, wLo = Infinity;
+  for (let i = -1; i <= VISIBLE + 1; i++) {
+    const c = data[((startIdx + i) % n + n) % n];
+    const x = i * slotW - offset;
+    if (Math.abs(x - lx) > lr * 0.92) continue;   /* только то, что в кольце */
+    if (c.high > wHi) wHi = c.high;
+    if (c.low < wLo) wLo = c.low;
+  }
+  ctx.setLineDash([5, 5]);
+  ctx.strokeStyle = 'rgba(154, 123, 30, 0.7)'; ctx.lineWidth = 1.4;
+  [yS(wHi), yS(wLo)].forEach(y => {
+    ctx.beginPath(); ctx.moveTo(lx - lr, y); ctx.lineTo(lx + lr, y); ctx.stroke();
+  });
   ctx.setLineDash([]);
 
-  /* Скользящая по 20 свечам */
-  ctx.strokeStyle = '#C9A227'; ctx.lineWidth = 1.6;
+  /* Скользящая по 20 свечам — считаем по кольцу, поэтому она тоже
+     замыкается вместе с циклом */
+  ctx.strokeStyle = '#C9A227'; ctx.lineWidth = 2;
   ctx.beginPath();
-  for (let i = 0; i < visible.length; i++) {
-    let sum = 0, n = 0;
-    for (let k = 0; k < 20; k++) {
-      const c = data[(startIdx + i - k + data.length) % data.length];
-      if (c) { sum += c.close; n++; }
-    }
-    const x = i * slotW - offset, y = yS(sum / n);
-    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+  for (let i = -1; i <= VISIBLE + 1; i++) {
+    let sum = 0;
+    for (let k = 0; k < 20; k++) sum += data[((startIdx + i - k) % n + n) % n].close;
+    const x = i * slotW - offset, y = yS(sum / 20);
+    i === -1 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.stroke();
 
-  /* Свечи внутри кольца — ярче и толще: это и есть «проявление» */
-  let hiIdx = 0, hiVal = -Infinity;
-  for (let i = 0; i <= VISIBLE + 1; i++) {
-    const c = data[(startIdx + i) % data.length];
+  let hiIdx = null, hiVal = -Infinity;
+  for (let i = -1; i <= VISIBLE + 1; i++) {
+    const c = data[((startIdx + i) % n + n) % n];
     const x = i * slotW - offset;
     if (Math.abs(x - lx) > lr) continue;
-    if (c.high > hiVal) { hiVal = c.high; hiIdx = i; }
-    const bull = c.close >= c.open;
-    ctx.strokeStyle = ctx.fillStyle = bull ? '#1f8e83' : '#d8433f';
-    ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.moveTo(x, yS(c.high)); ctx.lineTo(x, yS(c.low)); ctx.stroke();
-    const yO = yS(c.open), yC = yS(c.close);
-    ctx.fillRect(x - bodyW / 2, Math.min(yO, yC), bodyW, Math.max(1, Math.abs(yC - yO)));
+    if (c.high > hiVal) { hiVal = c.high; hiIdx = x; }
+    paintCandle(c, x, yS, bodyW, true);
   }
-  /* Точка паттерна: самая высокая свеча в окне линзы */
-  const px = hiIdx * slotW - offset, py = yS(hiVal);
-  ctx.fillStyle = '#E6C257';
-  ctx.beginPath(); ctx.arc(px, py, 3.4, 0, Math.PI * 2); ctx.fill();
-  ctx.strokeStyle = 'rgba(230,194,87,0.9)'; ctx.lineWidth = 1.2;
-  ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.stroke();
+  /* Точка паттерна: самая высокая свеча внутри кольца */
+  if (hiIdx !== null) {
+    const py = yS(hiVal);
+    ctx.fillStyle = '#E6C257';
+    ctx.beginPath(); ctx.arc(hiIdx, py, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(230,194,87,0.9)'; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(hiIdx, py, 11, 0, Math.PI * 2); ctx.stroke();
+  }
   ctx.restore();
 
-  /* Обод линзы */
-  ctx.strokeStyle = 'rgba(201,162,39,0.5)'; ctx.lineWidth = 1;
+  /* ── Кольцо ───────────────────────────────────────────────────────── */
+  /* Мягкое свечение под ободом: кольцо перестаёт быть просто линией */
+  const glow = ctx.createRadialGradient(lx, ly, lr * 0.94, lx, ly, lr * 1.12);
+  glow.addColorStop(0, 'rgba(201,162,39,0)');
+  glow.addColorStop(0.5, 'rgba(201,162,39,0.14)');
+  glow.addColorStop(1, 'rgba(201,162,39,0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath(); ctx.arc(lx, ly, lr * 1.12, 0, Math.PI * 2); ctx.fill();
+
+  ctx.strokeStyle = 'rgba(201,162,39,0.38)'; ctx.lineWidth = 3.2;
   ctx.beginPath(); ctx.arc(lx, ly, lr, 0, Math.PI * 2); ctx.stroke();
+
+  /* Дуга-обход: делает ровно один оборот за цикл ленты, поэтому кадр в
+     конце совпадает с кадром в начале. Это «знак работает», а не декор. */
+  const a0 = -Math.PI / 2 + (pos / n) * Math.PI * 2;
+  const grad = ctx.createLinearGradient(lx - lr, ly - lr, lx + lr, ly + lr);
+  grad.addColorStop(0, 'rgba(201,162,39,0.05)');
+  grad.addColorStop(0.65, 'rgba(201,162,39,0.75)');
+  grad.addColorStop(1, '#F0D374');
+  ctx.strokeStyle = grad; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.arc(lx, ly, lr, a0, a0 + Math.PI * 0.55); ctx.stroke();
+  ctx.lineCap = 'butt';
+
+  /* Виньетка: края кадра гаснут, круг остаётся главным */
+  /* Виньетка мягче, чем в первой версии: там она съедала ленту снаружи, и
+     круг висел в пустоте — было непонятно, что сквозь него что-то идёт. */
+  const vg = ctx.createRadialGradient(lx, ly, lr * 1.05, lx, ly, lr * 2.1);
+  vg.addColorStop(0, 'rgba(251,246,239,0)');
+  vg.addColorStop(1, 'rgba(251,246,239,0.72)');
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
 }
+
+function paintCandle(c, x, yS, bodyW, bright) {
+  const bull = c.close >= c.open;
+  ctx.strokeStyle = ctx.fillStyle = bull
+    ? (bright ? '#1f8e83' : '#26a69a')
+    : (bright ? '#d8433f' : '#ef5350');
+  ctx.lineWidth = bright ? 1.6 : 1.2;
+  ctx.beginPath(); ctx.moveTo(x, yS(c.high)); ctx.lineTo(x, yS(c.low)); ctx.stroke();
+  const yO = yS(c.open), yC = yS(c.close);
+  ctx.fillRect(x - bodyW / 2, Math.min(yO, yC), bodyW, Math.max(1.5, Math.abs(yC - yO)));
+}
+
 window.draw = draw;
 </script>
 </body>
