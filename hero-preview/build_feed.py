@@ -45,25 +45,43 @@ TRUSTED_RULES = ('calendar', 'headline')
 # рынку отношения не имеет: «Print Edition | Wall Street Journal» (служебный
 # заголовок рубрики), регби, гобелен из Байё. Пропускаем заголовок, если в
 # нём есть рыночный маркер и нет служебного шаблона.
+# Целые слова: ищутся с границей и слева, и справа (плюс окончание -s/-es).
+# Без правой границы 'euro' находился внутри «Europe», и «Putin assures Trump
+# that Moscow doesn't have aggressive plans toward Europe» шла на карту как
+# рыночная новость. Тот же класс, что 'bank' внутри «West Bank».
 MARKET_WORDS = (
-    'stock', 'share', 'market', 'bond', 'yield', 'treasur', 'oil', 'brent', 'crude',
-    'gas', 'gold', 'dollar', 'euro', 'yen', 'currenc', 'inflation', 'cpi', 'gdp',
-    'rate', 'fed', 'ecb', 'central bank', 'tariff', 'trade', 'export', 'import',
-    'earning', 'revenue', 'profit', 'ipo', 'merger', 'deal', 'invest', 'fund',
-    'economy', 'economic', 'jobs', 'unemploy', 'budget', 'debt', 'bank',
+    'stock', 'share', 'market', 'bond', 'yield', 'oil', 'brent', 'crude',
+    'gas', 'gold', 'dollar', 'euro', 'yen', 'inflation', 'cpi', 'gdp',
+    'fed', 'ecb', 'central bank', 'tariff', 'export', 'import', 'revenue',
+    'profit', 'ipo', 'merger', 'economy', 'jobs', 'budget', 'debt', 'opec',
+)
+# Корни: ищутся по началу слова, окончание любое.
+MARKET_STEMS = ('treasur', 'currenc', 'earning', 'unemploy', 'econom',
+                'recession', 'commodit')
+MARKET_CYR = (
     'акци', 'рынок', 'рынк', 'ставк', 'инфляц', 'ввп', 'нефт', 'газ', 'золот',
-    'доллар', 'евро', 'иен', 'облигац', 'бирж', 'тариф', 'торгов', 'экспорт',
-    'импорт', 'прибыл', 'выручк', 'банк', 'бюджет', 'долг', 'занятост',
+    'доллар', 'евро', 'иен', 'облигац', 'бирж', 'тариф', 'экспорт',
+    'импорт', 'прибыл', 'выручк', 'бюджет', 'долг', 'занятост',
 )
 JUNK_PATTERNS = ('print edition', 'photos of', 'what to watch', 'quiz', 'crossword',
                  'west bank',      # «West Bank» — это не банк, а Западный берег
-                 'luncheon', 'walks by', 'helps organize', 'to host', 'photo')
+                 'luncheon', 'walks by', 'helps organize', 'to host', 'photo',
+                 # Спорт и культура: рыночное слово в таком заголовке всегда
+                 # случайное. «LIV Golf Files for Bankruptcy» — про банкротство,
+                 # но на карте рыночной аналитики это гольф.
+                 'golf', 'rugby', 'tennis', 'football', 'soccer', 'olympic',
+                 'tapestry', 'museum', 'cultural revolution', 'celebrit',
+                 'футбол', 'теннис', 'олимпи',
+                 # Служебные страницы курсов валют: числа есть, новости нет
+                 'exchange rate', 'exchange rates', 'rate today', 'rates today',
+                 'курсы валют', 'официальные курс')
 
-# Рыночного слова мало: «Kentucky State to Host Annual Federal Reserve
-# Luncheon» и подпись к фото «A man walks by the Federal Reserve Bank» его
-# содержат, но новостями рынка не являются. Требуем ещё и признак события —
-# число (цена, процент, объём) или глагол движения. Заголовок рыночной
-# новости почти всегда несёт одно из двух.
+# Признак события — число или глагол движения. Раньше он требовался всегда,
+# и это оказалось слишком строго: «Chinese Inflation Revives as Oil Spike Feed
+# Into Prices», «Dollar Eyes Seven-Month Low», «The Fed's Three Choices» —
+# новости рынка без числа и без глагола из списка. Список глаголов при этом
+# не расширить: в живом языке их сотни. Теперь событие требуется только там,
+# где рыночное слово могло попасть в заголовок случайно (см. WEAK_TOPIC).
 NUMBERS = re.compile(r'[$€£¥]\s?\d|\d+(?:[.,]\d+)?\s?%|\b\d{2,}\b')
 ACTION_WORDS = (
     'rise', 'rises', 'rose', 'fall', 'falls', 'fell', 'jump', 'jumps', 'surge',
@@ -80,26 +98,44 @@ _ACTION = re.compile(r'\b(' + '|'.join(
     w.replace(' ', r'\s') for w in ACTION_WORDS if w.isascii()) + r')', re.I)
 _ACTION_CYR = tuple(w for w in ACTION_WORDS if not w.isascii())
 
-# Одна страна не должна занимать всю карту: в один прогон приходило шесть
-# заголовков про ФРС, и все шесть вставали в Нью-Йорк.
-MAX_PER_PLACE = 2
+# Слова, которые сами по себе рыночными не делают: «bank» есть в названии
+# любого учреждения, «trade» — и в «trade war», и в «trade school», «rate» —
+# в чём угодно. Для них по-прежнему нужен признак события.
+WEAK_TOPIC = ('bank', 'trade', 'deal', 'rate', 'fund', 'invest', 'price',
+              'loan', 'billion', 'million', 'shipping', 'supply', 'demand',
+              'банк', 'торгов', 'цен', 'поставк', 'спрос')
 
-# Латинские маркеры ищем по началу слова, кириллические — как корни.
-# Без границы слова 'bank' находился в «West Bank», и новость про санкции
-# на Западном берегу уезжала на карту как рыночная.
-_LATIN = re.compile(r'\b(' + '|'.join(
-    w for w in MARKET_WORDS if w.isascii()) + r')', re.I)
-_CYR = tuple(w for w in MARKET_WORDS if not w.isascii())
+# Одна страна не должна занимать всю карту: в один прогон приходило шесть
+# заголовков про ФРС, и все шесть вставали в Нью-Йорк. Три вместо двух —
+# после того, как ослабленный фильтр дал больше материала: при двух карта
+# крутила один и тот же десяток заголовков по кругу.
+MAX_PER_PLACE = 3
+
+_STRONG = re.compile(
+    r'\b(?:' + '|'.join(w.replace(' ', r'\s') for w in MARKET_WORDS) + r')(?:e?s)?\b'
+    r'|\b(?:' + '|'.join(MARKET_STEMS) + r')\w*', re.I)
+_WEAK = re.compile(
+    r'\b(?:' + '|'.join(w for w in WEAK_TOPIC if w.isascii()) + r')\w*', re.I)
+_WEAK_CYR = tuple(w for w in WEAK_TOPIC if not w.isascii())
 
 
 def market_related(title: str) -> bool:
+    """Заголовок — про рынок?
+
+    Сильный маркер (нефть, инфляция, ФРС) — достаточно сам по себе. Слабый
+    (банк, цена, поставки) требует ещё и признака события: числа или глагола
+    движения. Именно слабые слова приводили на карту «обед Федрезерва в
+    Кентукки» и подпись к фотографии «мужчина проходит мимо здания банка».
+    """
     t = (title or '').lower()
     if any(j in t for j in JUNK_PATTERNS):
         return False
-    topic = bool(_LATIN.search(t)) or any(w in t for w in _CYR)
-    event = bool(NUMBERS.search(t)) or bool(_ACTION.search(t)) \
+    if _STRONG.search(t) or any(w in t for w in MARKET_CYR):
+        return True
+    if not (_WEAK.search(t) or any(w in t for w in _WEAK_CYR)):
+        return False
+    return bool(NUMBERS.search(t)) or bool(_ACTION.search(t)) \
         or any(w in t for w in _ACTION_CYR)
-    return topic and event
 
 
 def fetch_geo():

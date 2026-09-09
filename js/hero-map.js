@@ -188,6 +188,7 @@
         if (!items.length) throw new Error('пусто');
         POOL = items;
         usedNews = {};
+        refillQueue();
         /* Шесть слотов на четыре новости дают дубли. Активных — не больше,
            чем пунктов, и не больше шести. */
         active = Math.max(3, Math.min(6, items.length));
@@ -234,6 +235,48 @@
     SLOTS.forEach(project);
   }
 
+  /* Очередь показа — перетасованная лента. Случайный выбор при полутора
+     десятках пунктов держал на карте одни и те же три-четыре заголовка, а
+     половина ленты не показывалась ни разу: слот выбирал случайный пункт и
+     чаще всего натыкался на Нью-Йорк, которым забита половина ленты.
+     Очередь даёт правило: пока не показаны все, ни один не повторяется. */
+  var queue = [];
+  function refillQueue() {
+    queue = POOL.map(function (_, i) { return i; });
+    for (var i = queue.length - 1; i > 0; i--) {          /* Фишер — Йетс */
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = queue[i]; queue[i] = queue[j]; queue[j] = t;
+    }
+  }
+  /* Берём первый подходящий, непошедшие возвращаем в хвост — они дождутся
+     своей очереди, а не выпадут из ротации. */
+  function pickFromQueue(fits) {
+    if (!queue.length) refillQueue();
+    var skipped = [], nid = -1, guard = POOL.length + 1;
+    while (queue.length && guard-- > 0) {
+      var cand = queue.shift();
+      if (POOL[cand] && fits(cand)) { nid = cand; break; }
+      skipped.push(cand);
+      if (!queue.length) break;
+    }
+    queue = queue.concat(skipped);
+    return nid;
+  }
+
+  /* Две ленты дают почти одинаковые заголовки одной новости («Canada's
+     retaliatory US tariffs take effect» и «…tariffs on US goods take
+     effect»). По id они разные, на карте — дубль. Сверяем по первым словам. */
+  function titleKey(it) {
+    var s = localized(it.title, 'en') || localized(it.title, 'ru') || '';
+    return s.toLowerCase().replace(/[^0-9a-zа-яё ]+/gi, ' ')
+            .split(/\s+/).filter(Boolean).slice(0, 5).join(' ');
+  }
+
+  /* Есть ли сейчас на карте хоть одна живая подпись, кроме этого слота */
+  function alone(s) {
+    return !SLOTS.some(function (o) { return o !== s && o.news != null && o.alpha > 0.05; });
+  }
+
   function reseed(s) {
     if (!POOL.length) return;
     /* Один и тот же заголовок в двух точках карты читается как ошибка
@@ -243,15 +286,30 @@
     SLOTS.forEach(function (o) {
       if (o === s || o.news == null || !POOL[o.news]) return;
       shown[POOL[o.news].id] = true;
+      shown[titleKey(POOL[o.news])] = true;
       /* Города бывают рядом: Лондон и Франкфурт на карте почти касаются, и
          их подписи налезали друг на друга. Держим экранную дистанцию —
          раньше её обеспечивал разнос выдуманных координат. */
       if (proj && o.ll) { var q = proj(o.ll); if (q) taken.push(q); }
     });
+
+    /* Освобождаем свою прошлую новость и город ДО выбора новой.
+       Раньше это делалось после успешного выбора — и слот, которому места
+       не нашлось, уходил молчать, продолжая держать пункт занятым. Через
+       минуту «занятыми» оказывались все, и карта пустела совсем: в прогоне
+       на живом сайте 34 кадра из 40 были без единой подписи. */
+    if (s.news != null && POOL[s.news]) {
+      usedNews[s.news] = false;
+      usedCity[POOL[s.news].ll.join(',')] = false;
+    }
+    if (s.city != null) usedCity[s.city] = false;
+    s.news = null; s.city = null;
     /* 150px разводили точки так, что на карте оставалась одна подпись из
        шести: свободных мест не находилось. 105 — компромисс между
-       «не наезжают» и «карта живая». */
-    var MIN_GAP = 105;
+       «не наезжают» и «карта живая». Слоту, который не нашёл места дважды
+       подряд, дистанцию ослабляем: иначе на карте бывало ноль подписей —
+       половина ленты стоит в Нью-Йорке, и слоты глушили друг друга. */
+    var MIN_GAP = (s.miss || 0) >= 2 ? 76 : 105;
     function tooClose(ll) {
       if (!proj) return false;
       var q = proj(ll);
@@ -260,23 +318,26 @@
         if (Math.hypot(q[0] - taken[i][0], q[1] - taken[i][1]) < MIN_GAP) return true;
       return false;
     }
-    var nid, g2 = 0;
-    do { nid = Math.floor(Math.random() * POOL.length); g2++; }
-    while (g2 < 60 && (usedNews[nid] || shown[POOL[nid].id] ||
-                       usedCity[POOL[nid].ll.join(',')] || tooClose(POOL[nid].ll)));
+    var nid = pickFromQueue(function (i) {
+      var it = POOL[i];
+      return it && it.ll && !usedNews[i] && !shown[it.id] &&
+             !shown[titleKey(it)] && !usedCity[it.ll.join(',')] &&
+             !tooClose(it.ll);
+    });
     /* Ничего подходящего не нашлось — слот молчит до следующего круга.
        Пустое место честнее, чем две подписи одна на другой. Слот при этом
        обязан остаться в согласованном состоянии: без ll его координаты
        остаются NaN, и градиент ядра падает с «non-finite value». */
-    if (shown[POOL[nid].id] || tooClose(POOL[nid].ll)) {
+    if (nid < 0) {
+      s.miss = (s.miss || 0) + 1;
       s.news = null; s.ll = null; s.title = null;
       s.alpha = 0; s.bloom = 0; s.grow = 0; s.u = 1;
-      s.phase = 'wait'; s.time = 0; s.wait = 0.6 + Math.random() * 0.8;
+      s.phase = 'wait'; s.time = 0;
+      s.wait = alone(s) ? 0.25 : 0.5 + Math.random() * 0.6;
       if (s.el) s.el.style.opacity = 0;
       return;
     }
-    if (s.news != null && POOL[s.news]) { usedNews[s.news] = false; usedCity[POOL[s.news].ll.join(',')] = false; }
-    if (s.city != null) usedCity[s.city] = false;
+    s.miss = 0;
     var item = POOL[nid];
     usedNews[nid] = true; usedCity[item.ll.join(',')] = true;
     s.news = nid; s.city = item.ll.join(',');
@@ -286,7 +347,10 @@
     s.kind = item.kind; s.rule = item.rule; s.source = item.source;
     s.ph = Math.random() * 6.28;
     s.amp = 0.09 + Math.random() * 0.07;
-    s.phase = 'wait'; s.time = 0; s.wait = 0.4 + Math.random() * 2.6;
+    /* Пауза перед появлением. Если на карте сейчас нет ни одной подписи,
+       ждать нечего: пустая карта выглядит сломанной, а не спокойной. */
+    s.phase = 'wait'; s.time = 0;
+    s.wait = alone(s) ? 0.05 : 0.4 + Math.random() * 2.6;
     s.grow = 0; s.u = 1; s.alpha = 0; s.bloom = 0;
     renderLabel(s);
     project(s);

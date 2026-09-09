@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T12:20:01.362579+00:00",
+  "updated": "2026-09-09T13:20:00.898571+00:00",
   "grow": {
     "brief": {
       "headline": "Нефть у $93 при заголовках о $98, VIX +5,3% при плоских индексах: рынок закладывает риск Ормуза",
@@ -58,7 +58,6 @@
       "close": 153.821,
       "date": "2026-09-07",
       "spark": [
-        154.265,
         153.801,
         153.812,
         154.004,
@@ -81,7 +80,8 @@
         153.112,
         153.649,
         153.647,
-        153.556
+        153.556,
+        153.232
       ]
     },
     "pattern": {
@@ -135,9 +135,30 @@
     },
     {
       "title": {
-        "ru": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high",
-        "en": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high",
-        "ro": "Bitcoin faces key support test at $78.3K as US crude oil hits three-month high"
+        "ru": "Canada’s Tariffs Take Effect",
+        "en": "Canada’s Tariffs Take Effect",
+        "ro": "Canada’s Tariffs Take Effect"
+      },
+      "tag": {
+        "en": "Торонто",
+        "ru": "Торонто",
+        "ro": "Торонто"
+      },
+      "lon": -79.38,
+      "lat": 43.65,
+      "id": "nw-473932391",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:15Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE56TDIwd0lsS0hocUtNalNkd0FiUkJ6Qmt2MXpUanFvV0xpLUpnakFzUGxFb05ZUC1kcTlPSlNjOHEtNllWZ1ZxdFZHZnNMcktoQXNuSUN1NEdUYlZ6cy1obXdtRmVxT2UtVzluaDVSMXg4bDFveDdhY3RRaw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
+        "en": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
+        "ro": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -146,19 +167,19 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-882721437",
+      "id": "nw-198160288",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T12:20:01Z",
-      "source": "CoinTelegraph",
-      "url": "https://cointelegraph.com/markets/bitcoin-faces-key-support-test-at-783k-as-us-crude-oil-hits-three-month-high?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+      "ts_utc": "2026-09-09T13:14:14Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxON1VSSFpfdWZ5ejZ2WURVTGNWUlFxTm41VjAxRzRkbncwSFAydTdCVGt1SkY5Q1B0cWxIQWIzdm9mRWwtRUhOWW5PblRNeGN6WnpvdndhY2c0UkNyZnpKYVRsVWt0dFQ4RWVlRzZ3aU1hVER2Z0ZZWXJ3N0RJUTdoS0tlVHR3MlFOZWg4WnVpdFRFLU0?oc=5"
     },
     {
       "title": {
-        "ru": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin",
-        "en": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin",
-        "ro": "Jack Dorsey’s Block seeks US trust bank charter for Bitcoin, stablecoin"
+        "ru": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100",
+        "en": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100",
+        "ro": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -167,19 +188,124 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-554966201",
+      "id": "nw-697063807",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T12:19:59Z",
-      "source": "CoinTelegraph",
-      "url": "https://cointelegraph.com/news/block-us-trust-bank-charter-bitcoin-stablecoin-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+      "ts_utc": "2026-09-09T13:14:14Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5"
     },
     {
       "title": {
-        "ru": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes",
-        "en": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes",
-        "ro": "Bitcoin climbs as oil tops $100, equities drop after Iran strikes"
+        "ru": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
+        "en": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
+        "ro": "U.S. Stocks Fall After Saudi Oil Facilities Hit"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-801368360",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:14Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcy1XSG01SGxrWEV0U1NoLWFmQ0pnRFJ2YnJBNTZsbFF2N3hVeWt3MHR2ZHJ1MzR1bVNpWDc3djBGZDhtc2xQN0FVczV5Q3FtOGU4aERld2x2N3NRdnZBSjRpMEhjUEpTUEhFYjV5dlVsd2xOSEJfdXNFb2ZfYWJEbkNtYWlzSWdBU1BtaEpsMms5ZGNZTVh4bw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
+        "en": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
+        "ro": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland"
+      },
+      "tag": {
+        "en": "Хельсинки",
+        "ru": "Хельсинки",
+        "ro": "Хельсинки"
+      },
+      "lon": 24.94,
+      "lat": 60.17,
+      "id": "nw-275591906",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:14Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNejhvOEd3al93UzVIYmt2VFRlWUdKZU1WaTlwV2ktMnZMeGt6VV9wMTRVR09qU2MtZnBoeU92Ymh2d0NQU29WaUU3VEtmYjE3MGRiOVZTSnYxNXo2RWtSbU00allwa2RtdTc4VlJWZXZRMmNyWXh1OTZJdE9QQnVhM0toOGw0MTBfSUFvRWVvZW5OeDR2Z2lCNUY4S0ZzbEJ1eGI2blphVF9LMWc?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Google to Invest $15 Billion on AI Infrastructure in Finland",
+        "en": "Google to Invest $15 Billion on AI Infrastructure in Finland",
+        "ro": "Google to Invest $15 Billion on AI Infrastructure in Finland"
+      },
+      "tag": {
+        "en": "Хельсинки",
+        "ru": "Хельсинки",
+        "ro": "Хельсинки"
+      },
+      "lon": 24.94,
+      "lat": 60.17,
+      "id": "nw-80717000",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:13Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Google to Invest €13 Billion in AI Infrastructure in Finland",
+        "en": "Google to Invest €13 Billion in AI Infrastructure in Finland",
+        "ro": "Google to Invest €13 Billion in AI Infrastructure in Finland"
+      },
+      "tag": {
+        "en": "Хельсинки",
+        "ru": "Хельсинки",
+        "ro": "Хельсинки"
+      },
+      "lon": 24.94,
+      "lat": 60.17,
+      "id": "nw-308610829",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:10Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
+        "en": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
+        "ro": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan"
+      },
+      "tag": {
+        "en": "Джакарта",
+        "ru": "Джакарта",
+        "ro": "Джакарта"
+      },
+      "lon": 106.85,
+      "lat": -6.21,
+      "id": "nw-376543296",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:09Z",
+      "source": "bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNeFcwS0xxYXc5N0lWamhpU1g2RE1xZWhTdVBZT29wN191Mk5EbE10TnpUR2ZDdUd5aXk0TWlIcjdNcUNUOVgzTkNySVFVc1E2Ylphb1ZneUJtb29za3FwQzBkeF9nbHpBY1JQU05BS1dVQkZTdHgtZVpQQVhNZjZEeElTcTJhMC0xdGxidkM3OUc1QzkxT2kxR0xJWVB0VFkyRlJpeWNmOGJjdE9Gc2c?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Shipping traffic via Strait of Hormuz stays below 10-day average, data shows",
+        "en": "Shipping traffic via Strait of Hormuz stays below 10-day average, data shows",
+        "ro": "Shipping traffic via Strait of Hormuz stays below 10-day average, data shows"
       },
       "tag": {
         "en": "Тегеран",
@@ -188,19 +314,19 @@
       },
       "lon": 51.39,
       "lat": 35.69,
-      "id": "nw-106218554",
+      "id": "nw-297248918",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T12:19:56Z",
-      "source": "CoinDesk",
-      "url": "https://www.coindesk.com/markets/2026/09/09/bitcoin-climbs-as-oil-tops-usd100-equities-drop-after-iran-strikes"
+      "ts_utc": "2026-09-09T13:14:07Z",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQbXlWYlQ0MW1KT1g0U01lVldVbGtRWFU5U1FNVDllbEIwU3U2WElRSmw5QUg2Q2w3TUVUNDBUdWRSNWx1emlYRXdjLXY2NFk2VVgzTWExUHM0TTBHRGxKdlJ6Y0tPSUlvTXFoQzU5THV6b2dLbExKbkxaV1VtamZkRkdkMnpZTlAwNXlxVUxnNkZOdzRwX0MyTUNvN1lWVTV5WmtCX01iSmR2QkdESzl4VWlwbndRVkNfQUVBZm9DdDFFc1BK?oc=5"
     },
     {
       "title": {
-        "ru": "China exports match forecast in August, imports fall short as domestic demand stays soft",
-        "en": "China exports match forecast in August, imports fall short as domestic demand stays soft",
-        "ro": "China exports match forecast in August, imports fall short as domestic demand stays soft"
+        "ru": "China oil demand to fall 8.9% in 2026, Sinopec research says",
+        "en": "China oil demand to fall 8.9% in 2026, Sinopec research says",
+        "ro": "China oil demand to fall 8.9% in 2026, Sinopec research says"
       },
       "tag": {
         "en": "Шанхай",
@@ -209,19 +335,40 @@
       },
       "lon": 121.47,
       "lat": 31.23,
-      "id": "nw-558543206",
+      "id": "nw-987287510",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T12:19:55Z",
-      "source": "ForexLive",
-      "url": "https://investinglive.com/news/china-exports-match-forecast-in-august-imports-fall-short-as-domestic-demand-stays-soft/"
+      "ts_utc": "2026-09-09T13:14:07Z",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQU2E1RzRlY1M2Q0pGbFFXTUhxVEJsMFRfVjhrVldkT2dESG9WclY0QnZ3blEzUTlveTUybXdCY0pWRWtob1dUbXVDU3FlZkdXdTI2UVdQcVdIUTBNUndWYVp1Z2lHcTducTZnMlBWd1FabXB5V0dKRUhCWkNnTFByczBQZzFoTzlUNFNYdE1wWFpPMjMwWGdweXZqRU1UZXF5R0VjV1lB?oc=5"
     },
     {
       "title": {
-        "ru": "Germany's trade surplus widens sharply in July as imports slump",
-        "en": "Germany's trade surplus widens sharply in July as imports slump",
-        "ro": "Germany's trade surplus widens sharply in July as imports slump"
+        "ru": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
+        "en": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
+        "ro": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-871192262",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-09T13:14:06Z",
+      "source": "reuters.com",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNek1sMFNoNUdTTkFsT0lPdmU1dTIweFppQjJhZ2lBWDV4VTFkTmdDbGpmVDlCQW1pRkpIZWpzNC04S2tKNlZReGdKdzhlclc2dUZnelBTN0RxSmV5X1JXU3J6cU9WaWc3UHJRejVIc2ZxODRzVXByMk00LTE1WHg1SUZNSWstNU1Wazgzcjk4YjU5b3BWRGJGNnBYTFgwb0I1ZFJxR2U3Yw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "MUFG sees ECB hike this week, flags downside risk for euro",
+        "en": "MUFG sees ECB hike this week, flags downside risk for euro",
+        "ro": "MUFG sees ECB hike this week, flags downside risk for euro"
       },
       "tag": {
         "en": "Франкфурт",
@@ -230,202 +377,13 @@
       },
       "lon": 8.68,
       "lat": 50.11,
-      "id": "nw-287945000",
+      "id": "nw-372762256",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T12:19:55Z",
-      "source": "ForexLive",
-      "url": "https://investinglive.com/news/germany-s-trade-surplus-widens-sharply-in-july-as-imports-slump/"
-    },
-    {
-      "title": {
-        "ru": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
-        "en": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
-        "ro": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites"
-      },
-      "tag": {
-        "en": "Эр-Рияд",
-        "ru": "Эр-Рияд",
-        "ro": "Эр-Рияд"
-      },
-      "lon": 46.72,
-      "lat": 24.71,
-      "id": "nw-599538047",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:54Z",
-      "source": "ForexLive",
-      "url": "https://investinglive.com/news/oil-prices-extend-gains-as-yemen-s-houthis-threaten-broader-saudi-operation-after-attacks-hit-energy-sites/"
-    },
-    {
-      "title": {
-        "ru": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
-        "en": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
-        "ro": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets"
-      },
-      "tag": {
-        "en": "Эр-Рияд",
-        "ru": "Эр-Рияд",
-        "ro": "Эр-Рияд"
-      },
-      "lon": 46.72,
-      "lat": 24.71,
-      "id": "nw-721943027",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:54Z",
-      "source": "ForexLive",
-      "url": "https://investinglive.com/news/investinglive-european-news-wrap-oil-prices-rise-as-houthis-escalate-attacks-on-saudi-targets/"
-    },
-    {
-      "title": {
-        "ru": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)",
-        "en": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)",
-        "ro": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-682303059",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:53Z",
-      "source": "ForexLive",
-      "url": "https://investinglive.com/news/china-august-cpi-y-y-expected-0-8-prior-0-5/"
-    },
-    {
-      "title": {
-        "ru": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale",
-        "en": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale",
-        "ro": "Polish Zloty: Policy on hold keeps PLN supported against Euro – Societe Generale"
-      },
-      "tag": {
-        "en": "Варшава",
-        "ru": "Варшава",
-        "ro": "Варшава"
-      },
-      "lon": 21.01,
-      "lat": 52.23,
-      "id": "nw-693988734",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:52Z",
-      "source": "FXStreet",
-      "url": "https://www.fxstreet.com/news/polish-zloty-policy-on-hold-keeps-pln-supported-against-euro-societe-generale-202609090941"
-    },
-    {
-      "title": {
-        "ru": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow",
-        "en": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow",
-        "ro": "Australian Dollar slips against Japanese Yen as BoJ rate hike bets grow"
-      },
-      "tag": {
-        "en": "Токио",
-        "ru": "Токио",
-        "ro": "Токио"
-      },
-      "lon": 139.69,
-      "lat": 35.69,
-      "id": "nw-761242415",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:52Z",
-      "source": "FXStreet",
-      "url": "https://www.fxstreet.com/news/australian-dollar-slips-against-japanese-yen-as-boj-rate-hike-bets-grow-202609090946"
-    },
-    {
-      "title": {
-        "ru": "Norges Bank: One more hike then gradual cuts – Nomura",
-        "en": "Norges Bank: One more hike then gradual cuts – Nomura",
-        "ro": "Norges Bank: One more hike then gradual cuts – Nomura"
-      },
-      "tag": {
-        "en": "Осло",
-        "ru": "Осло",
-        "ro": "Осло"
-      },
-      "lon": 10.75,
-      "lat": 59.91,
-      "id": "nw-641527201",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:51Z",
-      "source": "FXStreet",
-      "url": "https://www.fxstreet.com/news/norges-bank-one-more-hike-then-gradual-cuts-nomura-202609091114"
-    },
-    {
-      "title": {
-        "ru": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level",
-        "en": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level",
-        "ro": "New Zealand Dollar extends losses below 0.5850 as Oil prices approach the $100 level"
-      },
-      "tag": {
-        "en": "Веллингтон",
-        "ru": "Веллингтон",
-        "ro": "Веллингтон"
-      },
-      "lon": 174.78,
-      "lat": -41.29,
-      "id": "nw-216808956",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:19:51Z",
-      "source": "FXStreet",
-      "url": "https://www.fxstreet.com/news/new-zealand-dollar-extends-losses-below-05850-as-oil-prices-approach-the-100-level-202609091155"
-    },
-    {
-      "title": {
-        "ru": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran",
-        "en": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran",
-        "ro": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-951870986",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:17:45Z",
-      "source": "Yahoo Personal Finance",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-tuesday-september-8-2026-gold-moves-lower-following-fresh-escalations-with-iran-111035525.html"
-    },
-    {
-      "title": {
-        "ru": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade",
-        "en": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade",
-        "ro": "Argentina's corn exports set for record, as war in Ukraine, European heat wave reshape trade"
-      },
-      "tag": {
-        "en": "Буэнос-Айрес",
-        "ru": "Буэнос-Айрес",
-        "ro": "Буэнос-Айрес"
-      },
-      "lon": -58.38,
-      "lat": -34.6,
-      "id": "nw-895693657",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T12:17:44Z",
-      "source": "Reuters",
-      "url": "https://finance.yahoo.com/news/argentinas-corn-exports-set-record-101814752.html"
+      "ts_utc": "2026-09-09T13:14:05Z",
+      "source": "investingLive",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNTGEtUnpOblNPNzlianprcktaOW1yY0RyZ0YxLUk0ZXlzVmlVVGRWU3dobWF3a216Unl5MkRCVmNPLTFaS2drTlRzUHZOUFVYZU5JZnRkcUx3cjBDV281a1puX3F5Rk03X2g1dzBmNUNjb1VxdkhEYU9DZ1ZHcHJCVUtkRDJOSm9CQTU4LXhRMXMyaDBn?oc=5"
     }
   ],
   "today": {
@@ -437,34 +395,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.1651799999999999,
-      "chg_pct": 0.209,
+      "bid": 1.16467,
+      "chg_pct": 0.1651,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35603,
-      "chg_pct": 0.1277,
+      "bid": 1.35519,
+      "chg_pct": 0.0657,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 153.284,
-      "chg_pct": -0.1069,
+      "bid": 153.261,
+      "chg_pct": -0.1219,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79336.7,
-      "chg_pct": 1.1522999999999999,
+      "bid": 79459.0,
+      "chg_pct": 1.3083,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2499.32,
-      "chg_pct": -0.5784,
+      "bid": 2512.19,
+      "chg_pct": -0.0664,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-09T12:19:59.228308+00:00"
+  "quotes_updated": "2026-09-09T13:19:49.626767+00:00"
 }

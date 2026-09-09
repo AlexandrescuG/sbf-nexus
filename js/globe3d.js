@@ -361,15 +361,47 @@
     }
     function stop() {
       active = false;
+      prev = 0;
       if (raf) { cancelAnimationFrame(raf); raf = null; }
     }
 
-    /* ── Snap section hooks ─────────────────────────────────── */
+    /* ── Когда крутиться ────────────────────────────────────────
+       Раньше запуск и остановку давали только события секции
+       (`snap-enter` / `snap-leave`). Этого мало: при холсте без
+       preserveDrawingBuffer остановленный цикл означает не «застывшая
+       картинка», а пустой чёрный круг — браузер вправе выбросить кадр.
+       Плюс сами события можно пропустить, если якорь привёл сразу в
+       контакты. Наблюдатель надёжнее и сам вернёт вращение. */
     const section = document.getElementById('act-contact');
     if (section) {
       section.addEventListener('snap-enter', start);
-      section.addEventListener('snap-leave', stop);
+      if (window.IntersectionObserver) {
+        new IntersectionObserver(function (es) {
+          es[0].isIntersecting ? start() : stop();
+        }, { rootMargin: '200px' }).observe(section);
+      } else {
+        section.addEventListener('snap-leave', stop);
+      }
     }
+
+    /* Контекст WebGL живёт не вечно: вкладку свернули, GPU ушёл спать — и
+       глобус остаётся чёрным кругом навсегда, потому что рисовать больше
+       некуда. Ловим потерю и возвращаемся, когда контекст вернут. */
+    canvas.addEventListener('webglcontextlost', function (e) {
+      e.preventDefault();
+      stop();
+      console.warn('[globe] контекст WebGL потерян, жду восстановления');
+    }, false);
+    canvas.addEventListener('webglcontextrestored', function () {
+      console.info('[globe] контекст WebGL восстановлен');
+      start();
+    }, false);
+
+    /* Вернулись во вкладку — дорисовать кадр: пока вкладка была скрыта,
+       rAF не вызывался, и в буфере могло не остаться ничего. */
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && active) { prev = 0; renderer.render(scene, camera); }
+    });
 
     /* ── Resize ─────────────────────────────────────────────── */
     const onResize = () => {
