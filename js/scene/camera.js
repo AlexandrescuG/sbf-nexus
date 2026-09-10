@@ -52,7 +52,25 @@ export function createCamera() {
     for (let i = 0; i < spans.length; i++) {
       if (eye >= spans[i].top) { cur = spans[i]; idx = i; }
     }
-    const t = clamp((eye - cur.top) / (cur.height || 1), 0, 1);
+    /* Достижимый отрезок акта, а не весь его отрезок.
+
+       Взгляд — это середина окна, и она не может подняться выше половины
+       экрана от начала документа и опуститься ниже половины экрана от его
+       конца. У первого акта это значило, что t никогда не был меньше 0.46:
+       страница только открылась, никто ещё не прокрутил ни пикселя, а мир
+       уже наполовину «отступил» — карта рисовалась в 0.63 силы, и владелец
+       справедливо назвал её тусклой. У последнего акта симметрично: t не
+       доходил до 1, поэтому из четырёх адресов на глобусе появлялись
+       только два — Кишинёв и Дубай не показывались никогда.
+
+       Считаем долю не от высоты секции, а от того куска, куда взгляд
+       действительно может попасть. Для средних актов это то же самое. */
+    const half = window.innerHeight / 2;
+    const docH = document.documentElement.scrollHeight;
+    let lo = cur.top, hi = cur.top + (cur.height || 1);
+    if (idx === 0) lo = Math.max(lo, Math.min(half, hi - 40));
+    if (idx === spans.length - 1) hi = Math.min(hi, Math.max(docH - half, lo + 40));
+    const t = clamp((eye - lo) / Math.max(1, hi - lo), 0, 1);
 
     const blend = [{ act: cur.id, t: t, w: 1 }];
     if (t > 1 - OVERLAP && spans[idx + 1]) {

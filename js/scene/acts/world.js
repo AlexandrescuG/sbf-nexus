@@ -17,7 +17,10 @@
 import { createProjection, drawGeo, graticule } from '../geo.js';
 
 const GOLD = '201, 162, 39';
-const SLOTS = 5;
+/* Шесть — столько же, сколько на живом сайте (js/hero-map.js, active = 6).
+   Пятый и шестой не ради шума: часть подписей всегда молчит, потому что
+   точка попала под текст, и без запаса в кадре остаётся одна. */
+const SLOTS = 6;
 
 export const world = {
   id: 'world',
@@ -48,6 +51,7 @@ export const world = {
     /* На телефоне нитей меньше: подписей там всё равно нет (узкий экран),
        а каждая нить — это 18 отрезков кривой в кадре. */
     const n = window.innerWidth < 900 ? 3 : SLOTS;
+    this.slotN = n;
     for (let i = 0; i < n; i++) {
       const el = document.createElement('div');
       el.className = 'scene-lbl';
@@ -148,23 +152,33 @@ export const world = {
        текста в первой версии сайта. Прямоугольник колонки берём раз в
        кадр и прячем те подписи, которые в него попадают. */
     if (!this.col) this.col = document.querySelector('.act[data-act="world"] .act-col');
-    /* Прямоугольник колонки читаем не каждый кадр, а пять раз в секунду:
+    /* Занятые места кадра читаем не каждый кадр, а пять раз в секунду:
        getBoundingClientRect во время прокрутки заставляет браузер считать
        раскладку, и на телефоне это выходило дороже самой отрисовки.
        Подпись за 200 мс никуда не уедет — она и живёт-то секундами. */
     this.keepAt = (this.keepAt || 0) - view.dt;
     if (this.col && this.keepAt <= 0) {
-      this.keep = this.col.getBoundingClientRect();
+      this.keep = textBoxes(this.col);
       this.keepAt = 0.2;
     }
-    const keep = view.mobile ? null : this.keep;
-    /* Занятые места кадра: сначала знак, потом каждая поставленная подпись.
-       Без этого две новости из соседних городов ложились одна на другую, а
-       третья — прямо на кольцо. На старой карте это правило было, при
-       переносе в сцену его сначала потеряли. */
-    const taken = [{ left: g.cx - g.r, right: g.cx + g.r,
-                     top: g.cy - g.r, bottom: g.cy + g.r }];
-    if (keep) taken.push(keep);
+    /* Занятые места кадра: сначала знак, потом строки текста, потом каждая
+       поставленная подпись. Без этого две новости из соседних городов
+       ложились одна на другую, а третья — прямо на кольцо.
+
+       Знак занимает круг, а не квадрат. Разница не косметическая: квадрат
+       вокруг кольца радиусом 240 px забирает лишние 30 тысяч пикселей по
+       углам — как раз там, куда подписи и просились.
+
+       Текст занимает строки, а не колонку. Прямоугольник всей колонки
+       перекрывал 44% ширины экрана сверху донизу, и для точки, попавшей
+       в эту полосу, свободного места не оставалось ни справа, ни слева:
+       подпись гасла всегда, независимо от того, сколько положений она
+       перебирала. При этом сами строки короче колонки — «шум.» кончается
+       на четверти её ширины, — и справа от них лежит пустая карта. */
+    const taken = [{ cx: g.cx, cy: g.cy, r: g.r }];
+    if (!view.mobile && this.keep) {
+      for (let i = 0; i < this.keep.length; i++) taken.push(this.keep[i]);
+    }
     this.slots.forEach(s => this.placeLabel(s, w, view, taken));
     if (this.labels) this.labels.style.opacity = w > 0.05 ? 1 : 0;
 
@@ -328,43 +342,141 @@ export const world = {
     const place = (tag && typeof tag === 'object' ? (tag[lang] || tag.en || tag.ru) : tag) || '';
     s.el.innerHTML = '<b>' + esc(cut(title, 42)) + '</b><i>' + esc(place) +
                      (s.item.source ? ' · ' + esc(s.item.source) : '') + '</i>';
+    /* Размер меряем один раз на событие, а не берём числом: короткому
+       заголовку не нужны 200 px, и лишние сто пикселей — это ещё одно
+       место, где подпись «не помещается» на ровном месте. */
+    s.el.style.opacity = 0;
+    s.lw = Math.min(220, s.el.offsetWidth || 200);
+    s.lh = s.el.offsetHeight || 40;
   },
 
   placeLabel(s, w, view, taken) {
     if (!s.el) return;
     if (!s.item || s.mx == null || w < 0.05 || view.w < 620) {
+      s.why = !s.item ? 'нет события' : s.mx == null ? 'нить ещё не выросла'
+            : w < 0.05 ? 'акт не в кадре' : 'узкий экран';
       s.el.style.opacity = 0;
       return;
     }
     const px = s.mx, py = s.my;      /* подпись едет вместе с точкой */
-    const right = px < view.w * 0.62;
-    /* Прямоугольник подписи: примерно 22ch на три строки, считаем от точки
-       в ту сторону, куда она будет выложена. */
-    const lw = 200, lh = 48, pad = 10;
-    const box = {
-      left: (right ? px : px - lw) - pad,
-      right: (right ? px + lw : px) + pad,
-      top: py - lh / 2 - pad,
-      bottom: py + lh / 2 + pad,
-    };
-    /* Пересеклась с чем-то уже занятым — молчим. Пустое место честнее
-       двух подписей одна на другой. */
-    for (let i = 0; i < taken.length; i++) {
-      const t = taken[i];
-      if (box.right > t.left && box.left < t.right &&
-          box.bottom > t.top && box.top < t.bottom) {
-        s.el.style.opacity = 0;
-        return;
+    const lw = s.lw || 200, lh = s.lh || 44, pad = 8;
+
+    /* Подпись ищет себе место, а не молчит при первой же помехе.
+
+       Раньше правило было одно: если прямоугольник подписи задел колонку
+       текста, знак или другую подпись — гасим. На живом сайте подписей
+       видно две-три постоянно, у меня по одной и с провалами: точка чаще
+       всего оказывалась в занятой полосе. Теперь перебираем шесть
+       положений вокруг точки — справа, слева, выше, ниже — и молчим,
+       только если не подошло ни одно. Пустое место всё ещё честнее
+       наложения, просто теперь оно действительно последнее средство. */
+    const spots = [
+      { dx:  14, dy: -10, side: 'right' },
+      { dx: -14, dy: -10, side: 'left'  },
+      { dx:  14, dy:  22, side: 'right' },
+      { dx: -14, dy:  22, side: 'left'  },
+      { dx:  14, dy: -42, side: 'right' },
+      { dx: -14, dy: -42, side: 'left'  },
+    ];
+
+    let why = '';
+    for (let n = 0; n < spots.length; n++) {
+      const sp = spots[n];
+      const x = px + sp.dx, y = py + sp.dy;
+      const box = {
+        left: (sp.side === 'right' ? x : x - lw) - pad,
+        right: (sp.side === 'right' ? x + lw : x) + pad,
+        top: y - lh / 2 - pad,
+        bottom: y + lh / 2 + pad,
+      };
+      /* За краем кадра подпись не читается — это тоже занято */
+      if (box.left < 4 || box.right > view.w - 4 ||
+          box.top < 60 || box.bottom > view.h - 60) { why = 'за краем'; continue; }
+
+      let hit = 0;
+      for (let i = 0; i < taken.length && !hit; i++) {
+        if (overlaps(box, taken[i])) hit = i + 1;
       }
+      if (hit) {
+        const nText = (!view.mobile && this.keep) ? this.keep.length : 0;
+        why = hit === 1 ? 'знак' : hit <= 1 + nText ? 'строка текста' : 'другая подпись';
+        continue;
+      }
+
+      taken.push(box);
+      s.why = '';
+      s.el.style.opacity = s.alpha * w;
+      s.el.style.transform = 'translate(' + Math.round(x) + 'px,' +
+                             Math.round(y) + 'px)' +
+                             (sp.side === 'right' ? '' : ' translateX(-100%)');
+      s.el.style.textAlign = sp.side === 'right' ? 'left' : 'right';
+      return;
     }
-    taken.push(box);
-    s.el.style.opacity = s.alpha * w;
-    s.el.style.transform = 'translate(' + Math.round(px + (right ? 12 : -12)) +
-                           'px,' + Math.round(py - 10) + 'px)' +
-                           (right ? '' : ' translateX(-100%)');
-    s.el.style.textAlign = right ? 'left' : 'right';
+    s.why = why || 'места нет';
+    s.el.style.opacity = 0;
   },
 };
+
+/* Пересечение подписи с занятым местом. Занятое бывает двух видов:
+   прямоугольник (строка текста, другая подпись) и круг (знак). */
+function overlaps(box, t) {
+  if (t.r != null) {
+    const x = Math.max(box.left, Math.min(t.cx, box.right));
+    const y = Math.max(box.top, Math.min(t.cy, box.bottom));
+    return (x - t.cx) * (x - t.cx) + (y - t.cy) * (y - t.cy) < t.r * t.r;
+  }
+  return box.right > t.left && box.left < t.right &&
+         box.bottom > t.top && box.top < t.bottom;
+}
+
+/* Строки текста колонки, а не её габарит.
+
+   Диапазон по текстовому узлу отдаёт прямоугольник каждой строки в
+   отдельности — той ширины, какая у строки на самом деле. Элементы с
+   рамкой или заливкой (карточка «Старт без риска») занимают место
+   целиком: там пусто не на глаз, а по рисунку.
+
+   Читается это пять раз в секунду вместе с прежним габаритом колонки,
+   то есть дороже не стало: раньше был один getBoundingClientRect,
+   теперь один обход десятка узлов на том же такте. */
+function textBoxes(root) {
+  const out = [];
+  const pad = 6;
+  const walk = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+  const push = (r) => {
+    if (r.width < 4 || r.height < 4) return;
+    out.push({ left: r.left - pad, right: r.right + pad,
+               top: r.top - pad, bottom: r.bottom + pad });
+  };
+  let el = root;
+  while (el) {
+    const st = getComputedStyle(el);
+    const solid = st.borderTopWidth !== '0px' || st.borderLeftWidth !== '0px' ||
+                  (st.backgroundColor && st.backgroundColor !== 'rgba(0, 0, 0, 0)');
+    if (solid && el !== root) {
+      push(el.getBoundingClientRect());
+      /* Внутрь закрашенного блока заглядывать незачем */
+      el = skip(walk, el);
+      continue;
+    }
+    for (let n = el.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType !== 3 || !n.nodeValue.trim()) continue;
+      const rng = document.createRange();
+      rng.selectNodeContents(n);
+      const rects = rng.getClientRects();
+      for (let i = 0; i < rects.length; i++) push(rects[i]);
+    }
+    el = walk.nextNode();
+  }
+  return out;
+}
+
+/* Пропустить поддерево: TreeWalker не умеет «дальше, но не внутрь» */
+function skip(walk, el) {
+  let n = walk.nextNode();
+  while (n && el.contains(n)) n = walk.nextNode();
+  return n;
+}
 
 function ease(x) { return x * x * (3 - 2 * x); }
 /* Нить растёт быстро и мягко тормозит, а втягивается наоборот — сначала

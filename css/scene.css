@@ -232,7 +232,10 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .scene-lbl {
   position: absolute;
   top: 0; left: 0;
-  width: 22ch;
+  /* Ширина по тексту, а не одна на всех: короткая подпись, занимавшая
+     22ch, «не помещалась» там, где на самом деле места хватало. */
+  width: max-content;
+  max-width: 22ch;
   will-change: transform, opacity;
   font: 400 12px/1.35 'Archivo', system-ui, sans-serif;
   color: #3a3128;

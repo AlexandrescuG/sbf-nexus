@@ -168,6 +168,7 @@ function boot() {
        объектов в секунду — это работа для сборщика мусора, которая потом
        вылезает рывком в самом неподходящем месте. */
     const st = window.SBF_SCENE || (window.SBF_SCENE = {});
+    st.acts = ACTS;              /* инструментам нужен доступ к внутренностям акта */
     st.act = cam.act; st.section = cam.section; st.t = cam.t;
     st.ms = frameMs; st.fps = Math.round(1000 / Math.max(frameMs, 1));
     st.simple = view.simple; st.dpr = dpr; st.mobile = view.mobile;
