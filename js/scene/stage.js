@@ -81,12 +81,15 @@ function boot() {
     }
 
     ctx.clearRect(0, 0, view.w, view.h);
+    /* Знак — в два слоя, между ними акты: глиф снизу, кольцо сверху.
+       Так лента свечей идёт сквозь знак, а не загораживается им. */
+    mark.renderGlyph(ctx, view);
     for (let i = 0; i < cam.blend.length; i++) {
       const b = cam.blend[i];
       const act = ACTS[b.act];
       if (act && act.render) act.render(ctx, view, b, mark);
     }
-    mark.render(ctx, view, cam);
+    mark.renderRing(ctx, view);
 
     /* ── Бюджет кадра ───────────────────────────────────── */
     frameMs += (performance.now() - t0 - frameMs) * 0.1;

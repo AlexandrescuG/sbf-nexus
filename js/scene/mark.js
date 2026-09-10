@@ -45,39 +45,47 @@ export function createMark() {
     target = ROLES[next].ring;
   }
 
-  function render(ctx, view, cam) {
+  /* Знак рисуется в два захода, между ними — акты.
+
+     Иначе не получается главного: лента свечей должна идти СКВОЗЬ знак, а
+     не за ним и не перед ним. Когда знак рисовался одним куском поверх
+     всего, он просто закрывал ленту — и «обрабатывает» превращалось в
+     «загораживает». Теперь глиф ложится под акт, кольцо — поверх: кольцо и
+     есть линза, а внутри неё видно то, что делает акт. */
+  function renderGlyph(ctx, view) {
+    const g = geometry(view);
+    if (!ready) return g;
+    const w = g.r * 1.18, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
+    ctx.save();
+    /* Под лентой знак приглушён: он подложка, а не картинка поверх */
+    ctx.globalAlpha = 0.42;
+    ctx.drawImage(img, g.cx - w / 2, g.cy - h / 2, w, h);
+    ctx.restore();
+    return g;
+  }
+
+  function renderRing(ctx, view) {
     const g = geometry(view);
     /* Кольцо догоняет роль, а не прыгает в неё: смена роли — это процесс,
        и на непрерывном холсте ступенька читается как сбой. */
     fill += (target - fill) * Math.min(1, view.dt * 3);
 
     ctx.save();
-    ctx.globalAlpha = 1;
-
-    /* Ободок */
     ctx.strokeStyle = 'rgba(201,162,39,0.30)';
     ctx.lineWidth = Math.max(1.5, g.r * 0.012);
     ctx.beginPath(); ctx.arc(g.cx, g.cy, g.r, 0, Math.PI * 2); ctx.stroke();
 
-    /* Заполнение по роли */
     ctx.strokeStyle = '#C9A227';
     ctx.lineWidth = Math.max(2, g.r * 0.028);
     ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.arc(g.cx, g.cy, g.r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * fill);
     ctx.stroke();
-    ctx.lineCap = 'butt';
-
-    if (ready) {
-      const w = g.r * 1.18, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
-      ctx.globalAlpha = 0.9;
-      ctx.drawImage(img, g.cx - w / 2, g.cy - h / 2, w, h);
-      ctx.globalAlpha = 1;
-    }
     ctx.restore();
     return g;
   }
 
-  return { render: render, setRole: setRole, geometry: geometry,
+  return { renderGlyph: renderGlyph, renderRing: renderRing,
+           setRole: setRole, geometry: geometry,
            get role() { return role; } };
 }
