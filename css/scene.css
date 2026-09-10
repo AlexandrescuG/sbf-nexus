@@ -100,7 +100,9 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
    экране стоит над колонкой, а не сбоку — сбоку для него места нет. */
 @media (max-width: 900px) {
   :root { --corridor-x: 0.5; --corridor-w: 0.7; }
-  .act { padding: 22vh var(--scene-gutter) 12vh; }
+  /* 30vh сверху — это не «воздух для красоты», а место под знак: он стоит
+     над колонкой, и его нижний край должен быть выше первой строки. */
+  .act { padding: 30vh var(--scene-gutter) 12vh; }
   .act-col { width: 100%; }
 }
 

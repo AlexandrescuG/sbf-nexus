@@ -24,7 +24,10 @@ export const stream = {
 
   enter() {
     if (this.drops.length) return;
-    for (let i = 0; i < LINES * 3; i++) {
+    /* Телефон: по одной капле на русло вместо трёх. Смысл потока от этого
+       не меняется, а работы в кадре втрое меньше. */
+    const per = window.innerWidth < 900 ? 1 : 3;
+    for (let i = 0; i < LINES * per; i++) {
       this.drops.push({
         lane: i % LINES,
         v: Math.random(),                    /* положение вдоль русла */

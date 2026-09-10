@@ -43,13 +43,17 @@ export const globe = {
     ctx.save();
     ctx.globalAlpha = w;
 
-    /* Сетка шара: параллели и меридианы, ортографическая проекция */
+    /* Сетка шара: параллели и меридианы, ортографическая проекция.
+       Шаг на телефоне крупнее — на 390 px разница не видна, а точек в
+       кадре втрое меньше. */
+    const stepLon = view.mobile ? 15 : 6;
+    const stepLat = view.mobile ? 10 : 4;
     ctx.strokeStyle = 'rgba(154,123,30,0.22)';
     ctx.lineWidth = 0.8;
     for (let lat = -60; lat <= 60; lat += 30) {
       ctx.beginPath();
       let first = true;
-      for (let lon = -180; lon <= 180; lon += 6) {
+      for (let lon = -180; lon <= 180; lon += stepLon) {
         const p = project(lon, lat, this.spin, g.cx, g.cy, R);
         if (!p) { first = true; continue; }
         first ? (ctx.moveTo(p[0], p[1]), first = false) : ctx.lineTo(p[0], p[1]);
@@ -59,7 +63,7 @@ export const globe = {
     for (let lon = 0; lon < 360; lon += 30) {
       ctx.beginPath();
       let first = true;
-      for (let lat = -90; lat <= 90; lat += 4) {
+      for (let lat = -90; lat <= 90; lat += stepLat) {
         const p = project(lon, lat, this.spin, g.cx, g.cy, R);
         if (!p) { first = true; continue; }
         first ? (ctx.moveTo(p[0], p[1]), first = false) : ctx.lineTo(p[0], p[1]);

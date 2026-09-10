@@ -154,9 +154,9 @@
 </main>
 
 <script src="js/i18n.js"></script>
-<!-- d3 и topojson — из vendor/, а не с CDN: на первом экране внешняя
-     зависимость означала бы пустой мир при недоступности unpkg. -->
-<script src="vendor/d3.min.js"></script>
+<!-- topojson-client (7 КБ) распаковывает vendor/countries-110m.json.
+     d3 отсюда убран: 273 КБ ради трёх функций — больше трети всего, что
+     страница тянула до первого экрана. Проекция своя, js/scene/geo.js. -->
 <script src="vendor/topojson-client.min.js"></script>
 <script type="module" src="js/scene/stage.js"></script>
 </body>

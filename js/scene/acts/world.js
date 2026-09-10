@@ -14,6 +14,8 @@
    заголовка нельзя: именно так Intel однажды оказался во Франкфурте.
 */
 
+import { createProjection, drawGeo, graticule } from '../geo.js';
+
 const GOLD = '201, 162, 39';
 const SLOTS = 5;
 
@@ -43,7 +45,10 @@ export const world = {
     box.className = 'scene-labels';
     layer.appendChild(box);
     this.labels = box;
-    for (let i = 0; i < SLOTS; i++) {
+    /* На телефоне нитей меньше: подписей там всё равно нет (узкий экран),
+       а каждая нить — это 18 отрезков кривой в кадре. */
+    const n = window.innerWidth < 900 ? 3 : SLOTS;
+    for (let i = 0; i < n; i++) {
       const el = document.createElement('div');
       el.className = 'scene-lbl';
       box.appendChild(el);
@@ -56,11 +61,12 @@ export const world = {
     if (this.loading) return;
     this.loading = true;
     /* Карта мира — из vendor/, а не с CDN: на первом экране внешняя
-       зависимость означала бы пустой мир при недоступности unpkg. */
-    if (window.d3 && window.topojson) {
+       зависимость означала бы пустой мир при недоступности unpkg.
+       Проекция — своя (js/scene/geo.js): d3 весил 273 КБ ради трёх функций. */
+    if (window.topojson) {
       fetch('vendor/countries-110m.json').then(r => r.json()).then(topo => {
         this.land = window.topojson.feature(topo, topo.objects.countries);
-        this.grid = window.d3.geoGraticule10();
+        this.grid = graticule(20);
       }).catch(() => console.warn('[scene] карта мира не загрузилась'));
     }
     const take = (items) => {
@@ -78,15 +84,15 @@ export const world = {
   },
 
   measure(view) {
-    if (!this.land || !window.d3) return;
+    if (!this.land) return;
     const k = view.w + 'x' + view.h;
     if (this.fit === k) return;
     this.fit = k;
     /* Карта занимает весь кадр и уходит за края: мир не помещается в экран,
-       и это честно — камера смотрит на его часть. */
-    this.proj = window.d3.geoNaturalEarth1().rotate([-22, 0])
-      .fitExtent([[-view.w * 0.05, -view.h * 0.10],
-                  [view.w * 1.05, view.h * 1.12]], this.land);
+       и это честно — камера смотрит на его часть. Поворот на 22° к востоку
+       ставит в середину Европу и Африку, как было на старом первом экране. */
+    this.proj = createProjection(
+      [-view.w * 0.05, -view.h * 0.10, view.w * 1.05, view.h * 1.12], 22);
 
     /* Материки рисуются один раз в отдельный холст, дальше кадр только
        накладывает картинку. Прямая отрисовка geoPath по 110m-контурам
@@ -95,12 +101,11 @@ export const world = {
     const off = this.off || (this.off = document.createElement('canvas'));
     off.width = view.w; off.height = view.h;
     const g = off.getContext('2d');
-    const p = window.d3.geoPath(this.proj, g);
     g.clearRect(0, 0, view.w, view.h);
     g.lineJoin = 'round';
-    g.beginPath(); p(this.grid);
+    g.beginPath(); drawGeo(g, this.grid, this.proj);
     g.strokeStyle = 'rgba(120, 92, 44, 0.16)'; g.lineWidth = 0.6; g.stroke();
-    g.beginPath(); p(this.land);
+    g.beginPath(); drawGeo(g, this.land, this.proj);
     g.fillStyle = 'rgba(176, 133, 66, 0.14)'; g.fill();
     g.strokeStyle = 'rgba(160, 118, 48, 0.86)'; g.lineWidth = 0.8; g.stroke();
   },
@@ -135,8 +140,24 @@ export const world = {
        текста в первой версии сайта. Прямоугольник колонки берём раз в
        кадр и прячем те подписи, которые в него попадают. */
     if (!this.col) this.col = document.querySelector('.act[data-act="world"] .act-col');
-    const keep = this.col ? this.col.getBoundingClientRect() : null;
-    this.slots.forEach(s => this.placeLabel(s, w, view, keep));
+    /* Прямоугольник колонки читаем не каждый кадр, а пять раз в секунду:
+       getBoundingClientRect во время прокрутки заставляет браузер считать
+       раскладку, и на телефоне это выходило дороже самой отрисовки.
+       Подпись за 200 мс никуда не уедет — она и живёт-то секундами. */
+    this.keepAt = (this.keepAt || 0) - view.dt;
+    if (this.col && this.keepAt <= 0) {
+      this.keep = this.col.getBoundingClientRect();
+      this.keepAt = 0.2;
+    }
+    const keep = view.mobile ? null : this.keep;
+    /* Занятые места кадра: сначала знак, потом каждая поставленная подпись.
+       Без этого две новости из соседних городов ложились одна на другую, а
+       третья — прямо на кольцо. На старой карте это правило было, при
+       переносе в сцену его сначала потеряли. */
+    const taken = [{ left: g.cx - g.r, right: g.cx + g.r,
+                     top: g.cy - g.r, bottom: g.cy + g.r }];
+    if (keep) taken.push(keep);
+    this.slots.forEach(s => this.placeLabel(s, w, view, taken));
     if (this.labels) this.labels.style.opacity = w > 0.05 ? 1 : 0;
 
     /* Кольцо знака наполняется дошедшими нитями — «принимает» здесь не
@@ -182,7 +203,8 @@ export const world = {
 
   drawThread(ctx, s, g, w, view) {
     if (!s.item || !this.proj || w < 0.02) return;
-    const p = this.proj(s.item.ll || [s.item.lon, s.item.lat]);
+    const ll = s.item.ll || [s.item.lon, s.item.lat];
+    const p = this.proj(ll[0], ll[1]);
     if (!p || !isFinite(p[0])) return;
     s.px = p[0]; s.py = p[1];
 
@@ -221,24 +243,33 @@ export const world = {
                      (s.item.source ? ' · ' + esc(s.item.source) : '') + '</i>';
   },
 
-  placeLabel(s, w, view, keep) {
+  placeLabel(s, w, view, taken) {
     if (!s.el) return;
     if (!s.item || s.px == null || w < 0.05 || view.w < 620) {
       s.el.style.opacity = 0;
       return;
     }
-    /* Подпись примерно 22ch × 3 строки; сверяем этот прямоугольник с
-       колонкой текста. Пересеклись — молчим: пустое место честнее. */
-    if (keep) {
-      const lw = 190, lh = 46, pad = 12;
-      const x0 = s.px - lw, x1 = s.px + lw, y0 = s.py - lh, y1 = s.py + lh;
-      if (x1 > keep.left - pad && x0 < keep.right + pad &&
-          y1 > keep.top - pad && y0 < keep.bottom + pad) {
+    const right = s.px < view.w * 0.62;
+    /* Прямоугольник подписи: примерно 22ch на три строки, считаем от точки
+       в ту сторону, куда она будет выложена. */
+    const lw = 200, lh = 48, pad = 10;
+    const box = {
+      left: (right ? s.px : s.px - lw) - pad,
+      right: (right ? s.px + lw : s.px) + pad,
+      top: s.py - lh / 2 - pad,
+      bottom: s.py + lh / 2 + pad,
+    };
+    /* Пересеклась с чем-то уже занятым — молчим. Пустое место честнее
+       двух подписей одна на другой. */
+    for (let i = 0; i < taken.length; i++) {
+      const t = taken[i];
+      if (box.right > t.left && box.left < t.right &&
+          box.bottom > t.top && box.top < t.bottom) {
         s.el.style.opacity = 0;
         return;
       }
     }
-    const right = s.px < view.w * 0.62;
+    taken.push(box);
     s.el.style.opacity = s.alpha * w;
     s.el.style.transform = 'translate(' + Math.round(s.px + (right ? 12 : -12)) +
                            'px,' + Math.round(s.py - 10) + 'px)' +

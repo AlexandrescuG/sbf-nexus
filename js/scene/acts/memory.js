@@ -56,8 +56,20 @@ export const memory = {
     const rows = this.data[idx];
     if (!rows) return;
 
-    const lo = Math.min(...rows), hi = Math.max(...rows);
-    const range = (hi - lo) || 1;
+    /* Границы случая считаются один раз и запоминаются. До этого здесь
+       стояло Math.min(...rows) прямо в кадре — шестьсот аргументов в вызов
+       шестьдесят раз в секунду. На ноутбуке незаметно, на телефоне с
+       вчетверо более слабым процессором это была половина бюджета кадра. */
+    if (!this.bounds) this.bounds = {};
+    if (!this.bounds[idx]) {
+      let lo = Infinity, hi = -Infinity;
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i] < lo) lo = rows[i];
+        if (rows[i] > hi) hi = rows[i];
+      }
+      this.bounds[idx] = { lo: lo, hi: hi, range: (hi - lo) || 1 };
+    }
+    const lo = this.bounds[idx].lo, range = this.bounds[idx].range;
     const x0 = -view.w * 0.05, x1 = view.w * 1.05;
     const yOf = v => g.cy + (0.5 - (v - lo) / range) * view.h * 0.42;
     const xOf = i => x0 + (i / (rows.length - 1)) * (x1 - x0);

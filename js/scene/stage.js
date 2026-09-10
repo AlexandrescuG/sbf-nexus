@@ -42,12 +42,18 @@ function boot() {
   let dpr = Math.min(2, window.devicePixelRatio || 1);
   let view = { w: 0, h: 0, dt: 0, debug: debug, simple: false, reduced: reduced };
   let running = false, raf = null, prev = 0;
-  let frameMs = 8, overBudget = 0;
+  let frameMs = 8, overBudget = 0, dimAt = 0, colRect = null;
   let current = null;
 
   function resize() {
     view.w = layer.clientWidth;
     view.h = layer.clientHeight;
+    /* Телефон — не «то же самое, но уже». Там вдвое меньше площади под
+       сцену, вчетверо слабее процессор и батарея, которую мы тратим.
+       Флаг идёт в акты: каждый сам решает, чем поступиться — числом
+       свечей, числом нитей, шагом сетки. */
+    view.mobile = view.w < 900;
+    dpr = Math.min(view.mobile ? 1.5 : 2, window.devicePixelRatio || 1);
     cv.width = Math.round(view.w * dpr);
     cv.height = Math.round(view.h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -86,6 +92,29 @@ function boot() {
       document.dispatchEvent(new CustomEvent('sbf:act', { detail: cam }));
     }
 
+    /* На узком экране знак закреплён, а колонка едет мимо — встретиться они
+       обязаны, это геометрия, а не недосмотр вёрстки. Спор решается в пользу
+       текста: пока колонка проходит через кольцо, знак приглушается. На
+       десктопе такого не бывает — там у знака свой коридор.
+
+       Прямоугольник колонки читаем пять раз в секунду, а не в каждом кадре:
+       getBoundingClientRect во время прокрутки заставляет считать раскладку. */
+    view.markDim = 1;
+    if (view.mobile) {
+      dimAt -= view.dt;
+      if (dimAt <= 0) {
+        const col = document.querySelector('#' + cam.section + ' .act-col');
+        colRect = col ? col.getBoundingClientRect() : null;
+        dimAt = 0.2;
+      }
+      if (colRect) {
+        const g = mark.geometry(view);
+        const dy = Math.max(0, Math.max(colRect.top - (g.cy + g.r),
+                                        (g.cy - g.r) - colRect.bottom));
+        view.markDim = Math.max(0.18, Math.min(1, dy / 60));
+      }
+    }
+
     ctx.clearRect(0, 0, view.w, view.h);
     /* Знак — в два слоя, между ними акты: глиф снизу, кольцо сверху.
        Так лента свечей идёт сквозь знак, а не загораживается им. */
@@ -107,9 +136,14 @@ function boot() {
       overBudget = Math.max(0, overBudget - view.dt);
     }
 
-    window.SBF_SCENE = { act: cam.act, t: cam.t, ms: frameMs,
-                         fps: Math.round(1000 / Math.max(frameMs, 1)),
-                         simple: view.simple, dpr: dpr };
+    /* Один объект на всю жизнь страницы, а не новый каждый кадр: шестьдесят
+       объектов в секунду — это работа для сборщика мусора, которая потом
+       вылезает рывком в самом неподходящем месте. */
+    const st = window.SBF_SCENE || (window.SBF_SCENE = {});
+    st.act = cam.act; st.section = cam.section; st.t = cam.t;
+    st.ms = frameMs; st.fps = Math.round(1000 / Math.max(frameMs, 1));
+    st.simple = view.simple; st.dpr = dpr; st.mobile = view.mobile;
+    st.markDim = view.markDim;
     if (debug) hud(cam);
   }
 

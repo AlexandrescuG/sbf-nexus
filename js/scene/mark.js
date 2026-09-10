@@ -35,7 +35,11 @@ export function createMark() {
   function geometry(view) {
     const c = corridor(view);
     const r = Math.min(c.halfW * 0.62, view.h * 0.19);
-    const cy = view.w <= 900 ? view.h * 0.22 : view.h * 0.5;
+    /* На узком экране знак стоит НАД колонкой, и его нижний край должен
+       оставаться выше первой строки текста. 0.22 высоты давали кольцо,
+       которое ложилось на заголовок: 0.17 плюс отступ колонки в 30vh
+       разводят их с запасом. Проверяется автоматически, tools/scene-probe.py */
+    const cy = view.w <= 900 ? view.h * 0.17 : view.h * 0.5;
     return { cx: c.cx, cy: cy, r: r, corridor: c };
   }
 
@@ -57,8 +61,9 @@ export function createMark() {
     if (!ready) return g;
     const w = g.r * 1.18, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
     ctx.save();
-    /* Под лентой знак приглушён: он подложка, а не картинка поверх */
-    ctx.globalAlpha = 0.42;
+    /* Под лентой знак приглушён: он подложка, а не картинка поверх.
+       markDim — уступка тексту на узком экране, см. stage.js */
+    ctx.globalAlpha = 0.42 * (view.markDim == null ? 1 : view.markDim);
     ctx.drawImage(img, g.cx - w / 2, g.cy - h / 2, w, h);
     ctx.restore();
     return g;
@@ -71,6 +76,7 @@ export function createMark() {
     fill += (target - fill) * Math.min(1, view.dt * 3);
 
     ctx.save();
+    ctx.globalAlpha = view.markDim == null ? 1 : view.markDim;
     ctx.strokeStyle = 'rgba(201,162,39,0.30)';
     ctx.lineWidth = Math.max(1.5, g.r * 0.012);
     ctx.beginPath(); ctx.arc(g.cx, g.cy, g.r, 0, Math.PI * 2); ctx.stroke();

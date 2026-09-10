@@ -24,6 +24,7 @@
 */
 
 const VISIBLE = 26;             /* свечей в кадре */
+const VISIBLE_MOBILE = 13;      /* на телефоне их вдвое меньше — см. ниже */
 const SPAN = 96;                /* сколько свечей проезжает акт целиком */
 
 export const lens = {
@@ -63,7 +64,11 @@ export const lens = {
     if (w < 0.02) return;
 
     const g = mark.geometry(view);
-    const slot = view.w / VISIBLE;
+    /* На телефоне свечей вдвое меньше, и это не экономия ради экономии:
+       при ширине 390 px 26 свечей — это полоски по 15 px, на которых не
+       видно ни тела, ни тени. Меньше свечей — крупнее каждая. */
+    const vis = view.mobile ? VISIBLE_MOBILE : VISIBLE;
+    const slot = view.w / vis;
     const bodyW = slot * 0.58;
 
     /* Прокрутка = время. Ни таймера, ни автопрокрутки ленты. */
@@ -78,7 +83,7 @@ export const lens = {
        дышит вверх-вниз, но всегда проходит сквозь знак. */
     const k = (view.h * 0.42) / this.scale.range;
     let sum = 0, n = 0;
-    for (let i = 0; i <= VISIBLE; i++) {
+    for (let i = 0; i <= vis; i++) {
       const c = this.rows[(start + i) % this.rows.length];
       if (c) { sum += (c.h + c.l) / 2; n++; }
     }
@@ -93,7 +98,7 @@ export const lens = {
 
     /* Снаружи кольца — приглушённо: это фон, шум */
     ctx.globalAlpha = w * 0.34;
-    for (let i = -1; i <= VISIBLE + 1; i++) {
+    for (let i = -1; i <= vis + 1; i++) {
       const c = this.rows[(start + i) % this.rows.length];
       candle(ctx, c, i * slot - off, yOf, bodyW, false);
     }
@@ -108,7 +113,7 @@ export const lens = {
     /* Что попало в кольцо — по нему и считаем уровни: границы всего отрезка
        почти всегда оказываются за краем круга, и разметки было бы не видно */
     let hi = -Infinity, lo = Infinity;
-    for (let i = -1; i <= VISIBLE + 1; i++) {
+    for (let i = -1; i <= vis + 1; i++) {
       const x = i * slot - off;
       if (Math.abs(x - g.cx) > g.r * 0.92) continue;
       const c = this.rows[(start + i) % this.rows.length];
@@ -139,7 +144,7 @@ export const lens = {
       ctx.strokeStyle = 'rgba(201, 162, 39, ' + (0.9 * sma) + ')';
       ctx.lineWidth = 2;
       ctx.beginPath();
-      const last = -1 + (VISIBLE + 2) * sma;
+      const last = -1 + (vis + 2) * sma;
       for (let i = -1; i <= last; i++) {
         let sum = 0;
         for (let k = 0; k < 20; k++) {
@@ -154,7 +159,7 @@ export const lens = {
 
     /* Свечи внутри кольца — ярче, и заодно ищем вершину для точки паттерна */
     let topX = null, topV = -Infinity;
-    for (let i = -1; i <= VISIBLE + 1; i++) {
+    for (let i = -1; i <= vis + 1; i++) {
       const c = this.rows[(start + i) % this.rows.length];
       const x = i * slot - off;
       if (Math.abs(x - g.cx) <= g.r && c.h > topV) { topV = c.h; topX = x; }
