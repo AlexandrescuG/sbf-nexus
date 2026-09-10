@@ -186,27 +186,69 @@ export const world = {
         if (c && taken.indexOf(c.id) === -1) pick = c;
       }
       if (!pick) { s.wait = s.time + 1; return; }
-      s.item = pick; s.time = 0; s.phase = 'appear'; s.grow = 0; s.alpha = 0;
+      s.item = pick; s.time = 0; s.phase = 'appear';
+      s.grow = 0; s.alpha = 0; s.bloom = 0; s.u = 1;
+      s.ph = Math.random() * 6.28;
+      s.amp = 0.09 + Math.random() * 0.07;
       this.renderLabel(s);
       return;
     }
+    /* Четыре состояния, и каждое означает своё:
+         appear — событие произошло, точка расцветает на своём месте;
+         grow   — знак дотягивается до него нитью;
+         hold   — событие держится, его можно прочитать;
+         pull   — знак втягивает его в себя, и точка едет по нити внутрь.
+       Именно из-за pull это выглядит как щупальце, а не как гаснущая
+       линия: в прошлой версии на этой фазе просто падала прозрачность,
+       и втягивания не читалось вовсе. */
     if (s.phase === 'appear') {
-      s.alpha = Math.min(1, s.time / 0.5);
-      if (s.time > 0.5) { s.phase = 'grow'; s.time = 0; }
+      const b = Math.min(1, s.time / 0.55);
+      s.bloom = easeOut(b); s.alpha = s.bloom; s.grow = 0;
+      if (b >= 1) { s.phase = 'grow'; s.time = 0; }
     } else if (s.phase === 'grow') {
-      s.grow = Math.min(1, s.time / 1.1);
-      if (s.grow >= 1) { s.phase = 'hold'; s.time = 0; }
+      const gr = Math.min(1, s.time / 0.95);
+      s.grow = easeOut(gr); s.bloom = 1; s.alpha = 1;
+      if (gr >= 1) { s.phase = 'hold'; s.time = 0; }
     } else if (s.phase === 'hold') {
-      if (s.time > 1.6) { s.phase = 'pull'; s.time = 0; }
+      s.grow = 1; s.bloom = 1; s.alpha = 1;
+      if (s.time > 1.4) { s.phase = 'pull'; s.time = 0; }
     } else if (s.phase === 'pull') {
-      const u = Math.min(1, s.time / 1.2);
-      s.grow = 1 - u; s.alpha = 1 - u;
-      if (u >= 1) {
+      const p = Math.min(1, s.time / 1.5);
+      s.u = 1 - easeIn(p);          /* положение события на нити: 1 → 0 */
+      s.grow = s.u; s.bloom = 1;
+      /* Гаснет только у самого ядра, а не всю дорогу: иначе точка исчезает
+         на полпути и втягивание опять не видно. */
+      s.alpha = Math.min(1, s.u * 3.4);
+      if (p >= 1) {
+        /* Нить дошла: знак отзывается, кольцо набирает ещё одно событие */
         document.dispatchEvent(new CustomEvent('sbf:thread'));
-        s.item = null; s.phase = 'wait'; s.time = 0; s.wait = 0.2 + Math.random();
-        s.alpha = 0; s.grow = 0;
+        this.intake = (this.intake || 0) + 1;
+        s.item = null; s.phase = 'wait'; s.time = 0;
+        s.wait = 0.2 + Math.random() * 0.8;
+        s.alpha = 0; s.grow = 0; s.bloom = 0; s.u = 1;
       }
     }
+  },
+
+  /* Точка на нити. v = 0 у знака, v = 1 у события.
+
+     Нить не прямая: она провисает и колышется, а при втягивании слабина
+     уходит — как настоящая снасть под натяжением. Это и есть тот эффект,
+     который владелец назвал «щупальца, которые затягивают в центр»:
+     формула перенесена из js/hero-map.js один в один, потому что сама
+     механика там уже выверена. */
+  pointAt(s, g, v) {
+    const dx = s.px - g.cx, dy = s.py - g.cy;
+    const bx = g.cx + dx * v, by = g.cy + dy * v;
+    const nx = -dy / s.len, ny = dx / s.len;
+    /* При втягивании нить натягивается: слабина падает с 1 до 0.35 */
+    const slack = s.phase === 'pull' ? 0.35 + 0.65 * s.u : 1;
+    /* Волна гаснет к обоим концам, поэтому нить не «отрывается» от точек */
+    const env = Math.sin(Math.PI * Math.min(1, v / Math.max(0.05, s.reach || 1)));
+    const o = env * slack * s.len *
+      (s.amp * Math.sin(v * 2.2 + this.time * 0.5 + s.ph) +
+       s.amp * 0.35 * Math.sin(v * 5.1 - this.time * 0.8 + s.ph * 2.1));
+    return [bx + nx * o, by + ny * o];
   },
 
   drawThread(ctx, s, g, w, view) {
@@ -215,31 +257,66 @@ export const world = {
     const p = this.proj(ll[0], ll[1]);
     if (!p || !isFinite(p[0])) return;
     s.px = p[0]; s.py = p[1];
+    s.len = Math.hypot(p[0] - g.cx, p[1] - g.cy) || 1;
+    s.amp = s.amp || 0.09;
+
+    /* Докуда дотянулась нить: при росте — сколько выросла, при втягивании —
+       где сейчас событие. */
+    s.reach = s.phase === 'pull' ? s.u : s.grow;
+    if (s.reach <= 0.01) return;
 
     const a = s.alpha * w;
-    /* Точка события */
+
+    /* Нить рисуется отрезками с затуханием от ядра к концу: у знака она
+       яркая и толстая, у события тонкая. Так видно направление — тянет
+       именно центр, а не событие уходит само. */
+    const N = 34;
+    const pts = [];
+    for (let i = 0; i <= N; i++) pts.push(this.pointAt(s, g, (i / N) * s.reach));
+    for (let i = 1; i <= N; i++) {
+      const f = i / N;
+      ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.92 * (1 - f * 0.62) * a).toFixed(3) + ')';
+      ctx.lineWidth = (2.6 * (1 - f * 0.7) + 0.7) * (s.phase === 'pull' ? 1.15 : 1);
+      ctx.beginPath();
+      ctx.moveTo(pts[i - 1][0], pts[i - 1][1]);
+      ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.stroke();
+    }
+
+    /* Само событие: при втягивании оно едет по нити внутрь, а не гаснет
+       на месте. Живой сайт делает именно это, и именно это читается как
+       «мир отдаёт событие знаку». */
+    const head = s.phase === 'pull' ? pts[N] : [s.px, s.py];
+    s.mx = head[0]; s.my = head[1];
+    const live = s.phase === 'pull' ? s.u : 1;
+    const bloom = s.bloom == null ? 1 : s.bloom;
+
+    const R = (34 + 8) * bloom;
+    const grad = ctx.createRadialGradient(head[0], head[1], 0, head[0], head[1], R);
+    grad.addColorStop(0, 'rgba(226,178,62,' + (0.42 * bloom * live * w).toFixed(3) + ')');
+    grad.addColorStop(0.45, 'rgba(201,162,39,' + (0.14 * bloom * live * w).toFixed(3) + ')');
+    grad.addColorStop(1, 'rgba(201,162,39,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(head[0], head[1], R, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = 'rgba(140,96,16,' + (0.92 * live * w).toFixed(3) + ')';
     ctx.beginPath();
-    ctx.arc(p[0], p[1], 4.2, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(' + GOLD + ',' + (0.95 * a) + ')';
+    ctx.arc(head[0], head[1], (2.6 + 2.4 * bloom) * (0.55 + 0.45 * live),
+            0, Math.PI * 2);
     ctx.fill();
 
-    /* Нить к знаку: провисает, как настоящая, и тянется по мере роста */
-    const len = Math.hypot(g.cx - p[0], g.cy - p[1]) || 1;
-    const nx = -(g.cy - p[1]) / len, ny = (g.cx - p[0]) / len;
-    ctx.beginPath();
-    ctx.moveTo(p[0], p[1]);
-    const steps = 18;
-    for (let i = 1; i <= steps; i++) {
-      const v = (i / steps) * s.grow;
-      const x = p[0] + (g.cx - p[0]) * v, y = p[1] + (g.cy - p[1]) * v;
-      const sag = Math.sin(Math.PI * v) * len * 0.06 * Math.sin(this.time * 0.6 + s.ph);
-      ctx.lineTo(x + nx * sag, y + ny * sag);
+    /* Пока событие стоит на месте — вокруг него дышит кольцо. При втягивании
+       кольца нет: оно осталось бы висеть там, откуда точка уже уехала. */
+    if (s.phase !== 'pull') {
+      const ring = s.phase === 'appear' ? bloom : 1;
+      ctx.strokeStyle = 'rgba(154,123,30,' + (0.42 * ring * w).toFixed(3) + ')';
+      ctx.lineWidth = 1.1;
+      ctx.beginPath();
+      ctx.arc(head[0], head[1],
+              (9 + 3 * Math.sin(this.time * 1.7 + s.ph)) + 3 + 26 * (1 - ring),
+              0, Math.PI * 2);
+      ctx.stroke();
     }
-    /* Нить — это то, чем экран объясняет свою мысль: событие идёт к знаку.
-       При 0.45 её было почти не видно, и оставались отдельные точки. */
-    ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.8 * a) + ')';
-    ctx.lineWidth = 1.4;
-    ctx.stroke();
   },
 
   renderLabel(s) {
@@ -255,19 +332,20 @@ export const world = {
 
   placeLabel(s, w, view, taken) {
     if (!s.el) return;
-    if (!s.item || s.px == null || w < 0.05 || view.w < 620) {
+    if (!s.item || s.mx == null || w < 0.05 || view.w < 620) {
       s.el.style.opacity = 0;
       return;
     }
-    const right = s.px < view.w * 0.62;
+    const px = s.mx, py = s.my;      /* подпись едет вместе с точкой */
+    const right = px < view.w * 0.62;
     /* Прямоугольник подписи: примерно 22ch на три строки, считаем от точки
        в ту сторону, куда она будет выложена. */
     const lw = 200, lh = 48, pad = 10;
     const box = {
-      left: (right ? s.px : s.px - lw) - pad,
-      right: (right ? s.px + lw : s.px) + pad,
-      top: s.py - lh / 2 - pad,
-      bottom: s.py + lh / 2 + pad,
+      left: (right ? px : px - lw) - pad,
+      right: (right ? px + lw : px) + pad,
+      top: py - lh / 2 - pad,
+      bottom: py + lh / 2 + pad,
     };
     /* Пересеклась с чем-то уже занятым — молчим. Пустое место честнее
        двух подписей одна на другой. */
@@ -281,14 +359,19 @@ export const world = {
     }
     taken.push(box);
     s.el.style.opacity = s.alpha * w;
-    s.el.style.transform = 'translate(' + Math.round(s.px + (right ? 12 : -12)) +
-                           'px,' + Math.round(s.py - 10) + 'px)' +
+    s.el.style.transform = 'translate(' + Math.round(px + (right ? 12 : -12)) +
+                           'px,' + Math.round(py - 10) + 'px)' +
                            (right ? '' : ' translateX(-100%)');
     s.el.style.textAlign = right ? 'left' : 'right';
   },
 };
 
 function ease(x) { return x * x * (3 - 2 * x); }
+/* Нить растёт быстро и мягко тормозит, а втягивается наоборот — сначала
+   нехотя, потом рывком. Из-за этой разницы движение и читается как усилие,
+   а не как равномерная анимация. */
+function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+function easeIn(x) { return x * x * x; }
 function cut(s, n) {
   s = String(s || '').replace(/\s+/g, ' ').trim();
   return s.length > n ? s.slice(0, n - 1) + '…' : s;
