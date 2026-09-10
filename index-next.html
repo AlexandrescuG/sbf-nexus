@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SBF Consult — гобелен (каркас)</title>
+<meta name="robots" content="noindex, nofollow">
+<!--
+  index-next.html — новый каркас сайта: одна сцена на всю длину страницы.
+
+  Живой сайт (index.html) не тронут и продолжает работать. Переключение,
+  когда каркас догонит его по содержанию, — переименование файла одним
+  коммитом; откат — тем же движением.
+
+  Этап 1 плана docs/plan-2026-09-tapestry.md: сцена, камера, знак, пустые
+  акты, текст поверх сцены. Содержимое актов переезжает на этапах 2–6, и
+  до тех пор здесь стоят только заголовки — ровно чтобы длина пути камеры
+  определялась объёмом текста, а не числом в коде.
+
+  Страница помечена noindex: пока это стройка, ей нечего делать в поиске.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- css/styles.css здесь не подключается намеренно: в нём живут правила,
+     привязанные к id секций старого каркаса, и они управляли бы новым через
+     совпадение имён. Шрифты и цвета продублированы в scene.css. -->
+<link rel="stylesheet" href="css/scene.css">
+</head>
+<body class="tapestry">
+
+<!-- ══ Слой сцены: один холст на всю страницу ═══════════════ -->
+<div class="scene-layer" aria-hidden="true"></div>
+
+<!-- ══ Слой текста: обычный документ поверх сцены ═══════════ -->
+<main class="scene-text">
+
+  <section class="act" id="act-map" data-act="world">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="hero.trust_lei">Bloomberg LEI</p>
+      <h1 data-i18n-html="hero.headline">Мир генерирует шум. <em>Мы распознаём закономерности</em>.</h1>
+      <p data-i18n="hero.sub">Экспертная аналитика, сопровождение торгового счёта и доверительное управление через партнёров с лицензией ЕС.</p>
+    </div>
+  </section>
+
+  <section class="act" id="act-grow" data-act="stream">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="grow.eyebrow">ЧТО ВЫХОДИТ ИЗ ШУМА</p>
+      <h2 data-i18n="grow.heading">Что выходит из шума</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-approach" data-act="lens">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="approach.eyebrow">ПОДХОД</p>
+      <h2 data-i18n="approach.heading">Шум снаружи — закономерность внутри</h2>
+      <p data-i18n="approach.s1.p">—</p>
+    </div>
+  </section>
+
+  <section class="act" id="act-platform-1" data-act="terminal">
+    <div class="act-col">
+      <h2 data-i18n="platform.p1.heading">Терминал, журнал и академия — в одном месте</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-platform-2" data-act="terminal">
+    <div class="act-col">
+      <h2 data-i18n="platform.p2.heading">Пройди опрос трейдера — получи 30 дней PRO</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-market" data-act="memory">
+    <div class="act-col">
+      <h2 data-i18n="market.heading">Каждое движение оставляет паттерн</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-service-1" data-act="ladder">
+    <div class="act-col">
+      <p class="act-eyebrow">01</p>
+      <h2 data-i18n="svc.s1.title">Обучение</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-service-2" data-act="ladder">
+    <div class="act-col">
+      <p class="act-eyebrow">02</p>
+      <h2 data-i18n="svc.s2.title">Сопровождение счёта</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-service-3" data-act="ladder">
+    <div class="act-col">
+      <p class="act-eyebrow">03</p>
+      <h2 data-i18n="svc.s3.title">Доверительное управление</h2>
+    </div>
+  </section>
+
+  <section class="act" id="act-contact" data-act="globe">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="contact.eyebrow">СВЯЖИТЕСЬ С НАМИ</p>
+      <h2 data-i18n="contact.heading">Готовы обсудить ваш капитал</h2>
+      <p><a href="tel:+37369000520">+373 (69) 000-520</a> · <a href="mailto:contact@sbf.md">contact@sbf.md</a></p>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/i18n.js"></script>
+<script type="module" src="js/scene/stage.js"></script>
+</body>
+</html>

@@ -1,124 +1,105 @@
 {
-  "updated": "2026-09-09T14:05:01.060074+00:00",
+  "updated": "2026-09-10T07:05:00.456047+00:00",
   "grow": {
     "brief": {
-      "headline": "Удары США по иранским танкерам: Brent снова выше $100, нефть WTI +3,1%, золото 4 477, индексы в минусе",
-      "date": "2026-09-09",
+      "headline": "Индексы замерли у нуля, VIX 16,46 (+4,71%): рынок держит нефтяную премию после ударов по Ирану",
+      "date": "2026-09-10",
       "lang": "ru",
       "events": [
         {
-          "ts_utc": "2026-09-09T00:30:00Z",
+          "ts_utc": "2026-09-10T01:15:00Z",
           "country": {
-            "en": "Australia",
-            "ru": "Австралия",
-            "ro": "Australia"
+            "en": "USA",
+            "ru": "США",
+            "ro": "SUA"
           },
           "title": {
-            "en": "Consumer Confidence MoM",
-            "ru": "Потребительское доверие (м/м)",
-            "ro": "Încrederea consumatorilor (l/l)"
+            "en": "President Trump Speaks",
+            "ru": "Выступление президента Трампа",
+            "ro": "Discursul președintelui Trump"
+          },
+          "impact": "medium"
+        },
+        {
+          "ts_utc": "2026-09-10T12:15:00Z",
+          "country": {
+            "en": "Eurozone",
+            "ru": "Еврозона",
+            "ro": "Zona euro"
+          },
+          "title": {
+            "en": "Interest Rate",
+            "ru": "Процентная ставка",
+            "ro": "Rata dobânzii"
           },
           "impact": "high"
         },
         {
-          "ts_utc": "2026-09-09T00:30:00Z",
+          "ts_utc": "2026-09-10T12:15:00Z",
           "country": {
-            "en": "Australia",
-            "ru": "Австралия",
-            "ro": "Australia"
+            "en": "Eurozone",
+            "ru": "Еврозона",
+            "ro": "Zona euro"
           },
           "title": {
-            "en": "Consumer Confidence",
-            "ru": "Потребительское доверие",
-            "ro": "Încrederea consumatorilor"
+            "en": "Main Refinancing Rate",
+            "ru": "Основная ставка рефинансирования",
+            "ro": "Rata principală de refinanțare"
           },
-          "impact": "medium"
-        },
-        {
-          "ts_utc": "2026-09-09T01:30:00Z",
-          "country": {
-            "en": "China",
-            "ru": "Китай",
-            "ro": "China"
-          },
-          "title": {
-            "en": "Inflation Rate Mom",
-            "ru": "Уровень инфляции м/м",
-            "ro": "Rata inflației l/l"
-          },
-          "impact": "medium"
+          "impact": "high"
         }
       ],
-      "image": "https://lp.sbfconsult.com/data/brief_image_2026-09-09.png",
-      "image_date": "2026-09-09"
+      "image": "https://lp.sbfconsult.com/data/brief_image_2026-09-10.png",
+      "image_date": "2026-09-10"
     },
     "mover": {
-      "symbol": "GOLD",
-      "chg_pct": -1.65,
-      "close": 4349.88,
-      "date": "2026-09-08",
+      "symbol": "SILVER",
+      "chg_pct": 2.46,
+      "close": 67.183,
+      "date": "2026-09-09",
       "spark": [
-        4411.56,
-        4395.69,
-        4398.59,
-        4394.73,
-        4393.57,
-        4389.98,
-        4375.68,
-        4359.51,
-        4354.96,
-        4354.16,
-        4349.93,
-        4364.74,
-        4373.63,
-        4382.13,
-        4375.11,
-        4381.6,
-        4398.79,
-        4400.5,
-        4409.24,
-        4400.6,
-        4390.75,
-        4399.6,
-        4407.35,
-        4400.06
+        66.689,
+        66.633,
+        66.837,
+        66.612,
+        66.227,
+        66.22,
+        66.281,
+        66.385,
+        67.313,
+        67.975,
+        67.269,
+        67.862,
+        67.891,
+        67.413,
+        67.222,
+        67.259,
+        67.249,
+        67.189,
+        67.3,
+        67.355,
+        67.59,
+        67.362,
+        67.425,
+        67.886
       ]
     },
     "pattern": {
-      "symbol": "SILVER",
+      "symbol": "EURUSD",
       "tf": "D1",
-      "name_ru": "Медвежье поглощение",
-      "key": "bearish_engulfing",
-      "direction": "bearish",
-      "share": 0.4305,
-      "n": 151
+      "name_ru": "Бычье поглощение",
+      "key": "bullish_engulfing",
+      "direction": "bullish",
+      "share": 0.4865,
+      "n": 185
     }
   },
   "items": [
     {
       "title": {
-        "ru": "ECB President Lagarde Speaks",
-        "en": "ECB President Lagarde Speaks",
-        "ro": "ECB President Lagarde Speaks"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "ev-605685a7e38382dc",
-      "kind": "event",
-      "rule": "calendar",
-      "impact": "medium",
-      "ts_utc": "2026-09-09T17:00:00Z"
-    },
-    {
-      "title": {
         "ru": "Ставка ЦБ · еврозона",
-        "en": "ECB President Lagarde Speech",
-        "ro": "ECB President Lagarde Speech"
+        "en": "ECB Press Conference",
+        "ro": "ECB Press Conference"
       },
       "tag": {
         "en": "Франкфурт",
@@ -127,17 +108,17 @@
       },
       "lon": 8.68,
       "lat": 50.11,
-      "id": "ev-e500c0fef2d457ce",
+      "id": "ev-091272374f6ec0b0",
       "kind": "event",
       "rule": "calendar",
-      "impact": "medium",
-      "ts_utc": "2026-09-09T17:00:00Z"
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:45:00Z"
     },
     {
       "title": {
-        "ru": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
-        "en": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
-        "ro": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run"
+        "ru": "Заявки на пособие по безработице · США",
+        "en": "Unemployment Claims",
+        "ro": "Unemployment Claims"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -146,13 +127,232 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-893716044",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:46Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxON1VSSFpfdWZ5ejZ2WURVTGNWUlFxTm41VjAxRzRkbncwSFAydTdCVGt1SkY5Q1B0cWxIQWIzdm9mRWwtRUhOWW5PblRNeGN6WnpvdndhY2c0UkNyZnpKYVRsVWt0dFQ4RWVlRzZ3aU1hVER2Z0ZZWXJ3N0RJUTdoS0tlVHR3MlFOZWg4WnVpdFRFLU0?oc=5"
+      "id": "ev-361a78d2d40a5bef",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Цены производителей, месяц к месяцу · США",
+        "en": "PPI m/m",
+        "ro": "PPI m/m"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-0a8b287978eecda8",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Базовые цены производителей, месяц к месяцу · США",
+        "en": "Core PPI m/m",
+        "ro": "Core PPI m/m"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-ea3954e61575a30b",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Цены производителей, месяц к месяцу · США",
+        "en": "PPI MoM",
+        "ro": "PPI MoM"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-ed57d015053abd41",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Core PPI MoM",
+        "en": "Core PPI MoM",
+        "ro": "Core PPI MoM"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-1c7e2d93f038acfd",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Первичные заявки на пособие · США",
+        "en": "Initial Jobless Claims",
+        "ro": "Initial Jobless Claims"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-e85206a265c999b1",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-10T12:30:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 12,
+        "pct": 0.142
+      }
+    },
+    {
+      "title": {
+        "ru": "Заявление о денежной политике · еврозона",
+        "en": "Monetary Policy Statement",
+        "ro": "Monetary Policy Statement"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "ev-140c9b38907ec819",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:15:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 10,
+        "pct": 0.29
+      }
+    },
+    {
+      "title": {
+        "ru": "Main Refinancing Rate",
+        "en": "Main Refinancing Rate",
+        "ro": "Main Refinancing Rate"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "ev-12e407c4e46588f9",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:15:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 10,
+        "pct": 0.29
+      }
+    },
+    {
+      "title": {
+        "ru": "Deposit Facility Rate",
+        "en": "Deposit Facility Rate",
+        "ro": "Deposit Facility Rate"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "ev-abf3fef5c187db41",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:15:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 10,
+        "pct": 0.29
+      }
+    },
+    {
+      "title": {
+        "ru": "Ставка ЦБ · еврозона",
+        "en": "ECB Interest Rate Decision",
+        "ro": "ECB Interest Rate Decision"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "ev-cfd8c993f9602e2f",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T12:15:00Z",
+      "reaction": {
+        "symbol": "EURUSD",
+        "n": 10,
+        "pct": 0.29
+      }
     },
     {
       "title": {
@@ -171,72 +371,9 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:46Z",
+      "ts_utc": "2026-09-10T06:56:53Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5"
-    },
-    {
-      "title": {
-        "ru": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
-        "en": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
-        "ro": "U.S. Stocks Fall After Saudi Oil Facilities Hit"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-349532185",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:46Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcy1XSG01SGxrWEV0U1NoLWFmQ0pnRFJ2YnJBNTZsbFF2N3hVeWt3MHR2ZHJ1MzR1bVNpWDc3djBGZDhtc2xQN0FVczV5Q3FtOGU4aERld2x2N3NRdnZBSjRpMEhjUEpTUEhFYjV5dlVsd2xOSEJfdXNFb2ZfYWJEbkNtYWlzSWdBU1BtaEpsMms5ZGNZTVh4bw?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
-        "en": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
-        "ro": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-63401341",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:45Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNejhvOEd3al93UzVIYmt2VFRlWUdKZU1WaTlwV2ktMnZMeGt6VV9wMTRVR09qU2MtZnBoeU92Ymh2d0NQU29WaUU3VEtmYjE3MGRiOVZTSnYxNXo2RWtSbU00allwa2RtdTc4VlJWZXZRMmNyWXh1OTZJdE9QQnVhM0toOGw0MTBfSUFvRWVvZW5OeDR2Z2lCNUY4S0ZzbEJ1eGI2blphVF9LMWc?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
-        "en": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
-        "ro": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-429832668",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:45Z",
-      "source": "wsj.com",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOb1U4eTNZZ0F0VlUwYkJ1clV6eWxWWnV3QzFiVjBwTzdNNkJhMGJZN3hjQ0hCY3cxbFlabEc2UTc2WUg1dFpSZV9zZ0VvNURCeGJER2lkbTd5UWE1VWNvaDN1NDdlclk5c1RXR3A0VnZzSHRZY21HdnVPWHlpck5zV29LVVlwQlVoSmdHMXF4V2Z3cTdnWllHb0F3R0pYX3Bnai0yLWN4MkZuMHV2aTIyT2VQV2JYeVA4bHRmMFFPMGdPRm8?oc=5"
     },
     {
       "title": {
@@ -255,9 +392,51 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:45Z",
+      "ts_utc": "2026-09-10T06:56:53Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback",
+        "en": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback",
+        "ro": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-715676609",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:53Z",
+      "source": "wsj.com",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMmpCdnk5QmVtb21SSVo3Z2VRT3NfMTFmRm02OWVTUWk4bVVWUUdoaDVOY1RYaVU3ODdsekJ0OFIxQ2hLdGp6Qm9SWFAteXlicjMzWFZ3bTFqT241LUpkdktOLTdKbmY2UGR5X3JYWmdQMXY3Rm90YjkzV2VCdjJmSXJ4cGYxZEx1RUUyZmpQMVZLLXcyVGdUamxuOHN6SnItODNuXw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry",
+        "en": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry",
+        "ro": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry"
+      },
+      "tag": {
+        "en": "Киев",
+        "ru": "Киев",
+        "ro": "Киев"
+      },
+      "lon": 30.52,
+      "lat": 50.45,
+      "id": "nw-894987523",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:53Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZHhjSldxcXZySEw2ckYxdWwyTVZqNndpSlBVd016WDJyRWw4a1Azd29GODZwTHFNTm5QVG5CVlluSEtuLVNaWEo1NEc3dFdncnNCUXV0ZmhTaW9HZ1pFc2s2c2VhaV9JOF9VSENrbVNFQlJDWGlRN2I4QncyaDBwMERrOUVtaGpiSVlIWW1KUnJlSGFhX1JoSi1hdXBLeEJZbHNjek5Uazk?oc=5"
     },
     {
       "title": {
@@ -276,30 +455,9 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:44Z",
+      "ts_utc": "2026-09-10T06:56:52Z",
       "source": "AP News",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNUHRWc2I4elJ6Ukh6TzhHcF9IUEFEbnZFUkRiYTQ5Nnh2cUUxU3pQYXR0eml3UFFNWGt2bHFBdzJXeEIxRV96dXdBOUY2VzFYZXhVY2hhRmlEcVF0Y0xGNVAwX0ZzZGloOURMTzZ4bERjbDlmWnBzRWoxbVRqYUt4OWJEanc2V3YyTlNGSURSQjlpblJIV2FIT3A3bzBhQQ?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues",
-        "en": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues",
-        "ro": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-238679501",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:44Z",
-      "source": "AP News",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPOTRiRHBsTEFsQXpmU3VSSjg0N25rUC1NRzR2ZWlNc2RyallYN0xTX2U1NUJhTk9UZTdGM3NnYXJyZkV1dmx1VXpIdVpoS2dSVDJPMUZ5TzRka09pQklpWWtpVE5weTlFWDFYNmNadWw4UmdoY2NpTTFjS0plN1lGa1lDWF9LUWhsMUtyWjJ6QVA1WG5kNm1r?oc=5"
     },
     {
       "title": {
@@ -318,9 +476,261 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:44Z",
+      "ts_utc": "2026-09-10T06:56:52Z",
       "source": "apnews.com",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNjVfWE5UYVpZZGgtaVlLWVhNRUU3dFREYjMyWk1QWGpDZjlIb2pmVkhXcmVsSDJGNm1hNGxTMFpBYnl1MFBIOFFOU3hZcWdvd0swT01GSndGLVlXRDhVbnl0cnhPa3p3TVMwR1ZldUVIUlhtU1M4enRTTnc2czl4Zk55ZzZib2taYVNXWi1GRl9MeFFTZ3hEcQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "US banning dairy products, most alcohol and motorcycles from Canada in growing trade war",
+        "en": "US banning dairy products, most alcohol and motorcycles from Canada in growing trade war",
+        "ro": "US banning dairy products, most alcohol and motorcycles from Canada in growing trade war"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-407357808",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:52Z",
+      "source": "AP News",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNc1BOQjh6RzR3NkhUTWNocHc3U2RzckMzVGdyMFVwR0JqS3JocTgtbFFwTkwtUU1pTURKNGNma3VpZmYtUExvaHZuYU8wZTlDSEFqemRLc0U0NzhyWUxtaDVxUUp1TW45TFU2MnY5WGhqNFVWd0RPWG1sV1J0N2x3LUFweTlPb0pjcm9YcW9oSS1uTk14cWVIWUJ2Z202Zw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Trump says oil prices that spiked because of Iran war likely won't come down until after midterms",
+        "en": "Trump says oil prices that spiked because of Iran war likely won't come down until after midterms",
+        "ro": "Trump says oil prices that spiked because of Iran war likely won't come down until after midterms"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-993884493",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:52Z",
+      "source": "AP News",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQMXltZEtoQUhXVTQ1bWJMekROZWpIeXVtZmljZlVNejktRWE0TlZEdWY3X1hGMnNQRXVUUm9mTGN1RUFYOGh5SlF0LWRnWnZCaV9sYllTLVoyekU3TWlxNTYxenMteGVNSEw2d1ZmMnhOVXdoRGFmS2I5R2ljdTdkN3JwamRjbFJlb2JST2Q5YUgtXzRw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "US Sees Diesel Stocks Falling to 2003 Low Ahead of Peak Demand",
+        "en": "US Sees Diesel Stocks Falling to 2003 Low Ahead of Peak Demand",
+        "ro": "US Sees Diesel Stocks Falling to 2003 Low Ahead of Peak Demand"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-625084635",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:51Z",
+      "source": "bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOYzVyWGFaSllDNndPUkxXN2VHMWhUNlRnOVFxYzQwaWdMSWdKSnptWHo5VWZ0SDlPLTRNOUYwbjA4Yk1YTm55TXN1RXBndmloZlFYS0ZDRUZiTzNXS3o2b0hoR0Rld2MxdXNCdzF4dUM0VGc1eGRvTjl3YkpZZFY4dklqZkFuV2hSMGZaTGtQc0hseUcxdG5UVGowLWtOZE9iYkhHeXR5QVVITFBLU0h3NzRBNA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "US Treasury Triples Long-Dated Debt Buyback to $6 Billion",
+        "en": "US Treasury Triples Long-Dated Debt Buyback to $6 Billion",
+        "ro": "US Treasury Triples Long-Dated Debt Buyback to $6 Billion"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-643280281",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:51Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMHM4dHJQb1psOHhIc3JyX1Mzc0dOd2RtcDRPUFpzeXlIWWhjNjB3elFmYXBHRDhaemJiX0lDaFRTUnRSLU94SDBiTndjQjh0d3NoTXI5anNWLUlwUEZwR3VXcDhDRHFYRkdES1N5cVk2c3I0YnVFWlp6d2g2N0Y1V1JVSTZpekgteUVBZGNnckNqdFlac0pyazBnaThDeFNYS1BjWkdHSWxWa0l6ZDVzZnVESQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "China Fund With 182% Return Sees Bullish Case for Optical Stocks",
+        "en": "China Fund With 182% Return Sees Bullish Case for Optical Stocks",
+        "ro": "China Fund With 182% Return Sees Bullish Case for Optical Stocks"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-564456403",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:51Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOaG5ydjdHcU1nM0JPWGhTNWg2eGVmc0xteTNiTVo1TW9OTXRERFZTbWlmb2NoV3ZsN25GTkh4RkZUbGY0MWF6TWFpWVMtWnZDSTZhX1RNMXRYWW9rUEcxMlB2V05tM1IxY1c1U2lMY1FSUE5ZbG9ET1NZYk5zb2M1ZDFGM01ZdTA3RU1LYzBnRkhXWFU0bU5nS2lVMlM0UHhkNmtLZTJPamEtZDE5NlNTU2h4bVA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Oil Extends Rally as Iran Says Ready for More Intense Conflict",
+        "en": "Oil Extends Rally as Iran Says Ready for More Intense Conflict",
+        "ro": "Oil Extends Rally as Iran Says Ready for More Intense Conflict"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-39673559",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:51Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQVy1GQmhVUF91Y1pFeG02SF9pOVZ4NklBelE2YjMxNHdaTU1reElSTHJMZmpIX1RscGRQNC13aklYbU9lRnJZV1R0T1lUNlVDWkVWN0FwRVV2dE94X3lGRmVHUWo1V3R5VWhFZHlCcjFGaWh6SlZlcExJeFN1ZzZwX0ZzV3BDc3l1djJrNElsaEYya01uRnh1a243RlpTOEU?oc=5"
+    },
+    {
+      "title": {
+        "ru": "China-US 10-Year Bond Yield Gap Widens to Record on Policy Split",
+        "en": "China-US 10-Year Bond Yield Gap Widens to Record on Policy Split",
+        "ro": "China-US 10-Year Bond Yield Gap Widens to Record on Policy Split"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-586680329",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:50Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX0FPT205U0FsMS0zTkxlSFY3ZHN4MVprRDZGcTdkQWlMcFowS1VmNnJZZ0tQaDZaTl9kVFQtUHBXRDVWbEQzYURtbGx4ZkJfSGtvX2x6N2RlNVY3V1dPT2JFZnZ6aTlTdFZGZE5zNDNvZjZsQkZVRHVIOVVyZFFla1VYR0pWb1NUek53MGRMZS1ZbXVzYTJhU3ZzTDVlamlIYUtoaTVpUGo?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Euro Rises Ahead of ECB Decision",
+        "en": "Euro Rises Ahead of ECB Decision",
+        "ro": "Euro Rises Ahead of ECB Decision"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-752029457",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:48Z",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPdXJZX09ySFQ3cFpXU1VhZks3akd3Xy1hc0liSmVOakpkclJTNU8yM08xelBaN1c5NDdrWEJxMnkxYkJsaXVRejdTWW04SEVRb1c4ZVJyVXJXaWMycDU2c0VMZ1ktSFNFaGdGOWplang2LXdyVmRwcXBSMG1NRVh4ZnpwUDFCTzJuN2dR?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Europe set to open lower with ECB in spotlight",
+        "en": "Europe set to open lower with ECB in spotlight",
+        "ro": "Europe set to open lower with ECB in spotlight"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-285674136",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:48Z",
+      "source": "Breakingthenews.net",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQd2wyVVA1X1lfVzVmV2ZlamtJUnhEczE2UnZLOEdSV295RzdUZ2FoOGY1amRMdk5iTGVTQmdHaU9qb05XWEs5OFZMQTdFRUdYeEFaRE1CVXJkRTVjbnFyYTd2YXktWEx4SHFQZ3p3a0ZtdzNLd3d1RkE0VHlkd2RNQXpDX19iTnJfWEtFN2hNWmpUU0M4SEE?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Euro yields push higher with crude near $100 and ECB hike imminent",
+        "en": "Euro yields push higher with crude near $100 and ECB hike imminent",
+        "ro": "Euro yields push higher with crude near $100 and ECB hike imminent"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-957522160",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:48Z",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxObXZHcmFOUkxrVEZkdXBBbWk2dE5jUzlUTHZyMUJIeUtIdFN0TzFKVDV1c2RhMGhLNEJja2pEVUNIMURrRUJiRDdBUFk5S0Zqcl9mVUNISEw5MTFxTC00SFNPTVRIbnZMRWJNNGkzWEVyOEQ4eDBnOGgwQk5wSlRfbXFjUE5hNzRrY0VsTnBFSFljcmlQekQ3MVFiWk1mRGZrNTA1SjJ3dTZUSEFIYjBNY09xMzNWc2xtZVlGdld6Vzk?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Global Equities Markets Mixed Ahead Of ECB Rate Decision",
+        "en": "Global Equities Markets Mixed Ahead Of ECB Rate Decision",
+        "ro": "Global Equities Markets Mixed Ahead Of ECB Rate Decision"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-320370447",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:56:48Z",
+      "source": "MarketForces Africa",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQbE9NUWEweFJzSjZlRUdmT2dsSGxLa3dkMWJhd3hCX0V2NWhpUkxVc2VLbWFfYlVheU5SNDBLX0VKY1U3Zkx3YzdMcnhUeGJYTDZVOUJDQTVPTHhWeFFISmlVeDFNWG9wWS1IbXZ0NWRmNnNTeHJGb2Y1ZFBtU3ZuT2lhcXRicmVaYWtN?oc=5"
+    },
+    {
+      "title": {
+        "ru": "U.S. Stocks Fall as War Escalation, Oil Spike Continue",
+        "en": "U.S. Stocks Fall as War Escalation, Oil Spike Continue",
+        "ro": "U.S. Stocks Fall as War Escalation, Oil Spike Continue"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-848467908",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:29:17Z",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOMjVoTXMzT3lhWVBCc09vc2xhbnVDMEotYnZZcm11cjgtUjdVTkdhMnI4bWZObWlhX1A0bGhMbWNDUU5HUXYxZ2JhS0JuSlo1OHp2ekF3SjhDR2xqT1NqTVB3M285VXhJNGhQWFRuVmVBRWo5RG1XWUEzbDVxZmFncndZdkx2TUtENjhZcVBMU1JqNEtsSnhKeUs5clZHZw?oc=5"
     },
     {
       "title": {
@@ -339,57 +749,57 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:44Z",
+      "ts_utc": "2026-09-10T06:29:16Z",
       "source": "AP News",
       "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUlN5b1FuNFl6ajd5T0Z0MVppWHZ5Y2hFOHJ4dkd0X1dqMGljMHlOX0FZNE9HSXU4SmoxVUVQVEs5OUg2OG8yM1NyazNZQ1VPU1dCS3p0NmNsUk5rVjBMY0xONjRQWGRtTk1vZkNFOC1PWElwcGZmbk9SUzVRS3JCeTlhN25heDc1b0dWbA?oc=5"
     },
     {
       "title": {
-        "ru": "Google to Invest €13 Billion in AI Infrastructure in Finland",
-        "en": "Google to Invest €13 Billion in AI Infrastructure in Finland",
-        "ro": "Google to Invest €13 Billion in AI Infrastructure in Finland"
+        "ru": "Traders bet on two rate hikes by year-end before ECB meeting",
+        "en": "Traders bet on two rate hikes by year-end before ECB meeting",
+        "ro": "Traders bet on two rate hikes by year-end before ECB meeting"
       },
       "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
       },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-558259610",
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-133079712",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:42Z",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5"
+      "ts_utc": "2026-09-10T06:07:15Z",
+      "source": "The Star",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxON0pmRlFPekI1UGRFLURVXzF4ZmYxcHdlT2swU1BidW8yY3JQNWdmVmFYa3NuVE93eS1FVndOZDlyNlNXRWhHNUNiMExGbzdjVVlJYUJZMFhYX2ZlRXJOSlpEOUVray1LS2Izc2pYaXQ2VEdZV21VQzRvOV9SRHV5anlQNEE4dmNtazJMbzNVTXYyZjhsTnViN19YMmZyVHI4Unp5aGdFZ1pCMGZsRmcwMmM3azZRYUtaQ1I3ZHNB?oc=5"
     },
     {
       "title": {
-        "ru": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
-        "en": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
-        "ro": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan"
+        "ru": "Euro recovers some early losses against Japanese Yen, ECB policy in focus",
+        "en": "Euro recovers some early losses against Japanese Yen, ECB policy in focus",
+        "ro": "Euro recovers some early losses against Japanese Yen, ECB policy in focus"
       },
       "tag": {
-        "en": "Джакарта",
-        "ru": "Джакарта",
-        "ro": "Джакарта"
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
       },
-      "lon": 106.85,
-      "lat": -6.21,
-      "id": "nw-551495939",
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-769361610",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:42Z",
-      "source": "bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNeFcwS0xxYXc5N0lWamhpU1g2RE1xZWhTdVBZT29wN191Mk5EbE10TnpUR2ZDdUd5aXk0TWlIcjdNcUNUOVgzTkNySVFVc1E2Ylphb1ZneUJtb29za3FwQzBkeF9nbHpBY1JQU05BS1dVQkZTdHgtZVpQQVhNZjZEeElTcTJhMC0xdGxidkM3OUc1QzkxT2kxR0xJWVB0VFkyRlJpeWNmOGJjdE9Gc2c?oc=5"
+      "ts_utc": "2026-09-10T06:07:15Z",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOdE5XbmZITGJoYXpydDlZSTkxSGlEb1FhSWlOWlAzNzliUlM0YTk0emFmelZoM3R2Qlh3ZXIxRngweW4tZHhOaHN6R3FDLXNtVTRONUZaeXFNa0ZMd2pRbU41Vlo1TmVmRTJidXNfbWFFZ3doMnduQTZXRlNvLW5VYXZuSDhPUHhjNGl5U0pNZ0c3RjRQZjhfUmJDck1UUVJpU0RDSXpJU3gzVWhfeG1qUlByeGRzUQ?oc=5"
     },
     {
       "title": {
-        "ru": "China oil demand to fall 8.9% in 2026, Sinopec research says",
-        "en": "China oil demand to fall 8.9% in 2026, Sinopec research says",
-        "ro": "China oil demand to fall 8.9% in 2026, Sinopec research says"
+        "ru": "China Adds 650,000 Ounces of Gold in Biggest Monthly Buy Since 2023",
+        "en": "China Adds 650,000 Ounces of Gold in Biggest Monthly Buy Since 2023",
+        "ro": "China Adds 650,000 Ounces of Gold in Biggest Monthly Buy Since 2023"
       },
       "tag": {
         "en": "Шанхай",
@@ -398,19 +808,82 @@
       },
       "lon": 121.47,
       "lat": 31.23,
-      "id": "nw-980619243",
+      "id": "nw-335608758",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:39Z",
-      "source": "Reuters",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQU2E1RzRlY1M2Q0pGbFFXTUhxVEJsMFRfVjhrVldkT2dESG9WclY0QnZ3blEzUTlveTUybXdCY0pWRWtob1dUbXVDU3FlZkdXdTI2UVdQcVdIUTBNUndWYVp1Z2lHcTducTZnMlBWd1FabXB5V0dKRUhCWkNnTFByczBQZzFoTzlUNFNYdE1wWFpPMjMwWGdweXZqRU1UZXF5R0VjV1lB?oc=5"
+      "ts_utc": "2026-09-10T06:02:51Z",
+      "source": "Oilprice.com",
+      "url": "https://finance.yahoo.com/markets/commodities/articles/china-adds-650-000-ounces-190000241.html"
     },
     {
       "title": {
-        "ru": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens",
-        "en": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens",
-        "ro": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens"
+        "ru": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
+        "en": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
+        "ro": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-818476399",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:50Z",
+      "source": "CNBC Finance",
+      "url": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html"
+    },
+    {
+      "title": {
+        "ru": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more",
+        "en": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more",
+        "ro": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-483729860",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:50Z",
+      "source": "CNBC Finance",
+      "url": "https://www.cnbc.com/2026/09/04/stocks-making-the-biggest-moves-premarket-.html"
+    },
+    {
+      "title": {
+        "ru": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
+        "en": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
+        "ro": "China just pumped $54 billion into banks and insurers — but their stocks still fell"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-217895263",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:50Z",
+      "source": "CNBC Finance",
+      "url": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html"
+    },
+    {
+      "title": {
+        "ru": "Brent crude reaches $100 as war in Iran intensifies",
+        "en": "Brent crude reaches $100 as war in Iran intensifies",
+        "ro": "Brent crude reaches $100 as war in Iran intensifies"
       },
       "tag": {
         "en": "Тегеран",
@@ -419,118 +892,202 @@
       },
       "lon": 51.39,
       "lat": 35.69,
-      "id": "nw-123987175",
+      "id": "nw-276298167",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:39Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPWHRWamh0dmRPM3B6NjlrWE5YbnVtMGxDVll0ZGdKalVwOXh2QzMyUmtmR0R6UWg1Sk4xRjV0MVlwb0c2bzJKYWwxVUU2VmszZnpYd2NSQ2U2OXRNZkgzZVc1N3Zaa05IV0hKX3pKSlM0d0JoUnFFdVlXUTE2dXdMaHZhdDdrd1RHcm5tTzlUaFI0VDBxMzNINkw2eEVSREowcmJaOTIzSlQ5ZHBzU3lScg?oc=5"
+      "ts_utc": "2026-09-10T06:02:50Z",
+      "source": "MarketWatch",
+      "url": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories"
     },
     {
       "title": {
-        "ru": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
-        "en": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
-        "ro": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say"
+        "ru": "Why India’s economic data has sparked a furore",
+        "en": "Why India’s economic data has sparked a furore",
+        "ro": "Why India’s economic data has sparked a furore"
       },
       "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
+        "en": "Мумбаи",
+        "ru": "Мумбаи",
+        "ro": "Мумбаи"
       },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-643266795",
+      "lon": 72.88,
+      "lat": 19.08,
+      "id": "nw-615050137",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:39Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNek1sMFNoNUdTTkFsT0lPdmU1dTIweFppQjJhZ2lBWDV4VTFkTmdDbGpmVDlCQW1pRkpIZWpzNC04S2tKNlZReGdKdzhlclc2dUZnelBTN0RxSmV5X1JXU3J6cU9WaWc3UHJRejVIc2ZxODRzVXByMk00LTE1WHg1SUZNSWstNU1Wazgzcjk4YjU5b3BWRGJGNnBYTFgwb0I1ZFJxR2U3Yw?oc=5"
+      "ts_utc": "2026-09-10T06:02:49Z",
+      "source": "Guardian World",
+      "url": "https://www.theguardian.com/world/2026/sep/07/why-indias-economic-data-faces-a-trust-deficit"
     },
     {
       "title": {
-        "ru": "Kremlin says cheaper Russian gas could ease Europe's pain amid rising prices",
-        "en": "Kremlin says cheaper Russian gas could ease Europe's pain amid rising prices",
-        "ro": "Kremlin says cheaper Russian gas could ease Europe's pain amid rising prices"
+        "ru": "US bans Canadian dairy, alcohol and motorcycles as trade war escalates",
+        "en": "US bans Canadian dairy, alcohol and motorcycles as trade war escalates",
+        "ro": "US bans Canadian dairy, alcohol and motorcycles as trade war escalates"
       },
       "tag": {
-        "en": "Москва",
-        "ru": "Москва",
-        "ro": "Москва"
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
       },
-      "lon": 37.62,
-      "lat": 55.76,
-      "id": "nw-586153514",
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-719161367",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:39Z",
-      "source": "Reuters",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQcDd3cC1qWUNIQWExMDgwZ0RfYTJWZlhWM2tZalpPNTBPazZXQXNwejNFeExrWUhKN2o0bTVXbmtXdGI0Z0lEVjZWblVOX2RTMTRGZ2FQRW15RjRSUGJ0YS1Xdm5QNkdfdVA3NzgxSnZOSUNmVllETjgyZ2pBcm5tYTFEaF9hdUh5NnlXR0l1RHFxODMtS1AwUW5lSzY1bVJy?oc=5"
+      "ts_utc": "2026-09-10T06:02:48Z",
+      "source": "Guardian World",
+      "url": "https://www.theguardian.com/us-news/2026/sep/08/trump-canada-trade-war-dairy-alcohol"
     },
     {
       "title": {
-        "ru": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland",
-        "en": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland",
-        "ro": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland"
+        "ru": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
+        "en": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
+        "ro": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs"
       },
       "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
       },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-477189126",
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-879365427",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:39Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNcGlWeGFlRDRYZVowU2Y0Y0FJTlRmQW5ubjJwNGcxb3NsQnRBUVo5eWtMdnhoSlAzM0FKdlJHWkpJR2lxZUZHcWg5cFBqb1NxNm9Ma0MwR3AweEZpUEFTZ1JRZ3pjSDN6V2VOdE1nUjhBQU1PdlJ5Z29xSDloZHZOOExRbHotYVlRUDd0X2tpa2JVR3U1NTBHc3VhZkYzMDN4ZE9KWl9lZnFBZzkwZEE?oc=5"
+      "ts_utc": "2026-09-10T06:02:48Z",
+      "source": "BBC Business",
+      "url": "https://www.bbc.co.uk/news/articles/c8jdev0422jo?at_medium=RSS&at_campaign=rss"
     },
     {
       "title": {
-        "ru": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
-        "en": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
-        "ro": "Euro remains steady against British Pound Gains due to ECB rate hike bets"
+        "ru": "Sapporo to move some beer production from Canada to US after tariffs",
+        "en": "Sapporo to move some beer production from Canada to US after tariffs",
+        "ro": "Sapporo to move some beer production from Canada to US after tariffs"
       },
       "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
       },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-945462065",
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-932156801",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:38Z",
-      "source": "FXStreet",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNclg4RUJzZGdscDUzaFc5Nk9kR2ZzcWZQWEdsbGhfc2VQSlExWVVsNFE2VlVrOEVOZzdLYzFTN0xhamk2Yk9vZ3VURzhLeFgwM2lEempBUUJEVVRKZ0JRbmhzTXVpNDFTYnhhakItVVR4TUJiSUQwZzJJakhjZHhYYV93LXktY3M0b1hwQ1VFbUV0MDBUUnFLVTlsWllsalNlMzlZWi1vUVRTWFhPek91RG93bEx4WGs?oc=5"
+      "ts_utc": "2026-09-10T06:02:48Z",
+      "source": "BBC Business",
+      "url": "https://www.bbc.co.uk/news/articles/c87ve09pgqzo?at_medium=RSS&at_campaign=rss"
     },
     {
       "title": {
-        "ru": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout",
-        "en": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout",
-        "ro": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout"
+        "ru": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
+        "en": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
+        "ro": "US slaps import ban on Canadian alcohol, motorbikes and other goods"
       },
       "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
       },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-880985361",
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-805619382",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:38Z",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVTc2NkpxSGs2RU1odDduMWdHM2UwWGtfbGVaeVlIbHAxcHlxNjNoMU54aFpUMWd3X2ppNEJNUDlhdkZ0YWxzRGNEbkRTWEhpQmJLRlRqemdQa0ZQbGhrV2xmSl9RNk92TE5zUkJ0MlYwbmdTQzVPZ2x4OVRTRm5nUHhSV0tTX1I1Zmx5LUNmS0dZX2xDQ2ZvY0phLU5IX0tLajl2eTN1UUJFbkNmc01qdTQya0FTQQ?oc=5"
+      "ts_utc": "2026-09-10T06:02:48Z",
+      "source": "BBC Business",
+      "url": "https://www.bbc.co.uk/news/articles/c99dm1000p7o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "title": {
+        "ru": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
+        "en": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
+        "ro": "Petrol prices rise by 5p over a week as Iran war sends oil higher"
+      },
+      "tag": {
+        "en": "Тегеран",
+        "ru": "Тегеран",
+        "ro": "Тегеран"
+      },
+      "lon": 51.39,
+      "lat": 35.69,
+      "id": "nw-64449409",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:48Z",
+      "source": "BBC Business",
+      "url": "https://www.bbc.co.uk/news/articles/cj4jwlx77lro?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "title": {
+        "ru": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
+        "en": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
+        "ro": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-805619382",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:47Z",
+      "source": "BBC World",
+      "url": "https://www.bbc.co.uk/news/articles/c99dm1000p7o?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "title": {
+        "ru": "US strikes Iranian oil tankers as Tehran targets American base in Jordan",
+        "en": "US strikes Iranian oil tankers as Tehran targets American base in Jordan",
+        "ro": "US strikes Iranian oil tankers as Tehran targets American base in Jordan"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-772948912",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T06:02:47Z",
+      "source": "BBC World",
+      "url": "https://www.bbc.co.uk/news/articles/cyvznqypz0yo?at_medium=RSS&at_campaign=rss"
+    },
+    {
+      "title": {
+        "ru": "Canada’s Enbridge Said to Near Deal for Major US Oil Pipeline",
+        "en": "Canada’s Enbridge Said to Near Deal for Major US Oil Pipeline",
+        "ro": "Canada’s Enbridge Said to Near Deal for Major US Oil Pipeline"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-2365855",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:47:15Z",
+      "source": "Bloomberg",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQT2t5OU5RZEpsTXY3VE1uaG1GOWs5ZUl0OEZwOGFVRW5zV3VnZWFQWEVvWkd4allKdmw3NGhjYUpzZmdqbU5DU21na2FkR0tUd3MzaXhUZ0U2QXFLUlp1VjBJMDlpaUpXV2dXT3pLMGU2enZhbkpDVlNISklWRHFDeU1DWHdNSW9OckNDbF9VcWxMTGhmSlMwZGJhQ1NiellaVTdPMk5lTzNyT2tRYjREMHRR?oc=5"
     },
     {
       "title": {
@@ -549,15 +1106,15 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:38Z",
+      "ts_utc": "2026-09-10T05:27:24Z",
       "source": "Investing.com Australia",
       "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQejVqZTJ2dzBUU3VHWktrY1FjOHc2YlUxeG9mcFUyX1lSQkl4T1htY2htU2trTUpuNTU2Vk1qX2RtTWgxR2llNXZ2eXp3VWVGMXFlVzZiSGFfcWRoNHE0c0ZkOXMtZHVMMmhWLV80dU1GajJEVnFMVTZmNkN2OG9WOXg5Q2RUY3F1ZktXRzExNERQcWlENDFxWDJTTV9RX1NSaF83c2ZBaHJ4Uk1ESElQR2RmcmRINTR4TzBUVk9ROHpXVEZTLThLTm5xekp6WFhCMnV3c1F3?oc=5"
     },
     {
       "title": {
-        "ru": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "en": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "ro": "MUFG sees ECB hike this week, flags downside risk for euro"
+        "ru": "Pound-to-Euro Steady as Markets Brace for ECB Rate Hike",
+        "en": "Pound-to-Euro Steady as Markets Brace for ECB Rate Hike",
+        "ro": "Pound-to-Euro Steady as Markets Brace for ECB Rate Hike"
       },
       "tag": {
         "en": "Франкфурт",
@@ -566,61 +1123,19 @@
       },
       "lon": 8.68,
       "lat": 50.11,
-      "id": "nw-425047630",
+      "id": "nw-679902531",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T14:02:37Z",
-      "source": "Forex Factory",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQcEN3M0ZPWmtfNE5qc2ZxR1FtTk9LbFI2a0YwLU1RZ1R2ZlJDUVBBM0R1X0pfRFZETFZTMFJoVUNTaXNLNWpVeXcteWhXZU91SWdEZGZ5ZVl2SzdaNEZnUUlpSjFzRC1UX00zNUMxcGpFdEswaXV0bjNqQ0dSWEpEc3dIb192NXhybUZzUmJB0gGTAUFVX3lxTE01RHZDdUd6Q082Ry1KZEM0d2loWTZaUzBWTWFSM1ZELVU3YTlZbjFKUjFuQWFVWTFzbkxmUlp3UjRlbVlQT1dfczdiVm03NWQtX3NTX0daNnlmS2tCalEzS2JoblJBUmtPVHZlenA3aUdSZlROVHNjOWM0WFlMY3lqS0lZRGt0YThCSXRUUlhoQVFmUQ?oc=5"
+      "ts_utc": "2026-09-10T05:27:22Z",
+      "source": "CurrencyNews.co.uk",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNUGZFTkF4bDBSTmJFOFRQbHFxTlc2c212UURjYzlkUWRwdjA1SHlMQ3NrcFpCU3JnOEpqeWhGSFRBOXNuNXpYYnhFd25kU2N4d0hVVmt3bGRnRnlLY1BjM2RRbGdsVkdVbUh1NVdTRlRocldkQ3VNUWp5OUR1TTcybGZLQV8wTi1jZFhrR1VKdVhnX0hFRXVudTRtUldPbkVFUzUtMXhfcWd5ZHJSeHQwSTBlNEdyUQ?oc=5"
     },
     {
       "title": {
-        "ru": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "en": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "ro": "MUFG sees ECB hike this week, flags downside risk for euro"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-563718777",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T14:02:37Z",
-      "source": "investingLive",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNTGEtUnpOblNPNzlianprcktaOW1yY0RyZ0YxLUk0ZXlzVmlVVGRWU3dobWF3a216Unl5MkRCVmNPLTFaS2drTlRzUHZOUFVYZU5JZnRkcUx3cjBDV281a1puX3F5Rk03X2g1dzBmNUNjb1VxdkhEYU9DZ1ZHcHJCVUtkRDJOSm9CQTU4LXhRMXMyaDBn?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Canada’s Tariffs Take Effect",
-        "en": "Canada’s Tariffs Take Effect",
-        "ro": "Canada’s Tariffs Take Effect"
-      },
-      "tag": {
-        "en": "Торонто",
-        "ru": "Торонто",
-        "ro": "Торонто"
-      },
-      "lon": -79.38,
-      "lat": 43.65,
-      "id": "nw-648168528",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:11Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE56TDIwd0lsS0hocUtNalNkd0FiUkJ6Qmt2MXpUanFvV0xpLUpnakFzUGxFb05ZUC1kcTlPSlNjOHEtNllWZ1ZxdFZHZnNMcktoQXNuSUN1NEdUYlZ6cy1obXdtRmVxT2UtVzluaDVSMXg4bDFveDdhY3RRaw?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
-        "en": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run",
-        "ro": "Oil Near $100 Threatens U.S. Stocks’ Stellar Run"
+        "ru": "HSI falls as Brent surges past US$100",
+        "en": "HSI falls as Brent surges past US$100",
+        "ro": "HSI falls as Brent surges past US$100"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -629,19 +1144,19 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-416770063",
+      "id": "nw-835248674",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:54:10Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxON1VSSFpfdWZ5ejZ2WURVTGNWUlFxTm41VjAxRzRkbncwSFAydTdCVGt1SkY5Q1B0cWxIQWIzdm9mRWwtRUhOWW5PblRNeGN6WnpvdndhY2c0UkNyZnpKYVRsVWt0dFQ4RWVlRzZ3aU1hVER2Z0ZZWXJ3N0RJUTdoS0tlVHR3MlFOZWg4WnVpdFRFLU0?oc=5"
+      "ts_utc": "2026-09-10T05:15:16Z",
+      "source": "香港電台新聞網",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA1dEpDcDRIdlZnLUF1UG5lSUY3djFPV0tmVEF1TUszYkZZY3RGdDZTSGpTY1kzOXlDcC1XWjVkRS0xZHV1TEhKTTNqaE9ieGROaTdyNEVLRXh5QnphS1Rua0xhYmRQM3UyYm9rN1NZdw?oc=5"
     },
     {
       "title": {
-        "ru": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100",
-        "en": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100",
-        "ro": "U.S. Stock Futures Steady, Treasurys Weaken After Oil Tops $100"
+        "ru": "Asia stocks fall as yen surges, Iran warns US of retaliation",
+        "en": "Asia stocks fall as yen surges, Iran warns US of retaliation",
+        "ro": "Asia stocks fall as yen surges, Iran warns US of retaliation"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -650,418 +1165,40 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-953705383",
+      "id": "nw-969197026",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:54:10Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5"
+      "ts_utc": "2026-09-10T05:15:16Z",
+      "source": "marketscreener.com",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPMTJ5V2hmbG04RC04ZmV3UG5wbmJSM2pBcW5ONVNEV3J3R01IMGpkT2JLS3UwRkc5cU5YU3p6WHk3T1RDcVVoY1JCa0JYU3NIRnh2MnRMTXljX0Fxak0yWHllTFJxd29fRjBvSk1md3l1Rlg0ZEJmT1VabmgtZWhkaGUtakY5MEhZRThENlhqUmRrRGZfR0pxUVFEdWY3S2laOGhJSGlUR21xcWZJSkZvUmhn?oc=5"
     },
     {
       "title": {
-        "ru": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
-        "en": "U.S. Stocks Fall After Saudi Oil Facilities Hit",
-        "ro": "U.S. Stocks Fall After Saudi Oil Facilities Hit"
+        "ru": "Japan's Nikkei rebounds, turns positive after open as semiconductor stocks cushion prior day's plunge",
+        "en": "Japan's Nikkei rebounds, turns positive after open as semiconductor stocks cushion prior day's plunge",
+        "ro": "Japan's Nikkei rebounds, turns positive after open as semiconductor stocks cushion prior day's plunge"
       },
       "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
+        "en": "Токио",
+        "ru": "Токио",
+        "ro": "Токио"
       },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-564072746",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:10Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcy1XSG01SGxrWEV0U1NoLWFmQ0pnRFJ2YnJBNTZsbFF2N3hVeWt3MHR2ZHJ1MzR1bVNpWDc3djBGZDhtc2xQN0FVczV5Q3FtOGU4aERld2x2N3NRdnZBSjRpMEhjUEpTUEhFYjV5dlVsd2xOSEJfdXNFb2ZfYWJEbkNtYWlzSWdBU1BtaEpsMms5ZGNZTVh4bw?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
-        "en": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland",
-        "ro": "Google to Invest $15 Billion in Data Centers and Infrastructure in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-398116770",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:08Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNejhvOEd3al93UzVIYmt2VFRlWUdKZU1WaTlwV2ktMnZMeGt6VV9wMTRVR09qU2MtZnBoeU92Ymh2d0NQU29WaUU3VEtmYjE3MGRiOVZTSnYxNXo2RWtSbU00allwa2RtdTc4VlJWZXZRMmNyWXh1OTZJdE9QQnVhM0toOGw0MTBfSUFvRWVvZW5OeDR2Z2lCNUY4S0ZzbEJ1eGI2blphVF9LMWc?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
-        "en": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
-        "ro": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-387604705",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:07Z",
-      "source": "wsj.com",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOb1U4eTNZZ0F0VlUwYkJ1clV6eWxWWnV3QzFiVjBwTzdNNkJhMGJZN3hjQ0hCY3cxbFlabEc2UTc2WUg1dFpSZV9zZ0VvNURCeGJER2lkbTd5UWE1VWNvaDN1NDdlclk5c1RXR3A0VnZzSHRZY21HdnVPWHlpck5zV29LVVlwQlVoSmdHMXF4V2Z3cTdnWllHb0F3R0pYX3Bnai0yLWN4MkZuMHV2aTIyT2VQV2JYeVA4bHRmMFFPMGdPRm8?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to Invest $15 Billion on AI Infrastructure in Finland",
-        "en": "Google to Invest $15 Billion on AI Infrastructure in Finland",
-        "ro": "Google to Invest $15 Billion on AI Infrastructure in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-424731659",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:07Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5"
-    },
-    {
-      "title": {
-        "ru": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs",
-        "en": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs",
-        "ro": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-264546576",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:06Z",
-      "source": "AP News",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNUHRWc2I4elJ6Ukh6TzhHcF9IUEFEbnZFUkRiYTQ5Nnh2cUUxU3pQYXR0eml3UFFNWGt2bHFBdzJXeEIxRV96dXdBOUY2VzFYZXhVY2hhRmlEcVF0Y0xGNVAwX0ZzZGloOURMTzZ4bERjbDlmWnBzRWoxbVRqYUt4OWJEanc2V3YyTlNGSURSQjlpblJIV2FIT3A3bzBhQQ?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues",
-        "en": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues",
-        "ro": "Fuel prices at record Labor Day high in US thanks to Iran War and refinery issues"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-345998399",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:05Z",
-      "source": "AP News",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPOTRiRHBsTEFsQXpmU3VSSjg0N25rUC1NRzR2ZWlNc2RyallYN0xTX2U1NUJhTk9UZTdGM3NnYXJyZkV1dmx1VXpIdVpoS2dSVDJPMUZ5TzRka09pQklpWWtpVE5weTlFWDFYNmNadWw4UmdoY2NpTTFjS0plN1lGa1lDWF9LUWhsMUtyWjJ6QVA1WG5kNm1r?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Oil prices keep rising and weigh on Wall Street",
-        "en": "Oil prices keep rising and weigh on Wall Street",
-        "ro": "Oil prices keep rising and weigh on Wall Street"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-793415257",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:05Z",
-      "source": "apnews.com",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNjVfWE5UYVpZZGgtaVlLWVhNRUU3dFREYjMyWk1QWGpDZjlIb2pmVkhXcmVsSDJGNm1hNGxTMFpBYnl1MFBIOFFOU3hZcWdvd0swT01GSndGLVlXRDhVbnl0cnhPa3p3TVMwR1ZldUVIUlhtU1M4enRTTnc2czl4Zk55ZzZib2taYVNXWi1GRl9MeFFTZ3hEcQ?oc=5"
-    },
-    {
-      "title": {
-        "ru": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship",
-        "en": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship",
-        "ro": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-744799903",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:04Z",
-      "source": "AP News",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUlN5b1FuNFl6ajd5T0Z0MVppWHZ5Y2hFOHJ4dkd0X1dqMGljMHlOX0FZNE9HSXU4SmoxVUVQVEs5OUg2OG8yM1NyazNZQ1VPU1dCS3p0NmNsUk5rVjBMY0xONjRQWGRtTk1vZkNFOC1PWElwcGZmbk9SUzVRS3JCeTlhN25heDc1b0dWbA?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to Invest €13 Billion in AI Infrastructure in Finland",
-        "en": "Google to Invest €13 Billion in AI Infrastructure in Finland",
-        "ro": "Google to Invest €13 Billion in AI Infrastructure in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-774946786",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:01Z",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
-        "en": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan",
-        "ro": "Nvidia-Backed Firm in Indonesia Signs $3.1 Billion GPU Loan"
-      },
-      "tag": {
-        "en": "Джакарта",
-        "ru": "Джакарта",
-        "ro": "Джакарта"
-      },
-      "lon": 106.85,
-      "lat": -6.21,
-      "id": "nw-767536290",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:54:01Z",
-      "source": "bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNeFcwS0xxYXc5N0lWamhpU1g2RE1xZWhTdVBZT29wN191Mk5EbE10TnpUR2ZDdUd5aXk0TWlIcjdNcUNUOVgzTkNySVFVc1E2Ylphb1ZneUJtb29za3FwQzBkeF9nbHpBY1JQU05BS1dVQkZTdHgtZVpQQVhNZjZEeElTcTJhMC0xdGxidkM3OUc1QzkxT2kxR0xJWVB0VFkyRlJpeWNmOGJjdE9Gc2c?oc=5"
-    },
-    {
-      "title": {
-        "ru": "China oil demand to fall 8.9% in 2026, Sinopec research says",
-        "en": "China oil demand to fall 8.9% in 2026, Sinopec research says",
-        "ro": "China oil demand to fall 8.9% in 2026, Sinopec research says"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-183411806",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:59Z",
-      "source": "Reuters",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQU2E1RzRlY1M2Q0pGbFFXTUhxVEJsMFRfVjhrVldkT2dESG9WclY0QnZ3blEzUTlveTUybXdCY0pWRWtob1dUbXVDU3FlZkdXdTI2UVdQcVdIUTBNUndWYVp1Z2lHcTducTZnMlBWd1FabXB5V0dKRUhCWkNnTFByczBQZzFoTzlUNFNYdE1wWFpPMjMwWGdweXZqRU1UZXF5R0VjV1lB?oc=5"
-    },
-    {
-      "title": {
-        "ru": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens",
-        "en": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens",
-        "ro": "COMMENTARY: Oil prices fly blind as the Hormuz enigma deepens"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
+      "lon": 139.69,
       "lat": 35.69,
-      "id": "nw-921958913",
+      "id": "nw-883635004",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:53:58Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPWHRWamh0dmRPM3B6NjlrWE5YbnVtMGxDVll0ZGdKalVwOXh2QzMyUmtmR0R6UWg1Sk4xRjV0MVlwb0c2bzJKYWwxVUU2VmszZnpYd2NSQ2U2OXRNZkgzZVc1N3Zaa05IV0hKX3pKSlM0d0JoUnFFdVlXUTE2dXdMaHZhdDdrd1RHcm5tTzlUaFI0VDBxMzNINkw2eEVSREowcmJaOTIzSlQ5ZHBzU3lScg?oc=5"
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "finance.biggo.com",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9Qb2U5YlQwMGhjczhrbXJxNWtBcktjaW10VGZhMndxVy1UalFWSk1feGJuUTVuWDBYVGlmSWsteHB0blkyQTVEZzkybHYtaWlSMldoOHk0MHVib3JzWW02RC1GeTJ4dkdrQXZDR204dHFQQVpydUE?oc=5"
     },
     {
       "title": {
-        "ru": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
-        "en": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say",
-        "ro": "EXCLUSIVE: China's DeepSeek taps CITIC Securities for domestic IPO, sources say"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-930514440",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:58Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNek1sMFNoNUdTTkFsT0lPdmU1dTIweFppQjJhZ2lBWDV4VTFkTmdDbGpmVDlCQW1pRkpIZWpzNC04S2tKNlZReGdKdzhlclc2dUZnelBTN0RxSmV5X1JXU3J6cU9WaWc3UHJRejVIc2ZxODRzVXByMk00LTE1WHg1SUZNSWstNU1Wazgzcjk4YjU5b3BWRGJGNnBYTFgwb0I1ZFJxR2U3Yw?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland",
-        "en": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland",
-        "ro": "Google to invest $15 billion in AI infrastructure and buy nuclear power in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-704044299",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:58Z",
-      "source": "reuters.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNcGlWeGFlRDRYZVowU2Y0Y0FJTlRmQW5ubjJwNGcxb3NsQnRBUVo5eWtMdnhoSlAzM0FKdlJHWkpJR2lxZUZHcWg5cFBqb1NxNm9Ma0MwR3AweEZpUEFTZ1JRZ3pjSDN6V2VOdE1nUjhBQU1PdlJ5Z29xSDloZHZOOExRbHotYVlRUDd0X2tpa2JVR3U1NTBHc3VhZkYzMDN4ZE9KWl9lZnFBZzkwZEE?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
-        "en": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
-        "ro": "Euro remains steady against British Pound Gains due to ECB rate hike bets"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-409637708",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:57Z",
-      "source": "FXStreet",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNclg4RUJzZGdscDUzaFc5Nk9kR2ZzcWZQWEdsbGhfc2VQSlExWVVsNFE2VlVrOEVOZzdLYzFTN0xhamk2Yk9vZ3VURzhLeFgwM2lEempBUUJEVVRKZ0JRbmhzTXVpNDFTYnhhakItVVR4TUJiSUQwZzJJakhjZHhYYV93LXktY3M0b1hwQ1VFbUV0MDBUUnFLVTlsWllsalNlMzlZWi1vUVRTWFhPek91RG93bEx4WGs?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout",
-        "en": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout",
-        "ro": "Mélenchon Fumes at ECB Rate Hikes After Calling for Debt Wipeout"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-985164014",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:57Z",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVTc2NkpxSGs2RU1odDduMWdHM2UwWGtfbGVaeVlIbHAxcHlxNjNoMU54aFpUMWd3X2ppNEJNUDlhdkZ0YWxzRGNEbkRTWEhpQmJLRlRqemdQa0ZQbGhrV2xmSl9RNk92TE5zUkJ0MlYwbmdTQzVPZ2x4OVRTRm5nUHhSV0tTX1I1Zmx5LUNmS0dZX2xDQ2ZvY0phLU5IX0tLajl2eTN1UUJFbkNmc01qdTQya0FTQQ?oc=5"
-    },
-    {
-      "title": {
-        "ru": "European stocks mixed as investors weigh imminent ECB hike and oil spike By Investing.com",
-        "en": "European stocks mixed as investors weigh imminent ECB hike and oil spike By Investing.com",
-        "ro": "European stocks mixed as investors weigh imminent ECB hike and oil spike By Investing.com"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-368421403",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:57Z",
-      "source": "Investing.com Australia",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQejVqZTJ2dzBUU3VHWktrY1FjOHc2YlUxeG9mcFUyX1lSQkl4T1htY2htU2trTUpuNTU2Vk1qX2RtTWgxR2llNXZ2eXp3VWVGMXFlVzZiSGFfcWRoNHE0c0ZkOXMtZHVMMmhWLV80dU1GajJEVnFMVTZmNkN2OG9WOXg5Q2RUY3F1ZktXRzExNERQcWlENDFxWDJTTV9RX1NSaF83c2ZBaHJ4Uk1ESElQR2RmcmRINTR4TzBUVk9ROHpXVEZTLThLTm5xekp6WFhCMnV3c1F3?oc=5"
-    },
-    {
-      "title": {
-        "ru": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "en": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "ro": "MUFG sees ECB hike this week, flags downside risk for euro"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-926002093",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:57Z",
-      "source": "Forex Factory",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQcEN3M0ZPWmtfNE5qc2ZxR1FtTk9LbFI2a0YwLU1RZ1R2ZlJDUVBBM0R1X0pfRFZETFZTMFJoVUNTaXNLNWpVeXcteWhXZU91SWdEZGZ5ZVl2SzdaNEZnUUlpSjFzRC1UX00zNUMxcGpFdEswaXV0bjNqQ0dSWEpEc3dIb192NXhybUZzUmJB0gGTAUFVX3lxTE01RHZDdUd6Q082Ry1KZEM0d2loWTZaUzBWTWFSM1ZELVU3YTlZbjFKUjFuQWFVWTFzbkxmUlp3UjRlbVlQT1dfczdiVm03NWQtX3NTX0daNnlmS2tCalEzS2JoblJBUmtPVHZlenA3aUdSZlROVHNjOWM0WFlMY3lqS0lZRGt0YThCSXRUUlhoQVFmUQ?oc=5"
-    },
-    {
-      "title": {
-        "ru": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "en": "MUFG sees ECB hike this week, flags downside risk for euro",
-        "ro": "MUFG sees ECB hike this week, flags downside risk for euro"
-      },
-      "tag": {
-        "en": "Франкфурт",
-        "ru": "Франкфурт",
-        "ro": "Франкфурт"
-      },
-      "lon": 8.68,
-      "lat": 50.11,
-      "id": "nw-574424996",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:53:57Z",
-      "source": "investingLive",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNTGEtUnpOblNPNzlianprcktaOW1yY0RyZ0YxLUk0ZXlzVmlVVGRWU3dobWF3a216Unl5MkRCVmNPLTFaS2drTlRzUHZOUFVYZU5JZnRkcUx3cjBDV281a1puX3F5Rk03X2g1dzBmNUNjb1VxdkhEYU9DZ1ZHcHJCVUtkRDJOSm9CQTU4LXhRMXMyaDBn?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
-        "en": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
-        "ro": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers"
+        "ru": "Nikkei rebounds, morning close up 225 yen at 65,495 on U.S. semiconductor gains",
+        "en": "Nikkei rebounds, morning close up 225 yen at 65,495 on U.S. semiconductor gains",
+        "ro": "Nikkei rebounds, morning close up 225 yen at 65,495 on U.S. semiconductor gains"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -1070,13 +1207,580 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-560768680",
+      "id": "nw-931808186",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:13Z",
-      "source": "Yahoo Personal Finance",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html"
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "finance.biggo.com",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5tZVJLTjc5WXpJZjJOSUhKd2hpWFg5ZEJEZUZEa1hCY1pMa3dfcWU2OThONVBLZXFYV3dyTHpZUDl5aW5rQXVhMVIteTZncDdGLU9XOUREWjdKRURfdExNN1NQcXp0bXMtT00zeWJyLWhLVTFqSGc?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Nikkei 225: Tokyo Benchmark Tumbles 1.70% to 65,269.33 as Oil Surges Amid US-Iran Negotiations",
+        "en": "Nikkei 225: Tokyo Benchmark Tumbles 1.70% to 65,269.33 as Oil Surges Amid US-Iran Negotiations",
+        "ro": "Nikkei 225: Tokyo Benchmark Tumbles 1.70% to 65,269.33 as Oil Surges Amid US-Iran Negotiations"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-912429406",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "BBN Times",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPdVI1ZlpCb3E5Z1hqY0tkRFI0ZVg3SjkzQmc5WUNMc256NGxlN0pkT3pOdklqX1RZNzJ4RHctanJFWDE2Z0lKNVBHOWU1Yk5SRGdGdm53MEFhNm83VnotV3Y3TGVDYUZQOXJfYkhGVThfTkE3UHZ0a1BKWHlaMGdELU1vVGdxSk13N1Q2dHRBQUNVWUkyV2dkOFF4SGVsQUdySC1PME82VjNVcVJkVy0zWnVxQTR1Z29GNXVhRzZITTc0VUFWNjR4ZnlkWDY?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Asia-Pacific shares fall as US Treasury yields and oil prices rise",
+        "en": "Asia-Pacific shares fall as US Treasury yields and oil prices rise",
+        "ro": "Asia-Pacific shares fall as US Treasury yields and oil prices rise"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-74362452",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "scanx.trade",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOU0x2Q2lMR2V2cjlRVVg3TG5MeVJQQ0NENzg5RHlaaEJfTzk4MzRTTlhybWM0WVA1Sy1CZm1qSi1VWWw2SFZ2ZTBBZzEyZzZmWllObF9jREVvcGFqS1dlcy1RMXhyaVU1MmdhSGZ2cGJuXzhvam1RVWwxMmZjaTF3emRiRW1wemMyZnpJNi11dUZDZXhuS21tdEw5UzR5dkk1SGR3Q3FDRUtPdzlySHVqSG5TVQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Japan and South Korea Stocks Trim Gains After Surge; Kospi Holds 7,000 as SoftBank, SK Hynix Jump Over 3%",
+        "en": "Japan and South Korea Stocks Trim Gains After Surge; Kospi Holds 7,000 as SoftBank, SK Hynix Jump Over 3%",
+        "ro": "Japan and South Korea Stocks Trim Gains After Surge; Kospi Holds 7,000 as SoftBank, SK Hynix Jump Over 3%"
+      },
+      "tag": {
+        "en": "Токио",
+        "ru": "Токио",
+        "ro": "Токио"
+      },
+      "lon": 139.69,
+      "lat": 35.69,
+      "id": "nw-883405570",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "TradingKey",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQVThlNG1COGQ0S2pSNC1vaHJaZS1Nb2ROVU1YOE9qRnkyS2pIUjVjaWFaSzI0WHJQUUJkQjltcDNfMndTMlZVdnNLT19vMXpqREhxRU11bmlMN0FlNHEzMldvQVBrQnl5NlVkY1hMZ3VVNVhKZ051dV9zN2pKdlhBQjMwdmQ4S2NKcVJIdWxtS1Y5TlB0dDlBRUt6SHF4ay1DVEN1dXhZazdxX2VnbmNpbUx3UnBQWW1xbTZwVENmVnpUNnJNWEIzM2FPYzc2Z3dVZWRmWGFkRVQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Japan's Nikkei Stock Average Plunges Over 500 Points, Wiping Out Previous Day's Gains",
+        "en": "Japan's Nikkei Stock Average Plunges Over 500 Points, Wiping Out Previous Day's Gains",
+        "ro": "Japan's Nikkei Stock Average Plunges Over 500 Points, Wiping Out Previous Day's Gains"
+      },
+      "tag": {
+        "en": "Токио",
+        "ru": "Токио",
+        "ro": "Токио"
+      },
+      "lon": 139.69,
+      "lat": 35.69,
+      "id": "nw-390283476",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:15Z",
+      "source": "finance.biggo.com",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE4tSHMzazUyUkhSdDJrendEczY2bFNHckJZWDk1ZGxmTTF3R25WZTdrSTlLZ2dPVW1mclJLU2tmeXp3cUJyMzNqck4tcG9UVjN6NjZaSUtzam9zeGl5NkxSVnJFRGRuVmVWWFNPejhvMHZqZ1NNc2c?oc=5"
+    },
+    {
+      "title": {
+        "ru": "MIB bearish, ECB repricing reinforces risk-off",
+        "en": "MIB bearish, ECB repricing reinforces risk-off",
+        "ro": "MIB bearish, ECB repricing reinforces risk-off"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-176581918",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:14Z",
+      "source": "marketscreener.com",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOOVRoN0ZVcVhaSE5DaXdMUlU2c29TczJEUDRnbWlhTURSZS1RZDZJdXJ6ckZiVXJ2Q3dUSVJBYjd5UkNIMFpQNlNPSzg3VmtISS1Gd29DWjRVV193NHBocjdHcENndUF6RzVUSV9PUUlrcUplQUZ0aUZFUlRZenlYb2U2YzBUSFhUNkxObXQ2aGdLZG5VVHZJVkd1SkVldG8?oc=5"
+    },
+    {
+      "title": {
+        "ru": "US stocks end midweek with losses as Treasury yields jump, oil prices climb",
+        "en": "US stocks end midweek with losses as Treasury yields jump, oil prices climb",
+        "ro": "US stocks end midweek with losses as Treasury yields jump, oil prices climb"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-418547800",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:14Z",
+      "source": "Anadolu Ajansı",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNOFJSS1JQWjNGUWZxa3htd3B5Y1U1MzRFRHdGQ3R3NjFHN0k1RS1UMHlyOXhOQVBNNHNWaDFtbGRrSU1Sazc1OFM0cTZPaDI2aXdEMWRwbzYwT0NubFVBNkdJdHJwdXVwRHpxbjluTTRCVkVSVzFKd2wtVmN2Um9LSjlCWHNITktXRFJYbFBQa2hVVTJjdnlyQ3FFRDRteDNDUEVFekZfdkhrdWZ5YzRZbmxzMzNmT1k?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Snam stock edges lower as Milan market retreats and recent earnings set the tone",
+        "en": "Snam stock edges lower as Milan market retreats and recent earnings set the tone",
+        "ro": "Snam stock edges lower as Milan market retreats and recent earnings set the tone"
+      },
+      "tag": {
+        "en": "Милан",
+        "ru": "Милан",
+        "ro": "Милан"
+      },
+      "lon": 9.19,
+      "lat": 45.46,
+      "id": "nw-341390289",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:13Z",
+      "source": "AD HOC NEWS",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOTl92VWNleFpFZXNPcVdvb3BSYWZwaWdjdjE2VlhMNGE0QmZfZ2U1QTZnZDNQQndzb3k1cGJzRjZzVkNJQUVQVmh6eXRYb3lWczVBMGFUMDlmV01DSTJ0SFFranJjMmFXaE5CU1NvWkNYMVgtempxelNRY0dWVEZ6RmJ0ejdsVEVCQ0JOWWlRNTE0RUFHQzlnelZiQi1mNmRLNjVIOGpTSlFpNHJQbDVEckVOU20tcW5JNkgzejA5VlF1Qk5Hbkx5M1d0eWxWSUE?oc=5"
+    },
+    {
+      "title": {
+        "ru": "FTSE MIB Falls Ahead of ECB Rate Decision",
+        "en": "FTSE MIB Falls Ahead of ECB Rate Decision",
+        "ro": "FTSE MIB Falls Ahead of ECB Rate Decision"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-640812997",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:12Z",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOUHRyYU9FN0xsVkhZRDB2Q1QwTlhpRzBlTVhmUENWWGR5M21GUnQwTmUwMHZjNWhBY3htOUxlcUE1V0t3MVhwUDNicUZlaVh6QXd0cWc5S0NFR1R5bU05eFhfeFhfT2lrX2oxMHRZZy1acHlTcVFWbzhOaENjdkM2VktreEVmMUx3WkR1dVBOakxIM2ExUzVF?oc=5"
+    },
+    {
+      "title": {
+        "ru": "FTSE MIB: Milan Benchmark Dips to 52,177.47 as European Markets Digest Rate and Trade Risks",
+        "en": "FTSE MIB: Milan Benchmark Dips to 52,177.47 as European Markets Digest Rate and Trade Risks",
+        "ro": "FTSE MIB: Milan Benchmark Dips to 52,177.47 as European Markets Digest Rate and Trade Risks"
+      },
+      "tag": {
+        "en": "Милан",
+        "ru": "Милан",
+        "ro": "Милан"
+      },
+      "lon": 9.19,
+      "lat": 45.46,
+      "id": "nw-345931031",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:12Z",
+      "source": "BBN Times",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPZ0NiNVVQRnhLN1JnWEhUTTl1YjZkQzYycWxWbkhhTFBBNEs1VmY3MURXWW81V3JLZHM5SU5JVThZbHZBc21SbHc1dUdQQVY1QXZQSjU3RlNxLVBNQU9UY21kVGNUWW1lS0dQZjUzR3JwZFZpQUtLZF9CSzlVeVlJNlNPZmlyMXFQWm9tUUtYRnltWGNDcjF2c3RPM0RZWVJOU3J2QjlPQWxTRDR1MFFralZLWGJJODI0VEhPRUJzRTEtNktuVURiV3ZB?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down",
+        "en": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down",
+        "ro": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down"
+      },
+      "tag": {
+        "en": "Милан",
+        "ru": "Милан",
+        "ro": "Милан"
+      },
+      "lon": 9.19,
+      "lat": 45.46,
+      "id": "nw-14569196",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:12Z",
+      "source": "marketscreener.com",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOZzhRM2plTU1xTTU4N3NMcjFnRUpjaWRheWtMTHhBN2VBczhwcUg2ckNEeG9fVmVtdFJ4WHo4QVMwRXFZZUM4VVFHakNQUFFSSnZwVWY0a2pYNU1wVHA3VUduNi1qS3l3QS1hQ2dTbXBDV2hlZUJUQVF5dXJBbWRfSE9JVDFlQkhsUGF2OGZZNXRoNWo1dEUweC1wNzJLaUFJMS1NR0QyT245bnM0OTFGdF9vLThPXzVWWkJtNVh5ZXhpa1Fu?oc=5"
+    },
+    {
+      "title": {
+        "ru": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10",
+        "en": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10",
+        "ro": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-855817842",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:07Z",
+      "source": "Upstox",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOeS1fTmNnak9hR0QxaXhYZlRYdm1td3lhSV9kWkdRc2NDdDBDbVpNeGFkV00zUE9rSGsxU0pDS0k5bFB0WDUxZndXanlUUDY5QXA1YlBqc2tFUEZibGtKVlBfU2VJX3doMV9DYVpvTUNXVDYxckhOeGd6ZWxPblRBa1J6VHNSX0R6RjdtUS0wcmtwZDRqUDUwNjVGZWlmbFM2aVBGQnFHdFlxUWhvczhRS2dIMGNQT3JZUzBIbHZEeXJQVUsyZ205MTlQU2c2MnFOWFRjdWd3eS1DLXh1R1NubGY5MnhUUHdFWkFaREpZUkZFam5mbkZkTg?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Nifty IT index plunges nearly 5% on US rate hike worries",
+        "en": "Nifty IT index plunges nearly 5% on US rate hike worries",
+        "ro": "Nifty IT index plunges nearly 5% on US rate hike worries"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-305616549",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:07Z",
+      "source": "The Economic Times",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPaGwyQ1l3VFExTlJWTWxlazRFVTd1YkFITG95WXJna0E0WjRtZHhsbDRwTnpWdWNNTzhSM2F0bDN0bW9ZajdiVWhmT01jemZhLXIxNWY2cGFXWU9lUzZfUEFuME1nTV9lc3RoNzgtcVBBblVTbnZ6TXZEVE8zNUp2MkVId0tFQzVVMkRaTzc3V2NIY0FCbkJRT2RNSEgxVFFtN3VXa3BiQk1MZkF4Q0xKalNzbkV6V3FlNUlkZWRWU0F6REhOUGFHONIBzgFBVV95cUxNYmtpUFRxNWRZLU90VV9CSm0yS3Z5SG9JTVQwUndrNkFsZ3A5bE5XWTRUbGNpMnhyYk1TTGZ1NklTYXFBT0kxLVBhMXItN1NvX2xYbEM1Q1hmZTc3VXhrd1ZzaG02dWE4UHVlcDlmcUJwdXYtSkxTN1kyVnRnTjNaaVlOWWM3NFZwVjNDTGY0dExsbElGWndfRmlLZHFBZWE3bzhwNHRWTThtaU5Kb2RKc0lmSlJTZHgtQVJDVm9mc2dOU0ZNWVBVYW91eTZ4dw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "India shares lower at close of trade; Nifty 50 down 0.86%",
+        "en": "India shares lower at close of trade; Nifty 50 down 0.86%",
+        "ro": "India shares lower at close of trade; Nifty 50 down 0.86%"
+      },
+      "tag": {
+        "en": "Мумбаи",
+        "ru": "Мумбаи",
+        "ro": "Мумбаи"
+      },
+      "lon": 72.88,
+      "lat": 19.08,
+      "id": "nw-272674898",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:07Z",
+      "source": "Investing.com UK",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQTGxXa0ZneksxNktHbXhTMzN2ZHN2UGgxNnp0WXJERllmM25XYWd0amNTb3hKVUFEb3UteERON1pBd1dxeTBnYXZOazhOWDc3Y0cwelhmSXRaQUx0Z19LbXB0SFNRZnR5b2huTGNka0xfXzNWQzluLXRpX3h6MnJybXZVVl96THRQbThRTkVkQnpFaDJCcjlNZlRoLWVwOHpjVGdKOFpZVHE5c3VPX0lR?oc=5"
+    },
+    {
+      "title": {
+        "ru": "India stocks lower at close of trade; Nifty 50 down 0.61%",
+        "en": "India stocks lower at close of trade; Nifty 50 down 0.61%",
+        "ro": "India stocks lower at close of trade; Nifty 50 down 0.61%"
+      },
+      "tag": {
+        "en": "Мумбаи",
+        "ru": "Мумбаи",
+        "ro": "Мумбаи"
+      },
+      "lon": 72.88,
+      "lat": 19.08,
+      "id": "nw-903429277",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:07Z",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbnlOWFBla0FWMHU4MVZzMTdOSFRQSk5sVl9FeTR6aWZBSXdKQnNYaUljMDNpV21ZOUlXaUJ6Wmhmb1lHcURmeThfTmQ4QUliSjRDM1JmbnhfMnVqRTZiejRhNkt1ckJoVFlNOVlBR3ZydW9HdV9DTU00NDJ2eHZ2Snh6VWZHZlhSNmp0cVJ1WUd2VFlGT28ycTh6XzZHSmVjNU5rZElUOVg1UDZ4dVBTUnFDQ2Znbzl5UXhB?oc=5"
+    },
+    {
+      "title": {
+        "ru": "India stocks lower at close of trade; Nifty 50 down 0.86%",
+        "en": "India stocks lower at close of trade; Nifty 50 down 0.86%",
+        "ro": "India stocks lower at close of trade; Nifty 50 down 0.86%"
+      },
+      "tag": {
+        "en": "Мумбаи",
+        "ru": "Мумбаи",
+        "ro": "Мумбаи"
+      },
+      "lon": 72.88,
+      "lat": 19.08,
+      "id": "nw-740184799",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:07Z",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNRXptcXAwV0J6QUU2cllzVk50ZV9fcDJrR0dpNjBzalBqcnVIQTlCM2RxTzVxVU1ILXljems5Tzl6WWE5S0UxMktsSmZvT1NmYXFFRUNObEIwdDBBRFA4QUdPN2szaVh0WUxuSHJINVQ2YWZscW1MQ08xQnJJby13M3RWUHNneFFCajY3dGE4M3FXdFlqRThGMTh3Q2JyUzdFODlwYm5SMjBmMEdiQTdLZA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Global Market: China stocks inch up after August inflation data; Hang Seng remains flat",
+        "en": "Global Market: China stocks inch up after August inflation data; Hang Seng remains flat",
+        "ro": "Global Market: China stocks inch up after August inflation data; Hang Seng remains flat"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-598183562",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:06Z",
+      "source": "The Economic Times",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNa2I1Tmt0bXFmQ2sxdXloZDBvb2FYeWw0cVRYa0Q1aEFpeWlRMHlJVFhPTWpqOHFzdHBuMWRqQVh6QnlVMUNTYW1RbjBIMFk0SE0tQ0U3bmozTkVIeXJrZ2QtX01aeVJwMThnWmZ3dzJnSTAtU1BfYlVVUEVZNTBzTWRHR0NtdFF1Q0l1alJja1Zxc0YtNjdjblR6Wk50MDBpdDczeElldTRlNGpxQmFZY0IyZVQ3U2RJUkI1WmpjUV9XWWUzSlI2Ui1xN1dtVUpTTDlIaU5OWkNoRGxqYmN6UWQ4VHZiVE9uX21DY3RoeWdpMy1Fa1lzclhxWUJ0VjFT0gH6AUFVX3lxTE1PMm9jeGhBT1djM0QxNFY5TFZ0OUJkUTJIWnBGcjhMckF6VlNRcmpiN2FJeUNyTTdLMXNpMkVIQjlfSENvaEJXUFd0MnJha0Y5WEJ0cDRTVUhfUDlRSm0tSjBIc3pMM2ZJck13U1pKVm8xM1JfNC1DX1h3NXBfSlpEWWFqMlo3THFmWFRhdXhvWnhGOEVfV05aMC1FeE80X2djYjEyckwxODNwTlFNSmg3dWVQbURvQndzaE40NEgtalk0TTBMWk1Kdi0yelhOM0I5WTA4LVMxUm9FYlY0SXoyTnFPWFY0YXRTRUtEcWdINXRMS0JYR0p2RlE?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stock Exchange: Hang Seng Slips to 25,317.18 as Oil Climbs and Middle East Tensions Rise",
+        "en": "Hong Kong Stock Exchange: Hang Seng Slips to 25,317.18 as Oil Climbs and Middle East Tensions Rise",
+        "ro": "Hong Kong Stock Exchange: Hang Seng Slips to 25,317.18 as Oil Climbs and Middle East Tensions Rise"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-231657834",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:05Z",
+      "source": "BBN Times",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOS25rdXZaYWdDdGsyZXl4TlpGc1hUM0ctWkRGaUI3UkFUV0RiWVhIVVNQNlRvak41N05qZkRleExDWnBzN0V5SElLWnVld1JISGgtbHZ6WTNBUVo0QTd2Q0FXQlNVRTcwNjYzcGN6eDlwZ1BPcjluZ0dqVDF2V21FaEF5elctRG9CZnYwNFVIWUlvQmJtUURCNERQbEk4dmpRZVBLaGEtRnNOMUYwTDVxU0gwSWlNU0pUbm4xWlFYNkJ5RElQcTExSFNMaTI?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong stocks close lower Wednesday",
+        "en": "Hong Kong stocks close lower Wednesday",
+        "ro": "Hong Kong stocks close lower Wednesday"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-293079489",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:05Z",
+      "source": "bastillepost.com",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNnZCWnJZNXQwY09CVGhUMGYzNUwxRzVPWkJ3cHZyVmlRbkVXZXJYb3hJNzEtV2VrRkJ4ZHYweUVha3ZFbzdYYWMyNjZYaTd1UVlDUFlTcldqM2FBMEl1c1loTlA2NUhiclk4RWpZbWNpQ2lwanBkVkVoVjRJNEJwQ2JVREhwakNQc3k5UnRSa1VRMlNPUzUzQg?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Kwok Ka Yiu: Hang Seng Index may test support at 25,000 points; China Telecom (00728.HK) shows investment value",
+        "en": "Kwok Ka Yiu: Hang Seng Index may test support at 25,000 points; China Telecom (00728.HK) shows investment value",
+        "ro": "Kwok Ka Yiu: Hang Seng Index may test support at 25,000 points; China Telecom (00728.HK) shows investment value"
+      },
+      "tag": {
+        "en": "Шанхай",
+        "ru": "Шанхай",
+        "ro": "Шанхай"
+      },
+      "lon": 121.47,
+      "lat": 31.23,
+      "id": "nw-393005408",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:04Z",
+      "source": "富途牛牛",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOY3pSR1dGc3VQUFRuRjlpUGc2dFJaUTNCTV8yd1pjT016bVg0YnFJUEx0UEpsc2N4czhrTHpMcm5TMmZWeGxPZzJWUF9PZTVGbWZNajd0TmhrQ2txMEltUU1rT0ZieWZUdGViWm1NUTlhaVVhd1lSZjlfZEp5UUJWUElGckxuTGtGY3A4TlNlb19BQQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stocks Little Changed Amid Oil Fears",
+        "en": "Hong Kong Stocks Little Changed Amid Oil Fears",
+        "ro": "Hong Kong Stocks Little Changed Amid Oil Fears"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-477771740",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:04Z",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQelR0MHNVd1FiYTNLWUI2bFJKRVdyLTg1ZEhjcVpNdlF1N2dSTTAxaWFSM0U2SXBQdENBNGRaYUFXUEtPeDZ0Zmw1cmNzdjNXbjlra1oydGJnT1FOT05BanhvT25NY3FISUhEd3Mwem1MckRaUm9MRmN6NUJjWHFCX2t1Nm1hNkZKSFdtWVNJMjFRU1BZSDh6OEFOVVR2Zw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stocks Midday Review | Hang Seng Index Flat in Morning Session; Optical Communication Sector Rises in Line with Overseas Markets",
+        "en": "Hong Kong Stocks Midday Review | Hang Seng Index Flat in Morning Session; Optical Communication Sector Rises in Line with Overseas Markets",
+        "ro": "Hong Kong Stocks Midday Review | Hang Seng Index Flat in Morning Session; Optical Communication Sector Rises in Line with Overseas Markets"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-370852367",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:03Z",
+      "source": "Moomoo",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNemRLUHhYUG1DcU9vR1Zuem5IZWwxbHBIVVBqU0hoUnRIamlGV2RaeUVlZUNGR2ZJVl9FSDhWQW9CZEl1MUpvR2Q2X1U5MVZfSWJoQ1Q3dzdocFQzU1RacUxPZzhLM0JveFpqQWFHdHZGbUlYeEZKajE1bkhyWEd1QS11SGpvUG9YSldoc2xMSmRVWGtBS1E2WkpGZ1c?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stocks Midday Review | Hang Seng Index Falls 0.96% in Morning Session; Gold Stocks Continue Decline",
+        "en": "Hong Kong Stocks Midday Review | Hang Seng Index Falls 0.96% in Morning Session; Gold Stocks Continue Decline",
+        "ro": "Hong Kong Stocks Midday Review | Hang Seng Index Falls 0.96% in Morning Session; Gold Stocks Continue Decline"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-202150204",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:03Z",
+      "source": "Moomoo",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNZzdNb1AtZzREeTgwY25XMmZJNENITWwtMVExQXpQdmJ1RDhpMmo5dWg3MlJKWWdNWFVZWnJwM0h5ZGhtYWNBLXBpRDlkZHVJLUY3X28tbUtsc0dZSE9scFdqalpjaTJxMHlLNlFfR1kxUTRqU0pxYmpZcHJ3QjQtMlVteWpZR3M3b2oyWFBHLUtlcGhuV0dINzJSWGw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stock Exchange Today: Hang Seng Dips Amid Middle East Tensions",
+        "en": "Hong Kong Stock Exchange Today: Hang Seng Dips Amid Middle East Tensions",
+        "ro": "Hong Kong Stock Exchange Today: Hang Seng Dips Amid Middle East Tensions"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-283174364",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:02Z",
+      "source": "BBN Times",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNLWhjU1BkRTVPWWhnQXVwMzA5LVlfNkJlY3BsWFROT29jMGx0T2h3dGZoSFJLNGtKRlJJYVpTM01oc1Y2bzJoWWlKMDdFY0F0bE01b0tvSmdwVVhmOEdvWk51YmctM1BVcVpOZDFkaG1rNGxHam8xbmo3VG5kRGJNQ2pjdWM5YWkxTDNqVXNSYWNlTDFWU2RHNDZfNW5vLXA1RG9Ic2xOV1NiUUxfNFUtUA?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Hong Kong Stocks Fall to Six-Week Low",
+        "en": "Hong Kong Stocks Fall to Six-Week Low",
+        "ro": "Hong Kong Stocks Fall to Six-Week Low"
+      },
+      "tag": {
+        "en": "Гонконг",
+        "ru": "Гонконг",
+        "ro": "Гонконг"
+      },
+      "lon": 114.17,
+      "lat": 22.32,
+      "id": "nw-488846609",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:15:01Z",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOaDIzbDEzMjJ2dEFBUWlTU3pGd042NHFnT1hKZ0pKVlVNVG5reXJrT1NaWU1ZVjJnOEJKSVgyelJmMm9lTVJwVVNaT2Y0Q2xhdVJrWWt1ZW9fbGJ2MEx1RnVmVUtrQ0J2c1NwZ2dyVi1iZDVlS0U2UFlyRjV3Yk1fOW5HY0UyT183NVVYUGh4bUJtQQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Germany shares mixed at close of trade; DAX down 0.05% By Investing.com",
+        "en": "Germany shares mixed at close of trade; DAX down 0.05% By Investing.com",
+        "ro": "Germany shares mixed at close of trade; DAX down 0.05% By Investing.com"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-19462240",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:14:59Z",
+      "source": "Investing.com UK",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONXVRbTg5RGltVFRPUmR6LUtNenNhQk1lNUZmQS0zWUdYZjVtd0hwUnZiVG1OV2tkdGlhMzhGSWlkR1p1X3JiYU90NXNxS1d0VTA2MkllTUxpZmRwWTFCVjU3ZjZhd1dUUWQ0UGdrcnVZZmVtZkktb3lPZXVqZEtpODZNZ1BKUnN1MWdUMHdBeTZkWVkzd3ZpYlNyMDJtTktYOTYyM1I3YmNCdnM?oc=5"
+    },
+    {
+      "title": {
+        "ru": "[European Markets Open] Early Session Weakness... Germany's DAX Down 0.6%",
+        "en": "[European Markets Open] Early Session Weakness... Germany's DAX Down 0.6%",
+        "ro": "[European Markets Open] Early Session Weakness... Germany's DAX Down 0.6%"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-662960394",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:14:59Z",
+      "source": "아시아경제",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5zdDdDWnd6LVN0TGlyS0t5OW9tZmVoREFBS2tyVmptZGpvU0NVTXZVV3U4VU5DOVZGdUNkNlZJV0RUZjJQUkpEWmNUeGdyUnQ1Tl95N1ZuVkZaN00teF9nOXBYUjZFOWJlQ0VvQ05RZ09IaUpkZXZ2aldhNzI?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Frankfurt stocks close: Dax treads water as oil prices keep climbing",
+        "en": "Frankfurt stocks close: Dax treads water as oil prices keep climbing",
+        "ro": "Frankfurt stocks close: Dax treads water as oil prices keep climbing"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-765228121",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T05:14:59Z",
+      "source": "marketscreener.com",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOaFpPMXNRZEtEbjVQNFFvbGk3Wm5uMjViUGFLVFNvNnBlZTRaV3g2Qk04QnJHN0d5M2RQYTJnZ091OUNaQVlod0lUbHpKZ1NyUjNnTE1CMmxDdjRnNGRpVk5pRjZTNGtCclo1bnJ4eW0wY1l5SHM0MHlXVU5mTEs1Q0swQmtlU2tTUWRQd0pLVWlVanBkRDJ5LVptX0YzVXR5bV9JcGdGRGV5eG1JNFh0cXNVcTZtUHdIMjBnQw?oc=5"
     },
     {
       "title": {
@@ -1091,40 +1795,19 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-585510292",
+      "id": "nw-89041983",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:13Z",
+      "ts_utc": "2026-09-10T05:03:55Z",
       "source": "Yahoo Personal Finance",
       "url": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-wednesday-september-9-2026-silver-prices-hold-in-the-66-range-as-us-iranian-attacks-continue-105942902.html"
     },
     {
       "title": {
-        "ru": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
-        "en": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
-        "ro": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'"
-      },
-      "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
-      },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-260942960",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:12Z",
-      "source": "CNBC Finance",
-      "url": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html"
-    },
-    {
-      "title": {
-        "ru": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more",
-        "en": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more",
-        "ro": "Stocks making the biggest moves premarket: AMC, USA Rare Earth, Lululemon, Adobe & more"
+        "ru": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+        "en": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+        "ro": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -1133,40 +1816,82 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-328401162",
+      "id": "nw-845282786",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:12Z",
-      "source": "CNBC Finance",
-      "url": "https://www.cnbc.com/2026/09/04/stocks-making-the-biggest-moves-premarket-.html"
+      "ts_utc": "2026-09-10T05:03:55Z",
+      "source": "Yahoo Personal Finance",
+      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html"
     },
     {
       "title": {
-        "ru": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
-        "en": "China just pumped $54 billion into banks and insurers — but their stocks still fell",
-        "ro": "China just pumped $54 billion into banks and insurers — but their stocks still fell"
+        "ru": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
+        "en": "Euro remains steady against British Pound Gains due to ECB rate hike bets",
+        "ro": "Euro remains steady against British Pound Gains due to ECB rate hike bets"
       },
       "tag": {
-        "en": "Шанхай",
-        "ru": "Шанхай",
-        "ro": "Шанхай"
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
       },
-      "lon": 121.47,
-      "lat": 31.23,
-      "id": "nw-901849673",
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-945462065",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:12Z",
-      "source": "CNBC Finance",
-      "url": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html"
+      "ts_utc": "2026-09-10T04:46:47Z",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNclg4RUJzZGdscDUzaFc5Nk9kR2ZzcWZQWEdsbGhfc2VQSlExWVVsNFE2VlVrOEVOZzdLYzFTN0xhamk2Yk9vZ3VURzhLeFgwM2lEempBUUJEVVRKZ0JRbmhzTXVpNDFTYnhhakItVVR4TUJiSUQwZzJJakhjZHhYYV93LXktY3M0b1hwQ1VFbUV0MDBUUnFLVTlsWllsalNlMzlZWi1vUVRTWFhPek91RG93bEx4WGs?oc=5"
     },
     {
       "title": {
-        "ru": "Bessent says ‘I am the house now.’ What it means for the yen — and U.S. stocks.",
-        "en": "Bessent says ‘I am the house now.’ What it means for the yen — and U.S. stocks.",
-        "ro": "Bessent says ‘I am the house now.’ What it means for the yen — and U.S. stocks."
+        "ru": "Euro continues to underperform against Japanese Yen, ECB policy awaited",
+        "en": "Euro continues to underperform against Japanese Yen, ECB policy awaited",
+        "ro": "Euro continues to underperform against Japanese Yen, ECB policy awaited"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-151246484",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T04:46:47Z",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQenJnaE45dnc5RHJmZG9BaWt2ZXFLaF9CSWx6elR0TkFqbXdsbUk2QzRRa2lELTRtZkY0clVobGc5ZWRFSWo5NWFHM2p5U1hadHcxUDRmeG9pUFlZc1ZodDhuTzBfUTgzaUh6MTlhcWFtUTdSd3ZJUUpidmR6UzEyNDlJaU1SRHdOSHRuUnotbHFfVTNmOG1ja0kyOEN4MEpQQUxEcE1PTHBodFAzR2tEMkx0WQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "EUR/GBP Price Forecast: Upside remains capped near 0.8600 as ECB decision looms",
+        "en": "EUR/GBP Price Forecast: Upside remains capped near 0.8600 as ECB decision looms",
+        "ro": "EUR/GBP Price Forecast: Upside remains capped near 0.8600 as ECB decision looms"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-448861788",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T04:28:25Z",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQZ0t6QjlVaWEzNnhySF85TDlMVmR2SXQyTHNPQWtEaWVoa1JYZzZUSl9yT2VldzgxU29ET1BfVkZWY1EzS1E5cU01WjZ6RUpuYWJPYXNxTk9YNGl6eHpkcllQYXBHUjdOaTJCRjJ0bGRsWk1qOEtUUU9FcEdCS2lzcEQ3b29vaWZNUDV2ZGJBa1REeXE4Y3FIWHBnZUVSR3FpTEZiQXI1bUVaQVNWNEFCQnF6eldhVElZNXQzMg?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
+        "en": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears",
+        "ro": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -1175,19 +1900,40 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-717871522",
+      "id": "nw-429832668",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "MarketWatch",
-      "url": "https://www.marketwatch.com/story/bessent-says-i-am-the-house-now-what-it-means-for-the-yen-and-u-s-stocks-9ef63bc3?mod=mw_rss_topstories"
+      "ts_utc": "2026-09-10T04:05:19Z",
+      "source": "wsj.com",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOb1U4eTNZZ0F0VlUwYkJ1clV6eWxWWnV3QzFiVjBwTzdNNkJhMGJZN3hjQ0hCY3cxbFlabEc2UTc2WUg1dFpSZV9zZ0VvNURCeGJER2lkbTd5UWE1VWNvaDN1NDdlclk5c1RXR3A0VnZzSHRZY21HdnVPWHlpck5zV29LVVlwQlVoSmdHMXF4V2Z3cTdnWllHb0F3R0pYX3Bnai0yLWN4MkZuMHV2aTIyT2VQV2JYeVA4bHRmMFFPMGdPRm8?oc=5"
     },
     {
       "title": {
-        "ru": "Brent crude reaches $100 as war in Iran intensifies",
-        "en": "Brent crude reaches $100 as war in Iran intensifies",
-        "ro": "Brent crude reaches $100 as war in Iran intensifies"
+        "ru": "US Hits Several Iran Oil Tankers in Response to Warship Attack",
+        "en": "US Hits Several Iran Oil Tankers in Response to Warship Attack",
+        "ro": "US Hits Several Iran Oil Tankers in Response to Warship Attack"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "nw-641522154",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T04:05:18Z",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNSzZjTllMbmp5eWZmM2tpM3ZZc09CS3laNzFnMVF1bTRZUTd0cW84Y1VOd1hXZUsweGRaQXlmSzVsaW1IVFFyVGR4OHdsUjdtclpzTHpVSzUzNjdDOVBHZXFTeTlWVi1kQkVTajNibWdiV2pKR2M5N01DODR0eTJ6UWdoS1dOU3ktMlBLclBWNDJieHNiQlpJT3BYMVJXSzI5N0ZBQUcwNWJBWG1QbjhxVWE4TQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Iran Continues Using Bitcoin To Keep Economy Stable: Report",
+        "en": "Iran Continues Using Bitcoin To Keep Economy Stable: Report",
+        "ro": "Iran Continues Using Bitcoin To Keep Economy Stable: Report"
       },
       "tag": {
         "en": "Тегеран",
@@ -1196,19 +1942,19 @@
       },
       "lon": 51.39,
       "lat": 35.69,
-      "id": "nw-274290102",
+      "id": "nw-811390669",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "MarketWatch",
-      "url": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories"
+      "ts_utc": "2026-09-10T04:05:00Z",
+      "source": "bitcoinmagazine.com",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE42bU0yZ0hKM3Y5c2VDMDJKZVZaaXhnZGx5ekUtc3lqR0pWZlU4NWZXUDVUYjI0bUhva0s5cFVnSDU5UzNsWTA4RDBZN2RfN0JjelJwNm9mYzl6a3U2R3c0ZnVOc19aRmxkS2tHWkxxRVRZNEc0a19kTE5kRGI1dw?oc=5"
     },
     {
       "title": {
-        "ru": "The losers of the US-Canada trade war",
-        "en": "The losers of the US-Canada trade war",
-        "ro": "The losers of the US-Canada trade war"
+        "ru": "Bitcoin and Ethereum race quantum clock as U.S. backs $300 million hardware push",
+        "en": "Bitcoin and Ethereum race quantum clock as U.S. backs $300 million hardware push",
+        "ro": "Bitcoin and Ethereum race quantum clock as U.S. backs $300 million hardware push"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -1217,124 +1963,40 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-837316087",
+      "id": "nw-633045170",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "Al Jazeera",
-      "url": "https://www.aljazeera.com/video/money-works/2026/9/9/the-losers-of-the-us-canada-trade-war?traffic_source=rss"
+      "ts_utc": "2026-09-10T04:04:59Z",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVTFuU0piNWFDLXhRaG02THM0TnB5YjU1XzJqWWtpcExhSUJLcTBPT0MycEpUYk9GZUptSC1LN2l1dEJyM3duRXhnYS1JSkEtLVRSLVc1NER6VHJkUlAtVnA2R0UtbkJndDIzc0Ftb1ZQZXZ6VHRTWndlcUxCQzZmSXhacndyeDV0YklWZ1hiUW14eTE3U2J5NHctOVhDU1lHR3ctNjFTbzEyTTI5eGduaTBDZXIySFZ0eHdrQ0NVQQ?oc=5"
     },
     {
       "title": {
-        "ru": "What are the holes in the UK’s ban on imports from Israeli settlements?",
-        "en": "What are the holes in the UK’s ban on imports from Israeli settlements?",
-        "ro": "What are the holes in the UK’s ban on imports from Israeli settlements?"
+        "ru": "OPEC+ Keeps October Output Same: Oil ETFs in Focus",
+        "en": "OPEC+ Keeps October Output Same: Oil ETFs in Focus",
+        "ro": "OPEC+ Keeps October Output Same: Oil ETFs in Focus"
       },
       "tag": {
-        "en": "Лондон",
-        "ru": "Лондон",
-        "ro": "Лондон"
+        "en": "Вена",
+        "ru": "Вена",
+        "ro": "Вена"
       },
-      "lon": -0.13,
-      "lat": 51.51,
-      "id": "nw-423404774",
+      "lon": 16.37,
+      "lat": 48.21,
+      "id": "nw-625680074",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "Al Jazeera",
-      "url": "https://www.aljazeera.com/news/2026/9/9/what-are-the-holes-in-the-uks-ban-on-imports-from-israeli-settlements?traffic_source=rss"
+      "ts_utc": "2026-09-10T04:04:59Z",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPUHFCRmFOTE1XdHhDcF9lN0U3Mjdnd0RHWXRxWE5aTjFwMG5sMVdGWFk0b05QZ0pEYmpSelNPZm1LeDFnRElTdlN3a1hXREVGNVdUSEs4TDJUelBKWFZSZmpLdDBkbGgwQndlbHZ1OTVFbGFOV0dhUGxBaU5LSjFUTVE3OGJsV3lqRy03c0hHR2pOeW9vTXJNd2pna08yT2NYVE9OWTVvaw?oc=5"
     },
     {
       "title": {
-        "ru": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks",
-        "en": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks",
-        "ro": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-747498996",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "Al Jazeera",
-      "url": "https://www.aljazeera.com/news/2026/9/9/global-stocks-slide-as-brent-crude-surpasses-100-a-barrel?traffic_source=rss"
-    },
-    {
-      "title": {
-        "ru": "JP Morgan boss Jamie Dimon to warn UK chancellor against bank tax hike",
-        "en": "JP Morgan boss Jamie Dimon to warn UK chancellor against bank tax hike",
-        "ro": "JP Morgan boss Jamie Dimon to warn UK chancellor against bank tax hike"
-      },
-      "tag": {
-        "en": "Лондон",
-        "ru": "Лондон",
-        "ro": "Лондон"
-      },
-      "lon": -0.13,
-      "lat": 51.51,
-      "id": "nw-768968216",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/business/2026/sep/09/jp-morgan-boss-jamie-dimon-to-warn-uk-chancellor-against-bank-tax-hike"
-    },
-    {
-      "title": {
-        "ru": "Why India’s economic data has sparked a furore",
-        "en": "Why India’s economic data has sparked a furore",
-        "ro": "Why India’s economic data has sparked a furore"
-      },
-      "tag": {
-        "en": "Мумбаи",
-        "ru": "Мумбаи",
-        "ro": "Мумбаи"
-      },
-      "lon": 72.88,
-      "lat": 19.08,
-      "id": "nw-489978266",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:11Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/world/2026/sep/07/why-indias-economic-data-faces-a-trust-deficit"
-    },
-    {
-      "title": {
-        "ru": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
-        "en": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’",
-        "ro": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’"
-      },
-      "tag": {
-        "en": "Лондон",
-        "ru": "Лондон",
-        "ro": "Лондон"
-      },
-      "lon": -0.13,
-      "lat": 51.51,
-      "id": "nw-778536011",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/australia-news/2026/sep/09/australia-considers-new-israel-sanctions-but-wont-join-uk-in-banning-trade-with-settler-terrorists-ntwnfb"
-    },
-    {
-      "title": {
-        "ru": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
-        "en": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows",
-        "ro": "Canada’s retaliatory US tariffs set to take effect as trade dispute grows"
+        "ru": "Crude Oil rallies into 14-week highs as US and Iran spend the week attacking tankers",
+        "en": "Crude Oil rallies into 14-week highs as US and Iran spend the week attacking tankers",
+        "ro": "Crude Oil rallies into 14-week highs as US and Iran spend the week attacking tankers"
       },
       "tag": {
         "en": "Нью-Йорк",
@@ -1343,136 +2005,52 @@
       },
       "lon": -74.01,
       "lat": 40.71,
-      "id": "nw-372845257",
+      "id": "nw-725544513",
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "Guardian World",
-      "url": "https://www.theguardian.com/world/2026/sep/07/canada-tariffs-us-trump"
-    },
-    {
-      "title": {
-        "ru": "What's happening to petrol prices now oil is back to pre-Iran war levels?",
-        "en": "What's happening to petrol prices now oil is back to pre-Iran war levels?",
-        "ro": "What's happening to petrol prices now oil is back to pre-Iran war levels?"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-380247326",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "BBC Business",
-      "url": "https://www.bbc.co.uk/news/articles/c20zgjzz0e4o?at_medium=RSS&at_campaign=rss"
-    },
-    {
-      "title": {
-        "ru": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
-        "en": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
-        "ro": "Petrol prices rise by 5p over a week as Iran war sends oil higher"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-856771975",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "BBC Business",
-      "url": "https://www.bbc.co.uk/news/articles/cj4jwlx77lro?at_medium=RSS&at_campaign=rss"
-    },
-    {
-      "title": {
-        "ru": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
-        "en": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
-        "ro": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-263467268",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "BBC Business",
-      "url": "https://www.bbc.co.uk/news/articles/c8jdev0422jo?at_medium=RSS&at_campaign=rss"
-    },
-    {
-      "title": {
-        "ru": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
-        "en": "Petrol prices rise by 5p over a week as Iran war sends oil higher",
-        "ro": "Petrol prices rise by 5p over a week as Iran war sends oil higher"
-      },
-      "tag": {
-        "en": "Тегеран",
-        "ru": "Тегеран",
-        "ro": "Тегеран"
-      },
-      "lon": 51.39,
-      "lat": 35.69,
-      "id": "nw-856771975",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-09T13:51:10Z",
-      "source": "BBC Business",
-      "url": "https://www.bbc.co.uk/news/articles/cj4jwlx77lro?at_medium=RSS&at_campaign=rss"
+      "ts_utc": "2026-09-10T04:04:59Z",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNX1JKVWpJSWRYUDJja2F4Mm55QVhBSHpuSDVlbzIxZkw5QTM2eVVqQmxjd1pXRmtMS2ZOclFpMFk4Q2NIRmhDWHI3SFRxT0o5WU5uTkx6YllwYVd6T1pJWWNZOE9SZkMtb3FYaUN6dGtOU3ZkVmNITkdDa0RodlFrU3Y2SWx1aDE3UXM0QWN3S2VJZnNtckNMeWk2VXJUMWxoSS1lRWdhWTBaT2x4OHlvRWpqbU1yRnFxX0pzVElwcmIzc2g2NlE?oc=5"
     }
   ],
   "today": {
-    "headline": "Удары США по иранским танкерам: Brent снова выше $100, нефть WTI +3,1%, золото 4 477, индексы в минусе",
-    "date": "2026-09-09",
-    "generated_at": "2026-09-09T13:45:40.390247+00:00",
+    "headline": "Индексы замерли у нуля, VIX 16,46 (+4,71%): рынок держит нефтяную премию после ударов по Ирану",
+    "date": "2026-09-10",
+    "generated_at": "2026-09-10T03:03:32.644085+00:00",
     "lang": "ru"
   },
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16488,
-      "chg_pct": 0.1832,
+      "bid": 1.1637,
+      "chg_pct": 0.0284,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35582,
-      "chg_pct": 0.1122,
+      "bid": 1.35521,
+      "chg_pct": 0.0221,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 153.179,
-      "chg_pct": -0.1753,
+      "bid": 153.497,
+      "chg_pct": -0.0234,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 79028.6,
-      "chg_pct": 0.7595,
+      "bid": 78215.1,
+      "chg_pct": -0.07,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2502.24,
-      "chg_pct": -0.4622,
+      "bid": 2473.48,
+      "chg_pct": 0.2614,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-09T14:04:50.089728+00:00"
+  "quotes_updated": "2026-09-10T07:04:49.601052+00:00"
 }
