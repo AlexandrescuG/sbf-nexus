@@ -70,6 +70,42 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   height: 100%;
 }
 
+/* ── Шапка ──────────────────────────────────────────────── */
+.scene-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
+  display: flex; align-items: center; gap: 20px;
+  padding: 14px var(--scene-gutter);
+  background: rgba(251,246,239,0.86);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(154,123,30,0.14);
+  font: 500 12px/1 'JetBrains Mono', monospace;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.scene-nav a { text-decoration: none; color: #4a4136; }
+.scene-nav a:hover { color: #8a6d15; }
+.nav-brand { font-weight: 600; color: #241f18 !important; }
+.nav-brand span { color: #9A7B1E; }
+.scene-nav nav { display: flex; gap: 18px; margin-left: auto; }
+.nav-platform { color: #8a6d15 !important; }
+.lang-switcher { display: flex; gap: 6px; align-items: center; }
+.lang-btn {
+  background: none; border: 0; cursor: pointer; padding: 2px 4px;
+  font: inherit; color: #4a4136;
+}
+.lang-btn.active, .lang-btn:hover { color: #8a6d15; }
+.lang-sep { color: rgba(154,123,30,0.4); }
+
+/* Узкий экран: бургер не заводим — три ссылки и переключатель языка
+   помещаются в строку, если убрать межбуквенный размах и подпись бренда.
+   Меню ради меню — лишний экран между человеком и разделом. */
+@media (max-width: 700px) {
+  .scene-nav { gap: 10px; padding: 10px 14px; font-size: 10px; letter-spacing: 0.08em; }
+  .nav-brand span { display: none; }
+  .scene-nav nav { gap: 10px; }
+}
+
 /* ── Слой текста ────────────────────────────────────────── */
 .scene-text {
   position: relative;
@@ -81,6 +117,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .act {
   position: relative;
   min-height: 100vh;
+  scroll-margin-top: 60px;      /* якорь не должен уводить заголовок под шапку */
   display: flex;
   align-items: center;
   padding: 12vh var(--scene-gutter);
@@ -174,6 +211,130 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   text-transform: uppercase;
   color: #9A7B1E;
 }
+
+/* Ссылка поверх знака: сам знак нарисован на холсте, кликать не по чему.
+   Кладётся сценой только там, где знаку есть куда вести. */
+.mark-link {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: auto;
+  display: none;
+}
+
+/* ── Карточки, доступ, кейсы ────────────────────────────── */
+.act-cards, .act-access, .act-cases {
+  list-style: none; margin: 0 0 1.4em; padding: 0;
+}
+.act-cards li, .act-cases li {
+  padding: 10px 0; border-bottom: 1px solid rgba(154,123,30,0.16);
+}
+.act-cards b, .act-cases b { display: block; font-weight: 600; }
+.act-cards span, .act-cases span { display: block; font-size: 14px; color: #4a4136; }
+.act-cases i {
+  display: block; font-style: normal;
+  font: 500 10px/1.6 'JetBrains Mono', monospace;
+  letter-spacing: 0.16em; color: #9A7B1E;
+}
+.act-access li { font-size: 14px; margin: 0 0 0.4em; color: #4a4136; }
+.act-access b { color: #241f18; }
+.act-access i { font-style: normal; color: #9A7B1E; }
+.act-lead { font-size: 17px; }
+.act-side {
+  border: 1px solid rgba(154,123,30,0.35);
+  padding: 14px 16px; margin: 0 0 1.2em;
+}
+.act-side-h { font-weight: 600; margin: 0 0 0.3em; }
+.act-trust {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  font: 400 12px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em; color: #6b5f4d;
+}
+.act-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.act-cta-solid { background: #C9A227; color: #FBF6EF; border-color: #C9A227; }
+button.act-cta { cursor: pointer; background: none; color: inherit; }
+
+/* ── Строка котировок ───────────────────────────────────── */
+.scene-ticker {
+  overflow: hidden;
+  border-top: 1px solid rgba(154,123,30,0.18);
+  border-bottom: 1px solid rgba(154,123,30,0.18);
+  padding: 8px 0;
+  margin: 1.4em 0 0;
+  font: 400 12px/1 'JetBrains Mono', monospace;
+  color: #5a5044;
+}
+.ticker-track {
+  display: inline-flex; gap: 26px; white-space: nowrap;
+  will-change: transform;
+}
+/* Крутится, только когда есть что крутить: пустая бегущая строка выглядит
+   сломанной, а строка «обновляется» должна стоять и читаться. */
+.scene-ticker[data-live="1"] .ticker-track {
+  animation: ticker-run linear infinite;
+}
+@keyframes ticker-run { to { transform: translateX(-50%); } }
+.ticker-track .tk b { color: #241f18; }
+.ticker-track .tk i { font-style: normal; }
+.ticker-track .tk i.up { color: #1f8e83; }
+.ticker-track .tk i.down { color: #d8433f; }
+@media (prefers-reduced-motion: reduce) {
+  .scene-ticker[data-live="1"] .ticker-track { animation: none; }
+}
+
+/* Кнопка заявки, доступная с любой точки пути */
+.sticky-cta {
+  position: fixed; right: 18px; bottom: 18px; z-index: 30;
+  padding: 12px 18px; cursor: pointer;
+  background: #C9A227; color: #FBF6EF; border: 0;
+  font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Подвал ─────────────────────────────────────────────── */
+.scene-foot {
+  position: relative; z-index: 1;
+  display: grid; gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: 60px var(--scene-gutter) 90px;
+  border-top: 1px solid rgba(154,123,30,0.18);
+  background: rgba(251,246,239,0.92);
+  font-size: 14px;
+}
+.scene-foot p { margin: 0 0 0.5em; }
+.foot-risk, .foot-rights { grid-column: 1 / -1; font-size: 12px; color: #6b5f4d; }
+
+/* ── Модалка заявки ─────────────────────────────────────── */
+.lead-modal { position: fixed; inset: 0; z-index: 40; display: flex;
+              align-items: center; justify-content: center; }
+.lead-modal.hidden { display: none; }
+.lead-modal-backdrop { position: absolute; inset: 0; background: rgba(20,16,10,0.55); }
+.lead-modal-card {
+  position: relative; z-index: 1;
+  width: min(440px, calc(100vw - 32px));
+  max-height: 90vh; overflow: auto;
+  background: #FBF6EF; border: 1px solid rgba(154,123,30,0.4);
+  padding: 28px;
+}
+.lead-modal-close { position: absolute; top: 8px; right: 12px;
+                    background: none; border: 0; font-size: 24px; cursor: pointer; }
+.lead-form .field { display: block; margin: 0 0 14px; }
+.field-label { display: block; font-size: 12px; color: #6b5f4d; margin: 0 0 4px; }
+.lead-form input[type=text], .lead-form input[type=email], .lead-form input[type=tel] {
+  width: 100%; padding: 10px; font: inherit;
+  border: 1px solid rgba(154,123,30,0.4); background: #fff;
+}
+.field-checkbox { display: flex; gap: 8px; font-size: 13px; margin: 0 0 16px; }
+.lead-submit {
+  width: 100%; padding: 14px; cursor: pointer; border: 0;
+  background: #C9A227; color: #FBF6EF;
+  font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: 0.14em;
+}
+.lead-submit:disabled { background: rgba(201,162,39,0.35); cursor: not-allowed; }
+.lead-divider { text-align: center; margin: 16px 0; font-size: 12px; color: #6b5f4d; }
+.lead-telegram { display: block; text-align: center; padding: 12px;
+                 border: 1px solid rgba(154,123,30,0.4); text-decoration: none; }
+.lead-success, .lead-error { text-align: center; }
+.hidden { display: none !important; }
 
 /* Отладочный счётчик кадра — только при ?debug=1 */
 #scene-hud {

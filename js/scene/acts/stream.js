@@ -19,6 +19,11 @@ export const stream = {
   id: 'stream',
   role: 'output',
   note: 'поток «шум → продукт»',
+  /* Знак здесь — вторая дверь на платформу; подпись под ним это обещает,
+     значит клик обязан работать. Ссылку кладёт сцена (stage.js). */
+  link: 'https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=logo&utm_campaign=grow_logo',
+  linkTrack: 'grow_platform',
+  linkLabel: 'Открыть платформу',
 
   drops: [],
 

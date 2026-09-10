@@ -28,6 +28,7 @@ ru: {
   ticker: { loading: 'Рыночная сводка обновляется' },
   hero: {
     headline:  'Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.',
+    trust_lei:      'Bloomberg LEI',
     trust_partners: 'Партнёры с лицензиями ЕС',
     trust_office:   'Офис в Кишинёве',
     today:       'Сегодня · {d}',
@@ -355,6 +356,7 @@ en: {
   ticker: { loading: 'Market summary is updating' },
   hero: {
     headline:  'The world generates noise.<br><em>We recognise patterns</em>.',
+    trust_lei:      'Bloomberg LEI',
     trust_partners: 'EU-licensed partners',
     trust_office:   'Office in Chișinău',
     today:       'Today · {d}',
@@ -682,6 +684,7 @@ ro: {
   ticker: { loading: 'Sinteza pieței se actualizează' },
   hero: {
     headline:    'Lumea generează zgomot.<br><em>Noi recunoaștem tipare</em>.',
+    trust_lei:      'Bloomberg LEI',
     trust_partners: 'Parteneri licențiați UE',
     trust_office:   'Birou în Chișinău',
     today:       'Astăzi · {d}',
@@ -1108,7 +1111,23 @@ ro: {
   const saved = localStorage.getItem('sbf_lang');
   const _userLang = (navigator.language || '').toLowerCase().split(/[-_]/)[0];
   const auto  = _CIS_LANGS.includes(_userLang) ? 'ru' : (_userLang === 'ro' ? 'ro' : 'en');
-  _lang = _LOCALES[saved] ? saved : auto;
+
+  /* ?lang=ru|en|ro — старше сохранённого выбора и автоопределения.
+     В <head> стоят ссылки hreflang на sbfconsult.com/?lang=ru и остальные,
+     то есть поисковику и получателю письма мы обещаем языковые версии по
+     адресу. Параметр при этом не читался вовсе: человек с английской
+     системой, открывший русскую ссылку, видел английскую страницу. Выбор
+     из адреса запоминаем — иначе он слетит на следующей странице. */
+  let urlLang = '';
+  try {
+    urlLang = (new URLSearchParams(location.search).get('lang') || '').toLowerCase();
+  } catch (e) { urlLang = ''; }
+  if (_LOCALES[urlLang]) {
+    _lang = urlLang;
+    try { localStorage.setItem('sbf_lang', urlLang); } catch (e) { /* приватный режим */ }
+  } else {
+    _lang = _LOCALES[saved] ? saved : auto;
+  }
 
   window.i18n = { t, ta, setLang, getLang, partnerData, apply: applyTranslations };
 

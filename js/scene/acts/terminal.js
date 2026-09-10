@@ -24,6 +24,10 @@ export const terminal = {
   id: 'terminal',
   role: 'output',
   note: 'терминал платформы и PRO',
+  /* Сквозь кольцо видно платформу — значит и войти в неё можно отсюда */
+  link: 'https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=logo&utm_campaign=platform_gate',
+  linkTrack: 'platform_open',
+  linkLabel: 'Открыть платформу',
 
   imgs: null,
 

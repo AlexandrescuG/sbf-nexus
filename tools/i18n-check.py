@@ -19,7 +19,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 I18N = ROOT / 'js' / 'i18n.js'
+# Проверяем оба каркаса сразу: у нового те же ключи, и разъехаться они
+# не должны — иначе в каркасе появится текст, которого нет в словаре, и
+# увидим мы это только на живом сайте после переключения.
 HTML = ROOT / 'index.html'
+HTML_NEXT = ROOT / 'index-next.html'
 
 
 def load_locales():
@@ -62,7 +66,7 @@ def main():
         if absent:
             missing.append((key, absent))
 
-    html = HTML.read_text(encoding='utf-8')
+    html = (HTML.read_text(encoding='utf-8') + (HTML_NEXT.read_text(encoding='utf-8') if HTML_NEXT.exists() else ''))
     used = set(re.findall(r'data-i18n(?:-html|-title|-aria|-placeholder)?="([^"]+)"', html))
     # Часть ключей берётся не из разметки, а из кода: подписи на карте,
     # карточка партнёра, формат времени. Без их учёта список «лишних»

@@ -22,6 +22,7 @@
 import { createCamera } from './camera.js';
 import { createMark } from './mark.js';
 import { ACTS } from './acts/registry.js';
+import { initTicker } from './ticker.js';
 
 const BUDGET_MS = 16;
 
@@ -125,6 +126,7 @@ function boot() {
       if (act && act.render) act.render(ctx, view, b, mark);
     }
     mark.renderRing(ctx, view);
+    placeMarkLink(ACTS[cam.act], mark.geometry(view));
 
     /* ── Бюджет кадра ───────────────────────────────────── */
     frameMs += (performance.now() - t0 - frameMs) * 0.1;
@@ -145,6 +147,33 @@ function boot() {
     st.simple = view.simple; st.dpr = dpr; st.mobile = view.mobile;
     st.markDim = view.markDim;
     if (debug) hud(cam);
+  }
+
+  /* Знак нарисован на холсте, а по холсту не кликают. Там, где знак — дверь
+     (акты «поток» и «терминал»), поверх него лежит настоящая ссылка: без неё
+     повторилась бы прошлая история, когда подпись обещала «нажмите на знак»,
+     а клик ничего не делал. Ссылка появляется только у тех актов, где у знака
+     действительно есть куда вести. */
+  let linkEl = null;
+  function placeMarkLink(act, g) {
+    const href = act && act.link;
+    if (!linkEl) {
+      linkEl = document.createElement('a');
+      linkEl.className = 'mark-link';
+      linkEl.target = '_blank';
+      linkEl.rel = 'noopener';
+      layer.appendChild(linkEl);
+    }
+    if (!href) { linkEl.style.display = 'none'; return; }
+    linkEl.style.display = 'block';
+    if (linkEl.getAttribute('href') !== href) {
+      linkEl.setAttribute('href', href);
+      linkEl.setAttribute('aria-label', act.linkLabel || 'Открыть платформу');
+      if (act.linkTrack) linkEl.dataset.track = act.linkTrack;
+    }
+    linkEl.style.left = (g.cx - g.r) + 'px';
+    linkEl.style.top = (g.cy - g.r) + 'px';
+    linkEl.style.width = linkEl.style.height = (g.r * 2) + 'px';
   }
 
   let hudEl = null;
@@ -198,6 +227,7 @@ function boot() {
   });
 
   resize();
+  initTicker();
   start();
   window.SBF_STAGE = { camera: camera, mark: mark, acts: ACTS,
                        start: start, stop: stop, resize: resize };

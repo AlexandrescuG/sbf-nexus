@@ -8,17 +8,23 @@
 <!--
   index-next.html — новый каркас сайта: одна сцена на всю длину страницы.
 
-  Живой сайт (index.html) не тронут и продолжает работать. Переключение,
-  когда каркас догонит его по содержанию, — переименование файла одним
-  коммитом; откат — тем же движением.
+  Живой сайт (index.html) не тронут и продолжает работать. Переключение —
+  отдельное решение владельца, не этап работ: 10.09 сказано прямо, что сайт
+  к этому не готов. Пока каркас догоняет живой сайт по содержанию, он лежит
+  рядом и помечен noindex.
 
-  Этап 1 плана docs/plan-2026-09-tapestry.md: сцена, камера, знак, пустые
-  акты, текст поверх сцены. Содержимое актов переезжает на этапах 2–6, и
-  до тех пор здесь стоят только заголовки — ровно чтобы длина пути камеры
-  определялась объёмом текста, а не числом в коде.
+  Что здесь есть: весь текст живого сайта на тех же ключах i18n, те же
+  ссылки с теми же UTM-метками, те же цели Метрики. Чего нет — показывает
+  tools/scene-parity.py; пока он печатает не ноль, разговора о замене нет.
 
-  Страница помечена noindex: пока это стройка, ей нечего делать в поиске.
+  План и ограничители: docs/plan-2026-09-tapestry.md
 -->
+<!-- Языковые версии — те же адреса, что у живого сайта: при переключении
+     каркаса ссылки из писем и поиска не должны менять смысл. -->
+<link rel="alternate" hreflang="ru" href="https://sbfconsult.com/?lang=ru">
+<link rel="alternate" hreflang="en" href="https://sbfconsult.com/?lang=en">
+<link rel="alternate" hreflang="ro" href="https://sbfconsult.com/?lang=ro">
+<link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -29,107 +35,320 @@
 </head>
 <body class="tapestry">
 
+<!-- ══ Шапка ═══════════════════════════════════════════════ -->
+<header class="scene-nav">
+  <a class="nav-brand" href="#act-map">SBF CONSULT<span> · MANAGEMENT</span></a>
+  <nav data-i18n-aria="nav.nav_aria" aria-label="Навигация по разделам">
+    <a href="#act-approach" data-i18n="nav.analytics">Аналитика</a>
+    <a href="#act-market" data-i18n="nav.trading">Торговля</a>
+    <a href="#act-contact" data-i18n="nav.contacts">Контакты</a>
+    <a class="nav-platform" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=nav" target="_blank" rel="noopener" data-i18n="nav.platform">Платформа</a>
+  </nav>
+  <div class="lang-switcher">
+    <button class="lang-btn" data-lang="ru">RU</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="ro">RO</button>
+  </div>
+</header>
+
 <!-- ══ Слой сцены: один холст на всю страницу ═══════════════ -->
 <div class="scene-layer" aria-hidden="true"></div>
 
 <!-- ══ Слой текста: обычный документ поверх сцены ═══════════ -->
 <main class="scene-text">
 
+  <!-- ── Акт 1: мир шумит ──────────────────────────────── -->
   <section class="act" id="act-map" data-act="world">
     <div class="act-col">
-      <p class="act-eyebrow" data-i18n="hero.trust_lei">Bloomberg LEI</p>
+      <p class="act-eyebrow" data-i18n="hero.kicker">SBF COMPANY SRL · CHIȘINĂU</p>
       <h1 data-i18n-html="hero.headline">Мир генерирует шум. <em>Мы распознаём закономерности</em>.</h1>
-      <p data-i18n="hero.sub">Экспертная аналитика, сопровождение торгового счёта и доверительное управление через партнёров с лицензией ЕС.</p>
+      <p class="act-lead" data-i18n="hero.sub">Экспертная аналитика, сопровождение торгового счёта и доверительное управление через партнёров с лицензией ЕС.</p>
+      <p class="act-actions">
+        <a class="act-cta act-cta-solid" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-track="hero_platform" target="_blank" rel="noopener" data-i18n="hero.cta1">Открыть платформу →</a>
+        <button class="act-cta" type="button" data-lead="hero" data-i18n="hero.cta2">Связаться</button>
+      </p>
+      <!-- Боковая карточка героя: опрос трейдера за 30 дней PRO -->
+      <div class="act-side">
+        <p class="act-eyebrow" data-i18n="hero.side_t">СТАРТ БЕЗ РИСКА</p>
+        <p class="act-side-h" data-i18n="hero.side_h">Опрос трейдера — 30 дней PRO</p>
+        <p class="act-note" data-i18n="hero.side_p">Карта не нужна. Автосписаний нет. ~3 минуты.</p>
+        <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_survey" data-track="hero_survey" target="_blank" rel="noopener" data-i18n="hero.side_go">Начать →</a>
+      </div>
+      <p class="act-trust">
+        <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener" data-i18n="hero.trust_lei">Bloomberg LEI</a>
+        <span data-i18n="hero.trust_partners">Партнёры с лицензией ЕС</span>
+        <a href="#act-contact" data-i18n="hero.trust_office">Офис в Кишинёве</a>
+      </p>
+      <p class="act-note"><a href="#act-grow"><span data-i18n="hero.scroll">Прокрутите вниз</span> ↓</a></p>
+      <!-- Котировки: пока лента не пришла, здесь честная строка «сводка
+           обновляется», а не выдуманные цифры. Крутит CSS, не JS: в сцене
+           ровно один кадровый цикл. -->
+      <div id="scene-ticker" class="scene-ticker" aria-hidden="true">
+        <div class="ticker-track"><span class="tk" data-i18n="ticker.loading">Рыночная сводка обновляется</span></div>
+      </div>
     </div>
   </section>
 
+  <!-- ── Акт 2: что выходит из шума ────────────────────── -->
   <section class="act" id="act-grow" data-act="stream">
     <div class="act-col">
-      <p class="act-eyebrow" data-i18n="grow.eyebrow">ЧТО ВЫХОДИТ ИЗ ШУМА</p>
+      <p class="act-eyebrow" data-i18n="grow.eyebrow">ПЛАТФОРМА · LP.SBFCONSULT.COM</p>
       <h2 data-i18n="grow.heading">Что выходит из шума</h2>
+      <p class="act-lead" data-i18n="grow.lead">Из потока событий получается четыре вещи, и каждую можно открыть прямо сейчас.</p>
+      <!-- В каждой карточке улика: что именно человек увидит, открыв раздел -->
+      <ul class="act-cards">
+        <li>
+          <p class="act-eyebrow" data-i18n="grow.c1.tag">КАЖДОЕ УТРО</p>
+          <b data-i18n="grow.c1.title">Утренний бриф</b>
+          <span data-i18n="grow.c1.desc">Сводка по рынкам до открытия европейской сессии.</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="grow.c2.tag">ПО ИНСТРУМЕНТУ</p>
+          <b data-i18n="grow.c2.title">Разбор актива</b>
+          <span data-i18n="grow.c2.desc">Уровни, паттерны и структура рынка по выбранному инструменту.</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="grow.c3.tag">ЖУРНАЛ</p>
+          <b data-i18n="grow.c3.title">Дисциплина</b>
+          <span data-i18n="grow.c3.desc">Статистика сделок и разбор ошибок.</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="grow.c4.tag">АКАДЕМИЯ</p>
+          <b data-i18n="grow.c4.title">Обучение</b>
+          <span data-i18n="grow.c4.desc">15 глав от основ до структуры рынка.</span>
+        </li>
+      </ul>
+      <!-- Кто что видит: без регистрации, с аккаунтом, с PRO -->
+      <p class="act-eyebrow" data-i18n="grow.open_h">ЧТО ОТКРЫТО БЕЗ РЕГИСТРАЦИИ</p>
+      <ul class="act-access">
+        <li><b data-i18n="grow.acc.anon">Без входа</b> <span data-i18n="grow.acc.r_brief">бриф</span> · <span data-i18n="grow.acc.r_charts">графики</span> · <span data-i18n="grow.acc.edu_free">академия 1–5</span></li>
+        <li><b data-i18n="grow.acc.user">С аккаунтом</b> <span data-i18n="grow.acc.r_journal">журнал</span> · <span data-i18n="grow.acc.r_prefs">настройки</span> · <span data-i18n="grow.acc.r_edu">прогресс обучения</span></li>
+        <li><b data-i18n="grow.acc.pro">PRO</b> <span data-i18n="grow.acc.edu_pro">академия целиком</span> · <span data-i18n="grow.acc.r_ta">теханализ</span> <i data-i18n="grow.acc.soon">в разработке</i></li>
+      </ul>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hub_platform" data-track="grow_platform" target="_blank" rel="noopener" data-i18n="grow.cta">Открыть платформу →</a>
+      </p>
+      <p class="act-note" data-i18n="grow.logo_hint">Знак ведёт на платформу</p>
     </div>
   </section>
 
+  <!-- ── Акт 3: подход ─────────────────────────────────── -->
   <section class="act" id="act-approach" data-act="lens">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="approach.eyebrow">ПОДХОД</p>
       <h2 data-i18n="approach.heading">Шум снаружи — закономерность внутри</h2>
-      <p data-i18n="approach.s1.p">—</p>
+      <ol class="act-steps">
+        <li><b data-i18n="approach.s1.t">Собираем</b> <span data-i18n="approach.s1.p">842 инструмента и макро-календарь: котировки обновляются каждые 15 секунд, лента событий — каждые 15 минут.</span></li>
+        <li><b data-i18n="approach.s2.t">Проверяем</b> <span data-i18n="approach.s2.p">По каждому событию считаем, как рынок двигался на прошлых публикациях.</span></li>
+        <li><b data-i18n="approach.s3.t">Показываем</b> <span data-i18n="approach.s3.p">Разметка на графике: уровни, скользящая, точка паттерна.</span></li>
+      </ol>
+      <p class="act-note">
+        <span data-i18n="approach.chart_head">XAU/USD · H4 · исторические данные</span> ·
+        <span data-i18n="approach.lg_level">уровни</span> ·
+        <span data-i18n="approach.lg_sma">скользящая</span> ·
+        <span data-i18n="approach.lg_pat">паттерн</span>
+      </p>
+      <p class="act-note" data-i18n="approach.hint">Прокрутите — разметка появится по мере движения</p>
+      <p class="act-note" data-i18n="approach.lens_cap">Внутри кольца — то же самое, разобранное</p>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/chart.html?s=GOLD&utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=approach" target="_blank" rel="noopener" data-i18n="approach.cta">Смотреть живой график →</a>
+      </p>
     </div>
   </section>
 
+  <!-- ── Акт 4: платформа ──────────────────────────────── -->
   <section class="act" id="act-platform-1" data-act="terminal">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="platform.p1.eyebrow">ПЛАТФОРМА · LP.SBFCONSULT.COM</p>
       <h2 data-i18n="platform.p1.heading">Терминал, журнал и академия — в одном месте</h2>
-      <p data-i18n="platform.p1.lead">Рабочее пространство трейдера: утренний рыночный синтез, журнал сделок с аналитикой дисциплины, учебная программа и цели.</p>
+      <p class="act-lead" data-i18n="platform.p1.lead">Рабочее пространство трейдера: утренний рыночный синтез, журнал сделок с аналитикой дисциплины, учебная программа и цели.</p>
       <!-- В каждой карточке одно проверяемое число и ссылка в свой раздел -->
       <ul class="act-facts">
-        <li><a href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_journal" target="_blank" rel="noopener"><b data-i18n="platform.p1.f1t">Журнал сделок</b><i data-i18n="platform.p1.f1n">7 полей на сделку</i></a></li>
-        <li><a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_brief" target="_blank" rel="noopener"><b data-i18n="platform.p1.f2t">Утренний синтез</b><i data-i18n="platform.p1.f2n">06:00 CET, каждый будний день</i></a></li>
-        <li><a href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_edu" target="_blank" rel="noopener"><b data-i18n="platform.p1.f3t">SBF Academy</b><i data-i18n="platform.p1.f3n">15 глав, 1–5 открыты всем</i></a></li>
-        <li><a href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_discipline" target="_blank" rel="noopener"><b data-i18n="platform.p1.f4t">Цели и дисциплина</b><i data-i18n="platform.p1.f4n">лимит риска на сделку</i></a></li>
+        <li><a href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_journal" target="_blank" rel="noopener"><b data-i18n="platform.p1.f1t">Журнал сделок</b><i data-i18n="platform.p1.f1n">7 полей на сделку</i></a><span class="act-note" data-i18n="platform.p1.f1d">Статистика, сезоны торговли с итоговыми отчётами, разбор ошибок.</span></li>
+        <li><a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_brief" target="_blank" rel="noopener"><b data-i18n="platform.p1.f2t">Утренний синтез</b><i data-i18n="platform.p1.f2n">06:00 CET, каждый будний день</i></a><span class="act-note" data-i18n="platform.p1.f2d">Аналитическая сводка по рынкам каждое утро до открытия европейской сессии.</span></li>
+        <li><a href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_edu" target="_blank" rel="noopener"><b data-i18n="platform.p1.f3t">SBF Academy</b><i data-i18n="platform.p1.f3n">15 глав, 1–5 открыты всем</i></a><span class="act-note" data-i18n="platform.p1.f3d">Учебные главы от основ до продвинутых тем. Прогресс сохраняется.</span></li>
+        <li><a href="https://lp.sbfconsult.com/journal.html?utm_source=sbfconsult_site&amp;utm_medium=card&amp;utm_campaign=platform_discipline" target="_blank" rel="noopener"><b data-i18n="platform.p1.f4t">Цели и дисциплина</b><i data-i18n="platform.p1.f4n">лимит риска на сделку</i></a><span class="act-note" data-i18n="platform.p1.f4d">Стрики ведения журнала, контроль риска на сделку, дисциплин-скор.</span></li>
       </ul>
-      <p><a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=platform_p1" data-track="platform_open" target="_blank" rel="noopener" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a></p>
+      <!-- Разделы платформы сменяются прокруткой; ссылки ведут в те же -->
+      <p class="act-note">
+        <span data-i18n="platform.p1.tab_terminal">Терминал</span> ·
+        <span data-i18n="platform.p1.tab_journal">Журнал</span> ·
+        <span data-i18n="platform.p1.tab_academy">Академия</span>
+      </p>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=platform_p1" data-track="platform_open" target="_blank" rel="noopener" data-i18n="platform.cta">ОТКРЫТЬ ПЛАТФОРМУ →</a>
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=logo&amp;utm_campaign=platform_gate" data-track="brief_lightbox" target="_blank" rel="noopener" data-i18n="platform.p1.brief_cta">Посмотреть бриф целиком</a>
+      </p>
     </div>
   </section>
 
+  <!-- ── Акт 5: PRO ────────────────────────────────────── -->
   <section class="act" id="act-platform-2" data-act="terminal">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="platform.p2.eyebrow">СТАРТ БЕЗ РИСКА</p>
       <h2 data-i18n="platform.p2.heading">Пройди опрос трейдера — получи 30 дней PRO</h2>
+      <p class="act-lead" data-i18n="platform.p2.body">Расскажи о своём опыте, целях и отношении к риску. Карта не нужна. Автосписания нет.</p>
       <ol class="act-steps">
         <li data-i18n="platform.p2.s1">Регистрация — 2 шага, email + пароль.</li>
         <li data-i18n="platform.p2.s2">Опрос — блоки «Опыт · Цели · Риск», ~3 минуты.</li>
         <li data-i18n="platform.p2.s3">«Твой путь» — рекомендации + бейдж PRO.</li>
       </ol>
-      <p data-i18n="platform.p2.after_note">Карта не нужна. Автосписаний нет. Отписываться не от чего.</p>
-      <p><a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=pro_offer" data-track="pro_start" target="_blank" rel="noopener" data-i18n="platform.p2.cta">НАЧАТЬ →</a></p>
+      <p class="act-eyebrow" data-i18n="platform.p2.inc_h">ЧТО ВХОДИТ В PRO</p>
+      <ul class="act-steps">
+        <li data-i18n="platform.p2.inc1">Академия целиком — главы 1–15</li>
+        <li data-i18n="platform.p2.inc2">Журнал сделок и разбор дисциплины</li>
+        <li data-i18n="platform.p2.inc3">Настройки графика и связка с Telegram</li>
+        <li data-i18n="platform.p2.inc4">Теханализ на графике — в разработке</li>
+        <li data-i18n="platform.p2.inc5">Выкладки торгового бота — в разработке</li>
+      </ul>
+      <p class="act-eyebrow" data-i18n="platform.p2.after_h">ЧЕРЕЗ 30 ДНЕЙ</p>
+      <p data-i18n="platform.p2.after_p">PRO отключается сам. Бриф, графики и первые главы академии остаются открытыми — их не закрывают никогда.</p>
+      <p class="act-note" data-i18n="platform.p2.after_note">Карта не нужна. Автосписаний нет. Отписываться не от чего.</p>
+      <p class="act-actions">
+        <a class="act-cta act-cta-solid" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=pro_offer" data-track="pro_start" target="_blank" rel="noopener" data-i18n="platform.p2.cta">НАЧАТЬ →</a>
+      </p>
+      <p class="act-note" data-i18n="platform.p2.fine">Сервис доступен пользователям 18+. PRO-доступ активируется однократно за прохождение опроса.</p>
+      <p class="act-note" data-i18n="platform.p2.ref">Условия могут измениться — актуальные всегда на платформе.</p>
     </div>
   </section>
 
+  <!-- ── Акт 6: память рынков ──────────────────────────── -->
   <section class="act" id="act-market" data-act="memory">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="market.eyebrow">ПАМЯТЬ РЫНКОВ</p>
       <h2 data-i18n="market.heading">Каждое движение оставляет паттерн</h2>
-      <p data-i18n="market.eurusd.desc">Май 2026. Пятница 22 мая: закрытие 1.1605. Понедельник 26 мая: открытие 1.1644. Гэп +39 пунктов — постепенное закрытие за 1,5 недели.</p>
+      <!-- Пять случаев: сцена показывает их по одному, текст даёт разбор -->
+      <ol class="act-cases">
+        <li>
+          <p class="act-eyebrow" data-i18n="market.gold_tri.meta">XAU/USD · H4</p>
+          <b data-i18n="market.gold_tri.title">Золото — треугольник</b>
+          <span data-i18n="market.gold_tri.desc">—</span>
+          <i data-i18n="market.gold_tri.pattern">ПАТТЕРН</i>
+          <span class="act-note" data-i18n="market.gold_tri.note">—</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="market.eurusd.meta">EUR/USD · FOREX · 30M</p>
+          <b data-i18n="market.eurusd.title">EUR/USD — Выходной гэп</b>
+          <span data-i18n="market.eurusd.desc">—</span>
+          <i data-i18n="market.eurusd.pattern">ПАТТЕРН: GAP &amp; FILL</i>
+          <span class="act-note" data-i18n="market.eurusd.note">—</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="market.copper.meta">Медь · D1</p>
+          <b data-i18n="market.copper.title">Медь — пробой канала</b>
+          <span data-i18n="market.copper.desc">—</span>
+          <i data-i18n="market.copper.pattern">ПАТТЕРН</i>
+          <span class="act-note" data-i18n="market.copper.note">—</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="market.jpy.meta">USD/JPY · H1</p>
+          <b data-i18n="market.jpy.title">USD/JPY — интервенция</b>
+          <span data-i18n="market.jpy.desc">—</span>
+          <i data-i18n="market.jpy.pattern">ПАТТЕРН</i>
+          <span class="act-note" data-i18n="market.jpy.note">—</span>
+        </li>
+        <li>
+          <p class="act-eyebrow" data-i18n="market.gold_bol.meta">XAU/USD · Bollinger</p>
+          <b data-i18n="market.gold_bol.title">Золото — сжатие волатильности</b>
+          <span data-i18n="market.gold_bol.desc">—</span>
+          <i data-i18n="market.gold_bol.pattern">ПАТТЕРН</i>
+          <span class="act-note" data-i18n="market.gold_bol.note">—</span>
+        </li>
+      </ol>
+      <p class="act-note"><span data-i18n="market.prev">Предыдущий кейс</span> · <span data-i18n="market.next">Следующий кейс</span> — прокруткой</p>
       <p class="act-note" data-i18n="market.hist_disclaimer">Историческая статистика не гарантирует будущих результатов и не является рекомендацией.</p>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=market_section" data-track="market_platform" target="_blank" rel="noopener" data-i18n="market.cta_platform">Смотреть живую аналитику →</a>
+      </p>
     </div>
   </section>
 
+  <!-- ── Акты 7–9: услуги ──────────────────────────────── -->
   <section class="act" id="act-service-1" data-act="ladder">
     <div class="act-col">
-      <p class="act-eyebrow">01</p>
+      <p class="act-eyebrow"><span data-i18n="svc.logo_lvl1">УРОВЕНЬ 1</span></p>
       <h2 data-i18n="svc.s1.title">Обучение</h2>
-      <p data-i18n="svc.s1.target">Для тех, кто разбирается в инструментах рынка самостоятельно</p>
+      <p class="act-lead" data-i18n="svc.s1.desc">Образовательные программы и аналитические материалы. Без инвестиционных рекомендаций.</p>
+      <p><b data-i18n="svc.target_label">ДЛЯ КОГО</b> <span data-i18n="svc.s1.target">Для тех, кто разбирается в инструментах рынка самостоятельно</span></p>
+      <p class="act-eyebrow" data-i18n="svc.includes_h">ЧТО ВХОДИТ</p>
       <ul class="act-steps">
         <li data-i18n="svc.s1.i1">Академия: 15 глав от основ до структуры рынка</li>
         <li data-i18n="svc.s1.i2">Утренний бриф и разбор календаря событий</li>
         <li data-i18n="svc.s1.i3">Библиотека паттернов с посчитанной статистикой</li>
       </ul>
-      <p class="act-note" data-i18n="svc.s1.format">Онлайн на платформе, в своём темпе · RU / RO / EN · без срока</p>
+      <p class="act-eyebrow" data-i18n="svc.steps_h">КАК НАЧАТЬ</p>
+      <ol class="act-steps">
+        <li data-i18n="svc.s1.st1">Регистрация на платформе — 2 шага</li>
+        <li data-i18n="svc.s1.st2">Опрос трейдера ~3 минуты — открывает PRO на 30 дней</li>
+        <li data-i18n="svc.s1.st3">Учитесь сами; вопросы — в чате поддержки</li>
+      </ol>
+      <p class="act-note"><b data-i18n="svc.format_h">ФОРМАТ</b> <span data-i18n="svc.s1.format">Онлайн на платформе, в своём темпе · RU / RO / EN · без срока</span></p>
+      <p class="act-note"><b data-i18n="svc.partner_label">ПАРТНЁРЫ</b> <span data-i18n="svc.s1.avatrade_meta">MT4 · MT5 · Встроенное обучение</span> · <span data-i18n="svc.s1.xm_meta">MT4 · MT5 · WebTrader</span></p>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/edu/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=edu_service" data-track="svc_edu" target="_blank" rel="noopener" data-i18n="svc.s1.cta_platform">Открыть платформу обучения →</a>
+      </p>
     </div>
   </section>
 
   <section class="act" id="act-service-2" data-act="ladder">
     <div class="act-col">
-      <p class="act-eyebrow">02</p>
+      <p class="act-eyebrow"><span data-i18n="svc.logo_lvl2">УРОВЕНЬ 2</span></p>
       <h2 data-i18n="svc.s2.title">Сопровождение счёта</h2>
-      <p class="act-note" data-i18n="svc.s2.format">Счёт у партнёра · сопровождающий от SBF · пока счёт активен</p>
+      <p class="act-lead" data-i18n="svc.s2.desc">Сопровождающий от SBF рядом с вашим счётом у партнёра.</p>
+      <p><b data-i18n="svc.target_label">ДЛЯ КОГО</b> <span data-i18n="svc.s2.target">—</span></p>
+      <p class="act-eyebrow" data-i18n="svc.includes_h">ЧТО ВХОДИТ</p>
+      <ul class="act-steps">
+        <li data-i18n="svc.s2.i1">Регулярный обзор открытых позиций</li>
+        <li data-i18n="svc.s2.i2">—</li>
+        <li data-i18n="svc.s2.i3">—</li>
+      </ul>
+      <p class="act-eyebrow" data-i18n="svc.steps_h">КАК НАЧАТЬ</p>
+      <ol class="act-steps">
+        <li data-i18n="svc.s2.st1">—</li>
+        <li data-i18n="svc.s2.st2">—</li>
+        <li data-i18n="svc.s2.st3">—</li>
+      </ol>
+      <p class="act-note"><b data-i18n="svc.format_h">ФОРМАТ</b> <span data-i18n="svc.s2.format">Счёт у партнёра · сопровождающий от SBF · пока счёт активен</span></p>
+      <p class="act-note"><b data-i18n="svc.partner_label">ПАРТНЁРЫ</b> <span data-i18n="svc.s2.naga_meta">—</span> · <span data-i18n="svc.s2.instaforex_meta">—</span></p>
       <!-- Партнёрское вознаграждение раскрываем прямо здесь, а не в сноске:
            это наш интерес, и клиент должен видеть его до разговора. -->
       <p class="act-note" data-i18n="svc.s2.fee">Для клиента сопровождение бесплатно: SBF получает вознаграждение от брокера-партнёра за приведённый счёт.</p>
+      <p class="act-actions">
+        <button class="act-cta" type="button" data-lead="support" data-track="svc_support" data-i18n="svc.s2.cta">Обсудить сопровождение</button>
+      </p>
     </div>
   </section>
 
   <section class="act" id="act-service-3" data-act="ladder">
     <div class="act-col">
-      <p class="act-eyebrow">03</p>
+      <p class="act-eyebrow"><span data-i18n="svc.logo_lvl3">УРОВЕНЬ 3</span></p>
       <h2 data-i18n="svc.s3.title">Доверительное управление</h2>
-      <p class="act-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.</p>
+      <p class="act-lead" data-i18n="svc.s3.desc">Управление счётом у партнёра по согласованной стратегии.</p>
+      <p class="act-note" data-i18n="svc.s3.desc_m">—</p>
+      <p><b data-i18n="svc.target_label">ДЛЯ КОГО</b> <span data-i18n="svc.s3.target">—</span></p>
+      <p class="act-eyebrow" data-i18n="svc.includes_h">ЧТО ВХОДИТ</p>
+      <ul class="act-steps">
+        <li data-i18n="svc.s3.i1">—</li>
+        <li data-i18n="svc.s3.i2">—</li>
+        <li data-i18n="svc.s3.i3">—</li>
+      </ul>
+      <p class="act-eyebrow" data-i18n="svc.steps_h">КАК НАЧАТЬ</p>
+      <ol class="act-steps">
+        <li data-i18n="svc.s3.st1">—</li>
+        <li data-i18n="svc.s3.st2">—</li>
+        <li data-i18n="svc.s3.st3">—</li>
+      </ol>
+      <p class="act-note"><b data-i18n="svc.format_h">ФОРМАТ</b> <span data-i18n="svc.s3.format">—</span></p>
+      <p class="act-note"><b data-i18n="svc.partner_label_s">ПАРТНЁР УРОВНЯ</b> <span data-i18n="svc.s3.fxpro_meta">—</span></p>
+      <p class="act-note" data-i18n="svc.partner_note">Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их.</p>
+      <!-- Кто именно оказывает услугу — до кнопки, а не в сноске под ней -->
+      <p class="act-note" data-i18n="svc_du_disclaimer">SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через партнёров, регулируемых в ЕС (FCA, CySEC).</p>
+      <p class="act-note"><span data-i18n="svc.logo_issue">Знак показывает, чья работа на этом уровне</span>: <b data-i18n="mark.you">вы</b> / <b data-i18n="mark.we">мы</b></p>
+      <p class="act-actions">
+        <button class="act-cta" type="button" data-lead="management" data-track="svc_management" data-i18n="svc.s3.cta">Обсудить управление</button>
+      </p>
     </div>
   </section>
 
+  <!-- ── Акт 10: финал ─────────────────────────────────── -->
   <section class="act" id="act-contact" data-act="globe">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="contact.eyebrow">СВЯЖИТЕСЬ С НАМИ</p>
@@ -142,18 +361,93 @@
       <!-- Четыре адреса на шаре — это те же четыре офиса. Текстом они
            остаются здесь: по адресу приезжают, а не смотрят на него. -->
       <ul class="act-offices">
-        <li><b data-i18n="contact.md">Молдова</b> Office 1, str. Alexei Sciusev 47, Chișinău · <a href="https://wa.me/37360887735" target="_blank" rel="noopener">+373 60 887 735</a></li>
+        <li><b data-i18n="contact.md">Молдова</b> Office 1, str. Alexei Sciusev 47, Chișinău · <a href="https://wa.me/37360887735" target="_blank" rel="noopener">+373 60 887 735</a> · <span data-i18n="contact.hours">09–18</span></li>
         <li><b data-i18n="contact.ch">Швейцария</b> Raihaltenstrasse 79, 8912 Obfelden · <a href="https://wa.me/41755731626" target="_blank" rel="noopener">+41 75 57 31 626</a></li>
         <li><b data-i18n="contact.pt">Португалия</b> Praceta José Figueiredo da Fonseca 183, Lisabon · <a href="tel:+351939953919">+351 939 953 919</a></li>
         <li><b data-i18n="contact.ae">ОАЭ</b> Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai · <a href="https://t.me/+971507193055" target="_blank" rel="noopener">+971 50 719 3055</a></li>
       </ul>
-      <p><a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=contact" data-track="contact_platform" target="_blank" rel="noopener" data-i18n="contact.platform_cta">САМОСТОЯТЕЛЬНО НА ПЛАТФОРМЕ →</a></p>
+      <p class="act-note" data-i18n="contact.mark_cap">Знак собирает заявку</p>
+      <p class="act-actions">
+        <button class="act-cta act-cta-solid" type="button" data-lead="contact" data-track="contact_form" data-i18n="contact.cta">Оставить заявку</button>
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=contact" data-track="contact_platform" target="_blank" rel="noopener" data-i18n="contact.platform_cta">САМОСТОЯТЕЛЬНО НА ПЛАТФОРМЕ →</a>
+      </p>
     </div>
   </section>
 
 </main>
 
+<!-- ══ Подвал: реквизиты и документы ═══════════════════════ -->
+<footer class="scene-foot">
+  <div>
+    <p class="act-eyebrow" data-i18n="footer.company_h">КОМПАНИЯ</p>
+    <p>«SBF COMPANY» S.R.L.<br>Str. Alexei Sciusev 47, Chișinău, Moldova</p>
+    <p><a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener">LEI 254900BW4MI5M0006I30</a></p>
+  </div>
+  <div>
+    <p class="act-eyebrow" data-i18n="footer.docs_h">ДОКУМЕНТЫ</p>
+    <p><a href="risk.html" data-i18n="footer.risk">Предупреждение о рисках</a></p>
+    <p><a href="https://lp.sbfconsult.com/privacy.html" target="_blank" rel="noopener" data-i18n="footer.privacy">Политика конфиденциальности</a></p>
+    <p><a href="https://lp.sbfconsult.com/partners.html" target="_blank" rel="noopener" data-i18n="footer.partners">Партнёры</a></p>
+  </div>
+  <div>
+    <p class="act-eyebrow" data-i18n="footer.contacts_h">КОНТАКТЫ</p>
+    <p><a href="tel:+37369000520">+373 (69) 000-520</a><br><a href="mailto:contact@sbf.md">contact@sbf.md</a></p>
+    <p><a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=footer" target="_blank" rel="noopener" data-i18n="nav.platform">Платформа</a></p>
+    <p><a href="https://t.me/SBFEconomics" target="_blank" rel="noopener">@SBFEconomics</a></p>
+  </div>
+  <p class="foot-risk" data-i18n="risk_warning">Торговля CFD и маржинальными инструментами сопряжена с высоким риском потери капитала и подходит не всем инвесторам.</p>
+  <p class="foot-rights" data-i18n="footer.rights">© SBF COMPANY SRL. Все права защищены.</p>
+</footer>
+
+<!-- ══ Заявка ══════════════════════════════════════════════ -->
+<div id="lead-modal" class="lead-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="lead-modal-backdrop"></div>
+  <div class="lead-modal-card">
+    <button class="lead-modal-close" data-i18n-aria="modal.close_aria" aria-label="Закрыть">×</button>
+    <p class="act-eyebrow" data-i18n="modal.eyebrow">ОСТАВИТЬ ЗАЯВКУ</p>
+    <h2 id="modal-title" data-i18n="modal.heading">Наш специалист свяжется с вами в течение часа</h2>
+    <form class="lead-form" id="lead-form">
+      <label class="field">
+        <span class="field-label" data-i18n="modal.name">Имя</span>
+        <input type="text" name="name" required minlength="2" autocomplete="given-name">
+      </label>
+      <label class="field">
+        <span class="field-label" data-i18n="modal.email">Email</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      </label>
+      <label class="field">
+        <span class="field-label" data-i18n="modal.phone">Телефон — необязательно</span>
+        <input type="tel" name="phone" pattern="[+0-9\s\-\(\)]{7,}" placeholder="+373 ..." autocomplete="tel">
+      </label>
+      <label class="field-checkbox">
+        <input type="checkbox" name="gdpr" required>
+        <span data-i18n="modal.gdpr">Согласен на обработку персональных данных</span>
+      </label>
+      <button type="submit" class="lead-submit" disabled data-i18n="modal.submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+    </form>
+    <div class="lead-divider"><span data-i18n="modal.divider">или напишите напрямую</span></div>
+    <a href="https://t.me/SBFAcademy_bot" target="_blank" rel="noopener" class="lead-telegram" data-i18n="modal.tg">✈ НАПИСАТЬ В TELEGRAM</a>
+    <div class="lead-success hidden">
+      <p class="success-icon">✓</p>
+      <h3 data-i18n="modal.success_h">Заявка отправлена</h3>
+      <p data-i18n="modal.success_p">Мы свяжемся с вами в течение часа</p>
+      <a id="lead-book-link" href="#" target="_blank" rel="noopener" class="lead-book-btn" data-i18n="modal.book_btn">📖 Скачать книгу</a>
+    </div>
+    <div class="lead-error hidden">
+      <p><span data-i18n="modal.error_p">Не удалось отправить. Напишите напрямую:</span><br>
+      <a href="tel:+37369000520">+373 (69) 000-520</a> · <a href="https://t.me/SBFAcademy_bot">Telegram</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Кнопка «Связаться», прилипшая к углу: на длинной странице заявку надо
+     оставить из любой точки пути, а не только в финале. -->
+<button class="sticky-cta" type="button" data-lead="sticky" data-i18n="sticky">Связаться</button>
+
+<script>window.SBF_METRIKA_ID = '112385036';</script>
 <script src="js/i18n.js"></script>
+<script defer src="js/analytics.js"></script>
+<script src="js/lead-modal.js"></script>
 <!-- topojson-client (7 КБ) распаковывает vendor/countries-110m.json.
      d3 отсюда убран: 273 КБ ради трёх функций — больше трети всего, что
      страница тянула до первого экрана. Проекция своя, js/scene/geo.js. -->

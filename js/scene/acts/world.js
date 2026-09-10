@@ -79,6 +79,11 @@ export const world = {
       .then(d => {
         take((d.items || []).map(o => ({ ...o, ll: [o.lon, o.lat] })));
         window.SBF_GEO_POINTS = window.SBF_GEO_POINTS || this.pool;
+        /* В ленте, кроме точек, лежат котировки и бриф дня. Отдаём их
+           целиком: строка котировок берёт их отсюда, а не ходит за файлом
+           второй раз. */
+        window.SBF_FEED_META = d;
+        document.dispatchEvent(new CustomEvent('sbf:feedmeta', { detail: d }));
       })
       .catch(() => console.warn('[scene] лента недоступна — мир без событий'));
   },
