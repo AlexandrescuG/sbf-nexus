@@ -15,6 +15,8 @@
 
 /* Доля нашей работы на каждом уровне. Числа не выдуманы: так описаны
    услуги в тексте — материал, совместная работа, управление. */
+import { t } from '../labels.js';
+
 const OURS = [0.15, 0.5, 0.9];
 
 export const ladder = {
@@ -24,7 +26,7 @@ export const ladder = {
 
   share: OURS[0],
 
-  render(ctx, view, cam, mark) {
+  render(ctx, view, cam, mark, labels) {
     const w = cam.w;
     if (w < 0.02) return;
     const g = mark.geometry(view);
@@ -80,6 +82,21 @@ export const ladder = {
       ctx.stroke();
     }
     ctx.restore();
+
+    /* Две дуги без подписей — просто кольцо двух оттенков. С подписями это
+       ответ на единственный вопрос уровня: чья это работа. Подписи стоят у
+       середины своей дуги и переезжают вместе с границей. */
+    if (labels) {
+      const midYou = start + Math.PI * (1 - this.share);
+      const midWe = split + Math.PI * this.share;
+      const at = (a, k) => [g.cx + Math.cos(a) * (r + 26),
+                            g.cy + Math.sin(a) * (r + 26)];
+      const py = at(midYou), pw2 = at(midWe);
+      labels.put('lad-you', t('mark.you', 'вы'), py[0], py[1],
+                 { align: 'center', alpha: w * (1 - this.share) * 1.4 });
+      labels.put('lad-we', t('mark.we', 'мы'), pw2[0], pw2[1],
+                 { align: 'center', alpha: w * this.share * 1.4, tone: 'key' });
+    }
   },
 
   enter() {}, leave() {},

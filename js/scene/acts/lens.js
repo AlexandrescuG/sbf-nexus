@@ -23,7 +23,9 @@
    продают анализ рынка, быть не может.
 */
 
-const VISIBLE = 26;             /* свечей в кадре */
+import { t } from '../labels.js';
+
+const VISIBLE = 19;             /* свечей в кадре: крупнее, чем было */
 const VISIBLE_MOBILE = 13;      /* на телефоне их вдвое меньше — см. ниже */
 const SPAN = 96;                /* сколько свечей проезжает акт целиком */
 
@@ -57,7 +59,7 @@ export const lens = {
       .catch(() => console.warn('[scene] свечи не загрузились'));
   },
 
-  render(ctx, view, cam, mark) {
+  render(ctx, view, cam, mark, labels) {
     this.load();
     if (!this.rows || !this.scale) return;
     const w = cam.w;
@@ -81,7 +83,9 @@ export const lens = {
        мимо. Теперь масштаб постоянный (столько-то пикселей на пункт цены),
        а середина видимого окна держится на высоте центра кольца. Лента
        дышит вверх-вниз, но всегда проходит сквозь знак. */
-    const k = (view.h * 0.42) / this.scale.range;
+    /* Амплитуда: на живом сайте график занимает половину экрана, и
+       свечи там видны. 0.42 давали ленту-полоску. */
+    const k = (view.h * 0.62) / this.scale.range;
     let sum = 0, n = 0;
     for (let i = 0; i <= vis; i++) {
       const c = this.rows[(start + i) % this.rows.length];
@@ -94,6 +98,19 @@ export const lens = {
     const yOf = p => g.cy - (p - this.mid) * k;
 
     ctx.save();
+
+    /* Лента живёт справа от колонки текста, а не через весь экран.
+       Через весь экран она шла сквозь абзацы: свечи оказывались между
+       строк, и читать было нечем. Правило то же, что у знака, — коридор;
+       граница берётся из тех же переменных, а не подбирается на глаз.
+       На телефоне колонка занимает всю ширину, и лента идёт под ней. */
+    if (!view.mobile) {
+      const left = g.corridor.cx - g.corridor.halfW - 24;
+      ctx.beginPath();
+      ctx.rect(left, 0, view.w - left, view.h);
+      ctx.clip();
+    }
+
     ctx.globalAlpha = w;
 
     /* Снаружи кольца — приглушённо: это фон, шум */
@@ -179,6 +196,26 @@ export const lens = {
     ctx.restore();
     ctx.globalAlpha = 1;
     ctx.restore();
+
+    /* Разметка называет себя сама. Раньше «уровни · скользящая · паттерн»
+       стояли строкой в колонке текста — то есть отдельно от того, что они
+       называют, и читатель должен был догадаться, какая линия какая.
+       Подпись появляется вместе со своей линией и гаснет вместе с ней. */
+    if (labels) {
+      const lvA = step(0.20, 0.45) * w, smA = step(0.45, 0.70) * w,
+            paA = step(0.70, 0.92) * w;
+      const right = g.cx + g.r + 12;
+      labels.put('lens-level', t('approach.lg_level', 'уровни'),
+                 right, g.cy - g.r * 0.55, { alpha: lvA });
+      labels.put('lens-sma', t('approach.lg_sma', 'скользящая'),
+                 right, g.cy - g.r * 0.55 + 20, { alpha: smA });
+      labels.put('lens-pat', t('approach.lg_pat', 'паттерн'),
+                 right, g.cy - g.r * 0.55 + 40, { alpha: paA, tone: 'key' });
+      /* Что это за инструмент и какие данные — тоже вопрос без ответа,
+         если не написать. */
+      labels.put('lens-src', t('approach.chart_head', 'XAU/USD · H4'),
+                 g.cx, g.cy + g.r + 16, { align: 'center', alpha: w });
+    }
   },
 
   enter() {}, leave() {},

@@ -38,6 +38,33 @@ body.tapestry {
   -webkit-font-smoothing: antialiased;
 }
 body.tapestry a { color: #8a6d15; text-underline-offset: 3px; }
+
+/* Вечер в конце пути. Фон рисует сцена (см. stage.js), текст переключается
+   здесь — иначе на тёмном экране остались бы тёмные буквы. Переход мягкий:
+   тон меняется вместе с движением камеры, а не щелчком. */
+body.tapestry,
+body.tapestry .act-note,
+body.tapestry .scene-note,
+body.tapestry .scene-foot { transition: color 0.5s ease, background-color 0.5s ease; }
+body.tapestry[data-dark="1"] { color: #f2ece2; }
+body.tapestry[data-dark="1"] a { color: #E6C257; }
+body.tapestry[data-dark="1"] .act-note,
+body.tapestry[data-dark="1"] .act-offices li { color: #c8bfb0; }
+body.tapestry[data-dark="1"] .scene-note { color: #b9ad97; }
+body.tapestry[data-dark="1"] .scene-nav {
+  background: rgba(10,8,14,0.82);
+  border-bottom-color: rgba(201,162,39,0.25);
+}
+body.tapestry[data-dark="1"] .scene-nav a,
+body.tapestry[data-dark="1"] .lang-btn { color: #d7cfc0; }
+body.tapestry[data-dark="1"] .nav-brand { color: #f2ece2 !important; }
+body.tapestry[data-dark="1"] .scene-foot {
+  background: rgba(10,8,14,0.92);
+  border-top-color: rgba(201,162,39,0.25);
+}
+body.tapestry[data-dark="1"] .act-facts a { color: inherit; }
+body.tapestry[data-dark="1"] .act-facts a { border-bottom-color: rgba(201,162,39,0.28); }
+body.tapestry[data-dark="1"] .act-cta { border-color: rgba(201,162,39,0.6); color: #E6C257; }
 body.tapestry h1,
 body.tapestry h2 {
   font-family: 'Instrument Serif', Georgia, serif;
@@ -100,6 +127,14 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 /* Узкий экран: бургер не заводим — три ссылки и переключатель языка
    помещаются в строку, если убрать межбуквенный размах и подпись бренда.
    Меню ради меню — лишний экран между человеком и разделом. */
+@media (max-width: 900px) {
+  /* Размытие под шапкой на телефоне снимаем: backdrop-filter пересчитывается
+     на каждом кадре прокрутки и на слабом процессоре стоит дороже всей
+     сцены. Непрозрачный фон выглядит так же, а кадр возвращается в бюджет. */
+  .scene-nav { backdrop-filter: none; background: rgba(251,246,239,0.96); }
+  body.tapestry[data-dark="1"] .scene-nav { background: rgba(10,8,14,0.96); }
+}
+
 @media (max-width: 700px) {
   .scene-nav { gap: 10px; padding: 10px 14px; font-size: 10px; letter-spacing: 0.08em; }
   .nav-brand span { display: none; }
@@ -212,6 +247,22 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   color: #9A7B1E;
 }
 
+/* ── Подписи к нарисованному ────────────────────────────────
+   Имя того, что сцена рисует: русло потока, линия разметки, офис на шаре.
+   Отдельный слой от подписей новостей: те привязаны к точкам карты и
+   живут секундами, эти — к элементам сцены и держатся, пока элемент есть. */
+.scene-notes { position: absolute; inset: 0; pointer-events: none; }
+.scene-note {
+  position: absolute; top: 0; left: 0;
+  white-space: nowrap;
+  transition: opacity 0.35s ease;
+  font: 400 11px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b5f4d;
+}
+.scene-note[data-tone="key"] { color: #8a6d15; font-weight: 500; }
+
 /* Ссылка поверх знака: сам знак нарисован на холсте, кликать не по чему.
    Кладётся сценой только там, где знаку есть куда вести. */
 .mark-link {
@@ -239,6 +290,15 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .act-access b { color: #241f18; }
 .act-access i { font-style: normal; color: #9A7B1E; }
 .act-lead { font-size: 17px; }
+/* Строка брифа: слева золотая черта, как на живом сайте — она отделяет
+   «что сегодня» от «что мы вообще делаем». */
+.act-today {
+  border-left: 2px solid #C9A227;
+  padding-left: 12px;
+  font-size: 15px; line-height: 1.5;
+  color: #4a4136;
+}
+.act-today b { color: #8a6d15; }
 .act-side {
   border: 1px solid rgba(154,123,30,0.35);
   padding: 14px 16px; margin: 0 0 1.2em;
@@ -255,6 +315,8 @@ button.act-cta { cursor: pointer; background: none; color: inherit; }
 
 /* ── Строка котировок ───────────────────────────────────── */
 .scene-ticker {
+  position: absolute;
+  left: 0; right: 0; bottom: 4vh;
   overflow: hidden;
   border-top: 1px solid rgba(154,123,30,0.18);
   border-bottom: 1px solid rgba(154,123,30,0.18);

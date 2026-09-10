@@ -12,8 +12,16 @@
    платформы, на которые ведёт первый экран.
 */
 
+import { t } from '../labels.js';
+
 const GOLD = '201, 162, 39';
 const LINES = 4;                 /* четыре русла: по числу карточек акта */
+
+/* Русла — не абстрактные линии. Их ровно четыре, и каждое названо тем же,
+   чем названа карточка рядом в тексте: бриф, разбор актива, библиотека
+   паттернов, журнал. Претензия владельца была точной — «непонятно, для чего
+   те линии». Линия с именем это схема, без имени — украшение. */
+const LANE_KEYS = ['grow.c1.title', 'grow.c2.title', 'grow.c3.title', 'grow.c4.title'];
 
 export const stream = {
   id: 'stream',
@@ -42,7 +50,7 @@ export const stream = {
     }
   },
 
-  render(ctx, view, cam, mark) {
+  render(ctx, view, cam, mark, labels) {
     const g = mark.geometry(view);
     const w = cam.w;
     if (w < 0.02) return;
@@ -84,6 +92,19 @@ export const stream = {
       ctx.fill();
     });
     ctx.restore();
+
+    /* Подписи русел — там, где русло уходит за нижний край. Появляются
+       вместе с веером, а не сразу: пока веер узкий, они налезали бы друг
+       на друга. На телефоне русла сходятся почти в точку — подписей нет. */
+    if (labels && !view.mobile) {
+      const show = Math.max(0, Math.min(1, (cam.t - 0.15) / 0.3)) * w;
+      for (let l = 0; l < LINES; l++) {
+        const k = LINES === 1 ? 0 : (l / (LINES - 1)) * 2 - 1;
+        labels.put('stream-' + l, t(LANE_KEYS[l], ''),
+                   g.cx + k * spread, bottom - view.h * 0.16,
+                   { align: 'center', alpha: show, tone: 'key' });
+      }
+    }
   },
 
   leave() {},

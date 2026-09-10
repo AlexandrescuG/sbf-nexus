@@ -10,12 +10,17 @@
    просто прошлое.
 */
 
+import { t } from '../labels.js';
+
+/* Каждый случай подписан тем же именем, что стоит в тексте рядом: без
+   подписи линия на экране — просто кривая, и непонятно, чем один кейс
+   отличается от другого. Порядок файлов и порядок текста совпадают. */
 const CASES = [
-  { file: 'XAUUSD_triangle_breakout_may2026.csv', key: 'market.c1' },
-  { file: 'EURUSD_gap_may2026.csv',               key: 'market.c2' },
-  { file: 'Copper_channel_breakout_2026.csv',     key: 'market.c3' },
-  { file: 'USDJPY_intervention_may2026.csv',      key: 'market.c4' },
-  { file: 'NatGas_NG_2023.csv',                   key: 'market.c5' },
+  { file: 'XAUUSD_triangle_breakout_may2026.csv', key: 'market.gold_tri' },
+  { file: 'EURUSD_gap_may2026.csv',               key: 'market.eurusd' },
+  { file: 'Copper_channel_breakout_2026.csv',     key: 'market.copper' },
+  { file: 'USDJPY_intervention_may2026.csv',      key: 'market.jpy' },
+  { file: 'XAUUSD_bollinger_squeeze_pool.csv',    key: 'market.gold_bol' },
 ];
 
 export const memory = {
@@ -43,7 +48,7 @@ export const memory = {
       .catch(() => { this.data[i] = null; });
   },
 
-  render(ctx, view, cam, mark) {
+  render(ctx, view, cam, mark, labels) {
     const w = cam.w;
     if (w < 0.02) return;
     const g = mark.geometry(view);
@@ -120,6 +125,18 @@ export const memory = {
       ctx.stroke();
     }
     ctx.restore();
+
+    /* Какой это случай и на чём он посчитан — над кольцом и под ним.
+       Счётчик «третий из пяти» отвечает на вопрос «сколько ещё крутить»,
+       который иначе задаёт себе каждый. */
+    if (labels) {
+      labels.put('mem-title', t(CASES[idx].key + '.title', ''),
+                 g.cx, g.cy - g.r - 34, { align: 'center', alpha: w, tone: 'key' });
+      labels.put('mem-meta', t(CASES[idx].key + '.meta', ''),
+                 g.cx, g.cy - g.r - 16, { align: 'center', alpha: w });
+      labels.put('mem-count', (idx + 1) + ' / ' + n,
+                 g.cx, g.cy + g.r + 16, { align: 'center', alpha: w });
+    }
   },
 
   enter() {}, leave() {},

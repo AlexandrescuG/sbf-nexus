@@ -23,6 +23,7 @@ import { createCamera } from './camera.js';
 import { createMark } from './mark.js';
 import { ACTS } from './acts/registry.js';
 import { initTicker } from './ticker.js';
+import { createLabels } from './labels.js';
 
 const BUDGET_MS = 16;
 
@@ -36,6 +37,9 @@ function boot() {
 
   const camera = createCamera();
   const mark = createMark();
+  /* Общий слой подписей: акт в каждом кадре объявляет, что нарисовал и
+     как это называется. Линия без имени — украшение, а не смысл. */
+  const labels = createLabels(layer);
   const debug = new URLSearchParams(location.search).has('debug');
   const reduced = window.matchMedia &&
                   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,7 +58,12 @@ function boot() {
        Флаг идёт в акты: каждый сам решает, чем поступиться — числом
        свечей, числом нитей, шагом сетки. */
     view.mobile = view.w < 900;
-    dpr = Math.min(view.mobile ? 1.5 : 2, window.devicePixelRatio || 1);
+    /* На телефоне рисуем в одну точку на пиксель CSS. Проверено заменой:
+       на просадку кадра размер холста почти не влиял (виноват был разговор
+       с DOM в каждом кадре, см. labels.js и placeMarkLink), но запас по
+       слабым телефонам лишним не будет — линии сцены тонкие и однотонные,
+       разница в резкости на глаз почти не видна. */
+    dpr = Math.min(view.mobile ? 1 : 2, window.devicePixelRatio || 1);
     cv.width = Math.round(view.w * dpr);
     cv.height = Math.round(view.h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -116,16 +125,33 @@ function boot() {
       }
     }
 
-    ctx.clearRect(0, 0, view.w, view.h);
+    /* ── Тон мира ────────────────────────────────────────────
+       На живом сайте финал тёмный, и это правильно: контакты — конец пути,
+       вечер после дня. В гобелене не может быть «другого фона у секции», но
+       может быть время суток: тон мира ведёт та же камера. Светлый день на
+       первых актах, сумерки к финалу.
+
+       Текст переключается вместе с фоном (body[data-dark]) — иначе тёмная
+       страница осталась бы с тёмными буквами. */
+    const darkness = cam.act === 'globe' ? smoothstep(cam.t / 0.35) : 0;
+    if (darkness !== view.dark) {
+      view.dark = darkness;
+      const flag = darkness > 0.55 ? '1' : '0';
+      if (document.body.dataset.dark !== flag) document.body.dataset.dark = flag;
+    }
+    ctx.fillStyle = mix([251, 246, 239], [10, 8, 14], darkness);
+    ctx.fillRect(0, 0, view.w, view.h);
+    labels.begin();
     /* Знак — в два слоя, между ними акты: глиф снизу, кольцо сверху.
        Так лента свечей идёт сквозь знак, а не загораживается им. */
     mark.renderGlyph(ctx, view);
     for (let i = 0; i < cam.blend.length; i++) {
       const b = cam.blend[i];
       const act = ACTS[b.act];
-      if (act && act.render) act.render(ctx, view, b, mark);
+      if (act && act.render) act.render(ctx, view, b, mark, labels);
     }
     mark.renderRing(ctx, view);
+    labels.end();
     placeMarkLink(ACTS[cam.act], mark.geometry(view));
 
     /* ── Бюджет кадра ───────────────────────────────────── */
@@ -154,7 +180,7 @@ function boot() {
      повторилась бы прошлая история, когда подпись обещала «нажмите на знак»,
      а клик ничего не делал. Ссылка появляется только у тех актов, где у знака
      действительно есть куда вести. */
-  let linkEl = null;
+  let linkEl = null, linkShown = false, linkBox = [0, 0, 0];
   function placeMarkLink(act, g) {
     const href = act && act.link;
     if (!linkEl) {
@@ -164,16 +190,27 @@ function boot() {
       linkEl.rel = 'noopener';
       layer.appendChild(linkEl);
     }
-    if (!href) { linkEl.style.display = 'none'; return; }
-    linkEl.style.display = 'block';
+    if (!href) {
+      if (linkShown) { linkEl.style.display = 'none'; linkShown = false; }
+      return;
+    }
+    if (!linkShown) { linkEl.style.display = 'block'; linkShown = true; }
     if (linkEl.getAttribute('href') !== href) {
       linkEl.setAttribute('href', href);
       linkEl.setAttribute('aria-label', act.linkLabel || 'Открыть платформу');
       if (act.linkTrack) linkEl.dataset.track = act.linkTrack;
     }
-    linkEl.style.left = (g.cx - g.r) + 'px';
-    linkEl.style.top = (g.cy - g.r) + 'px';
-    linkEl.style.width = linkEl.style.height = (g.r * 2) + 'px';
+    /* Геометрию пишем только при изменении: четыре записи в стиль каждый
+       кадр — это четыре пересчёта раскладки, и на телефоне они стоили
+       больше, чем вся отрисовка сцены. Знак стоит на месте почти всегда. */
+    const L = Math.round(g.cx - g.r), T = Math.round(g.cy - g.r),
+          S = Math.round(g.r * 2);
+    if (linkBox[0] !== L || linkBox[1] !== T || linkBox[2] !== S) {
+      linkBox = [L, T, S];
+      linkEl.style.left = L + 'px';
+      linkEl.style.top = T + 'px';
+      linkEl.style.width = linkEl.style.height = S + 'px';
+    }
   }
 
   let hudEl = null;
@@ -231,6 +268,16 @@ function boot() {
   start();
   window.SBF_STAGE = { camera: camera, mark: mark, acts: ACTS,
                        start: start, stop: stop, resize: resize };
+}
+
+function smoothstep(x) {
+  x = x < 0 ? 0 : (x > 1 ? 1 : x);
+  return x * x * (3 - 2 * x);
+}
+function mix(a, b, k) {
+  return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * k) + ',' +
+                  Math.round(a[1] + (b[1] - a[1]) * k) + ',' +
+                  Math.round(a[2] + (b[2] - a[2]) * k) + ')';
 }
 
 document.documentElement.classList.remove('no-js');

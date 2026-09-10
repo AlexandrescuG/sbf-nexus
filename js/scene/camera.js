@@ -34,10 +34,20 @@ export function createCamera() {
   }
 
   /* Прогресс считаем по центру окна, а не по его верху: у первого и
-     последнего акта иначе половина пути отрезается краями документа. */
+     последнего акта иначе половина пути отрезается краями документа.
+
+     Камера идёт не по самой прокрутке, а по сглаженному её следу. Причина
+     простая: колесо мыши двигает страницу рывками по 100 px, и сцена,
+     привязанная к нему напрямую, дёргается вместе с ним. Текст при этом
+     остаётся на настоящей прокрутке — он должен стоять там, где его
+     поставил браузер, иначе читать невозможно. Отсюда и разделение:
+     текст резкий, мир плавный. */
+  let eyeSmooth = null;
+
   function state() {
     if (!spans.length) return { act: null, t: 0, dir: dir, speed: 0, blend: [] };
-    const eye = window.scrollY + window.innerHeight / 2;
+    const eye = eyeSmooth == null ? window.scrollY + window.innerHeight / 2
+                                  : eyeSmooth;
     let cur = spans[0], idx = 0;
     for (let i = 0; i < spans.length; i++) {
       if (eye >= spans[i].top) { cur = spans[i]; idx = i; }
@@ -60,6 +70,11 @@ export function createCamera() {
              t: t, index: idx, dir: dir, speed: speed, blend: blend };
   }
 
+  /* За сколько секунд камера догоняет прокрутку. 0.2 — компромисс из
+     разговора с владельцем: резкость колеса уходит, а связь «кручу —
+     двигается» остаётся прямой. При 0.6 сцена заметно отстаёт от текста. */
+  const FOLLOW = 0.2;
+
   function tick(now) {
     const y = window.scrollY;
     const dt = Math.max(0.001, (now - last.time) / 1000);
@@ -69,6 +84,20 @@ export function createCamera() {
        на скорость выглядит дёрганой. */
     speed += (Math.abs(v) - speed) * Math.min(1, dt * 6);
     last = { y: y, time: now };
+
+    /* След камеры. Коэффициент считается от dt, а не берётся числом: на
+       120-герцовом экране кадры вдвое чаще, и фиксированный шаг дал бы там
+       вдвое более резкое движение — та же картинка вела бы себя по-разному
+       на разных мониторах. */
+    const target = y + window.innerHeight / 2;
+    if (eyeSmooth == null) eyeSmooth = target;
+    else {
+      const k = 1 - Math.exp(-dt / FOLLOW);
+      eyeSmooth += (target - eyeSmooth) * k;
+      /* Прилипание в конце: без него камера бесконечно доезжает последние
+         доли пикселя и сцена «дышит», когда страница стоит. */
+      if (Math.abs(target - eyeSmooth) < 0.5) eyeSmooth = target;
+    }
   }
 
   function scrollToAct(id, behavior) {

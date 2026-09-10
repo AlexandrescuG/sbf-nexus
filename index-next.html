@@ -61,6 +61,9 @@
       <p class="act-eyebrow" data-i18n="hero.kicker">SBF COMPANY SRL · CHIȘINĂU</p>
       <h1 data-i18n-html="hero.headline">Мир генерирует шум. <em>Мы распознаём закономерности</em>.</h1>
       <p class="act-lead" data-i18n="hero.sub">Экспертная аналитика, сопровождение торгового счёта и доверительное управление через партнёров с лицензией ЕС.</p>
+      <!-- Единственное место первого экрана, где написано не «мы умеем», а
+           «вот что мы сделали сегодня утром». Заполняется из ленты. -->
+      <p class="act-today" id="scene-today" hidden></p>
       <p class="act-actions">
         <a class="act-cta act-cta-solid" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=hero_primary" data-track="hero_platform" target="_blank" rel="noopener" data-i18n="hero.cta1">Открыть платформу →</a>
         <button class="act-cta" type="button" data-lead="hero" data-i18n="hero.cta2">Связаться</button>
@@ -78,12 +81,14 @@
         <a href="#act-contact" data-i18n="hero.trust_office">Офис в Кишинёве</a>
       </p>
       <p class="act-note"><a href="#act-grow"><span data-i18n="hero.scroll">Прокрутите вниз</span> ↓</a></p>
-      <!-- Котировки: пока лента не пришла, здесь честная строка «сводка
-           обновляется», а не выдуманные цифры. Крутит CSS, не JS: в сцене
-           ровно один кадровый цикл. -->
-      <div id="scene-ticker" class="scene-ticker" aria-hidden="true">
-        <div class="ticker-track"><span class="tk" data-i18n="ticker.loading">Рыночная сводка обновляется</span></div>
-      </div>
+    </div>
+    <!-- Котировки — во всю ширину внизу первого экрана, как на живом сайте:
+         это лента под колонкой, а не часть колонки. Внутри колонки она
+         залезала в коридор знака — проверка это и поймала. Пока данные не
+         пришли, здесь честная строка «сводка обновляется», а не выдуманные
+         цифры. Крутит CSS, не JS: в сцене ровно один кадровый цикл. -->
+    <div id="scene-ticker" class="scene-ticker" aria-hidden="true">
+      <div class="ticker-track"><span class="tk" data-i18n="ticker.loading">Рыночная сводка обновляется</span></div>
     </div>
   </section>
 

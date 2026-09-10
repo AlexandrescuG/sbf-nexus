@@ -62,8 +62,11 @@ export function createMark() {
     const w = g.r * 1.18, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
     ctx.save();
     /* Под лентой знак приглушён: он подложка, а не картинка поверх.
-       markDim — уступка тексту на узком экране, см. stage.js */
-    ctx.globalAlpha = 0.42 * (view.markDim == null ? 1 : view.markDim);
+       markDim — уступка тексту на узком экране, см. stage.js.
+       На тёмном финале знак, наоборот, выходит вперёд: там он не подложка,
+       а центр шара — как на живом сайте. */
+    const dark = view.dark || 0;
+    ctx.globalAlpha = (0.42 + dark * 0.5) * (view.markDim == null ? 1 : view.markDim);
     ctx.drawImage(img, g.cx - w / 2, g.cy - h / 2, w, h);
     ctx.restore();
     return g;
