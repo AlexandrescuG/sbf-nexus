@@ -139,17 +139,32 @@ function boot() {
       const flag = darkness > 0.55 ? '1' : '0';
       if (document.body.dataset.dark !== flag) document.body.dataset.dark = flag;
     }
-    ctx.fillStyle = mix([251, 246, 239], [10, 8, 14], darkness);
+    /* Цвет фона нужен не только для заливки: акты, которым надо растворить
+       свой край, красят по нему градиент. Без этого каждый акт заводил бы
+       свою копию числа — тот самый дубль, из-за которого знак когда-то
+       наехал на текст. */
+    view.bg = mix([251, 246, 239], [10, 8, 14], darkness);
+    ctx.fillStyle = view.bg;
     ctx.fillRect(0, 0, view.w, view.h);
     labels.begin();
     /* Знак — в два слоя, между ними акты: глиф снизу, кольцо сверху.
-       Так лента свечей идёт сквозь знак, а не загораживается им. */
-    mark.renderGlyph(ctx, view);
+       Так лента свечей идёт сквозь знак, а не загораживается им.
+
+       Исключение одно и оно осмысленное: в финале знак — центр шара, а не
+       подложка под ним. Под тёмным непрозрачным шаром глиф читался как
+       дыра. Акт просит об этом сам (markOnTop), заодно задавая свой размер:
+       на живом сайте диск знака занимает примерно восьмую часть шара, а
+       кольцо в полный рост перекрыло бы половину. */
+    const lead = ACTS[cam.act];
+    view.markScale = (lead && lead.markScale) || 1;
+    const onTop = !!(lead && lead.markOnTop);
+    if (!onTop) mark.renderGlyph(ctx, view);
     for (let i = 0; i < cam.blend.length; i++) {
       const b = cam.blend[i];
       const act = ACTS[b.act];
       if (act && act.render) act.render(ctx, view, b, mark, labels);
     }
+    if (onTop) mark.renderGlyph(ctx, view);
     mark.renderRing(ctx, view);
     labels.end();
     placeMarkLink(ACTS[cam.act], mark.geometry(view));

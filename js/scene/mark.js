@@ -59,7 +59,11 @@ export function createMark() {
   function renderGlyph(ctx, view) {
     const g = geometry(view);
     if (!ready) return g;
-    const w = g.r * 1.18, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
+    /* Масштаб отрисовки не меняет геометрию: акты считают по ней раскладку
+       (коридор, ширину ленты), и «знак стал меньше» не должно означать
+       «коридор стал уже». Уменьшается только то, что видно. */
+    const s = view.markScale || 1;
+    const w = g.r * 1.18 * s, h = w * ((img.naturalHeight / img.naturalWidth) || 1);
     ctx.save();
     /* Под лентой знак приглушён: он подложка, а не картинка поверх.
        markDim — уступка тексту на узком экране, см. stage.js.
@@ -77,18 +81,20 @@ export function createMark() {
     /* Кольцо догоняет роль, а не прыгает в неё: смена роли — это процесс,
        и на непрерывном холсте ступенька читается как сбой. */
     fill += (target - fill) * Math.min(1, view.dt * 3);
+    const s = view.markScale || 1;
+    const r = g.r * s;
 
     ctx.save();
     ctx.globalAlpha = view.markDim == null ? 1 : view.markDim;
     ctx.strokeStyle = 'rgba(201,162,39,0.30)';
-    ctx.lineWidth = Math.max(1.5, g.r * 0.012);
-    ctx.beginPath(); ctx.arc(g.cx, g.cy, g.r, 0, Math.PI * 2); ctx.stroke();
+    ctx.lineWidth = Math.max(1.5, r * 0.012);
+    ctx.beginPath(); ctx.arc(g.cx, g.cy, r, 0, Math.PI * 2); ctx.stroke();
 
     ctx.strokeStyle = '#C9A227';
-    ctx.lineWidth = Math.max(2, g.r * 0.028);
+    ctx.lineWidth = Math.max(2, r * 0.028);
     ctx.lineCap = 'round';
     ctx.beginPath();
-    ctx.arc(g.cx, g.cy, g.r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * fill);
+    ctx.arc(g.cx, g.cy, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * fill);
     ctx.stroke();
     ctx.restore();
     return g;

@@ -145,14 +145,13 @@
         <li><b data-i18n="approach.s2.t">Проверяем</b> <span data-i18n="approach.s2.p">По каждому событию считаем, как рынок двигался на прошлых публикациях.</span></li>
         <li><b data-i18n="approach.s3.t">Показываем</b> <span data-i18n="approach.s3.p">Разметка на графике: уровни, скользящая, точка паттерна.</span></li>
       </ol>
-      <p class="act-note">
-        <span data-i18n="approach.chart_head">XAU/USD · H4 · исторические данные</span> ·
-        <span data-i18n="approach.lg_level">уровни</span> ·
-        <span data-i18n="approach.lg_sma">скользящая</span> ·
-        <span data-i18n="approach.lg_pat">паттерн</span>
-      </p>
-      <p class="act-note" data-i18n="approach.hint">Прокрутите — разметка появится по мере движения</p>
-      <p class="act-note" data-i18n="approach.lens_cap">Внутри кольца — то же самое, разобранное</p>
+      <!-- Раньше здесь стояли три примечания подряд: заголовок графика с
+           перечислением разметки, подсказка про наведение и подпись линзы.
+           Три строки об одном и том же читаются как заполнитель, а две из
+           них ещё и дублировали то, что теперь написано на самом графике
+           (легенда с образцами линий, lens.js). Осталось одно —
+           единственное, чего на графике не скажешь. -->
+      <p class="act-note" data-i18n="approach.lens_cap">Снаружи — шум. Внутри — уровни, средняя, паттерн</p>
       <p class="act-actions">
         <a class="act-cta" href="https://lp.sbfconsult.com/chart.html?s=GOLD&utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=approach" target="_blank" rel="noopener" data-i18n="approach.cta">Смотреть живой график →</a>
       </p>
@@ -363,13 +362,37 @@
         <li><a href="mailto:contact@sbf.md"><b data-i18n="contact.email">E-mail</b><i>contact@sbf.md</i></a></li>
         <li><a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" target="_blank" rel="noopener"><b>Bloomberg LEI</b><i>254900BW4MI5M0006I30</i></a></li>
       </ul>
-      <!-- Четыре адреса на шаре — это те же четыре офиса. Текстом они
-           остаются здесь: по адресу приезжают, а не смотрят на него. -->
+      <!-- Четыре адреса на шаре — это те же четыре офиса. Разметка живёт
+           здесь, в документе: без JS адреса тоже нужны, и читаются они
+           обычным списком. Когда сцена работает, она разводит эти же
+           карточки вокруг шара и дописывает местное время (globe.js).
+           Порядок li должен совпадать с порядком OFFICES в globe.js —
+           карточка и точка на шаре связаны по номеру. -->
       <ul class="act-offices">
-        <li><b data-i18n="contact.md">Молдова</b> Office 1, str. Alexei Sciusev 47, Chișinău · <a href="https://wa.me/37360887735" target="_blank" rel="noopener">+373 60 887 735</a> · <span data-i18n="contact.hours">09–18</span></li>
-        <li><b data-i18n="contact.ch">Швейцария</b> Raihaltenstrasse 79, 8912 Obfelden · <a href="https://wa.me/41755731626" target="_blank" rel="noopener">+41 75 57 31 626</a></li>
-        <li><b data-i18n="contact.pt">Португалия</b> Praceta José Figueiredo da Fonseca 183, Lisabon · <a href="tel:+351939953919">+351 939 953 919</a></li>
-        <li><b data-i18n="contact.ae">ОАЭ</b> Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai · <a href="https://t.me/+971507193055" target="_blank" rel="noopener">+971 50 719 3055</a></li>
+        <li data-tz="Europe/Zurich">
+          <b data-i18n="contact.ch">Швейцария</b>
+          <span class="office-addr">Raihaltenstrasse 79, 8912 Obfelden</span>
+          <a href="https://wa.me/41755731626" target="_blank" rel="noopener">+41 75 57 31 626 · WhatsApp</a>
+          <span class="office-hours"><span data-i18n="contact.hours">09–18</span> · <b class="office-now">—</b></span>
+        </li>
+        <li data-tz="Europe/Lisbon">
+          <b data-i18n="contact.pt">Португалия</b>
+          <span class="office-addr">Praceta José Figueiredo da Fonseca 183, Lisabon</span>
+          <a href="tel:+351939953919">+351 939 953 919</a>
+          <span class="office-hours"><span data-i18n="contact.hours">09–18</span> · <b class="office-now">—</b></span>
+        </li>
+        <li data-tz="Europe/Chisinau">
+          <b data-i18n="contact.md">Молдова</b>
+          <span class="office-addr">Office 1, str. Alexei Sciusev 47, Chișinău</span>
+          <a href="https://wa.me/37360887735" target="_blank" rel="noopener">+373 60 887 735 · WhatsApp</a>
+          <span class="office-hours"><span data-i18n="contact.hours">09–18</span> · <b class="office-now">—</b></span>
+        </li>
+        <li data-tz="Asia/Dubai">
+          <b data-i18n="contact.ae">ОАЭ</b>
+          <span class="office-addr">Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai</span>
+          <a href="https://t.me/+971507193055" target="_blank" rel="noopener">+971 50 719 3055 · Telegram</a>
+          <span class="office-hours"><span data-i18n="contact.hours">09–18</span> · <b class="office-now">—</b></span>
+        </li>
       </ul>
       <p class="act-note" data-i18n="contact.mark_cap">Знак собирает заявку</p>
       <p class="act-actions">

@@ -59,7 +59,9 @@ body.tapestry[data-dark="1"] .scene-nav a,
 body.tapestry[data-dark="1"] .lang-btn { color: #d7cfc0; }
 body.tapestry[data-dark="1"] .nav-brand { color: #f2ece2 !important; }
 body.tapestry[data-dark="1"] .scene-foot {
-  background: rgba(10,8,14,0.92);
+  /* Почти непрозрачный: при 0.92 шар просвечивал сквозь реквизиты, и
+     край подвала читался как линия реза по глобусу. */
+  background: rgba(10,8,14,0.985);
   border-top-color: rgba(201,162,39,0.25);
 }
 body.tapestry[data-dark="1"] .act-facts a { color: inherit; }
@@ -223,6 +225,63 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   font: 500 10px/1.4 'JetBrains Mono', monospace;
   letter-spacing: 0.18em; text-transform: uppercase; color: #9A7B1E;
 }
+.act-offices .office-addr,
+.act-offices a,
+.act-offices .office-hours { display: block; }
+.act-offices .office-hours {
+  font: 400 11px/1.4 'JetBrains Mono', monospace; color: #9A7B1E;
+}
+.act-offices .office-hours b { display: inline; letter-spacing: 0.06em; }
+/* Точка состояния: зелёная, пока в филиале рабочее время. Живёт и в
+   карточке на шаре, и в обычном списке на телефоне — это единственное на
+   финальном экране, что меняется само по себе, и прятать его от узкого
+   экрана значило бы прятать самое живое. */
+.act-offices .office-hours::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  margin-right: 6px; vertical-align: 1px;
+  background: rgba(201,162,39,0.35);
+}
+.act-offices li[data-open="1"] .office-hours::before {
+  background: #3ad29f;
+  box-shadow: 0 0 6px rgba(58,210,159,0.7);
+}
+
+/* Карточка филиала на шаре.
+
+   Это те же четыре li из колонки: сцена не создаёт их заново, а забирает
+   к себе и расставляет вокруг глобуса (globe.js). Класс вешает скрипт —
+   значит без JS остаётся обычный список, и адреса никуда не деваются.
+
+   Что здесь есть сверх списка и ради чего всё затевалось: местное время
+   и точка «сейчас открыто». На финальном экране это единственное, что
+   живёт само по себе, — и именно оно говорит «там сейчас люди». */
+.act-offices.offices-scene {
+  margin: 0;
+}
+.act-offices.offices-scene li {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 3;
+  width: 268px;
+  margin: 0;
+  padding: 12px 14px;
+  background: rgba(14,11,20,0.72);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(201,162,39,0.28);
+  border-radius: 2px;
+  color: #d7cfc0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  will-change: transform, opacity;
+}
+.act-offices.offices-scene .office-addr {
+  font-size: 12.5px; line-height: 1.45; color: #b1a793;
+  margin: 2px 0 6px;
+}
+.act-offices.offices-scene a { color: #E6C257; font-size: 13px; }
+.act-offices.offices-scene .office-hours { margin-top: 4px; }
 .act-note { font-size: 14px; color: #5a5044; }
 .act-steps { padding-left: 1.2em; }
 .act-steps li { margin: 0 0 0.5em; }
