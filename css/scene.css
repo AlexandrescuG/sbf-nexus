@@ -108,6 +108,34 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
    должна читаться и в этом случае. */
 .no-js .scene-layer { display: none; }
 
+/* ── Подписи мира ───────────────────────────────────────────
+   Принадлежат сцене, а не колонке текста: это аннотации к карте, они
+   стоят у своих точек и уезжают вместе с ними. Текстом остаются
+   намеренно — заголовок новости должен выделяться и читаться. */
+.scene-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.scene-lbl {
+  position: absolute;
+  top: 0; left: 0;
+  width: 22ch;
+  will-change: transform, opacity;
+  font: 400 12px/1.35 'Archivo', system-ui, sans-serif;
+  color: #3a3128;
+}
+.scene-lbl b { display: block; font-weight: 600; }
+.scene-lbl i {
+  display: block;
+  font: 400 10px/1.4 'JetBrains Mono', monospace;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9A7B1E;
+}
+
 /* Отладочный счётчик кадра — только при ?debug=1 */
 #scene-hud {
   position: fixed;

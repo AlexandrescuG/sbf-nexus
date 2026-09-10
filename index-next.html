@@ -108,6 +108,10 @@
 </main>
 
 <script src="js/i18n.js"></script>
+<!-- d3 и topojson — из vendor/, а не с CDN: на первом экране внешняя
+     зависимость означала бы пустой мир при недоступности unpkg. -->
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 <script type="module" src="js/scene/stage.js"></script>
 </body>
 </html>
