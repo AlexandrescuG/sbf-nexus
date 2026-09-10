@@ -108,6 +108,43 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
    должна читаться и в этом случае. */
 .no-js .scene-layer { display: none; }
 
+/* ── Содержимое колонки ─────────────────────────────────── */
+.act-facts, .act-steps { margin: 0 0 1.4em; padding: 0; }
+.act-facts { list-style: none; display: grid; gap: 2px; }
+.act-facts a {
+  display: flex; gap: 10px; align-items: baseline;
+  padding: 8px 0; border-bottom: 1px solid rgba(154,123,30,0.18);
+  text-decoration: none; color: inherit;
+}
+.act-facts a:hover { background: rgba(201,162,39,0.06); }
+.act-facts b { font-weight: 600; }
+.act-facts i {
+  font-style: normal; margin-left: auto; text-align: right;
+  font: 400 12px/1.4 'JetBrains Mono', monospace; color: #9A7B1E;
+}
+.act-offices { list-style: none; margin: 0 0 1.4em; padding: 0; }
+.act-offices li {
+  margin: 0 0 0.6em;
+  font-size: 14px; line-height: 1.5; color: #4a4136;
+}
+.act-offices b {
+  display: block;
+  font: 500 10px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #9A7B1E;
+}
+.act-note { font-size: 14px; color: #5a5044; }
+.act-steps { padding-left: 1.2em; }
+.act-steps li { margin: 0 0 0.5em; }
+.act-cta {
+  display: inline-block;
+  font: 500 12px/1 'JetBrains Mono', monospace;
+  letter-spacing: 0.14em;
+  padding: 12px 18px;
+  border: 1px solid rgba(154,123,30,0.55);
+  text-decoration: none;
+}
+.act-cta:hover { background: #C9A227; color: #FBF6EF; border-color: #C9A227; }
+
 /* ── Подписи мира ───────────────────────────────────────────
    Принадлежат сцене, а не колонке текста: это аннотации к карте, они
    стоят у своих точек и уезжают вместе с ними. Текстом остаются

@@ -68,6 +68,12 @@ function boot() {
     camera.tick(now);
     const cam = camera.state();
     if (!cam.act) return;
+    /* Акт может обслуживать несколько секций (два раздела платформы —
+       один модуль). Кладём id секции на body: и акту видно, и в вёрстке
+       можно зацепиться, и в отладке сразу понятно, где камера. */
+    if (cam.section && document.body.dataset.sceneSection !== cam.section) {
+      document.body.dataset.sceneSection = cam.section;
+    }
 
     if (cam.act !== current) {
       const from = ACTS[current], to = ACTS[cam.act];

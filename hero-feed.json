@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T07:50:01.367166+00:00",
+  "updated": "2026-09-10T08:05:01.121315+00:00",
   "grow": {
     "brief": {
       "headline": "Индексы замерли у нуля, VIX 16,46 (+4,71%): рынок держит нефтяную премию после ударов по Ирану",
@@ -95,6 +95,44 @@
     }
   },
   "items": [
+    {
+      "title": {
+        "ru": "Existing Home Sales MoM",
+        "en": "Existing Home Sales MoM",
+        "ro": "Existing Home Sales MoM"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-fd5f7d784b70ff82",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "medium",
+      "ts_utc": "2026-09-10T14:00:00Z"
+    },
+    {
+      "title": {
+        "ru": "Продажи готового жилья · США",
+        "en": "Existing Home Sales",
+        "ro": "Existing Home Sales"
+      },
+      "tag": {
+        "en": "Нью-Йорк",
+        "ru": "Нью-Йорк",
+        "ro": "Нью-Йорк"
+      },
+      "lon": -74.01,
+      "lat": 40.71,
+      "id": "ev-a380916b665d328d",
+      "kind": "event",
+      "rule": "calendar",
+      "impact": "high",
+      "ts_utc": "2026-09-10T14:00:00Z"
+    },
     {
       "title": {
         "ru": "Индекс потребительских цен · США · август",
@@ -1968,48 +2006,6 @@
       "ts_utc": "2026-09-10T05:15:12Z",
       "source": "BBN Times",
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPZ0NiNVVQRnhLN1JnWEhUTTl1YjZkQzYycWxWbkhhTFBBNEs1VmY3MURXWW81V3JLZHM5SU5JVThZbHZBc21SbHc1dUdQQVY1QXZQSjU3RlNxLVBNQU9UY21kVGNUWW1lS0dQZjUzR3JwZFZpQUtLZF9CSzlVeVlJNlNPZmlyMXFQWm9tUUtYRnltWGNDcjF2c3RPM0RZWVJOU3J2QjlPQWxTRDR1MFFralZLWGJJODI0VEhPRUJzRTEtNktuVURiV3ZB?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down",
-        "en": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down",
-        "ro": "Milan stocks open lower as Middle East worries weigh, Webuild sharply down"
-      },
-      "tag": {
-        "en": "Милан",
-        "ru": "Милан",
-        "ro": "Милан"
-      },
-      "lon": 9.19,
-      "lat": 45.46,
-      "id": "nw-14569196",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T05:15:12Z",
-      "source": "marketscreener.com",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOZzhRM2plTU1xTTU4N3NMcjFnRUpjaWRheWtMTHhBN2VBczhwcUg2ckNEeG9fVmVtdFJ4WHo4QVMwRXFZZUM4VVFHakNQUFFSSnZwVWY0a2pYNU1wVHA3VUduNi1qS3l3QS1hQ2dTbXBDV2hlZUJUQVF5dXJBbWRfSE9JVDFlQkhsUGF2OGZZNXRoNWo1dEUweC1wNzJLaUFJMS1NR0QyT245bnM0OTFGdF9vLThPXzVWWkJtNVh5ZXhpa1Fu?oc=5"
-    },
-    {
-      "title": {
-        "ru": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10",
-        "en": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10",
-        "ro": "NIFTY50, SENSEX today: Wall Street cues, FII activity, key things to know before markets open on September 10"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-855817842",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T05:15:07Z",
-      "source": "Upstox",
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOeS1fTmNnak9hR0QxaXhYZlRYdm1td3lhSV9kWkdRc2NDdDBDbVpNeGFkV00zUE9rSGsxU0pDS0k5bFB0WDUxZndXanlUUDY5QXA1YlBqc2tFUEZibGtKVlBfU2VJX3doMV9DYVpvTUNXVDYxckhOeGd6ZWxPblRBa1J6VHNSX0R6RjdtUS0wcmtwZDRqUDUwNjVGZWlmbFM2aVBGQnFHdFlxUWhvczhRS2dIMGNQT3JZUzBIbHZEeXJQVUsyZ205MTlQU2c2MnFOWFRjdWd3eS1DLXh1R1NubGY5MnhUUHdFWkFaREpZUkZFam5mbkZkTg?oc=5"
     }
   ],
   "today": {
@@ -2021,34 +2017,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16387,
-      "chg_pct": 0.043,
+      "bid": 1.1637,
+      "chg_pct": 0.0284,
       "digits": 5
     },
     {
       "symbol": "GBPUSD",
-      "bid": 1.35517,
-      "chg_pct": 0.0192,
+      "bid": 1.35487,
+      "chg_pct": -0.003,
       "digits": 5
     },
     {
       "symbol": "USDJPY",
-      "bid": 153.426,
-      "chg_pct": -0.0697,
+      "bid": 153.495,
+      "chg_pct": -0.0248,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 78029.2,
-      "chg_pct": -0.3075,
+      "bid": 78078.7,
+      "chg_pct": -0.2443,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2469.44,
-      "chg_pct": 0.0977,
+      "bid": 2470.28,
+      "chg_pct": 0.1317,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-10T07:50:00.222648+00:00"
+  "quotes_updated": "2026-09-10T08:04:50.476378+00:00"
 }

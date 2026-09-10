@@ -54,7 +54,10 @@ export function createCamera() {
       blend[0].w = 1 - w * 0.5;
       blend.push({ act: spans[idx - 1].id, t: 1, w: w });
     }
-    return { act: cur.id, t: t, index: idx, dir: dir, speed: speed, blend: blend };
+    /* Секция и акт — разные вещи: два раздела платформы идут одним актом,
+       но показывают разное. Отдаём и то, и другое. */
+    return { act: cur.id, section: cur.el ? cur.el.id : null,
+             t: t, index: idx, dir: dir, speed: speed, blend: blend };
   }
 
   function tick(now) {
