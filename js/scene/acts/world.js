@@ -109,10 +109,10 @@ export const world = {
     g.clearRect(0, 0, view.w, view.h);
     g.lineJoin = 'round';
     g.beginPath(); drawGeo(g, this.grid, this.proj);
-    g.strokeStyle = 'rgba(120, 92, 44, 0.16)'; g.lineWidth = 0.6; g.stroke();
+    g.strokeStyle = 'rgba(120, 92, 44, 0.20)'; g.lineWidth = 0.6; g.stroke();
     g.beginPath(); drawGeo(g, this.land, this.proj);
-    g.fillStyle = 'rgba(176, 133, 66, 0.14)'; g.fill();
-    g.strokeStyle = 'rgba(160, 118, 48, 0.86)'; g.lineWidth = 0.8; g.stroke();
+    g.fillStyle = 'rgba(176, 133, 66, 0.10)'; g.fill();
+    g.strokeStyle = 'rgba(160, 118, 48, 0.62)'; g.lineWidth = 0.9; g.stroke();
   },
 
   render(ctx, view, cam, mark) {
@@ -130,8 +130,11 @@ export const world = {
     ctx.save();
     ctx.translate(0, -away * view.h * 0.06);          /* мир слегка отступает */
 
+    /* Карта была вдвое бледнее, чем на живом сайте: 0.4 от испечённой
+       подложки давали еле различимый контур. Мир должен быть виден — это
+       первое, что говорит экран. */
     if (w > 0.02 && this.off) {
-      ctx.globalAlpha = 0.4 * w;
+      ctx.globalAlpha = 0.92 * w;
       ctx.drawImage(this.off, 0, 0);
       ctx.globalAlpha = 1;
     }
@@ -216,8 +219,8 @@ export const world = {
     const a = s.alpha * w;
     /* Точка события */
     ctx.beginPath();
-    ctx.arc(p[0], p[1], 3.2, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(' + GOLD + ',' + (0.85 * a) + ')';
+    ctx.arc(p[0], p[1], 4.2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(' + GOLD + ',' + (0.95 * a) + ')';
     ctx.fill();
 
     /* Нить к знаку: провисает, как настоящая, и тянется по мере роста */
@@ -232,8 +235,10 @@ export const world = {
       const sag = Math.sin(Math.PI * v) * len * 0.06 * Math.sin(this.time * 0.6 + s.ph);
       ctx.lineTo(x + nx * sag, y + ny * sag);
     }
-    ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.45 * a) + ')';
-    ctx.lineWidth = 1.1;
+    /* Нить — это то, чем экран объясняет свою мысль: событие идёт к знаку.
+       При 0.45 её было почти не видно, и оставались отдельные точки. */
+    ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.8 * a) + ')';
+    ctx.lineWidth = 1.4;
     ctx.stroke();
   },
 

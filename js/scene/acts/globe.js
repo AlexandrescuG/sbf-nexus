@@ -9,12 +9,17 @@
    не глобус, а чертёж глобуса. Здесь та же карта мира, что на первом
    экране (vendor/countries-110m.json), в ортографической проекции.
 
-   Как это укладывается в бюджет кадра. Проекция всех контуров на каждый
-   кадр — это тысячи точек шестьдесят раз в секунду. Поэтому шар печётся в
-   отдельный холст с шагом поворота 3°: за оборот получается 120 картинок,
-   каждая рисуется один раз и дальше берётся готовой. Памяти это стоит
-   немного (кадр размером с кольцо), а кадр становится одной операцией
-   drawImage.
+   Как это укладывается в бюджет кадра. Первая попытка была печь шар в
+   отдельный холст на каждые 3° поворота и показывать готовые картинки.
+   Кадр от этого действительно дешевел, но вращение шло ступеньками — по
+   3° рывками, и в момент выпечки страница спотыкалась. Владелец описал это
+   точно: «движется не плавно и прерывисто».
+
+   Сейчас шар рисуется живьём каждый кадр, но по упрощённой геометрии:
+   контуры прорежены один раз при загрузке до пары тысяч точек. На экране
+   диаметром 400 px разницы не видно — точки чаще, чем пиксели, — а
+   проекция двух тысяч точек стоит доли миллисекунды. Ступенек нет,
+   потому что нет и шага: угол непрерывный.
 
    three.js сюда по-прежнему не тянется: 590 КБ ради последнего экрана —
    плата за то, что увидит меньшинство дошедших.
@@ -29,7 +34,7 @@ const OFFICES = [
   { lon: 55.27, lat: 25.20, key: 'contact.ae' },   /* Дубай     */
 ];
 
-const STEP = 3 * Math.PI / 180;      /* шаг кэша поворота */
+const RAD = Math.PI / 180;
 
 export const globe = {
   id: 'globe',
@@ -37,78 +42,16 @@ export const globe = {
   note: 'глобус, нити к филиалам, форма',
 
   spin: 0,
-  land: null,
-  cache: new Map(),
-  cacheR: 0,
+  rings: null,     /* прорежённые контуры материков */
 
   load() {
     if (this.loading) return;
     this.loading = true;
     if (!window.topojson) return;
     fetch('vendor/countries-110m.json').then(r => r.json()).then(topo => {
-      this.land = window.topojson.feature(topo, topo.objects.countries);
-      this.cache.clear();
+      const geo = window.topojson.feature(topo, topo.objects.countries);
+      this.rings = simplify(geo);
     }).catch(() => console.warn('[scene] глобус без материков: карта не загрузилась'));
-  },
-
-  /* Один кадр шара при данном повороте. Рисуется в свой холст размером с
-     кольцо и живёт в кэше до смены размера окна.
-
-     На телефоне выпечка обходится дороже всего: процессор вчетверо слабее,
-     а контуров столько же. Поэтому там шаг поворота вдвое крупнее (кадров
-     вдвое меньше) и мелкие острова пропускаются — на 390 px они всё равно
-     в один пиксель. Замер до правки: 47 пропущенных кадров из 314. */
-  bake(step, R, mobile) {
-    const size = Math.ceil(R * 2) + 4;
-    const cv = document.createElement('canvas');
-    cv.width = cv.height = size;
-    const c = cv.getContext('2d');
-    const cx = size / 2, cy = size / 2;
-    const spin = step * STEP;
-
-    /* Океан — чуть светлее фона: шар должен читаться как тело, а не как
-       дырка в странице. */
-    c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2);
-    c.fillStyle = 'rgba(12,10,16,0.92)'; c.fill();
-
-    /* Сетка */
-    c.strokeStyle = 'rgba(201,162,39,0.22)';
-    c.lineWidth = 0.7;
-    for (let lat = -60; lat <= 60; lat += 30) ring(c, cx, cy, R, spin, lat, null);
-    for (let lon = 0; lon < 360; lon += 30) ring(c, cx, cy, R, spin, null, lon);
-
-    /* Материки */
-    if (this.land) {
-      c.beginPath();
-      for (const f of this.land.features) {
-        const g = f.geometry;
-        if (!g) continue;
-        const polys = g.type === 'Polygon' ? [g.coordinates]
-                    : g.type === 'MultiPolygon' ? g.coordinates : [];
-        for (const poly of polys) {
-          for (const r of poly) {
-            /* Мелкие острова на телефоне не рисуем: в кадре это точка, а
-               времени они стоят как материк. */
-            if (mobile && r.length < 12) continue;
-            let started = false;
-            for (let i = 0; i < r.length; i++) {
-              const p = project(r[i][0], r[i][1], spin, cx, cy, R);
-              /* Точка на обратной стороне — контур рвём: шар непрозрачный,
-                 и линия, протянутая через него, читается как ошибка. */
-              if (!p) { started = false; continue; }
-              started ? c.lineTo(p[0], p[1]) : (c.moveTo(p[0], p[1]), started = true);
-            }
-          }
-        }
-      }
-      c.fillStyle = 'rgba(201,162,39,0.78)'; c.fill();
-      c.strokeStyle = 'rgba(230,194,87,0.55)'; c.lineWidth = 0.7; c.stroke();
-    }
-
-    /* Обод */
-    c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2);
-    c.strokeStyle = 'rgba(201,162,39,0.55)'; c.lineWidth = 1.4; c.stroke();
-    return cv;
   },
 
   render(ctx, view, cam, mark, labels) {
@@ -120,30 +63,53 @@ export const globe = {
        про масштаб. Кольцо знака остаётся его ободом. */
     const R = Math.round(Math.min(g.r * 2.6, view.h * 0.44));
 
-    /* Размер окна поменялся — печёное больше не подходит */
-    if (this.cacheR !== R) { this.cache.clear(); this.cacheR = R; }
-
-    /* Шар вращается сам, но медленно и только пока акт на экране: это
-       единственное движение в финале, и оно означает «мы работаем, пока вы
-       читаете», а не «здесь красиво». */
-    this.spin += view.dt * (view.mobile ? 0.05 : 0.10);
-    /* Шаг поворота: 12° на телефоне против 3° на десктопе. Каждый шаг — это
-       одна выпечка шара, а она стоит на слабом процессоре около 8 мс. Реже
-       шаг — реже выпечка; ступенек при этом не видно, потому что там же
-       вдвое медленнее вращение. */
-    const grain = view.mobile ? 4 : 1;
-    const slots = 120 / grain;
-    const key = ((Math.round(this.spin / (STEP * grain)) % slots) + slots) % slots;
-    let img = this.cache.get(key);
-    if (!img) { img = this.bake(key * grain, R, view.mobile); this.cache.set(key, img); }
+    /* Вращение непрерывное: угол — обычное число, а не индекс кадра.
+       Медленно и только пока акт на экране: это единственное движение в
+       финале, и оно означает «мы работаем, пока вы читаете». */
+    this.spin += view.dt * (view.mobile ? 0.06 : 0.09);
+    const spin = this.spin;
+    const cx = g.cx, cy = g.cy;
 
     ctx.save();
     ctx.globalAlpha = w;
-    ctx.drawImage(img, g.cx - img.width / 2, g.cy - img.height / 2);
+
+    /* Тело шара */
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(12,10,16,0.92)'; ctx.fill();
+
+    /* Сетка */
+    ctx.strokeStyle = 'rgba(201,162,39,0.22)';
+    ctx.lineWidth = 0.7;
+    const dLat = view.mobile ? 8 : 4, dLon = view.mobile ? 10 : 6;
+    for (let lat = -60; lat <= 60; lat += 30) ring(ctx, cx, cy, R, spin, lat, null, dLon);
+    for (let lon = 0; lon < 360; lon += 30) ring(ctx, cx, cy, R, spin, null, lon, dLat);
+
+    /* Материки по прорежённым контурам */
+    if (this.rings) {
+      ctx.beginPath();
+      for (let n = 0; n < this.rings.length; n++) {
+        const r = this.rings[n];
+        let started = false;
+        for (let i = 0; i < r.length; i += 2) {
+          const la = r[i + 1] * RAD, lo = r[i] * RAD + spin;
+          const cla = Math.cos(la);
+          /* Точка на обратной стороне — контур рвём: шар непрозрачный, и
+             линия, протянутая через него, читается как ошибка. */
+          if (cla * Math.cos(lo) < 0) { started = false; continue; }
+          const x = cx + cla * Math.sin(lo) * R, y = cy - Math.sin(la) * R;
+          started ? ctx.lineTo(x, y) : (ctx.moveTo(x, y), started = true);
+        }
+      }
+      ctx.fillStyle = 'rgba(201,162,39,0.78)'; ctx.fill();
+      ctx.strokeStyle = 'rgba(230,194,87,0.55)'; ctx.lineWidth = 0.7; ctx.stroke();
+    }
+
+    /* Обод */
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(201,162,39,0.55)'; ctx.lineWidth = 1.4; ctx.stroke();
 
     /* Офисы: нить от знака к точке, точка и название. Появляются по одному
        по мере прохождения акта — четыре адреса, четыре шага. */
-    const spin = key * grain * STEP;
     OFFICES.forEach((o, i) => {
       const on = Math.max(0, Math.min(1, cam.t * 4 - i));
       if (on <= 0) return;
@@ -190,13 +156,50 @@ function project(lon, lat, spin, cx, cy, R) {
   return [cx + Math.cos(la) * Math.sin(lo) * R, cy - Math.sin(la) * R];
 }
 
+/* Прорежение контуров: один раз при загрузке.
+
+   Берём каждую k-ю точку так, чтобы всего осталось около двух тысяч, и
+   выбрасываем совсем мелкие кольца. На шаре диаметром 400 px исходные
+   контуры дают несколько точек на пиксель — это работа впустую. */
+function simplify(geo) {
+  const out = [];
+  /* Прорежение по расстоянию, а не «каждая k-я точка».
+     Первая версия брала каждую пятую-восьмую — и материки рассыпались на
+     осколки: у мелких контуров оставалось три-четыре точки, и вместо
+     береговой линии получались треугольники. Здесь точка сохраняется,
+     только если ушла от предыдущей дальше порога, поэтому длинные ровные
+     участки прореживаются сильно, а изрезанные — почти нет. */
+  const MIN = 0.55;                       /* градусов между точками */
+  for (const f of geo.features) {
+    const g = f.geometry;
+    if (!g) continue;
+    const polys = g.type === 'Polygon' ? [g.coordinates]
+                : g.type === 'MultiPolygon' ? g.coordinates : [];
+    for (const poly of polys) {
+      for (const r of poly) {
+        if (r.length < 4) continue;       /* точка-остров: на шаре не видна */
+        const pts = [r[0][0], r[0][1]];
+        let lx = r[0][0], ly = r[0][1];
+        for (let i = 1; i < r.length; i++) {
+          const x = r[i][0], y = r[i][1];
+          if (Math.abs(x - lx) + Math.abs(y - ly) < MIN) continue;
+          pts.push(x, y); lx = x; ly = y;
+        }
+        pts.push(r[0][0], r[0][1]);       /* замыкаем кольцо */
+        if (pts.length >= 10) out.push(Float64Array.from(pts));
+      }
+    }
+  }
+  return out;
+}
+
 /* Параллель (задана lat) или меридиан (задан lon) */
-function ring(c, cx, cy, R, spin, lat, lon) {
+function ring(c, cx, cy, R, spin, lat, lon, step) {
   c.beginPath();
   let started = false;
   const from = lat == null ? -90 : -180;
   const to = lat == null ? 90 : 180;
-  const step = lat == null ? 4 : 6;
+  step = step || (lat == null ? 4 : 6);
   for (let v = from; v <= to; v += step) {
     const p = lat == null ? project(lon, v, spin, cx, cy, R)
                           : project(v, lat, spin, cx, cy, R);

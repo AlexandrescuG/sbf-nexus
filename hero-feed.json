@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T10:50:00.904940+00:00",
+  "updated": "2026-09-10T11:20:01.117167+00:00",
   "grow": {
     "brief": {
       "headline": "Индексы замерли у нуля, VIX 16,46 (+4,71%): рынок держит нефтяную премию после ударов по Ирану",
@@ -58,7 +58,6 @@
       "close": 67.183,
       "date": "2026-09-09",
       "spark": [
-        66.227,
         66.22,
         66.281,
         66.385,
@@ -81,7 +80,8 @@
         67.544,
         67.33,
         66.725,
-        66.615
+        66.615,
+        65.725
       ]
     },
     "pattern": {
@@ -466,7 +466,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:59Z",
+      "ts_utc": "2026-09-10T11:08:15Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5"
     },
@@ -487,7 +487,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:59Z",
+      "ts_utc": "2026-09-10T11:08:13Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5"
     },
@@ -508,7 +508,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:58Z",
+      "ts_utc": "2026-09-10T11:08:13Z",
       "source": "wsj.com",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMmpCdnk5QmVtb21SSVo3Z2VRT3NfMTFmRm02OWVTUWk4bVVWUUdoaDVOY1RYaVU3ODdsekJ0OFIxQ2hLdGp6Qm9SWFAteXlicjMzWFZ3bTFqT241LUpkdktOLTdKbmY2UGR5X3JYWmdQMXY3Rm90YjkzV2VCdjJmSXJ4cGYxZEx1RUUyZmpQMVZLLXcyVGdUamxuOHN6SnItODNuXw?oc=5"
     },
@@ -529,7 +529,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:57Z",
+      "ts_utc": "2026-09-10T11:08:12Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZHhjSldxcXZySEw2ckYxdWwyTVZqNndpSlBVd016WDJyRWw4a1Azd29GODZwTHFNTm5QVG5CVlluSEtuLVNaWEo1NEc3dFdncnNCUXV0ZmhTaW9HZ1pFc2s2c2VhaV9JOF9VSENrbVNFQlJDWGlRN2I4QncyaDBwMERrOUVtaGpiSVlIWW1KUnJlSGFhX1JoSi1hdXBLeEJZbHNjek5Uazk?oc=5"
     },
@@ -550,7 +550,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:57Z",
+      "ts_utc": "2026-09-10T11:08:11Z",
       "source": "AP News",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNUHRWc2I4elJ6Ukh6TzhHcF9IUEFEbnZFUkRiYTQ5Nnh2cUUxU3pQYXR0eml3UFFNWGt2bHFBdzJXeEIxRV96dXdBOUY2VzFYZXhVY2hhRmlEcVF0Y0xGNVAwX0ZzZGloOURMTzZ4bERjbDlmWnBzRWoxbVRqYUt4OWJEanc2V3YyTlNGSURSQjlpblJIV2FIT3A3bzBhQQ?oc=5"
     },
@@ -571,7 +571,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:57Z",
+      "ts_utc": "2026-09-10T11:08:11Z",
       "source": "apnews.com",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNjVfWE5UYVpZZGgtaVlLWVhNRUU3dFREYjMyWk1QWGpDZjlIb2pmVkhXcmVsSDJGNm1hNGxTMFpBYnl1MFBIOFFOU3hZcWdvd0swT01GSndGLVlXRDhVbnl0cnhPa3p3TVMwR1ZldUVIUlhtU1M4enRTTnc2czl4Zk55ZzZib2taYVNXWi1GRl9MeFFTZ3hEcQ?oc=5"
     },
@@ -592,7 +592,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:56Z",
+      "ts_utc": "2026-09-10T11:08:11Z",
       "source": "AP News",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNc1BOQjh6RzR3NkhUTWNocHc3U2RzckMzVGdyMFVwR0JqS3JocTgtbFFwTkwtUU1pTURKNGNma3VpZmYtUExvaHZuYU8wZTlDSEFqemRLc0U0NzhyWUxtaDVxUUp1TW45TFU2MnY5WGhqNFVWd0RPWG1sV1J0N2x3LUFweTlPb0pjcm9YcW9oSS1uTk14cWVIWUJ2Z202Zw?oc=5"
     },
@@ -613,7 +613,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:56Z",
+      "ts_utc": "2026-09-10T11:08:11Z",
       "source": "AP News",
       "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQMXltZEtoQUhXVTQ1bWJMekROZWpIeXVtZmljZlVNejktRWE0TlZEdWY3X1hGMnNQRXVUUm9mTGN1RUFYOGh5SlF0LWRnWnZCaV9sYllTLVoyekU3TWlxNTYxenMteGVNSEw2d1ZmMnhOVXdoRGFmS2I5R2ljdTdkN3JwamRjbFJlb2JST2Q5YUgtXzRw?oc=5"
     },
@@ -634,7 +634,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:56Z",
+      "ts_utc": "2026-09-10T11:08:10Z",
       "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMHM4dHJQb1psOHhIc3JyX1Mzc0dOd2RtcDRPUFpzeXlIWWhjNjB3elFmYXBHRDhaemJiX0lDaFRTUnRSLU94SDBiTndjQjh0d3NoTXI5anNWLUlwUEZwR3VXcDhDRHFYRkdES1N5cVk2c3I0YnVFWlp6d2g2N0Y1V1JVSTZpekgteUVBZGNnckNqdFlac0pyazBnaThDeFNYS1BjWkdHSWxWa0l6ZDVzZnVESQ?oc=5"
     },
@@ -655,7 +655,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:55Z",
+      "ts_utc": "2026-09-10T11:08:10Z",
       "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQVy1GQmhVUF91Y1pFeG02SF9pOVZ4NklBelE2YjMxNHdaTU1reElSTHJMZmpIX1RscGRQNC13aklYbU9lRnJZV1R0T1lUNlVDWkVWN0FwRVV2dE94X3lGRmVHUWo1V3R5VWhFZHlCcjFGaWh6SlZlcExJeFN1ZzZwX0ZzV3BDc3l1djJrNElsaEYya01uRnh1a243RlpTOEU?oc=5"
     },
@@ -676,7 +676,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:55Z",
+      "ts_utc": "2026-09-10T11:08:10Z",
       "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX0FPT205U0FsMS0zTkxlSFY3ZHN4MVprRDZGcTdkQWlMcFowS1VmNnJZZ0tQaDZaTl9kVFQtUHBXRDVWbEQzYURtbGx4ZkJfSGtvX2x6N2RlNVY3V1dPT2JFZnZ6aTlTdFZGZE5zNDNvZjZsQkZVRHVIOVVyZFFla1VYR0pWb1NUek53MGRMZS1ZbXVzYTJhU3ZzTDVlamlIYUtoaTVpUGo?oc=5"
     },
@@ -697,7 +697,7 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:55Z",
+      "ts_utc": "2026-09-10T11:08:10Z",
       "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOaG5ydjdHcU1nM0JPWGhTNWg2eGVmc0xteTNiTVo1TW9OTXRERFZTbWlmb2NoV3ZsN25GTkh4RkZUbGY0MWF6TWFpWVMtWnZDSTZhX1RNMXRYWW9rUEcxMlB2V05tM1IxY1c1U2lMY1FSUE5ZbG9ET1NZYk5zb2M1ZDFGM01ZdTA3RU1LYzBnRkhXWFU0bU5nS2lVMlM0UHhkNmtLZTJPamEtZDE5NlNTU2h4bVA?oc=5"
     },
@@ -718,9 +718,93 @@
       "kind": "news",
       "rule": "headline",
       "impact": null,
-      "ts_utc": "2026-09-10T10:42:55Z",
+      "ts_utc": "2026-09-10T11:08:09Z",
       "source": "Reuters",
       "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOYU50UmRVNmIyeFBOSmd6azlDeDMxNlh1S0cycHpnYjU4NERYWjhoN2diSmthTngzdWZScmFTdldrTGtUcTh3SDFKbVIySmU2TUx3cnMtOEdKMnFkV3J1d3pYRmdvZDVWb2VPSXNjcG52cEVPTGtLNF9UT1BFSnJ3WlUzOXNuU1FwZmNSdGVTdV9Na1h6M3dPVGVtU0ttYlBlRWc0S1Q0Rl9HSmVCNlZaZXhjMVc0OUduMk1mOGRqVkxjY0d2SGhRbWJsUQ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "PREVIEW: ECB poised for another rate hike",
+        "en": "PREVIEW: ECB poised for another rate hike",
+        "ro": "PREVIEW: ECB poised for another rate hike"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-969833074",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T11:08:09Z",
+      "source": "Breakingthenews.net",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNQVFXVWhNMy0xUXFUSUNhajFSak5YWE5ZQmJKY3hGaTU0Q2g4WjVGVXpRUFM1MnFjemxYckk5MmFqeE03VmFOTF9XT1M3bXRKbnJHZE1XWGhnYm5YVWxZN0Y5c1JXUHN2eW16UUljOUdNMjdCMV9IdndXUnJFMWFtZHBkalRtS0NHbVUtX2xxYw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Euro continues to underperform against Japanese Yen, ECB policy awaited",
+        "en": "Euro continues to underperform against Japanese Yen, ECB policy awaited",
+        "ro": "Euro continues to underperform against Japanese Yen, ECB policy awaited"
+      },
+      "tag": {
+        "en": "Франкфурт",
+        "ru": "Франкфурт",
+        "ro": "Франкфурт"
+      },
+      "lon": 8.68,
+      "lat": 50.11,
+      "id": "nw-821638391",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T11:08:09Z",
+      "source": "tmgm.com",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObTlSUDRKUkNrTWVabWpiVktnRHhUT3lvSHdVWUFHWXdWRXd2V2NqNllJdEdoRmVhcElJQVF0STd0TXFUa1VqV1hvTFY2a1lVQ1VFRTBYSW1WVU5qX1R2U2lNZVNaMVFVU2dmY09mcTIzQUFnU05vWkt4ZjJjY19VVjNoN1hST0swVnZFQU5jOGhHTmZTRXJkTktVSTNsak4ySWtTbzh2bXdielVQY1ZTSFdwLWVaT19WejEza0xqWHBxRThWeXJfSVFSdTM0LW8tamlZ?oc=5"
+    },
+    {
+      "title": {
+        "ru": "Novartis-Pfizer trademark deal has opposite impact on their stock prices; Novartis India jumps 20% while Pfizer slips 3%",
+        "en": "Novartis-Pfizer trademark deal has opposite impact on their stock prices; Novartis India jumps 20% while Pfizer slips 3%",
+        "ro": "Novartis-Pfizer trademark deal has opposite impact on their stock prices; Novartis India jumps 20% while Pfizer slips 3%"
+      },
+      "tag": {
+        "en": "Мумбаи",
+        "ru": "Мумбаи",
+        "ro": "Мумбаи"
+      },
+      "lon": 72.88,
+      "lat": 19.08,
+      "id": "nw-862429602",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T11:04:59Z",
+      "source": "BusinessLine",
+      "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxPd1NTVGg0RGVjY2I1bTZudmRfTUVVX2lNTWFQNEFJNG9zdFNXdGRfUWpVQjRGX0hxUEFmQXh0b1czS2lTZUQtNVBkam4xQ1c1em5zVmZiY2VUbGJueXViVHZzOTJtQ2RmSlVOeGRlWE1VS3hyWmtlcnloRHdkVlBmX09YOW1JWS1HR3R1UnFpRzdFSzdybTNNX0RWS1lBVi1JSGlLMFV0ZzVNRmp3LWlxeTh3Vl9fRHhtY2VJbWQweDZCbFVnUnkyMkxRQzY3RDhFVk9HX1BCM0E0ekRvTlZHX2ZJTU5rOGhjb2xJd2psRVk3ZU51LWdmZmJpb0NpMDFnSElIeG04bHJNbmRkaDRUSTR0X1A0d2RHMEt6NktPNnpvZ9IBqAJBVV95cUxNamwtYTZmZ215WFlhUlZGbFB3RGxlTjlYR2s3UVFfTWRwaWVYOUwxMWVDRl9PMkNpTTBzZUZaQ2pBRC1ZYXAtZHFyVXMwZXliaGdaODFlc3NYUTNqQ1k2bklNbnNTMTdYVkxkb3Bnbmd1RzZmTHMxbkpYWFFMRHZqZklOdlZvTG9lY3BIVTJUUUpJay04YnE3YWRGU1dfd28tUldsSmpSZ3BWQXREWmdjenAtU1V6eU94ZGhYei0wVE52UHRtRDBiSUxzWmo1X3VuYXhOVUZLblNDdHluc0hrYS10OXVZQ0tZZVF5RVJmTmh5OHMyZWxrZjF0cGx2VEdXejhrZnpyNHJnVkFJdFlHek5uX2phWktoZWFhdDBOQVdiczh6UFNqdw?oc=5"
+    },
+    {
+      "title": {
+        "ru": "How Investors May Respond To eBay (EBAY) Dropping PayPal For UK Labels",
+        "en": "How Investors May Respond To eBay (EBAY) Dropping PayPal For UK Labels",
+        "ro": "How Investors May Respond To eBay (EBAY) Dropping PayPal For UK Labels"
+      },
+      "tag": {
+        "en": "Лондон",
+        "ru": "Лондон",
+        "ro": "Лондон"
+      },
+      "lon": -0.13,
+      "lat": 51.51,
+      "id": "nw-43796865",
+      "kind": "news",
+      "rule": "headline",
+      "impact": null,
+      "ts_utc": "2026-09-10T11:04:57Z",
+      "source": "simplywall.st",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQX1NBN05KbXhnenNWeE9kY3M2SDAwaTd0cy1oRzlwSEtjNEsweVloTUlhdGNXVjdpNWF1RVd6cWlQWElEN3ptNWhhZzd0VVNkZzhEdEJZWjRQeTlYN1dmUHB0bjZkVWFtbkVrU2VCTVZxb2ZGRGk3SldyT1dMdGF2SnlpSWc0bk4yRkFobTY3dGszbXJRZm9JUm1mWVBqVTJWRkd5TklCd00xSVphWVJ5amxOaVBCY0xEU1RXZThB0gHDAUFVX3lxTE1ydHlvVmhMenFCWVJoLUpQUXBBZnFwWmlxbW95N1BfemlKZ2plWlVMV0VMNmVLWEFTM2R1OGpDd01BQ1ZrcDB0R3lldkNNVUg2NlBKd1p5RkhEZl92cnZxNUlSZk8tcm1KdENNX0hoNmkyZzFjb1p5OHdVQ1daRGR4ejUySXRtVHk2czNxYk1Uc191QkhQVDFZbkRuSFZhZXd1LUpoNFZXQ3VWTzhtbEFXcERTbmFHNksxQkVvU1F5WUZUUQ?oc=5"
     },
     {
       "title": {
@@ -1918,90 +2002,6 @@
       "ts_utc": "2026-09-10T07:29:06Z",
       "source": "WSJ",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcjQ0dWVKb0Rhd2FmNDZkVHhSYTE0YjBSTlVVZF9selpEb2RFSFdBNG9tZ3B0dzZBVDhkeEtxOV9IRktISnFIMDN5bWU5QVBfY2FTTWFKMlNNWS1YZUR3VXlQWmVRTExncG93cmdEOXVRTmV3SnZGNWZwTjlvLVBlWm9GRndOTzRMRTdDaGlJZmJIODFEc3liVXQzdlVJUnRkM05YaVF5aVVFYjA?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Google to Invest $15 Billion on AI Infrastructure in Finland",
-        "en": "Google to Invest $15 Billion on AI Infrastructure in Finland",
-        "ro": "Google to Invest $15 Billion on AI Infrastructure in Finland"
-      },
-      "tag": {
-        "en": "Хельсинки",
-        "ru": "Хельсинки",
-        "ro": "Хельсинки"
-      },
-      "lon": 24.94,
-      "lat": 60.17,
-      "id": "nw-987401686",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T07:29:05Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5"
-    },
-    {
-      "title": {
-        "ru": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback",
-        "en": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback",
-        "ro": "U.S. Treasury Plans $6 Billion 10- to 20-Year Bond Buyback"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-87148784",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T07:29:05Z",
-      "source": "wsj.com",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMmpCdnk5QmVtb21SSVo3Z2VRT3NfMTFmRm02OWVTUWk4bVVWUUdoaDVOY1RYaVU3ODdsekJ0OFIxQ2hLdGp6Qm9SWFAteXlicjMzWFZ3bTFqT241LUpkdktOLTdKbmY2UGR5X3JYWmdQMXY3Rm90YjkzV2VCdjJmSXJ4cGYxZEx1RUUyZmpQMVZLLXcyVGdUamxuOHN6SnItODNuXw?oc=5"
-    },
-    {
-      "title": {
-        "ru": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry",
-        "en": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry",
-        "ro": "Exclusive | Drone Deal Kicks Off Consolidation in Ukraine’s 500-Company Industry"
-      },
-      "tag": {
-        "en": "Киев",
-        "ru": "Киев",
-        "ro": "Киев"
-      },
-      "lon": 30.52,
-      "lat": 50.45,
-      "id": "nw-229792821",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T07:29:04Z",
-      "source": "WSJ",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZHhjSldxcXZySEw2ckYxdWwyTVZqNndpSlBVd016WDJyRWw4a1Azd29GODZwTHFNTm5QVG5CVlluSEtuLVNaWEo1NEc3dFdncnNCUXV0ZmhTaW9HZ1pFc2s2c2VhaV9JOF9VSENrbVNFQlJDWGlRN2I4QncyaDBwMERrOUVtaGpiSVlIWW1KUnJlSGFhX1JoSi1hdXBLeEJZbHNjek5Uazk?oc=5"
-    },
-    {
-      "title": {
-        "ru": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs",
-        "en": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs",
-        "ro": "What to know about Canada’s escalating trade war with the US as Carney retaliates with tariffs"
-      },
-      "tag": {
-        "en": "Нью-Йорк",
-        "ru": "Нью-Йорк",
-        "ro": "Нью-Йорк"
-      },
-      "lon": -74.01,
-      "lat": 40.71,
-      "id": "nw-556443209",
-      "kind": "news",
-      "rule": "headline",
-      "impact": null,
-      "ts_utc": "2026-09-10T07:29:02Z",
-      "source": "AP News",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNUHRWc2I4elJ6Ukh6TzhHcF9IUEFEbnZFUkRiYTQ5Nnh2cUUxU3pQYXR0eml3UFFNWGt2bHFBdzJXeEIxRV96dXdBOUY2VzFYZXhVY2hhRmlEcVF0Y0xGNVAwX0ZzZGloOURMTzZ4bERjbDlmWnBzRWoxbVRqYUt4OWJEanc2V3YyTlNGSURSQjlpblJIV2FIT3A3bzBhQQ?oc=5"
     }
   ],
   "today": {
@@ -2013,34 +2013,34 @@
   "quotes": [
     {
       "symbol": "EURUSD",
-      "bid": 1.16242,
-      "chg_pct": -0.0817,
-      "digits": 5
-    },
-    {
-      "symbol": "GBPUSD",
-      "bid": 1.35378,
+      "bid": 1.1623999999999999,
       "chg_pct": -0.0834,
       "digits": 5
     },
     {
+      "symbol": "GBPUSD",
+      "bid": 1.3532899999999999,
+      "chg_pct": -0.1196,
+      "digits": 5
+    },
+    {
       "symbol": "USDJPY",
-      "bid": 154.1,
-      "chg_pct": 0.3693,
+      "bid": 154.101,
+      "chg_pct": 0.37,
       "digits": 3
     },
     {
       "symbol": "BTCUSD",
-      "bid": 77936.2,
-      "chg_pct": -0.4263,
+      "bid": 77932.3,
+      "chg_pct": -0.4313,
       "digits": 1
     },
     {
       "symbol": "ETHUSD",
-      "bid": 2467.65,
-      "chg_pct": 0.0251,
+      "bid": 2464.36,
+      "chg_pct": -0.1082,
       "digits": 1
     }
   ],
-  "quotes_updated": "2026-09-10T10:49:57.524942+00:00"
+  "quotes_updated": "2026-09-10T11:19:51.257316+00:00"
 }

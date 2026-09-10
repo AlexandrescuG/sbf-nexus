@@ -48,12 +48,12 @@ export function createLabels(host) {
        сдвигаем новую вниз. На глобусе Швейцария и Молдова оказывались на
        одной строке и читались как одно слово. */
     if (o.avoid !== false) {
-      const W = 120, H = 15;
+      const W = 150, H = 20;
       for (let n = 0; n < 6; n++) {
         const hit = rows.some(r => Math.abs(r.y - y) < H &&
                                    Math.abs(r.x - x) < W);
         if (!hit) break;
-        y += H + 3;
+        y += H + 4;
       }
       rows.push({ x: x, y: y });
     }
