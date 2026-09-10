@@ -230,6 +230,56 @@ def nice_en(s):
     return ' '.join(ABBR.get(w, w) for w in s.title().split())
 
 
+# Города, откуда приходят события. Платформа отдаёт место по-русски — и
+# оно так и доезжало до английской и румынской версий: под заголовком
+# «The ECB is virtually certain…» стояло «ФРАНКФУРТ» кириллицей. Городов
+# в ленте девять, список закрытый и растёт медленно; чего нет в таблице,
+# показываем как есть и печатаем в лог, а не молча.
+PLACES = {
+    'Нью-Йорк':  ('New York', 'New York'),
+    'Франкфурт': ('Frankfurt', 'Frankfurt'),
+    'Лондон':    ('London', 'Londra'),
+    'Москва':    ('Moscow', 'Moscova'),
+    'Киев':      ('Kyiv', 'Kiev'),
+    'Шанхай':    ('Shanghai', 'Shanghai'),
+    'Токио':     ('Tokyo', 'Tokio'),
+    'Тегеран':   ('Tehran', 'Teheran'),
+    'Мумбаи':    ('Mumbai', 'Mumbai'),
+    'Хельсинки': ('Helsinki', 'Helsinki'),
+    'Пекин':     ('Beijing', 'Beijing'),
+    'Гонконг':   ('Hong Kong', 'Hong Kong'),
+    'Сеул':      ('Seoul', 'Seul'),
+    'Сингапур':  ('Singapore', 'Singapore'),
+    'Брюссель':  ('Brussels', 'Bruxelles'),
+    'Париж':     ('Paris', 'Paris'),
+    'Берлин':    ('Berlin', 'Berlin'),
+    'Цюрих':     ('Zurich', 'Zurich'),
+    'Дубай':     ('Dubai', 'Dubai'),
+    'Кишинёв':   ('Chisinau', 'Chișinău'),
+    'Вашингтон': ('Washington', 'Washington'),
+    'Оттава':    ('Ottawa', 'Ottawa'),
+    'Канберра':  ('Canberra', 'Canberra'),
+    'Веллингтон': ('Wellington', 'Wellington'),
+    'Бразилиа':  ('Brasilia', 'Brasília'),
+    'Мехико':    ('Mexico City', 'Ciudad de México'),
+    'Йоханнесбург': ('Johannesburg', 'Johannesburg'),
+    'Стамбул':   ('Istanbul', 'Istanbul'),
+    'Эр-Рияд':   ('Riyadh', 'Riad'),
+}
+unknown_places = set()
+
+
+def tri_place(ru):
+    if not ru:
+        return tri('', '', '')
+    p = PLACES.get(ru)
+    if not p:
+        if not ru.isascii():
+            unknown_places.add(ru)
+        return tri(ru, ru, ru)
+    return {'ru': ru, 'en': p[0], 'ro': p[1]}
+
+
 def tri_term(en):
     """Перевод названия показателя по словарю market_intel."""
     t = TERMS.get(en) or TERMS.get(en.title()) or {}
@@ -300,9 +350,22 @@ for it in geo.get('items', []):
         per_place[key] = per_place.get(key, 0) + 1
     # Румынского в ленте нет: у новостей его взять неоткуда, а выдумывать
     # перевод заголовка нельзя — показываем английский.
+    #
+    # У событий календаря переводить есть по чему: рядом лежит словарь
+    # market_intel на 575 показателей. Платформа переводит не всё —
+    # «Existing Home Sales MoM» приезжала английской на русскую страницу,
+    # хотя «Продажи вторичного жилья м/м» есть в словаре, — поэтому то,
+    # что пришло непереведённым, прогоняем через словарь сами.
+    title = {'ru': ru, 'en': en, 'ro': en}
+    if it.get('kind') != 'news' and ru == en:
+        t = tri_term(en)
+        title = {'ru': t['ru'], 'en': en, 'ro': t['ro']}
+        if t['ru'] == en:
+            untranslated.add(en)
+
     item = {
-        'title': {'ru': ru, 'en': en, 'ro': en},
-        'tag': tri(place or country, place or country, place or country),
+        'title': title,
+        'tag': tri_place(place or country),
         'lon': it['lon'], 'lat': it['lat'],
         'id': it.get('id') or f"{rule}-{len(items)}",
         'kind': it.get('kind'),
@@ -356,6 +419,12 @@ if OUT.exists():
             if o.get('id') not in fresh_ids        # свежая версия важнее
             and o.get('lon') is not None
             and _ts(o) > edge]                     # сутки — и на выход
+    # Пункты из прошлых прогонов собраны прежними правилами. Название места
+    # пересобираем: иначе после правки таблицы городов английская страница
+    # ещё сутки показывала бы кириллицу — ровно тот срок, на который лента
+    # копится. Заголовки не трогаем: их перевода взять неоткуда.
+    for o in kept:
+        o['tag'] = tri_place(((o.get('tag') or {}).get('ru') or ''))
     before = len(items)
     items = sorted(items + kept, key=_ts, reverse=True)[:KEEP_MAX]
     print(f'  из прошлых прогонов: +{len(items) - before} '
@@ -464,6 +533,15 @@ print(f'{OUT}: {len(items)} событий')
 if untranslated:
     # Молча показывать английский посреди русского текста — хуже, чем знать
     print(f'  без перевода ({len(untranslated)}): ' + ', '.join(sorted(untranslated)[:8]))
+if unknown_places:
+    # Кириллический город на английской странице — та же ошибка, что
+    # английский заголовок на русской, просто её реже замечают
+    print(f'  город не в таблице ({len(unknown_places)}): '
+          + ', '.join(sorted(unknown_places)[:8]))
+_news_en = sum(1 for o in items if o['title']['ru'] == o['title']['en'])
+if _news_en:
+    print(f'  заголовков только на английском: {_news_en} из {len(items)} '
+          f'— перевод новостей делается на стороне платформы')
 if len(items) < 4:
     # Герой держит 6 нитей; на малой ленте он честно смешает её с демо-данными
     print('  мало событий — на экране будут и демо-строки')

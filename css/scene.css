@@ -141,6 +141,23 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   .scene-nav nav { gap: 10px; }
 }
 
+/* Комментарий выше говорил «три ссылки и переключатель помещаются в
+   строку». Ссылок четыре, и не помещаются: на 390 px бренд переносился
+   на две строки, а «RO» уезжал за правый край — переключатель языка
+   обрезан ровно на той странице, которая обещает три языка в hreflang.
+
+   Бургер по-прежнему не заводим. Гобелен — одна непрерывная прокрутка,
+   и на телефоне якоря на разделы нужны меньше всего: до контактов
+   доезжают ходом, а рядом всё время висит кнопка «Связаться». В строке
+   остаётся то, что никакой прокруткой не заменить: имя, вход на
+   платформу и язык. */
+@media (max-width: 560px) {
+  .scene-nav { gap: 8px; }
+  .scene-nav nav a:not(.nav-platform) { display: none; }
+  .nav-brand { white-space: nowrap; }
+  .lang-btn { padding: 2px 2px; }
+}
+
 /* ── Слой текста ────────────────────────────────────────── */
 .scene-text {
   position: relative;
@@ -302,6 +319,16 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   color: #4a4136;
 }
 .act-today b { color: #8a6d15; }
+/* Пометка языка оригинала: бриф пишется по-русски, и на английской
+   странице это должно быть видно как факт, а не как недосмотр. */
+.act-today em {
+  font: 500 10px/1 'JetBrains Mono', monospace;
+  font-style: normal; letter-spacing: 0.12em;
+  vertical-align: 1px; margin-left: 4px;
+  padding: 2px 4px; border: 1px solid rgba(154,123,30,0.4);
+  color: #8a6d15;
+}
+.act-today a { color: #8a6d15; white-space: nowrap; }
 .act-side {
   border: 1px solid rgba(154,123,30,0.35);
   padding: 14px 16px; margin: 0 0 1.2em;

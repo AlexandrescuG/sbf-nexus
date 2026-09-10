@@ -77,7 +77,22 @@ function today(meta) {
   const head = tpl && tpl.indexOf('{d}') >= 0
     ? tpl.replace('{d}', when)
     : ((tpl && tpl !== 'hero.today' ? tpl : 'Сегодня') + (when ? ' · ' + when : ''));
-  host.innerHTML = '<b>' + esc(head) + '</b> ' + esc(t.headline);
+  /* Бриф пишется утренним прогоном market_intel и существует только
+     по-русски. На английской странице он вставал русской строкой сразу
+     под английским заголовком — и читался как недоделка. Живой сайт это
+     уже решил и решил правильно: язык оригинала помечаем, а не выдаём
+     русский текст за перевод (js/hero-map.js, renderToday). Здесь то же
+     правило и та же ссылка на бриф: без неё строка говорит «мы поработали
+     утром» и не даёт посмотреть, что именно. */
+  const T = (window.i18n && window.i18n.t) ? window.i18n.t : () => '';
+  const mark = (t.lang && t.lang !== lang)
+    ? ' <em>' + esc(t.lang.toUpperCase()) + '</em>' : '';
+  const more = T('hero.read_brief');
+  host.innerHTML = '<b>' + esc(head) + '</b> ' + esc(t.headline) + mark +
+    (more && more !== 'hero.read_brief'
+      ? ' <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site' +
+        '&utm_medium=cta&utm_campaign=hero_brief" target="_blank" rel="noopener">' +
+        esc(more) + ' →</a>' : '');
   host.hidden = false;
 }
 
