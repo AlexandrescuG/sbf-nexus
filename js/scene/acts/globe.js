@@ -211,8 +211,15 @@ export const globe = {
       L.spin = null;
     }
     /* Порог в сдвиге пикселей, а не в градусах: на маленьком шаре тот же
-       угол — это меньше пикселей, и перерисовывать его чаще незачем. */
-    if (L.spin != null && Math.abs(spin - L.spin) * R < 0.8) return L;
+       угол — это меньше пикселей.
+
+       На десктопе порога нет: шар поворачивается на 0.42 px за кадр, и
+       порог в 0.8 px означал перерисовку через кадр — то есть 30 к/с у
+       единственного движущегося предмета на экране. Владелец увидел это
+       сразу: «глобус как-то странно движется». Экономить здесь можно было
+       только там, где кадр действительно не укладывается в бюджет. */
+    const step = view.mobile ? 0.8 : 0;
+    if (L.spin != null && Math.abs(spin - L.spin) * R < step) return L;
     L.spin = spin;
     const c = L.getContext('2d');
     c.clearRect(0, 0, L.width, L.height);
@@ -243,7 +250,11 @@ export const globe = {
        за край. */
     c.beginPath();
     for (let n = 0; n < this.rings.length; n++) {
-      trace(c, this.rings[n], half, half, R, cs, ss, true);
+      const r = this.rings[n];
+      /* Кольцо целиком за шаром — не трогаем вовсе */
+      const z = r.cLat * (r.cLon * cs - r.sLon * ss);
+      if (z < -r.sinRho) continue;
+      trace(c, r, half, half, R, cs, ss, true);
     }
     c.fillStyle = 'rgba(201,162,39,0.80)'; c.fill();
     if (!view.mobile) {
@@ -586,33 +597,88 @@ function simplify(geo, MIN) {
    числа вместо двух, но Float32 вместо Float64), а кадр дешевеет в разы. */
 function pack(deg) {
   const out = new Float32Array(deg.length * 2);
+  /* Заодно считаем середину кольца и его угловой радиус: по ним кольцо,
+     целиком ушедшее на обратную сторону, отбрасывается одним сравнением,
+     не перебирая точек. В любой момент за шаром примерно половина суши —
+     это половина работы кадра, которую раньше делали впустую. */
+  let mx = 0, my = 0, mz = 0;
   for (let i = 0, j = 0; i < deg.length; i += 2, j += 4) {
     const lo = deg[i] * RAD, la = deg[i + 1] * RAD;
-    out[j] = Math.sin(la); out[j + 1] = Math.cos(la);
-    out[j + 2] = Math.sin(lo); out[j + 3] = Math.cos(lo);
+    const sla = Math.sin(la), cla = Math.cos(la);
+    const slo = Math.sin(lo), clo = Math.cos(lo);
+    out[j] = sla; out[j + 1] = cla; out[j + 2] = slo; out[j + 3] = clo;
+    mx += cla * slo; my += sla; mz += cla * clo;
   }
+  const d = Math.hypot(mx, my, mz) || 1;
+  mx /= d; my /= d; mz /= d;
+  let cosMin = 1;
+  for (let j = 0; j < out.length; j += 4) {
+    const dot = out[j + 1] * out[j + 2] * mx + out[j] * my +
+                out[j + 1] * out[j + 3] * mz;
+    if (dot < cosMin) cosMin = dot;
+  }
+  /* Долгота середины — в том же виде, что у точек: синус и косинус */
+  const lonC = Math.atan2(mx, mz);
+  out.cLat = Math.hypot(mx, mz);              /* cos(широты середины) */
+  out.sLon = Math.sin(lonC); out.cLon = Math.cos(lonC);
+  out.sinRho = Math.sqrt(Math.max(0, 1 - cosMin * cosMin));
   return out;
 }
 
-/* Кольцо на холст. closed = true для контуров материков (замыкаем и
-   прижимаем заднюю часть к горизонту), false для сетки (рвём). */
+/* Кольцо на холст.
+
+   closed = true для контуров материков, false для сетки (там разрыв — это
+   просто разрыв линии).
+
+   Как замыкается контур, уходящий за край. Прошлая версия прижимала
+   каждую заднюю точку к ободу. Для одиночной страны это работало, а для
+   Антарктиды — нет: её кольцо обходит полюс по всем долготам, задняя
+   часть прижималась к ободу и обходила его кругом, и заливка накрывала
+   весь диск. Владелец видел это как «время от времени появляются
+   странные шейдеры» — шар превращался в золотую кляксу и обратно.
+
+   Теперь задние точки не рисуются вовсе, а разрыв замыкается ДУГОЙ ОБОДА
+   по короткой стороне. Для страны, наполовину ушедшей за край, короткая
+   дуга и есть её край. Для Антарктиды точки входа и выхода на ободе
+   оказываются рядом, короткая дуга между ними крошечная — и остаётся
+   ровно видимая полоса материка, а не диск. Кляксы взяться неоткуда:
+   путь физически не может обойти обод.
+
+   Возвращает false, если ничего не нарисовано. */
 function trace(ctx, r, cx, cy, R, cs, ss, closed) {
   if (!closed) ctx.beginPath();
-  let started = false;
+  let started = false, gap = false, first = 0, last = 0;
   for (let j = 0; j < r.length; j += 4) {
     const sla = r[j], cla = r[j + 1], slo = r[j + 2], clo = r[j + 3];
     const sinLo = slo * cs + clo * ss;
     const cosLo = clo * cs - slo * ss;
-    let x = cla * sinLo, y = sla;
-    if (cla * cosLo < 0) {
-      if (!closed) { started = false; continue; }
-      const d = Math.sqrt(x * x + y * y) || 1;    /* на обод */
-      x /= d; y /= d;
-    }
+    if (cla * cosLo < 0) { gap = true; if (!closed) started = false; continue; }
+    const x = cla * sinLo, y = sla;
     const sx = cx + x * R, sy = cy - y * R;
-    started ? ctx.lineTo(sx, sy) : (ctx.moveTo(sx, sy), started = true);
+    const ang = Math.atan2(-y, x);
+    if (!started) { ctx.moveTo(sx, sy); started = true; first = ang; }
+    else if (gap && closed) { limb(ctx, cx, cy, R, last, ang); ctx.lineTo(sx, sy); }
+    else ctx.lineTo(sx, sy);
+    gap = false; last = ang;
   }
-  if (closed) ctx.closePath();
+  if (closed && started) {
+    if (gap) limb(ctx, cx, cy, R, last, first);
+    ctx.closePath();
+  }
+  return started;
+}
+
+/* Дуга обода от a до b по короткой стороне.
+
+   Коротким разрывам дуга не нужна: почти все они — одна-две точки на
+   краю, где прямая и дуга отличаются меньше чем на пиксель, а arc()
+   браузер всё равно разложит на отрезки. Проверка дешевле разложения. */
+function limb(ctx, cx, cy, R, a, b) {
+  let d = b - a;
+  while (d > Math.PI) d -= Math.PI * 2;
+  while (d < -Math.PI) d += Math.PI * 2;
+  if (Math.abs(d) * R < 3) { ctx.lineTo(cx + Math.cos(b) * R, cy + Math.sin(b) * R); return; }
+  ctx.arc(cx, cy, R, a, b, d < 0);
 }
 
 /* Сетка меридианов и параллелей — теми же упакованными кольцами */
