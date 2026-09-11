@@ -365,6 +365,42 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   font: 500 10px/1.6 'JetBrains Mono', monospace;
   letter-spacing: 0.16em; color: #9A7B1E;
 }
+/* Кейс, который читают сейчас, — он же на графике справа.
+
+   Пять кейсов подряд в колонке и один график рядом: без этой связи
+   непонятно, к какому из пяти относится линия. Раньше сцена выбирала
+   случай по доле акта, то есть арифметикой, а длину абзацев задаёт
+   текст — третий кейс вдвое длиннее второго, и на экране оказывался
+   четвёртый, пока читали третий. Теперь случай выбирает сама разметка
+   (memory.js, pick), а полоса слева говорит, какой именно. */
+.act-cases li {
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  margin-left: -14px;
+  transition: border-color 0.35s ease, opacity 0.35s ease;
+  opacity: 0.62;
+}
+.act-cases li.is-live { border-left-color: #C9A227; opacity: 1; }
+
+/* Место под график внутри кейса — только на узком экране.
+
+   На десктопе график живёт справа от колонки и места в тексте не
+   занимает. На телефоне колонка занимает всю ширину, и сцена рисовала
+   свечи прямо под абзацами: читать нельзя ни то, ни другое. Живой сайт
+   решает это статичным холстом внутри каждого кейса
+   (js/acts/act-market-mobile.js) — здесь то же место, но рисует в него
+   общая сцена, а не отдельный холст на каждый кейс. */
+.act-cases .case-chart { display: none; }
+@media (max-width: 900px) {
+  .act-cases .case-chart {
+    display: block;
+    height: 180px;
+    margin: 10px 0 12px;
+  }
+}
+/* Без JS подсветки нет — и тогда приглушать нечего: все кейсы равны */
+html.no-js .act-cases li { opacity: 1; }
+
 .act-access li { font-size: 14px; margin: 0 0 0.4em; color: #4a4136; }
 .act-access b { color: #241f18; }
 .act-access i { font-style: normal; color: #9A7B1E; }
