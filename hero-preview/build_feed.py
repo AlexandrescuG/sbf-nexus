@@ -265,6 +265,11 @@ PLACES = {
     'Йоханнесбург': ('Johannesburg', 'Johannesburg'),
     'Стамбул':   ('Istanbul', 'Istanbul'),
     'Эр-Рияд':   ('Riyadh', 'Riad'),
+    # 12.09.2026: лог прогона назвал их сам («город не в таблице») — ровно для
+    # этого строка в логе и заведена.
+    'Сидней':    ('Sydney', 'Sydney'),
+    'Тайбэй':    ('Taipei', 'Taipei'),
+    'Торонто':   ('Toronto', 'Toronto'),
 }
 unknown_places = set()
 
