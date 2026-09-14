@@ -36,7 +36,23 @@ body.tapestry {
   color: #241f18;
   font: 400 17px/1.6 'Archivo', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+
+  /* Золото, которым НАБИРАЮТ, и золото, которым РИСУЮТ, — разные цвета.
+
+     Рубрики, подписи и переключатель языка набраны 9–12 пикселями
+     заглавными. Фирменное #9A7B1E даёт на кремовом контраст 3.74 при норме
+     4.5 — то есть по норме не проходит, и глазами это видно тоже: мелкие
+     прописные на светлом читаются тяжело. #8a6d15 даёт 4.56 и на глаз от
+     фирменного не отличается — разница в светлоте, не в тоне.
+
+     Линии, кольца, нити и заливки остаются на #C9A227: к ним требование
+     4.5 не относится (это не текст), а узнаваемость держится именно ими.
+     На тёмном финале правило переворачивается: там читаемо как раз яркое
+     золото, 8.24 против 4.06 у затемнённого. Поэтому это переменная, а не
+     новый цвет по всему файлу. */
+  --ink-gold: #8a6d15;
 }
+body.tapestry[data-dark="1"] { --ink-gold: #C9A227; }
 body.tapestry a { color: #8a6d15; text-underline-offset: 3px; }
 
 /* Вечер в конце пути. Фон рисует сцена (см. stage.js), текст переключается
@@ -81,7 +97,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   font: 500 11px/1.4 'JetBrains Mono', monospace;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #9A7B1E;
+  color: var(--ink-gold);
   margin: 0 0 1.2em;
 }
 
@@ -115,7 +131,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .scene-nav a { text-decoration: none; color: #4a4136; }
 .scene-nav a:hover { color: #8a6d15; }
 .nav-brand { font-weight: 600; color: #241f18 !important; }
-.nav-brand span { color: #9A7B1E; }
+.nav-brand span { color: var(--ink-gold); }
 .scene-nav nav { display: flex; gap: 18px; margin-left: auto; }
 .nav-platform { color: #8a6d15 !important; }
 .lang-switcher { display: flex; gap: 6px; align-items: center; }
@@ -213,7 +229,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .act-facts b { font-weight: 600; }
 .act-facts i {
   font-style: normal; margin-left: auto; text-align: right;
-  font: 400 12px/1.4 'JetBrains Mono', monospace; color: #9A7B1E;
+  font: 400 12px/1.4 'JetBrains Mono', monospace; color: var(--ink-gold);
 }
 .act-offices { list-style: none; margin: 0 0 1.4em; padding: 0; }
 .act-offices li {
@@ -223,13 +239,13 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .act-offices b {
   display: block;
   font: 500 10px/1.4 'JetBrains Mono', monospace;
-  letter-spacing: 0.18em; text-transform: uppercase; color: #9A7B1E;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-gold);
 }
 .act-offices .office-addr,
 .act-offices a,
 .act-offices .office-hours { display: block; }
 .act-offices .office-hours {
-  font: 400 11px/1.4 'JetBrains Mono', monospace; color: #9A7B1E;
+  font: 400 11px/1.4 'JetBrains Mono', monospace; color: var(--ink-gold);
 }
 .act-offices .office-hours b { display: inline; letter-spacing: 0.06em; }
 /* Точка состояния: зелёная, пока в филиале рабочее время. Живёт и в
@@ -323,7 +339,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
   font-style: normal;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #9A7B1E;
+  color: var(--ink-gold);
 }
 
 /* ── Подписи к нарисованному ────────────────────────────────
@@ -363,7 +379,7 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 .act-cases i {
   display: block; font-style: normal;
   font: 500 10px/1.6 'JetBrains Mono', monospace;
-  letter-spacing: 0.16em; color: #9A7B1E;
+  letter-spacing: 0.16em; color: var(--ink-gold);
 }
 /* Кейс, который читают сейчас, — он же на графике справа.
 
@@ -403,7 +419,7 @@ html.no-js .act-cases li { opacity: 1; }
 
 .act-access li { font-size: 14px; margin: 0 0 0.4em; color: #4a4136; }
 .act-access b { color: #241f18; }
-.act-access i { font-style: normal; color: #9A7B1E; }
+.act-access i { font-style: normal; color: var(--ink-gold); }
 .act-lead { font-size: 17px; }
 /* Строка брифа: слева золотая черта, как на живом сайте — она отделяет
    «что сегодня» от «что мы вообще делаем». */
