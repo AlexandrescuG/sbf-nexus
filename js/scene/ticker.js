@@ -64,7 +64,10 @@ export function initTicker() {
 function today(meta) {
   const host = document.getElementById('scene-today');
   const t = meta && meta.today;
-  if (!host || !t || !t.headline) return;
+  if (!host) return;
+  /* Прячем, а не выходим молча: лента приходит несколько раз, и строка,
+     показанная на прошлом ответе, осталась бы висеть при пустом. */
+  if (!t || !t.headline) { host.hidden = true; return; }
   const lang = (window.i18n && window.i18n.getLang && window.i18n.getLang()) || 'ru';
   const d = new Date((t.date || '') + 'T00:00:00');
   const when = isNaN(d) ? '' : d.toLocaleDateString(
@@ -73,10 +76,29 @@ function today(meta) {
   /* В словаре ключ хранится с подстановкой даты — «Сегодня · {d}». Первая
      версия печатала его как есть, и на экране стояло «Today · {d} · 10
      September»: две даты, одна из них фигурная скобка. */
+  /* Слово «Сегодня» — утверждение, и оно должно быть правдой.
+
+     Бриф готовит утренний прогон market_intel, а сайт его только
+     показывает. Если прогон не отработал, вчерашний заголовок оставался
+     на месте и над ним стояло «Сегодня» — строка врала бы ровно в том
+     месте, ради которого она и сделана: «вот что мы сделали сегодня
+     утром». Котировки рядом это правило уже соблюдают — старше двух
+     часов не показываются вовсе.
+
+     Поэтому: день в день — «Сегодня · дата»; старше — одна дата без
+     обещания; старше трёх дней — не показываем совсем. Сравниваем по
+     календарным дням, а не по миллисекундам: бриф датирован днём, и
+     разница в часах здесь ничего не значит. */
+  const day = 24 * 3600 * 1000;
+  const midnight = new Date(); midnight.setHours(0, 0, 0, 0);
+  const age = isNaN(d) ? 0 : Math.round((midnight - d) / day);
+  if (age > 3) { host.hidden = true; return; }
   const tpl = (window.i18n && window.i18n.t) ? window.i18n.t('hero.today') : '';
-  const head = tpl && tpl.indexOf('{d}') >= 0
-    ? tpl.replace('{d}', when)
-    : ((tpl && tpl !== 'hero.today' ? tpl : 'Сегодня') + (when ? ' · ' + when : ''));
+  const head = age > 0 ? when
+    : (tpl && tpl.indexOf('{d}') >= 0
+        ? tpl.replace('{d}', when)
+        : ((tpl && tpl !== 'hero.today' ? tpl : 'Сегодня') +
+           (when ? ' · ' + when : '')));
   /* Бриф пишется утренним прогоном market_intel и существует только
      по-русски. На английской странице он вставал русской строкой сразу
      под английским заголовком — и читался как недоделка. Живой сайт это
