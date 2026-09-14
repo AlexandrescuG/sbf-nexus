@@ -229,16 +229,23 @@ function boot() {
        брались у ВЕДУЩЕГО акта — то есть переключались ступенькой ровно на
        границе. Знак прыгал вниз и схлопывался за один кадр, пока соседние
        акты аккуратно перетекали друг в друга. Смесь у камеры уже есть,
-       надо было просто ею воспользоваться. */
-    let wSum = 0, sSum = 0, cySum = 0;
-    for (let i = 0; i < cam.blend.length; i++) {
-      const a = ACTS[cam.blend[i].act], bw = cam.blend[i].w;
-      wSum += bw;
-      sSum += ((a && a.markScale) || 1) * bw;
-      cySum += ((a && a.markCy) || 0.17) * bw;
-    }
-    view.markScale = wSum ? sSum / wSum : 1;
-    view.markCy = wSum ? cySum / wSum : 0.17;
+       надо было просто ею воспользоваться.
+
+       Мешаем по ДОЛЕ ПЕРЕХОДА, а не по весам отрисовки. Веса сделаны для
+       другого: уходящий акт в них гаснет не до нуля (blend[0].w = 1 − w/2),
+       чтобы на стыке не было провала в картинке. Для числа это даёт не
+       переход, а качание — размер шёл 0.69 → 0.77 → 0.60, то есть знак
+       сначала чуть подрастал и только потом сжимался. Доля второго
+       участника смеси меняется от нуля до единицы ровно один раз. */
+    const near = cam.blend.length > 1 ? cam.blend[1] : null;
+    const k = near ? near.w : 0;
+    const cur = ACTS[cam.blend[0].act] || {};
+    const nxt = (near && ACTS[near.act]) || {};
+    const pick = (a, key, def) => (a[key] == null ? def : a[key]);
+    view.markScale = pick(cur, 'markScale', 1) * (1 - k) +
+                     pick(nxt, 'markScale', 1) * k;
+    view.markCy = pick(cur, 'markCy', 0.17) * (1 - k) +
+                  pick(nxt, 'markCy', 0.17) * k;
     /* Скорость прокрутки нужна не только камере: акт может решить не
        делать дорогую работу, пока страница летит под пальцем. */
     view.speed = cam.speed;
