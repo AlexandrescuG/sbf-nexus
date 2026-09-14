@@ -246,6 +246,8 @@ function boot() {
                      pick(nxt, 'markScale', 1) * k;
     view.markCy = pick(cur, 'markCy', 0.17) * (1 - k) +
                   pick(nxt, 'markCy', 0.17) * k;
+    view.markCx = pick(cur, 'markCx', 1) * (1 - k) +
+                  pick(nxt, 'markCx', 1) * k;
     /* Скорость прокрутки нужна не только камере: акт может решить не
        делать дорогую работу, пока страница летит под пальцем. */
     view.speed = cam.speed;
@@ -330,7 +332,13 @@ function boot() {
        не глазами по видео. */
     st.markScale = Math.round(view.markScale * 100) / 100;
     st.markCy = Math.round(view.markCy * 100) / 100;
+    st.markCx = Math.round(view.markCx * 100) / 100;
     st.markDim = view.markDim;
+    /* view и mark — для инструментов: чтобы посчитать раскладку финала
+       снаружи, надо уметь позвать act.geometry(view, mark) теми же
+       аргументами, что и сцена. Иначе проверка меряет не то, что
+       нарисовано, а свою реконструкцию — а это уже было с контрастом. */
+    st.view = view; st.mark = mark;
     if (debug) hud(cam);
   }
 
