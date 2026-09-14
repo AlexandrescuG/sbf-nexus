@@ -79,7 +79,7 @@ function boot() {
      просадок. Массив заводится один раз — не хочу мусорить в кадре. */
   const gaps = new Float32Array(WINDOW);
   let gapAt = 0, gapsSeen = 0, baseGap = 16.7, calmFor = 0, bestGap = 999;
-  let skipped = false;
+  let skipped = false, markDim = 1;
   let current = null;
 
   function resize() {
@@ -175,7 +175,13 @@ function boot() {
         const g = mark.geometry(view);
         const dy = Math.max(0, Math.max(colRect.top - (g.cy + g.r),
                                         (g.cy - g.r) - colRect.bottom));
-        view.markDim = Math.max(0.18, Math.min(1, dy / 60));
+        /* Расхождение считается по прямоугольнику, а он читается пять раз
+           в секунду — значит и само приглушение меняется ступеньками по
+           200 мс. На первых актах это незаметно (знак мелкий), а в финале
+           шар от такой ступеньки вспыхивал и гас. Догоняем цель плавно. */
+        const want = Math.max(0.18, Math.min(1, dy / 60));
+        markDim += (want - markDim) * Math.min(1, view.dt * 5);
+        view.markDim = markDim;
       }
     }
 
@@ -216,8 +222,23 @@ function boot() {
        на живом сайте диск знака занимает примерно восьмую часть шара, а
        кольцо в полный рост перекрыло бы половину. */
     const lead = ACTS[cam.act];
-    view.markScale = (lead && lead.markScale) || 1;
-    view.markCy = lead && lead.markCy;
+    /* Размер и высота знака смешиваются между актами, как всё остальное.
+
+       Владелец: «резкий скачок перед глобусом». Так и было: финал просит
+       знак вчетверо мельче и на треть высоты вместо шестой, и оба числа
+       брались у ВЕДУЩЕГО акта — то есть переключались ступенькой ровно на
+       границе. Знак прыгал вниз и схлопывался за один кадр, пока соседние
+       акты аккуратно перетекали друг в друга. Смесь у камеры уже есть,
+       надо было просто ею воспользоваться. */
+    let wSum = 0, sSum = 0, cySum = 0;
+    for (let i = 0; i < cam.blend.length; i++) {
+      const a = ACTS[cam.blend[i].act], bw = cam.blend[i].w;
+      wSum += bw;
+      sSum += ((a && a.markScale) || 1) * bw;
+      cySum += ((a && a.markCy) || 0.17) * bw;
+    }
+    view.markScale = wSum ? sSum / wSum : 1;
+    view.markCy = wSum ? cySum / wSum : 0.17;
     /* Скорость прокрутки нужна не только камере: акт может решить не
        делать дорогую работу, пока страница летит под пальцем. */
     view.speed = cam.speed;
@@ -297,6 +318,11 @@ function boot() {
     st.bad = Math.round(share * 100);
     st.fps = Math.round(1000 / Math.max(gap, 1));
     st.simple = view.simple; st.dpr = dpr; st.mobile = view.mobile;
+    /* Размер и высота знака — в отчёт: именно их ступенька на границе
+       актов читалась как «резкий скачок», и проверять её надо числом, а
+       не глазами по видео. */
+    st.markScale = Math.round(view.markScale * 100) / 100;
+    st.markCy = Math.round(view.markCy * 100) / 100;
     st.markDim = view.markDim;
     if (debug) hud(cam);
   }
