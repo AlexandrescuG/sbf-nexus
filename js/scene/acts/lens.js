@@ -86,7 +86,11 @@ export const lens = {
        вдвое шире, чем задумано. */
     const x0 = view.mobile ? 0 : g.corridor.cx - g.corridor.halfW - 24;
     const tw = view.w - x0;
-    const vis = view.mobile ? VISIBLE_MOBILE : VISIBLE;
+    /* В упрощённом режиме свечей вдвое меньше. Лента остаётся лентой, а
+       каждая свеча — это обводка и заливка, то есть работа, которую
+       видно только вблизи. Флаг ставит линейка кадра (stage.js). */
+    const vis = Math.round((view.mobile ? VISIBLE_MOBILE : VISIBLE) *
+                           (view.simple ? 0.5 : 1));
     const slot = tw / vis;
     const bodyW = Math.max(1.5, slot * 0.66);
 

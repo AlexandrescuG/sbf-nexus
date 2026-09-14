@@ -240,6 +240,13 @@ export const globe = {
        норме, а всплески давала как раз эта перерисовка. Остановился —
        шар поехал дальше с того же угла, без скачка. */
     if (view.mobile && L.spin != null && (view.speed || 0) > 260) return L;
+
+    /* В упрощённом режиме шар вообще не поворачивается. Это самая дорогая
+       работа финала — пять тысяч точек, — и отдаём её первой: неподвижный
+       шар остаётся шаром, а рваная прокрутка остаётся рваной. Флаг ставит
+       линейка кадра (stage.js), когда треть кадров подряд не укладывается
+       в частоту экрана. */
+    if (view.simple && L.spin != null) return L;
     L.spin = spin;
     const c = L.getContext('2d');
     c.clearRect(0, 0, L.width, L.height);
@@ -362,7 +369,7 @@ export const globe = {
        заливка: шестьдесят beginPath/fill в кадре стоят дороже, чем сами
        шестьдесят точек. */
     const night = Math.min(1, (view.dark || 0) * 1.2);
-    if (night > 0.02) {
+    if (night > 0.02 && !view.simple) {
       ctx.fillStyle = 'rgba(255,244,214,' + (0.5 * night).toFixed(3) + ')';
       ctx.beginPath();
       for (let i = 0; i < this.stars.length; i++) {
