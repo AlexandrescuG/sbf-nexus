@@ -20,10 +20,11 @@
 */
 
 import { createCamera } from './camera.js';
-import { createMark } from './mark.js';
+import { createMark, MARK_CY } from './mark.js';
 import { ACTS } from './acts/registry.js';
 import { initTicker } from './ticker.js';
 import { createLabels } from './labels.js';
+import { vh } from './viewport.js';
 
 /* ── Линейка кадра ───────────────────────────────────────────
    Мерить надо ИНТЕРВАЛ между кадрами, а не время своего кода.
@@ -82,9 +83,27 @@ function boot() {
   let skipped = false, markDim = 1;
   let current = null;
 
+  /* Высота — из viewport.js, там же объяснено, почему она не равна
+     innerHeight на телефоне. Здесь важно одно: если размер не изменился,
+     холст не трогаем. Пересоздание холста — полная перерисовка, а за ним
+     идёт camera.measure() по всем актам и перепечка подложек глобуса.
+
+     Берём БОЛЬШЕЕ из устойчивой высоты и высоты слоя. Слой закреплён по
+     layout viewport, и на iOS при развёрнутой адресной строке он выше
+     видимой области; холст короче слоя оставил бы снизу пустую полосу. */
+  let sized = { w: 0, h: 0 };
+
   function resize() {
-    view.w = layer.clientWidth;
-    view.h = layer.clientHeight;
+    const w = layer.clientWidth;
+    const h = Math.max(vh(), layer.clientHeight);
+    if (w === sized.w && h === sized.h) return;
+    sized = { w: w, h: h };
+    view.w = w;
+    view.h = h;
+    /* Размер в пикселях, а не в процентах: иначе холст растянется под
+       слой, и картинка на 8% ниже превратит шар в эллипс. */
+    cv.style.width = w + 'px';
+    cv.style.height = h + 'px';
     /* Телефон — не «то же самое, но уже». Там вдвое меньше площади под
        сцену, вчетверо слабее процессор и батарея, которую мы тратим.
        Флаг идёт в акты: каждый сам решает, чем поступиться — числом
@@ -244,8 +263,8 @@ function boot() {
     const pick = (a, key, def) => (a[key] == null ? def : a[key]);
     view.markScale = pick(cur, 'markScale', 1) * (1 - k) +
                      pick(nxt, 'markScale', 1) * k;
-    view.markCy = pick(cur, 'markCy', 0.17) * (1 - k) +
-                  pick(nxt, 'markCy', 0.17) * k;
+    view.markCy = pick(cur, 'markCy', MARK_CY) * (1 - k) +
+                  pick(nxt, 'markCy', MARK_CY) * k;
     view.markCx = pick(cur, 'markCx', 1) * (1 - k) +
                   pick(nxt, 'markCx', 1) * k;
     /* Скорость прокрутки нужна не только камере: акт может решить не

@@ -18,6 +18,8 @@
               не видно: это и есть отличие гобелена от книги.
 */
 
+import { vh } from './viewport.js';
+
 const OVERLAP = 0.15;   /* доля акта, на которой соседи сосуществуют */
 
 export function createCamera() {
@@ -46,8 +48,11 @@ export function createCamera() {
 
   function state() {
     if (!spans.length) return { act: null, t: 0, dir: dir, speed: 0, blend: [] };
-    const eye = eyeSmooth == null ? window.scrollY + window.innerHeight / 2
-                                  : eyeSmooth;
+    /* Середина окна — по устойчивой высоте (viewport.js). Иначе на iOS
+       взгляд уезжал на полсотни пикселей каждый раз, когда адресная
+       строка сворачивалась: доля акта менялась без единого движения
+       пальца, и сцена дёргалась сама по себе. */
+    const eye = eyeSmooth == null ? window.scrollY + vh() / 2 : eyeSmooth;
     let cur = spans[0], idx = 0;
     for (let i = 0; i < spans.length; i++) {
       if (eye >= spans[i].top) { cur = spans[i]; idx = i; }
@@ -65,7 +70,7 @@ export function createCamera() {
 
        Считаем долю не от высоты секции, а от того куска, куда взгляд
        действительно может попасть. Для средних актов это то же самое. */
-    const half = window.innerHeight / 2;
+    const half = vh() / 2;
     const docH = document.documentElement.scrollHeight;
     let lo = cur.top, hi = cur.top + (cur.height || 1);
     if (idx === 0) lo = Math.max(lo, Math.min(half, hi - 40));
@@ -107,7 +112,7 @@ export function createCamera() {
        120-герцовом экране кадры вдвое чаще, и фиксированный шаг дал бы там
        вдвое более резкое движение — та же картинка вела бы себя по-разному
        на разных мониторах. */
-    const target = y + window.innerHeight / 2;
+    const target = y + vh() / 2;
     if (eyeSmooth == null) eyeSmooth = target;
     else {
       const k = 1 - Math.exp(-dt / FOLLOW);
@@ -124,7 +129,20 @@ export function createCamera() {
   }
 
   measure();
-  window.addEventListener('resize', measure);
+  /* Пересчитываем карту пути, только если она могла измениться: ширина
+     окна или высота документа. Адресная строка Safari шлёт resize на
+     каждый жест прокрутки, меняя лишь innerHeight, — а высота актов
+     задана в vh от БОЛЬШОГО вьюпорта и от неё не зависит. Без этой
+     проверки один свайп по iPhone стоил десятков полных обходов
+     getBoundingClientRect по всем актам. См. resize() в stage.js. */
+  let seen = { w: 0, doc: 0 };
+  window.addEventListener('resize', function () {
+    const w = window.innerWidth;
+    const doc = document.documentElement.scrollHeight;
+    if (w === seen.w && doc === seen.doc) return;
+    seen = { w: w, doc: doc };
+    measure();
+  });
   /* Высота секций меняется при смене языка и при подгрузке данных —
      пересчитываем, иначе камера едет по устаревшей карте пути. */
   document.addEventListener('sbf:langchange', function () { setTimeout(measure, 60); });

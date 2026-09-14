@@ -230,16 +230,25 @@ export const memory = {
       });
     }, { rootMargin: '200px 0px' });
     this.items.forEach(li => this.io.observe(li));
-    /* Перерисовать при повороте экрана: холст привязан к ширине карточки */
+    /* Перерисовать при повороте экрана: холст привязан к ширине карточки.
+       Именно к ширине — поэтому на resize от адресной строки Safari (там
+       меняется только высота) перерисовывать нечего. Смена языка приходит
+       своим событием и ширину не проверяет: текст под графиком другой. */
     if (!this.onResize) {
-      this.onResize = () => {
+      this.repaint = () => {
         clearTimeout(this.rt);
         this.rt = setTimeout(() => {
           if (this.mounted) this.items.forEach((_, i) => this.paintCard(i));
         }, 250);
       };
+      this.onResize = () => {
+        if (window.innerWidth === this.seenW) return;
+        this.seenW = window.innerWidth;
+        this.repaint();
+      };
+      this.seenW = window.innerWidth;
       window.addEventListener('resize', this.onResize);
-      document.addEventListener('sbf:langchange', this.onResize);
+      document.addEventListener('sbf:langchange', this.repaint);
     }
   },
 
