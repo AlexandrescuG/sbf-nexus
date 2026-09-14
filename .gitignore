@@ -5,3 +5,4 @@ node_modules/
 
 assets/video/
 tools/shots-scene/
+tools/__pycache__/
