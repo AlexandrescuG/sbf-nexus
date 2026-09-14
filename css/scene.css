@@ -434,8 +434,21 @@ body.tapestry h1 em { font-style: italic; color: #8a6d15; }
 @media (max-width: 900px) {
   .act-cases .case-chart {
     display: block;
+    position: relative;
     height: 180px;
     margin: 10px 0 12px;
+  }
+  .act-cases .case-chart canvas { display: block; }
+  /* Шкала и даты — текстом внутри карточки: их выделяют, читает
+     скринридер, и они едут вместе с карточкой сами, без единой строки
+     кода в кадре. */
+  .case-ax, .case-dt {
+    position: absolute;
+    font: 400 9px/1 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    color: var(--ink-gold);
+    white-space: nowrap;
+    pointer-events: none;
   }
 }
 /* Без JS подсветки нет — и тогда приглушать нечего: все кейсы равны */
