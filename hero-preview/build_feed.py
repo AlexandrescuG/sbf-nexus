@@ -185,6 +185,66 @@ EVENT_NAMES = {
 }
 
 
+# Макро-ряды. macro.json приходит из FRED с английскими подписями и без
+# объяснений; на сайте нужно и то, и другое. Порядок здесь — порядок на
+# экране: сначала то, чем ставку задают, потом то, что от неё зависит.
+#
+# Третья строка у каждого ряда — зачем на него смотреть. Без неё панель
+# была бы семью числами, то есть тем же сырьём, только в другом месте:
+# сайт обещает «улики», а улика — это число с объяснением.
+#
+# «Хорошо» и «плохо» здесь не пишем ни для одного ряда: рост нефти хорош
+# для одного клиента и плох для другого, а сайт не даёт рекомендаций
+# (llms.txt, «чего мы НЕ делаем»).
+MACRO_ROWS = [
+    ('DFF', ('Fed Funds Rate', 'Ставка ФРС', 'Rata Fed'),
+     ('the price of money for everyone else',
+      'цена денег для всех остальных',
+      'prețul banilor pentru toți ceilalți'), '%'),
+    # Единственный ряд, который показываем не уровнем: CPI приходит
+    # индексом (334,131), и это число человеку не говорит ничего. Считаем
+    # изменение к прошлому значению в процентах — 0,4% за месяц читается.
+    # База — ПРОШЛОЕ значение, а не текущее: иначе числитель и знаменатель
+    # снова разными линейками.
+    ('CPIAUCSL', ('US Consumer Prices', 'Потребительские цены США', 'Prețuri de consum SUA'),
+     ('what the Fed is raising rates against',
+      'то, против чего ставку и поднимают',
+      'ceea ce contracarează majorarea ratei'), 'pct_change'),
+    ('UNRATE', ('US Unemployment', 'Безработица в США', 'Șomaj SUA'),
+     ('the second half of the Fed mandate',
+      'вторая половина мандата ФРС',
+      'a doua jumătate a mandatului Fed'), '%'),
+    ('T10Y2Y', ('10y minus 2y Yield', 'Спред 10 лет минус 2 года', 'Spread 10 ani minus 2 ani'),
+     ('below zero it has preceded every US recession since 1955',
+      'ниже нуля он предшествовал каждой рецессии в США с 1955 года',
+      'sub zero a precedat fiecare recesiune din SUA din 1955'), '%'),
+    ('T10YIE', ('10y Breakeven Inflation', 'Ожидаемая инфляция на 10 лет', 'Inflație așteptată la 10 ani'),
+     ('inflation the bond market is pricing in, not the forecast',
+      'инфляция, заложенная рынком облигаций, а не прогноз',
+      'inflația inclusă în prețuri de piața obligațiunilor'), '%'),
+    ('DCOILWTICO', ('WTI Oil', 'Нефть WTI', 'Petrol WTI'),
+     ('an input cost in nearly every other price',
+      'входит в себестоимость почти всех прочих цен',
+      'intră în costul aproape tuturor celorlalte prețuri'), '$'),
+    ('DTWEXBGS', ('Trade-Weighted Dollar', 'Торгово-взвешенный доллар', 'Dolar ponderat comercial'),
+     ('the exchange rate the rest of the world pays',
+      'курс, по которому платит остальной мир',
+      'cursul pe care îl plătește restul lumii'), None),
+]
+
+# Уровни доверия из brief.context. Метка приходит из market_intel и
+# означает, ОТКУДА факт: из котировок, из СМИ или из соцсетей без
+# проверки. Это и есть то, чего нет у конкурентов, — не «рынок вырастет»,
+# а «вот что известно, откуда и насколько мы в этом уверены».
+CONTEXT_TIERS = {
+    'quotes': ('from quotes', 'из котировок', 'din cotații'),
+    'media': ('from media', 'из СМИ', 'din presă'),
+    'social_unverified': ('from social media, unverified',
+                          'из соцсетей, не проверено',
+                          'din rețele sociale, neverificat'),
+}
+
+
 def load_terms():
     """Достаёт CALENDAR_TERMS из JS-файла: ключи в кавычках, а ru/ro — нет."""
     try:
@@ -301,6 +361,11 @@ def load(name):
 
 items = []
 untranslated = set()
+# Пропуски, о которых иначе никто не узнает: ряд FRED, которого не
+# оказалось в macro.json, и незнакомая метка доверия в контексте брифа.
+# Обе дырки тихие — блок просто выйдет короче, чем задумано.
+missing_macro = []
+unknown_conf = set()
 
 brief = load('brief_today.json')
 
@@ -484,10 +549,25 @@ if brief:
         if name and name not in EVENT_NAMES and name not in TERMS:
             untranslated.add(name)
         cn = COUNTRY_NAMES.get((e.get('country') or '').upper())
+        # Прошлая реакция: медиана хода за 30 минут на предыдущих
+        # публикациях и число наблюдений. Шаг 2 в «Подходе» на сайте
+        # обещает «считаем, как рынок двигался на прошлых публикациях» —
+        # и до сих пор ничего не показывал. Число наблюдений обязательно
+        # рядом: медиана по четырём случаям и по сорока — это разные
+        # утверждения, а выглядят одинаково.
+        pr = e.get('past_reaction') or {}
+        past = None
+        if pr.get('median_atr_30m') is not None and (pr.get('n') or 0) > 0:
+            past = {'symbol': pr.get('symbol'),
+                    'n': pr.get('n'),
+                    'median_atr_30m': pr.get('median_atr_30m')}
         ev.append({'ts_utc': e.get('ts_utc'),
                    'country': tri(*cn) if cn else tri('', '', ''),
                    'title': head,
-                   'impact': (e.get('impact') or '').lower() or None})
+                   'impact': (e.get('impact') or '').lower() or None,
+                   'forecast': e.get('forecast'),
+                   'previous': e.get('previous'),
+                   'past': past})
     # Картинка брифа: её рисует brief_image_job раз в сутки. Берём последнюю
     # существующую, а не «сегодня» — если утренний прогон не отработал,
     # лучше вчерашний бриф с честной датой, чем битая картинка.
@@ -525,9 +605,63 @@ if brief:
                            'direction': pat.get('direction'),
                            'share': pat.get('agree_share_5'), 'n': pat.get('n')}
 
+    # 6.4 Что известно и насколько уверены. Синтез приходит по-русски,
+    # как и заголовок брифа, — помечаем язык, а не выдаём русский за
+    # перевод (то же правило, что в 4).
+    ctx = []
+    for c in (brief.get('context') or []):
+        text = (c.get('text') or '').strip()
+        conf = c.get('confidence')
+        if not text:
+            continue
+        if conf not in CONTEXT_TIERS:
+            # Незнакомый уровень доверия — не показываем вовсе. Подписать
+            # его «из СМИ» наугад значило бы соврать ровно в том месте,
+            # ради которого блок и сделан.
+            unknown_conf.add(str(conf))
+            continue
+        ctx.append({'text': text, 'confidence': conf,
+                    'label': tri(*CONTEXT_TIERS[conf]), 'lang': 'ru'})
+    if ctx:
+        grow['context'] = ctx
+
+# 7. Макро: на чём стоит рынок сегодня. Живые ряды FRED, обновляются сами.
+# До сих пор сайт их не показывал вовсе — при том что лежат они в одной
+# папке с брифом.
+macro_src = load('macro.json') or {}
+macro = []
+for key, label, why, unit in MACRO_ROWS:
+    row = macro_src.get(key)
+    if not isinstance(row, dict) or row.get('value') is None:
+        missing_macro.append(key)
+        continue
+    value, delta = row.get('value'), row.get('delta')
+    span = None
+    if unit == 'pct_change':
+        # Ряд индексный: показываем не уровень, а шаг. Без прошлого
+        # значения шага нет — ряд пропускаем, а не рисуем ноль.
+        if not delta:
+            missing_macro.append(key + ' (нет прошлого значения)')
+            continue
+        base = value - delta
+        if not base:
+            missing_macro.append(key + ' (нулевая база)')
+            continue
+        value, delta, unit = round(delta / base * 100, 2), None, '%'
+        span = tri('month over month', 'за месяц', 'lunar')
+    # Округляем здесь, а не в браузере: 118.0732 у торгово-взвешенного
+    # доллара — это точность источника, а не смысл. Два знака хватает
+    # каждому из семи рядов.
+    macro.append({'key': key, 'label': tri(*label), 'why': tri(*why),
+                  'value': round(value, 2), 'span': span,
+                  'delta': None if delta is None else round(delta, 2),
+                  'date': row.get('date'), 'unit': unit})
+
 payload = {
     'updated': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     'grow': grow,
+    'macro': macro,
+    'macro_updated': macro_src.get('_updated'),
     'items': items,
     'today': today,
     'quotes': quotes,
@@ -543,6 +677,17 @@ if unknown_places:
     # английский заголовок на русской, просто её реже замечают
     print(f'  город не в таблице ({len(unknown_places)}): '
           + ', '.join(sorted(unknown_places)[:8]))
+print(f'  макро: {len(macro)} из {len(MACRO_ROWS)} рядов, '
+      f'контекст: {len(grow.get("context") or [])} уровня, '
+      f'календарь с прошлой реакцией: '
+      f'{sum(1 for e in (grow.get("brief") or {}).get("events") or [] if e.get("past"))} '
+      f'из {len((grow.get("brief") or {}).get("events") or [])}')
+if missing_macro:
+    # Короткая панель выглядит как задумано и молчит о том, что ряда нет
+    print(f'  макро-ряд не пришёл: ' + ', '.join(missing_macro))
+if unknown_conf:
+    print(f'  незнакомая метка доверия (блок пропущен): '
+          + ', '.join(sorted(unknown_conf)))
 _news_en = sum(1 for o in items if o['title']['ru'] == o['title']['en'])
 if _news_en:
     print(f'  заголовков только на английском: {_news_en} из {len(items)} '
