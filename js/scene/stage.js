@@ -163,6 +163,10 @@ function boot() {
        кольцо в полный рост перекрыло бы половину. */
     const lead = ACTS[cam.act];
     view.markScale = (lead && lead.markScale) || 1;
+    view.markCy = lead && lead.markCy;
+    /* Скорость прокрутки нужна не только камере: акт может решить не
+       делать дорогую работу, пока страница летит под пальцем. */
+    view.speed = cam.speed;
     const onTop = !!(lead && lead.markOnTop);
     if (!onTop) mark.renderGlyph(ctx, view);
     for (let i = 0; i < cam.blend.length; i++) {
