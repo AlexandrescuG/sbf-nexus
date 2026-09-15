@@ -9,6 +9,8 @@
 
 import { world }    from './world.js';
 import { stream }   from './stream.js';
+import { trust }    from './trust.js';
+import { macro }    from './macro.js';
 import { lens }     from './lens.js';
 import { terminal } from './terminal.js';
 import { memory }   from './memory.js';
@@ -18,6 +20,8 @@ import { globe }    from './globe.js';
 export const ACTS = {
   world:    world,      /* мир шумит — знак принимает */
   stream:   stream,     /* из шума выходит продукт — выдаёт */
+  trust:    trust,      /* три уровня доверия — обрабатывает */
+  macro:    macro,      /* на чём стоит рынок — знак принимает */
   lens:     lens,       /* лента сквозь знак — обрабатывает */
   terminal: terminal,   /* платформа и PRO — выдаёт */
   memory:   memory,     /* память рынков — обрабатывает */

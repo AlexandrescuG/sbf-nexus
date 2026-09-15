@@ -22,7 +22,12 @@ URL = 'http://127.0.0.1:5001/index-next.html'
 
 SPAN = """([id, t]) => {
   const els = Array.from(document.querySelectorAll('.act'));
-  const el = els.find(e => (e.dataset.act || e.id) === id) || els[0];
+  /* Сначала по id секции, потом по акту сцены. Один акт бывает у
+     нескольких секций (терминал ×2, услуги ×3, поток ×2), и поиск
+     только по акту всегда приводил к первой из них — снять вторую было
+     нечем. */
+  const el = els.find(e => e.id === id) ||
+             els.find(e => e.dataset.act === id) || els[0];
   const r = el.getBoundingClientRect();
   const top = r.top + scrollY;
   const half = innerHeight / 2;

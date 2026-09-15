@@ -72,13 +72,21 @@ def main():
     # карточка партнёра, формат времени. Без их учёта список «лишних»
     # состоял бы наполовину из работающих ключей и был бы бесполезен.
     prefixes = set()
+    quoted = set()
     for js in sorted((ROOT / 'js').rglob('*.js')):
         src = js.read_text(encoding='utf-8', errors='ignore')
         # В актах функция перевода часто зовётся T() — короткий локальный алиас
         used |= set(re.findall(r"""[\s(][tT]\(\s*['"]([\w.]+)['"]""", src))
         used |= set(re.findall(r"""i18n\.t\(\s*['"]([\w.]+)['"]""", src))
         prefixes |= set(re.findall(r"""['"]([\w.]+\.)['"]\s*\+""", src))
+        # Ключ не всегда стоит прямо в скобках: в fundamentals.js он лежит
+        # в таблице соответствий, а зовётся уже переменной. Считаем любую
+        # строку в кавычках, которая ЕСТЬ в словаре, — выдумать такое
+        # совпадение случайно нельзя, а без этого девять работающих ключей
+        # попадали в «кандидаты на удаление».
+        quoted |= set(re.findall(r"""['"]([a-z][\w]*\.[\w.]+)['"]""", src))
     base = sets[langs[0]]
+    used |= (quoted & base)
     no_translation = sorted(k for k in used if k not in base)
     pf = tuple(prefixes)
     unused = sorted(k for k in base

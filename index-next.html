@@ -135,7 +135,45 @@
     </div>
   </section>
 
-  <!-- ── Акт 3: подход ─────────────────────────────────── -->
+  <!-- ── Акт 3: что известно и насколько верим ─────────────
+       Единственное место на сайте, где написано не «мы анализируем», а
+       «вот сегодняшний факт, вот откуда он и вот насколько мы за него
+       ручаемся». Содержимое живое: три уровня приходят из утреннего
+       брифа (grow.context в hero-feed.json), сайт их только раскладывает.
+       Пока лента не пришла — честная строка, а не выдуманный пример. -->
+  <section class="act" id="act-know" data-act="trust">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="know.eyebrow">Картина дня</p>
+      <h2 data-i18n="know.heading">Что известно — и насколько этому можно верить</h2>
+      <p class="act-lead" data-i18n="know.lead">—</p>
+      <ol class="act-tiers" id="know-tiers">
+        <li class="act-note" data-i18n="know.empty">Сегодняшний разбор ещё готовится</li>
+      </ol>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=know_brief" data-track="know_brief" target="_blank" rel="noopener" data-i18n="know.cta">Открыть бриф целиком →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Акт 4: на чём стоит рынок ─────────────────────────
+       Семь рядов FRED. Лежали в одной папке с брифом и на сайт не
+       попадали ни разу; руководитель при этом видел одни свечи. -->
+  <section class="act" id="act-macro" data-act="macro">
+    <div class="act-col">
+      <p class="act-eyebrow" data-i18n="macro.eyebrow">Основания</p>
+      <h2 data-i18n="macro.heading">На чём стоит рынок сегодня</h2>
+      <p class="act-lead" data-i18n="macro.lead">—</p>
+      <ul class="act-macro" id="macro-rows">
+        <li class="act-note" data-i18n="macro.empty">Ряды обновляются</li>
+      </ul>
+      <p class="act-note" data-i18n="macro.note">—</p>
+      <p class="act-actions">
+        <a class="act-cta" href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site&amp;utm_medium=cta&amp;utm_campaign=macro_panel" data-track="macro_terminal" target="_blank" rel="noopener" data-i18n="macro.cta">Смотреть в терминале →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Акт 5: подход ─────────────────────────────────── -->
   <section class="act" id="act-approach" data-act="lens">
     <div class="act-col">
       <p class="act-eyebrow" data-i18n="approach.eyebrow">ПОДХОД</p>
@@ -151,6 +189,15 @@
            них ещё и дублировали то, что теперь написано на самом графике
            (легенда с образцами линий, lens.js). Осталось одно —
            единственное, чего на графике не скажешь. -->
+      <!-- Шаг 2 обещает «считаем, как рынок ходил на прошлых выходах» с
+           самого начала и до сих пор ничего не показывал. Здесь он
+           показан: ближайшие события с медианой хода за 30 минут и
+           числом наблюдений. Число обязательно рядом — медиана по
+           четырём случаям и по сорока выглядят одинаково. -->
+      <p class="act-eyebrow" data-i18n="approach.ev_head">Ближайшие события</p>
+      <ul class="act-events" id="approach-events">
+        <li class="act-note" data-i18n="macro.empty">Ряды обновляются</li>
+      </ul>
       <p class="act-note" data-i18n="approach.lens_cap">Снаружи — шум. Внутри — уровни, средняя, паттерн</p>
       <p class="act-actions">
         <a class="act-cta" href="https://lp.sbfconsult.com/chart.html?s=GOLD&utm_source=sbfconsult_site&utm_medium=cta&utm_campaign=approach" target="_blank" rel="noopener" data-i18n="approach.cta">Смотреть живой график →</a>

@@ -23,6 +23,7 @@ import { createCamera } from './camera.js';
 import { createMark, MARK_CY } from './mark.js';
 import { ACTS } from './acts/registry.js';
 import { initTicker } from './ticker.js';
+import { initFundamentals } from './fundamentals.js';
 import { createLabels } from './labels.js';
 import { vh } from './viewport.js';
 
@@ -458,6 +459,7 @@ function boot() {
 
   resize();
   initTicker();
+  initFundamentals();
   start();
   window.SBF_STAGE = { camera: camera, mark: mark, acts: ACTS,
                        start: start, stop: stop, resize: resize };
