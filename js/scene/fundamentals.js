@@ -141,7 +141,12 @@ function events(meta) {
        показать первую без n значило бы выдать её за статистику. */
     const p = e.past;
     const past = p
-      ? T('approach.ev_past').replace('{v}', num(p.median_atr_30m, '%'))
+      /* median_atr_30m — доля ДНЕВНОГО ATR инструмента, а не проценты
+         цены: «0.31 ATR за 30 мин, а не сырые пункты», так и записано в
+         event_reactions_job.py на стороне market_intel. Здесь стояло
+         '%', и 0,104 выходило на экран как «10,4%» — ход, которого за
+         полчаса не бывает. Единица теперь в самой строке словаря. */
+      ? T('approach.ev_past').replace('{v}', num(p.median_atr_30m))
                              .replace('{n}', p.n)
       : T('approach.ev_none');
     const fc = (e.forecast != null && e.previous != null)

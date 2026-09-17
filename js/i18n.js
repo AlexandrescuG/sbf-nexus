@@ -95,7 +95,7 @@ ru: {
   },
   approach: {
     ev_head:  'Ближайшие события и как рынок ходил на прошлых',
-    ev_past:  'медиана за 30 мин: {v} · наблюдений: {n}',
+    ev_past:  'медиана хода за 30 мин: {v} дневного ATR · наблюдений: {n}',
     ev_none:  'прошлых выходов пока мало',
     ev_fc:    'прогноз {f}, прошлое {p}',
     lens_cap: 'Снаружи — шум. Внутри — уровни, средняя, паттерн',
@@ -454,7 +454,7 @@ en: {
   },
   approach: {
     ev_head:  'Upcoming events and how the market moved on previous ones',
-    ev_past:  'median over 30 min: {v} · observations: {n}',
+    ev_past:  'median 30-min move: {v} of daily ATR · observations: {n}',
     ev_none:  'too few previous releases so far',
     ev_fc:    'forecast {f}, previous {p}',
     lens_cap: 'Outside — noise. Inside — levels, average, pattern',
@@ -810,7 +810,7 @@ ro: {
   },
   approach: {
     ev_head:  'Evenimente apropiate și cum s-a mișcat piața la cele anterioare',
-    ev_past:  'mediana pe 30 min: {v} · observații: {n}',
+    ev_past:  'mediana mișcării pe 30 min: {v} din ATR zilnic · observații: {n}',
     ev_none:  'prea puține publicări anterioare deocamdată',
     ev_fc:    'prognoză {f}, anterior {p}',
     lens_cap: 'În exterior — zgomot. În interior — niveluri, media, tipar',
