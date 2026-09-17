@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Карта сайта sbfconsult.com.
+
+     Перечислено только то, что реально существует и открыто: главная,
+     предупреждение о рисках и казахстанский лендинг. Гобелен
+     (index-next.html) и прототип первого экрана сюда не попадают — они
+     помечены noindex и закрыты в robots.txt; карта, объявляющая
+     запрещённое, противоречит сама себе.
+
+     Языки указаны через hreflang так же, как в <head> главной: это одна
+     страница с тремя версиями по ?lang=, а не три разных адреса. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://sbfconsult.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/risk.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/cons-kz/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

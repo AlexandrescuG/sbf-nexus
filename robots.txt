@@ -1,0 +1,76 @@
+# sbfconsult.com — что можно читать роботам.
+#
+# Файла здесь не было вовсе. Формально это значит «можно всё», но молчание
+# и разрешение — разные вещи: без явного списка не видно, что решение
+# принято, а на платформе (lp.sbfconsult.com) такой список есть с самого
+# начала. Держим политику одинаковой на обоих доменах.
+#
+# ВАЖНО про Cloudflare. С 15 сентября 2026 он делит ИИ-трафик на три
+# категории и часть из них блокирует по умолчанию — robots.txt на это не
+# влияет вообще. Если категория закрыта в панели, бот сюда не дойдёт и
+# разрешения ниже ничего не значат. Проверяется в Security → Bots.
+#
+#   Search   — индексируют и отвечают СО ССЫЛКОЙ (OAI-SearchBot,
+#              Claude-SearchBot, PerplexityBot). Ради них всё и делается.
+#   Agent    — открывают страницу прямо сейчас, потому что человек
+#              спросил (ChatGPT-User).
+#   Training — забирают текст в веса модели (GPTBot, ClaudeBot, CCBot).
+#              Ссылки не дают. Если решим, что отдавать тексты в обучение
+#              не хотим, менять надо ЭТУ группу — и в панели Cloudflare.
+
+User-agent: *
+Allow: /
+
+# Черновики и служебное. Гобелен (index-next.html) помечен noindex в самой
+# странице, здесь то же самое второй раз: мета видна только тому, кто уже
+# скачал страницу.
+Disallow: /index-next.html
+Disallow: /hero-preview/
+Disallow: /tools/
+Disallow: /docs/
+Disallow: /_archive/
+Disallow: /node_modules/
+
+# ── Отвечают со ссылкой ────────────────────────────────────
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Открывают страницу по просьбе человека ─────────────────
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Забирают в обучение ────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://sbfconsult.com/sitemap.xml
