@@ -703,8 +703,33 @@
     var date = d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : (lang === 'ro' ? 'ro-RO' : 'en-GB'),
                                     { day: 'numeric', month: 'long' });
     var mark = (t.lang && t.lang !== lang) ? ' <em>' + esc(t.lang.toUpperCase()) + '</em>' : '';
+
+    /* Слово «Сегодня» — утверждение, и оно должно быть правдой.
+     *
+     * Бриф готовит утренний прогон market_intel, сайт его только
+     * показывает. Не отработал прогон — вчерашний заголовок остаётся на
+     * месте, а над ним по-прежнему «Сегодня». Врёт ровно та строка, ради
+     * которой первый экран и сделан: «вот что мы сделали сегодня утром».
+     * Котировки в той же ленте это правило соблюдают с самого начала —
+     * старше двух часов не показываются вовсе.
+     *
+     * Теперь эту строку читают не только люди: главная открыта для
+     * поисковых и агентских краулеров, и дата отсюда уходит в ответ
+     * ассистента как факт с нашего сайта.
+     *
+     * День в день — «Сегодня · дата»; старше — одна дата без обещания;
+     * старше трёх дней — не показываем. Сравниваем по календарным дням:
+     * бриф датирован днём, и разница в часах тут ничего не значит.
+     * Проверяется tools/brief-freshness.py. */
+    var day = 24 * 3600 * 1000;
+    var midnight = new Date(); midnight.setHours(0, 0, 0, 0);
+    var local = t.date ? new Date(t.date + 'T00:00:00') : new Date();
+    var age = isNaN(local) ? 0 : Math.round((midnight - local) / day);
+    if (age > 3) { host.hidden = true; return; }
+    var head = age > 0 ? date : T('hero.today').replace('{d}', date);
+
     host.hidden = false;
-    host.innerHTML = '<b>' + esc(T('hero.today').replace('{d}', date)) + '</b> '
+    host.innerHTML = '<b>' + esc(head) + '</b> '
                    + esc(t.headline) + mark
                    + ' <a href="https://lp.sbfconsult.com/?utm_source=sbfconsult_site'
                    + '&utm_medium=cta&utm_campaign=hero_brief" target="_blank" rel="noopener">'
