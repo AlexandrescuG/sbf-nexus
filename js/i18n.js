@@ -198,7 +198,10 @@ ru: {
     target_label:    'КОМУ ПОДХОДИТ',
     partner_label:   'ПАРТНЁРЫ УРОВНЯ',
     format_h: 'Формат', includes_h: 'Что входит', steps_h: 'Как начать',
-    partner_note: 'Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их. Нажмите на карточку — реквизиты и лицензии.',
+    /* Обещание «нажмите на карточку» убрано: карточек партнёров в
+       гобелене нет, и модалка с реквизитами к странице не подключена.
+       Подпись звала туда, куда нажать невозможно. */
+    partner_note: 'Счёт открывается у партнёра. SBF не принимает средства клиентов и не хранит их.',
     partner_label_s: 'ПАРТНЁР УРОВНЯ',
     s1: {
       format: 'Онлайн на платформе, в своём темпе · RU / RO / EN · без срока',
@@ -554,7 +557,7 @@ en: {
     target_label:    'WHO IT\'S FOR',
     partner_label:   'LEVEL PARTNERS',
     format_h: 'Format', includes_h: 'What is included', steps_h: 'How to start',
-    partner_note: 'The account is opened with the partner. SBF does not accept or hold client funds. Tap a card for details and licences.',
+    partner_note: 'The account is opened with the partner. SBF does not accept or hold client funds.',
     partner_label_s: 'LEVEL PARTNER',
     s1: {
       format: 'Online on the platform, at your own pace · RU / RO / EN · no time limit',
@@ -910,7 +913,7 @@ ro: {
     target_label:    'PENTRU CINE ESTE',
     partner_label:   'PARTENERI NIVEL',
     format_h: 'Format', includes_h: 'Ce include', steps_h: 'Cum începeți',
-    partner_note: 'Contul se deschide la partener. SBF nu acceptă și nu păstrează fondurile clienților. Apăsați pe card pentru detalii și licențe.',
+    partner_note: 'Contul se deschide la partener. SBF nu acceptă și nu păstrează fondurile clienților.',
     partner_label_s: 'PARTENER NIVEL',
     s1: {
       format: 'Online pe platformă, în ritmul dvs. · RU / RO / EN · fără termen',

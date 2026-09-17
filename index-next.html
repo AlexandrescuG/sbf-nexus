@@ -25,6 +25,11 @@
 <link rel="alternate" hreflang="en" href="https://sbfconsult.com/?lang=en">
 <link rel="alternate" hreflang="ro" href="https://sbfconsult.com/?lang=ro">
 <link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/">
+<!-- Значок вкладки. Без него браузер просит /favicon.ico, получает 404 и
+     пишет об этом в консоль — на странице, которую открывают, чтобы
+     смотреть на консоль. Тот же файл, что у живой главной. -->
+<link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -377,8 +382,13 @@
     <div class="act-col">
       <p class="act-eyebrow"><span data-i18n="svc.logo_lvl3">УРОВЕНЬ 3</span></p>
       <h2 data-i18n="svc.s3.title">Доверительное управление</h2>
-      <p class="act-lead" data-i18n="svc.s3.desc">Управление счётом у партнёра по согласованной стратегии.</p>
-      <p class="act-note" data-i18n="svc.s3.desc_m">—</p>
+      <!-- Здесь стояли оба описания подряд: короткое (desc) и полное
+           (desc_m). Это два варианта ОДНОГО текста — на живом сайте
+           второй показывают вместо первого на узком экране, — и рядом
+           они читались как повтор своими словами. Оставлено полное:
+           уровень с доверительным управлением — единственный, где
+           человеку нужны подробности до перехода к списку. -->
+      <p class="act-lead" data-i18n="svc.s3.desc_m">—</p>
       <p><b data-i18n="svc.target_label">ДЛЯ КОГО</b> <span data-i18n="svc.s3.target">—</span></p>
       <p class="act-eyebrow" data-i18n="svc.includes_h">ЧТО ВХОДИТ</p>
       <ul class="act-steps">
@@ -530,8 +540,12 @@
 <script src="js/lead-modal.js"></script>
 <!-- topojson-client (7 КБ) распаковывает vendor/countries-110m.json.
      d3 отсюда убран: 273 КБ ради трёх функций — больше трети всего, что
-     страница тянула до первого экрана. Проекция своя, js/scene/geo.js. -->
-<script src="vendor/topojson-client.min.js"></script>
+     страница тянула до первого экрана. Проекция своя, js/scene/geo.js.
+
+     defer: скрипт блокировал отрисовку, хотя нужен только финалу — там
+     из него распаковываются материки. Модуль сцены ниже и так грузится
+     отложенно, а глобус берёт topojson не раньше, чем до него доедут. -->
+<script defer src="vendor/topojson-client.min.js"></script>
 <script type="module" src="js/scene/stage.js"></script>
 </body>
 </html>
