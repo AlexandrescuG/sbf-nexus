@@ -184,8 +184,24 @@
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (txt) {
         try { META = JSON.parse(txt) || {}; } catch (e) { META = {}; }
+        /* Бриф и котировки рисуем СРАЗУ, до разбора новостей.
+         *
+         * Раньше они стояли в самом конце удачной ветки, а пустой список
+         * новостей бросал исключение и уводил выполнение в catch. То
+         * есть отсутствие ОДНОЙ части ленты стирало и вторую: бриф
+         * приходил, был разобран и лежал в META — а на экране его не
+         * было, и статус сообщал «Лента недоступна», хотя лента как раз
+         * пришла. Три независимые вещи (точки на карте, строка брифа,
+         * котировки) не должны падать вместе. */
+        renderToday();
+        renderTicker();
         var items = parseFeed(txt).map(normalize).filter(Boolean);
-        if (!items.length) throw new Error('пусто');
+        if (!items.length) {
+          /* Лента пришла, событий в ней нет. Это не отказ: карта
+             остаётся без подписей, и об этом говорится прямо. */
+          setStatus('Лента: событий пока нет', true);
+          return;
+        }
         /* Что пришло впервые — покажем раньше остального. */
         var fresh = items.filter(function (it) { return !knownIds[it.id]; })
                          .map(function (it) { return it.id; });
@@ -218,13 +234,20 @@
         window.SBF_GEO_POINTS = items;
         document.dispatchEvent(new CustomEvent('sbf:geofeed', { detail: items }));
         startSlots();
-        renderToday();
+        /* Второй раз — уже с новостями. Первый вызов наверху показал
+           одни котировки: он нужен на случай, когда новостей не будет
+           вовсе, и без него пустой список событий уносил за собой всю
+           строку. */
         renderTicker();
       })
       .catch(function () {
         /* Молча подставить выдуманные строки нельзя — на карте это будет
-           неправдой. Показываем карту без подписей и говорим об этом. */
+           неправдой. Показываем карту без подписей и говорим об этом.
+           renderToday здесь тоже зовём: если лента успела разобраться, а
+           упало что-то дальше, бриф всё равно настоящий; если не успела —
+           строка сама спрячется, у неё есть своя проверка. */
         setStatus('Лента недоступна', false);
+        renderToday();
         renderTicker();
       });
   }
@@ -754,7 +777,11 @@
 
   function renderTicker() {
     var track = document.getElementById('ticker-track');
-    if (!track || !POOL.length) return;
+    /* Раньше здесь было `!POOL.length` — строка молчала, пока не
+       приедут новости, хотя половина её содержимого (котировки) от
+       новостей не зависит вовсе. Это та же связка, что стирала строку
+       брифа: три независимые части одной ленты падали вместе. */
+    if (!track) return;
     var lang = curLang();
     var parts = POOL.map(function (it) {
       var tag = localized(it.tag, lang);
@@ -766,6 +793,9 @@
     parts = quoteParts(lang).concat(parts);
     /* Дублируем список: строка крутится по кругу, без второй копии
        на стыке будет пустота. */
+    /* Нечего показать — оставляем честную заглушку, которая уже стоит в
+       разметке, а не пустую бегущую строку. */
+    if (!parts.length) return;
     track.innerHTML = parts.join('') + parts.join('');
     animateTicker(track);
   }
