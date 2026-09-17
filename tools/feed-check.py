@@ -60,9 +60,27 @@ def main():
             bad.append(key)
 
     macro = d.get('macro') or []
-    print('макро-рядов    %d из %d' % (len(macro), WANT_MACRO))
-    if len(macro) < WANT_MACRO:
+    # Сравниваем не с семёркой, а с источником.
+    #
+    # Первый прогон объявил дефектом «6 из 7» — а это был обычный день:
+    # FRED публикует ряды в разное время, и одного из них в macro.json в
+    # тот момент просто не было. Проверка, которая ругается на нормальное
+    # утро, через неделю перестаёт что-либо значить. Наш дефект — это
+    # когда ряд В ИСТОЧНИКЕ ЕСТЬ, а в ленте его нет.
+    src = pathlib.Path('/mnt/sbfdata/sbf-platform/market_intel/web/data/macro.json')
+    have_src = 0
+    if src.exists():
+        raw = json.loads(src.read_text(encoding='utf-8'))
+        have_src = sum(1 for k, v in raw.items()
+                       if not k.startswith('_') and isinstance(v, dict)
+                       and v.get('value') is not None)
+    print('макро-рядов    %d в ленте, %d в источнике (задумано %d)'
+          % (len(macro), have_src, WANT_MACRO))
+    if have_src and len(macro) < have_src:
+        print('  ряд есть в macro.json, но не доехал до ленты')
         bad.append('macro')
+    elif len(macro) < WANT_MACRO:
+        print('  источник отдал не все ряды — это к market_intel, не к сайту')
     # Ряд без значения или без подписи на одном из языков — дырка в панели,
     # которую на экране видно как пустое место, а в файле не видно вовсе.
     for m in macro:
