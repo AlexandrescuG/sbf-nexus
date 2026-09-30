@@ -22,8 +22,8 @@ ru: {
   dots: ['Карта','События','Подход','Платформа','PRO-оффер','Память рынков','Обучение','Сопровождение','Управление','Контакты'],
   hero: {
     headline:  'Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.',
-    subline:   'SBF Company SRL · Кишинёв<br>Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.',
-    trust:     'Bloomberg LEI · Эксперты с опытом 10–25 лет · Партнёры с лицензиями ЕС',
+    subline:   'SBF Company SRL · Кишинёв<br>Анализ от экспертов, сопровождение торговых счетов, доверительное управление через регулируемых брокеров-партнёров.',
+    trust:     'Bloomberg LEI · Эксперты с опытом 10–25 лет · Регулируемые брокеры-партнёры',
     cta1:        'Открыть платформу →',
     cta2:        'Связаться',
     promo_badge: 'БЕСПЛАТНАЯ РЕГИСТРАЦИЯ · 30 ДНЕЙ PRO ЗА ОПРОС ТРЕЙДЕРА · БЕЗ АВТОСПИСАНИЯ',
@@ -149,8 +149,8 @@ ru: {
       title:           'Сопровождение счёта',
       target:          'Для активных клиентов с собственным капиталом',
       desc:            'Сопровождение торгового счёта клиента: обзор позиций, информационная поддержка, статистические наблюдения. Решения принимает клиент.',
-      naga_meta:       'CySEC · MT4/MT5 · 4000+ инструментов',
-      instaforex_meta: 'CySEC · MT4/MT5 · от $100 депозит',
+      naga_meta:       'CySEC · FSA (Сейшелы) · MT4/MT5',
+      instaforex_meta: 'CySEC · BVI FSC · от $100 депозит',
     },
     s3: {
       title:           'Доверительное управление',
@@ -178,7 +178,7 @@ ru: {
     cta:          'ОСТАВИТЬ ЗАЯВКУ',
     platform_cta: 'Работать с платформой самостоятельно →',
   },
-  svc_du_disclaimer: 'SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через партнёров, регулируемых в ЕС (FCA, CySEC). SBF выступает консультантом и не принимает клиентские средства на свои счета.',
+  svc_du_disclaimer: 'SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется только через брокера-партнёра FxPro. Какое юрлицо FxPro откроет счёт и какой регулятор его надзирает (FCA — Великобритания, CySEC — Кипр, SCB — Багамы, FSA — Сейшелы), зависит от страны клиента и указывается в договоре. SBF выступает консультантом и не принимает клиентские средства на свои счета.',
   risk_warning: 'Торговля CFD и маржинальными инструментами сопряжена с высоким риском потери капитала и подходит не всем инвесторам.',
   sticky: 'Связаться',
   modal: {
@@ -294,8 +294,8 @@ en: {
   dots: ['Map','Events','Approach','Platform','PRO Offer','Market Memory','Education','Account Support','Management','Contacts'],
   hero: {
     headline:  'The world generates noise.<br><em>We recognise patterns</em>.',
-    subline:   'SBF Company SRL · Chișinău<br>Expert analysis, trading account support, and discretionary management through EU-licensed partners.',
-    trust:     'Bloomberg LEI · Experts with 10–25 years of experience · EU-licensed partners',
+    subline:   'SBF Company SRL · Chișinău<br>Expert analysis, trading account support, and discretionary management through regulated partner brokers.',
+    trust:     'Bloomberg LEI · Experts with 10–25 years of experience · Regulated partner brokers',
     cta1:        'Open Platform →',
     cta2:        'Contact Us',
     promo_badge: 'FREE REGISTRATION · 30 DAYS PRO FOR TRADER SURVEY · NO AUTO-CHARGE',
@@ -421,8 +421,8 @@ en: {
       title:           'Account Support',
       target:          'For active clients with their own capital',
       desc:            'Trading account support: position review, informational support, statistical observations. The client makes all decisions.',
-      naga_meta:       'CySEC · MT4/MT5 · 4,000+ instruments',
-      instaforex_meta: 'CySEC · MT4/MT5 · from $100 deposit',
+      naga_meta:       'CySEC · FSA (Seychelles) · MT4/MT5',
+      instaforex_meta: 'CySEC · BVI FSC · from $100 deposit',
     },
     s3: {
       title:           'Discretionary Management',
@@ -450,7 +450,7 @@ en: {
     cta:          'REQUEST A CALLBACK',
     platform_cta: 'Self-service on the platform →',
   },
-  svc_du_disclaimer: 'SBF Company SRL is not a licensed asset manager. The service is provided exclusively through EU-regulated partners (FCA, CySEC). SBF acts as a consultant and does not accept client funds into its own accounts.',
+  svc_du_disclaimer: 'SBF Company SRL is not a licensed asset manager. The service is provided only through the partner broker FxPro. Which FxPro entity opens the account and which regulator supervises it (FCA — United Kingdom, CySEC — Cyprus, SCB — Bahamas, FSA — Seychelles) depends on the client’s country and is stated in the agreement. SBF acts as a consultant and does not accept client funds into its own accounts.',
   risk_warning: 'Trading CFDs and margined instruments carries a high risk of capital loss and may not be suitable for all investors.',
   sticky: 'Contact',
   modal: {
@@ -566,8 +566,8 @@ ro: {
   dots: ['Hartă','Evenimente','Abordare','Platformă','Ofertă PRO','Memoria Piețelor','Educație','Suport Cont','Management','Contacte'],
   hero: {
     headline:    'Lumea generează zgomot.<br><em>Noi recunoaștem tipare</em>.',
-    subline:     'SBF Company SRL · Chișinău<br>Analiză de specialitate, suport pentru conturi de tranzacționare și management discreționare prin parteneri autorizați UE.',
-    trust:       'Bloomberg LEI · Experți cu 10–25 ani experiență · Parteneri licențiați UE',
+    subline:     'SBF Company SRL · Chișinău<br>Analiză de specialitate, suport pentru conturi de tranzacționare și management discreționar prin brokeri parteneri reglementați.',
+    trust:       'Bloomberg LEI · Experți cu 10–25 ani experiență · Brokeri parteneri reglementați',
     cta1:        'Deschide Platforma →',
     cta2:        'Contactează-ne',
     promo_badge: 'ÎNREGISTRARE GRATUITĂ · 30 ZILE PRO PENTRU SONDAJ TRADER · FĂRĂ ABONAMENT AUTO',
@@ -693,8 +693,8 @@ ro: {
       title:           'Suport Cont',
       target:          'Pentru clienții activi cu capital propriu',
       desc:            'Suport pentru contul de tranzacționare al clientului: revizuirea pozițiilor, suport informațional, observații statistice. Deciziile le ia clientul.',
-      naga_meta:       'CySEC · MT4/MT5 · 4.000+ instrumente',
-      instaforex_meta: 'CySEC · MT4/MT5 · de la $100 depozit',
+      naga_meta:       'CySEC · FSA (Seychelles) · MT4/MT5',
+      instaforex_meta: 'CySEC · BVI FSC · de la $100 depozit',
     },
     s3: {
       title:           'Management Discreționare',
@@ -722,7 +722,7 @@ ro: {
     cta:          'SOLICITAȚI UN APEL',
     platform_cta: 'Lucrați pe platformă independent →',
   },
-  svc_du_disclaimer: 'SBF Company SRL nu este un administrator de active licențiat. Serviciul este furnizat exclusiv prin parteneri reglementați în UE (FCA, CySEC). SBF acționează ca consultant și nu acceptă fonduri ale clienților în propriile conturi.',
+  svc_du_disclaimer: 'SBF Company SRL nu este un administrator de active licențiat. Serviciul este furnizat doar prin brokerul partener FxPro. Entitatea FxPro care deschide contul și autoritatea care o supraveghează (FCA — Regatul Unit, CySEC — Cipru, SCB — Bahamas, FSA — Seychelles) depind de țara clientului și sunt indicate în contract. SBF acționează ca consultant și nu acceptă fonduri ale clienților în propriile conturi.',
   risk_warning: 'Tranzacționarea cu CFD-uri și instrumente cu marjă implică un risc ridicat de pierdere a capitalului și poate să nu fie potrivită pentru toți investitorii.',
   sticky: 'Contact',
   modal: {
@@ -924,7 +924,12 @@ ro: {
   const saved = localStorage.getItem('sbf_lang');
   const _userLang = (navigator.language || '').toLowerCase().split(/[-_]/)[0];
   const auto  = _CIS_LANGS.includes(_userLang) ? 'ru' : (_userLang === 'ro' ? 'ro' : 'en');
-  _lang = _LOCALES[saved] ? saved : auto;
+  /* ?lang= в адресе главнее всего: на него указывают hreflang и sitemap,
+     и поисковик, открывший /?lang=en, обязан увидеть английский, а не
+     язык из чужого localStorage или браузера. */
+  const _urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (_LOCALES[_urlLang]) localStorage.setItem('sbf_lang', _urlLang);
+  _lang = _LOCALES[_urlLang] ? _urlLang : (_LOCALES[saved] ? saved : auto);
 
   window.i18n = { t, ta, setLang, getLang, partnerData, apply: applyTranslations };
 

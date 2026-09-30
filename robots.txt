@@ -1,0 +1,59 @@
+# sbfconsult.com — что можно читать роботам.
+#
+# 🔴 ПОЧЕМУ ЗАПРЕТЫ ПОВТОРЕНЫ В КАЖДОЙ ГРУППЕ. По RFC 9309 бот читает
+# ТОЛЬКО самую конкретную группу, где назван по имени, а группу «*»
+# тогда игнорирует целиком. В прошлой версии у OAI-SearchBot, ClaudeBot,
+# GPTBot и др. была своя группа с одним «Allow: /» — и черновики из
+# группы «*» для них были открыты. Меняете список закрытого — меняйте
+# его во всех трёх группах.
+#
+# ВАЖНО про Cloudflare. С 15.09.2026 он делит ИИ-трафик на категории и
+# часть блокирует по умолчанию — robots.txt на это не влияет. Проверять
+# в панели: AI Crawl Control / Security → Bots.
+
+# ── Все остальные ───────────────────────────────────────────
+User-agent: *
+Disallow: /index-next.html
+Disallow: /hero-preview/
+Disallow: /_archive/
+Disallow: /docs/
+Disallow: /tools/
+Allow: /
+
+# ── Поиск и агенты: индексируют и отвечают СО ССЫЛКОЙ ───────
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: YandexBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+Disallow: /index-next.html
+Disallow: /hero-preview/
+Disallow: /_archive/
+Disallow: /docs/
+Disallow: /tools/
+Allow: /
+
+# ── Обучение моделей: ссылок не дают, забирают текст в веса ─
+# Google-Extended и Applebot-Extended — не краулеры, а токены согласия
+# на обучение; их место здесь, а не в поиске. Чтобы запретить обучение,
+# поменять эту группу на «Disallow: /» (и то же в Cloudflare).
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Amazonbot
+Disallow: /index-next.html
+Disallow: /hero-preview/
+Disallow: /_archive/
+Disallow: /docs/
+Disallow: /tools/
+Allow: /
+
+Sitemap: https://sbfconsult.com/sitemap.xml
