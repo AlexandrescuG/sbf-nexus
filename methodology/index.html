@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Методология SBF Intelligence — как мы считаем</title>
+<meta name="description" content="Как SBF Intelligence считает реакцию рынка на события, норму волатильности и статистику паттернов: данные, пороги и ограничения.">
+<link rel="canonical" href="https://sbfconsult.com/methodology/">
+<link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"><link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"><link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"><link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SBF Company">
+<meta property="og:title" content="Методология SBF Intelligence — как мы считаем">
+<meta property="og:description" content="Как SBF Intelligence считает реакцию рынка на события, норму волатильности и статистику паттернов: данные, пороги и ограничения.">
+<meta property="og:url" content="https://sbfconsult.com/methodology/">
+<link rel="icon" href="/assets/logo/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "@id": "https://sbfconsult.com/methodology/#page",
+ "url": "https://sbfconsult.com/methodology/",
+ "name": "Методология SBF Intelligence — как мы считаем",
+ "description": "Как SBF Intelligence считает реакцию рынка на события, норму волатильности и статистику паттернов: данные, пороги и ограничения.",
+ "inLanguage": "ru",
+ "isPartOf": {
+  "@id": "https://sbfconsult.com/#website"
+ },
+ "publisher": {
+  "@id": "https://sbfconsult.com/#org"
+ },
+ "headline": "Методология SBF Intelligence",
+ "author": {
+  "@id": "https://sbfconsult.com/#org"
+ }
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="/">SBF <span>Company</span></a><span class="langs"><a href="/methodology/" hreflang="ru" lang="ru" aria-current="true">RU</a><a href="/en/methodology/" hreflang="en" lang="en">EN</a><a href="/ro/methodology/" hreflang="ro" lang="ro">RO</a></span></header>
+<nav class="pages" aria-label="SBF Company"><a href="/about/">О компании</a><a href="/team/">Команда</a><a href="/methodology/" aria-current="page">Методология</a><a href="/faq/">Вопросы и ответы</a><a href="/risk.html">Риски</a></nav>
+<main>
+<h1>Методология SBF Intelligence</h1>
+<p class="lead">Все числа в брифе и на терминале считает код по ценовым данным. Языковая модель пишет только заголовок и три пункта контекста к уже посчитанному брифу — чисел она не добавляет и не меняет. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/llm_context.py" rel="noopener">analyze/llm_context.py</a></span></p><p>Ниже — что именно считается, по каким данным и с какими порогами. У каждого пункта ссылка на код расчёта.</p><h2>Данные</h2><ul><li>Цены: минутные и дневные бары из торгового терминала MT5 (история с июля 2021 года). Строка котировок обновляется каждые 15 секунд. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/quotes_loop.py" rel="noopener">quotes_loop.py</a></span></li><li>Макроэкономика: ряды ФРБ Сент-Луиса (FRED) — инфляция CPI, безработица, ставка ФРС, спред 10y–2y, инфляционные ожидания, нефть WTI, торгово-взвешенный доллар. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/fred.py" rel="noopener">core/fred.py</a></span></li><li>Экономический календарь: официальные источники, ForexFactory и TradingView; одна публикация из разных источников считается один раз. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></li><li>Новостной фон: RSS-ленты, X и Telegram-канал SBF Economics. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></li></ul><h2>Реакция рынка на событие</h2><p>Для каждого типа события (например, решение по ставке) и каждого связанного с ним инструмента берутся прошлые публикации. Ход за 30 минут — модуль разницы между открытием и закрытием 30-минутного бара, начинающегося в момент публикации.</p><p>По всем прошлым случаям берётся медиана и делится на дневной ATR(14) инструмента — так ход сравним между инструментами. Отдельно ход сравнивается с типичным ходом того же часа суток: 38 пунктов в 15:30 UTC и в 03:00 UTC — разные события. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></p><p>В брифе число показывается, только если прошлых выходов не меньше пяти; иначе пишем «прошлых выходов пока мало». <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><h2>Кто ходил шире обычного</h2><p>Для каждого инструмента ход последнего закрытого дня делится на его собственную норму — средний истинный диапазон по Уайлдеру за 14 дней (ATR14). Отношение больше единицы — ход шире обычного. Данные старше трёх дней не берутся: это не «вчера», а пропуск в данных. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/movers.py" rel="noopener">core/movers.py</a></span> <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/focus.py" rel="noopener">core/focus.py</a></span></p><h2>Статистика паттернов</h2><p>Паттерны ищутся по всей доступной истории на таймфреймах H1, H4 и D1. Для каждого случая проверяется, пошла ли цена в сторону паттерна через 3, 5 и 10 свечей. Случаи ближе шести свечей друг к другу считаются одним. Пересчёт — раз в неделю. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/pattern_stats_job.py" rel="noopener">pattern_stats_job.py</a></span></p><p>В брифе паттерн показывается только со статистикой не меньше 15 случаев. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><p>Что показали наши замеры: согласованность классических свечных и графических паттернов с направлением следующих пяти баров — 46,8–51,3% по инструментам, статистически неотличимо от 50%. Мы показываем это в курсе, а не прячем. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/tools/edu_build/pattern_reality.py" rel="noopener">tools/edu_build/pattern_reality.py</a></span></p><h2>Всплески новостей</h2><p>Всплеск — когда за последний час об инструменте вышло не меньше пяти новостей и не меньше чем втрое больше, чем в среднем за час за последние семь дней. Проверка каждые 15 минут. Это внимание, а не цена. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></p><h2>Насколько можно верить пункту брифа</h2><p>Каждый пункт контекста в брифе помечен источником: «из котировок» — видно в ценах; «из СМИ» — со ссылкой на издание; «из соцсетей, не проверено» — показываем, потому что рынок на это реагирует, но не подтверждаем. <span class="src">код: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/prompt.md" rel="noopener">analyze/prompt.md</a></span></p><h2>Ограничения</h2><ul><li>Историческая статистика описывает прошлое и не гарантирует будущих результатов.</li><li>Малые выборки дают широкий разброс; поэтому у всех чисел есть пороги по числу случаев.</li><li>Пропуски в ценовых данных возможны; устаревшие данные не выдаются за вчерашние.</li><li>Ничто из этого не является инвестиционной рекомендацией: решение о сделке принимаете вы.</li></ul>
+</main>
+<footer><p>Материалы носят информационный характер и не являются инвестиционной рекомендацией. Торговля CFD и маржинальными инструментами сопряжена с высоким риском быстрой потери средств.</p><p>«SBF COMPANY» S.R.L., Str. Alexei Sciusev 47, MD-2012 Chișinău, Moldova · IDNO 1025600035871 · LEI <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" rel="noopener">254900BW4MI5M0006I30</a></p></footer>
+</div>
+</body>
+</html>
