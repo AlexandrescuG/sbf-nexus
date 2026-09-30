@@ -36,6 +36,20 @@ BLOCK_FILES = {'package.json', 'package-lock.json', 'requirements.txt'}
 LONG_DIRS = ('/vendor/', '/assets/')
 LONG_TTL  = 'public, max-age=86400'
 
+# Языковые псевдонимы корня — единственные маршруты сайта без расширения.
+# Перечислены явно: список закрытый, всё остальное без расширения и без
+# файла на диске — честный 404 (см. _lang_alias).
+#
+# /ro ведёт на румынский, а не на английский. В index.html он был
+# сопоставлен с 'en' — сайт переведён на три языка, включая румынский,
+# так что это была опечатка, и здесь она не повторяется.
+LANG_ALIASES = {
+    '/ru': '/?lang=ru', '/en': '/?lang=en', '/ro': '/?lang=ro',
+    # Украинский, белорусский и казахский версии не имеют; исторически
+    # вели на русскую, так и оставляем — адрес живой, содержимое честное.
+    '/uk': '/?lang=ru', '/be': '/?lang=ru', '/kk': '/?lang=ru',
+}
+
 # ── Журнал визитов краулеров ────────────────────────────────
 # Кого записываем. Имена — из User-Agent, ими же боты и представляются;
 # проверить, что за именем стоит настоящий бот, а не подделка, можно
@@ -77,18 +91,45 @@ class NexusHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self._forbidden():
             return self.send_error(404)
-        # SPA-маршруты: путь без расширения, которого нет на диске, отдаёт
-        # главную (/ru, /en, /book), дальше разбирается JS.
-        path = self.path.split('?')[0].rstrip('/')
-        if path and '.' not in os.path.basename(path):
-            disk_path = os.path.join(DIR, path.lstrip('/'))
-            if not os.path.exists(disk_path):
-                self.path = '/index.html'
+        alias = self._lang_alias()
+        if alias:
+            return self._redirect(alias)
         super().do_GET()
+
+    def _lang_alias(self):
+        """Языковой псевдоним корня — или None.
+
+        Раньше здесь стоял открытый SPA-фоллбэк: ЛЮБОЙ путь без точки в
+        имени, которого нет на диске, отдавал главную с кодом 200.
+        Журнал краулеров показал, чем это кончается: сканеры уязвимостей
+        (они же представляются именами ИИ-ботов, чтобы их не отсекли по
+        User-Agent) получали 200 и полные 88 КБ главной на /actuator/env,
+        /wp-json, /api/config и на случайные строки вида
+        /ld0jxwilo7xt1k6e6kvl. Для поисковика это «мягкий 404»: бесконечно
+        много разных адресов с одинаковым содержимым. Мы как раз добиваемся
+        обратного — чтобы у каждого факта был свой адрес.
+
+        Настоящих маршрутов без расширения на сайте шесть, и все они —
+        псевдонимы корня: JS в index.html читает их и тут же делает
+        location.replace('/'). Значит это редирект, а не страница, и
+        отвечать на них должен сервер: краулер узнаёт канонический адрес
+        без исполнения скриптов, а дубля содержимого не возникает вовсе."""
+        path = urllib.parse.unquote(self.path.split('?')[0]).rstrip('/')
+        return LANG_ALIASES.get(path.lower()) if path else None
+
+    def _redirect(self, target):
+        self.send_response(301)
+        self.send_header('Location', target)
+        self.send_header('Content-Length', '0')
+        self.send_header('Cache-Control', 'public, max-age=86400')
+        self.end_headers()
 
     def do_HEAD(self):
         if self._forbidden():
             return self.send_error(404)
+        alias = self._lang_alias()
+        if alias:
+            return self._redirect(alias)
         super().do_HEAD()
 
     def list_directory(self, path):
@@ -126,10 +167,21 @@ class NexusHandler(http.server.SimpleHTTPRequestHandler):
         if not who:
             return
         try:
-            line = '%s\t%s\t%s\t%s\n' % (
+            # Адрес клиента. Без него журнал отвечает только на вопрос
+            # «кто-то так представился», а это оказалось недостаточно:
+            # сканеры уязвимостей ходят под именами ИИ-ботов, чтобы их не
+            # отсекли по User-Agent, и в журнале они неотличимы от
+            # настоящих. Настоящего бота подтверждает только адрес — по
+            # опубликованным диапазонам вендора или обратным DNS. За
+            # Cloudflare реальный адрес приходит в CF-Connecting-IP,
+            # remote_addr там всегда адрес прокси.
+            ip = (self.headers.get('CF-Connecting-IP')
+                  or self.headers.get('X-Forwarded-For', '').split(',')[0].strip()
+                  or self.client_address[0])
+            line = '%s\t%s\t%s\t%s\t%s\n' % (
                 datetime.datetime.now(datetime.timezone.utc)
                 .strftime('%Y-%m-%d %H:%M:%S'),
-                who,
+                who, ip,
                 (args[0] if args else '')[:120],
                 (args[1] if len(args) > 1 else ''))
             with LOG_LOCK:
