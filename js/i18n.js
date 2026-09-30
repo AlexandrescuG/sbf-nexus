@@ -9,7 +9,7 @@ const _LOCALES = {
 
 /* ═══════════════════════════════ РУССКИЙ ════════════════════════════════ */
 ru: {
-  page_title: 'SBF Consult — Мы распознаём закономерности',
+  page_title: 'SBF Company — Мы распознаём закономерности',
   nav: {
     analytics: 'Аналитика',
     trading:   'Торговля',
@@ -281,7 +281,7 @@ ru: {
 
 /* ══════════════════════════════ ENGLISH ════════════════════════════════ */
 en: {
-  page_title: 'SBF Consult — We recognise patterns',
+  page_title: 'SBF Company — We recognise patterns',
   nav: {
     analytics: 'Analytics',
     trading:   'Trading',
@@ -553,7 +553,7 @@ en: {
 
 /* ══════════════════════════════ ROMÂNĂ ════════════════════════════════ */
 ro: {
-  page_title: 'SBF Consult — Recunoaștem tipare',
+  page_title: 'SBF Company — Recunoaștem tipare',
   nav: {
     analytics: 'Analiză',
     trading:   'Tranzacționare',

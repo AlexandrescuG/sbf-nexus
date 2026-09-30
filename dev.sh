@@ -7,7 +7,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 PORT=3000
 
 echo ""
-echo "  SBF CONSULT · NEXUS PLATFORM"
+echo "  SBF COMPANY · NEXUS PLATFORM"
 echo "  ──────────────────────────────"
 
 # Verify core files

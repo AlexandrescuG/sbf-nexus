@@ -1,7 +1,7 @@
 {
   "name": "sbf-nexus",
   "version": "1.0.0",
-  "description": "SBF Consult — Institutional Intelligence Platform",
+  "description": "SBF Company — Institutional Intelligence Platform",
   "private": true,
   "scripts": {
     "dev": "browser-sync start --server --files '*.html,*.css,*.js' --port 3000 --open --no-notify"
