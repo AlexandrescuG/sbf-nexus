@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как рынок реагирует на Инфляция в еврозоне — статистика SBF</title>
+<meta name="description" content="Медианный ход за 30 минут после публикации по 18 выходам события с 2026-01-07 по 2026-09-17. С числом наблюдений и разбросом.">
+<link rel="canonical" href="https://sbfconsult.com/reaction/eu-cpi.html">
+<link rel="icon" href="/assets/logo/logo.svg" type="image/svg+xml">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#241f18; --dim:#5f564a; --gold:#7c6110; --line:rgba(154,123,30,.2) }
+*{box-sizing:border-box} body{margin:0;background:#FBF6EF;color:var(--ink);
+ font:400 17px/1.6 'Archivo',system-ui,-apple-system,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:32px 20px 72px}
+a{color:var(--gold);text-underline-offset:3px}
+header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+.brand{font:600 13px/1 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--gold)}
+h1{font:400 30px/1.2 'Instrument Serif',Georgia,serif;margin:.5em 0 .2em}
+.date{font:500 12px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0}
+h2{font:400 22px/1.25 'Instrument Serif',Georgia,serif;margin:1.8em 0 .5em}
+.tier{border-left:3px solid var(--gold);padding:6px 0 6px 14px;margin:0 0 16px}
+.tier[data-t="media"]{border-left-color:rgba(154,123,30,.55)}
+.tier[data-t="social_unverified"]{border-left-color:rgba(154,123,30,.28)}
+.tier b{display:block;font:500 10px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tier i{display:block;font-style:normal;font-size:13px;color:var(--dim)}
+.tier p{margin:4px 0 0}
+table{width:100%;border-collapse:collapse;margin:0 0 1em}
+th,td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font:500 10px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+td.n{text-align:right;white-space:nowrap;
+ font:500 15px/1.4 'JetBrains Mono',ui-monospace,monospace}
+td small{display:block;color:var(--dim);font-size:13px}
+.note{font-size:14px;color:var(--dim)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+ font-size:13px;color:var(--dim)}
+
+.lead{font-size:19px}
+.how{border-left:3px solid var(--line);padding:2px 0 2px 14px;margin:0 0 18px}
+.more{list-style:none;padding:0}
+.more li{padding:8px 0;border-bottom:1px solid var(--line)}
+td.sym{white-space:nowrap}
+/* На узком экране заголовки колонок сходились вплотную:
+   «ИНСТРУМЕНТМЕДИАНА». Разводим первую колонку от второй. */
+th:first-child,td:first-child{padding-right:16px}
+/* Подпись под числом — проза, и она обязана переноситься.
+   td.n в общем стиле стоит white-space:nowrap, чтобы не разрывались сами
+   числа; small это наследовал, строка «7 из 9 раз выше обычного · разброс
+   0.09—18.37» вытягивалась в 360 px и таблица вылезала за край экрана на
+   66 пикселей. Виновата была не вёрстка таблицы, а унаследованное
+   свойство — нашлось только замером ширины каждого элемента. */
+td.n small{white-space:normal;text-align:right}
+@media (max-width:560px){
+  h1{font-size:25px}
+  th,td{padding:10px 0}
+  td.n{font-size:14px}
+}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Реакция рынка на Инфляция в еврозоне", "description": "Медианный ход цены за 30 минут после публикации, в отношении к типичному получасу того же времени суток. 18 публикаций, 2026-01-07 — 2026-09-17.", "inLanguage": "ru", "isAccessibleForFree": true, "url": "https://sbfconsult.com/reaction/eu-cpi.html", "dateModified": "2026-09-30", "temporalCoverage": "2026-01-07/2026-09-17", "variableMeasured": "отношение 30-минутного хода к типичному получасу того же времени суток", "creator": {"@type": "Organization", "name": "SBF Consult", "url": "https://sbfconsult.com/", "identifier": "254900BW4MI5M0006I30"}}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="/">SBF Consult<span> · реакция рынка</span></a>
+</header>
+
+<p class="date">18 публикаций · 7 января 2026 — 17 сентября 2026</p>
+<h1>Как рынок реагирует на Инфляция в еврозоне</h1>
+<p class="lead">Сильнее всего реагирует USD/CHF: медианный ход за первые 30 минут в 1.53 раза больше, чем в обычные дни в это же время суток. Выше обычного — в 5 случаях из 8.</p>
+
+<h2>По инструментам</h2>
+<p class="note">Ход за первые 30 минут после публикации, поделённый на
+типичный ход того же получаса суток в обычные дни. Единица означает
+«как в любой другой день в это время»; два — «вдвое активнее обычного».
+Число безразмерное, поэтому золото и валютные пары можно сравнивать между
+собой.</p>
+<table><thead><tr><th>Инструмент</th><th class="n">Медиана к обычному получасу</th></tr></thead><tbody><tr><td class="sym">USD/CHF</td><td class="n">1.53×<small>5 из 8 раз выше обычного · разброс 0.48—6.10</small></td></tr><tr><td class="sym">EUR/GBP</td><td class="n">1.46×<small>6 из 8 раз выше обычного · разброс 0.00—5.50</small></td></tr><tr><td class="sym">USD/JPY</td><td class="n">1.42×<small>10 из 18 раз выше обычного · разброс 0.09—31.70</small></td></tr><tr><td class="sym">Золото</td><td class="n">1.32×<small>13 из 18 раз выше обычного · разброс 0.03—26.77</small></td></tr><tr><td class="sym">EUR/USD</td><td class="n">1.19×<small>9 из 18 раз выше обычного · разброс 0.24—4.17</small></td></tr><tr><td class="sym">S&amp;P 500</td><td class="n">1.17×<small>5 из 8 раз выше обычного · разброс 0.17—3.58</small></td></tr><tr><td class="sym">AUD/USD</td><td class="n">1.17×<small>5 из 8 раз выше обычного · разброс 0.20—3.75</small></td></tr><tr><td class="sym">USD/CAD</td><td class="n">1.09×<small>4 из 8 раз выше обычного · разброс 0.17—2.74</small></td></tr><tr><td class="sym">USD/ZAR</td><td class="n">1.05×<small>9 из 18 раз выше обычного · разброс 0.17—4.62</small></td></tr><tr><td class="sym">Серебро</td><td class="n">1.00×<small>4 из 8 раз выше обычного · разброс 0.03—2.70</small></td></tr><tr><td class="sym">Индекс доллара</td><td class="n">1.00×<small>4 из 9 раз выше обычного · разброс 0.00—8.25</small></td></tr><tr><td class="sym">NZD/USD</td><td class="n">0.95×<small>4 из 8 раз выше обычного · разброс 0.13—3.42</small></td></tr><tr><td class="sym">GBP/USD</td><td class="n">0.86×<small>4 из 8 раз выше обычного · разброс 0.09—2.49</small></td></tr><tr><td class="sym">Nasdaq 100</td><td class="n">0.86×<small>4 из 8 раз выше обычного · разброс 0.00—2.84</small></td></tr><tr><td class="sym">Нефть WTI</td><td class="n">0.84×<small>4 из 8 раз выше обычного · разброс 0.04—2.74</small></td></tr><tr><td class="sym">Биткоин</td><td class="n">0.84×<small>2 из 6 раз выше обычного · разброс 0.24—1.54</small></td></tr><tr><td class="sym">Dow Jones</td><td class="n">0.71×<small>3 из 8 раз выше обычного · разброс 0.39—3.29</small></td></tr></tbody></table>
+<p class="note">Публикация выходит в 09:00 или 10:00 UTC. Наблюдений от
+6 до 18 в зависимости от инструмента: получасовая история у
+разных инструментов начинается в разное время, и мы не показываем клетку,
+где наблюдений меньше 6.</p>
+
+<h2>В ту же минуту выходит ещё</h2><p>Это один отчёт, а не несколько событий: разделить их реакцию на получасовых свечах невозможно, и любые цифры «отдельно по каждому показателю» были бы одним и тем же измерением под разными именами.</p><p class="note">core inflation rate, cpi, inflation rate mom</p>
+
+<h2>Как это посчитано</h2>
+<div class="how">
+<p>Берём получасовую свечу, которая начинается в момент публикации, и
+считаем ход как разницу закрытия и открытия по модулю. Делим на медианный
+ход <b>того же получаса суток</b> за 90 дней до и после события —
+порядка сотни обычных дней. Сравнение именно с тем же временем суток
+принципиально: 40 пунктов по золоту в 15:30 и в 03:00 — разные события.</p>
+<p>Фон считается заново вокруг каждой публикации, а не один раз на всю
+историю. Иначе делитель отстаёт от уровня цен, и отношение растёт само по
+себе от хода времени, без всякого участия событий.</p>
+</div>
+
+<h2>Чего здесь нет</h2>
+<p><b>Направления.</b> Куда пойдёт цена — вверх или вниз — мы не
+публикуем. При таком числе наблюдений доля «вверх» неотличима от монетки,
+а на странице выглядела бы как прогноз. У нас уже измерено на 90 тысячах
+сделок, что у свечных паттернов направленного преимущества нет; выдавать
+шум за сигнал тем более не будем.</p>
+<p><b>Обещаний.</b> Медиана описывает прошлые выходы этого события, а не
+следующий. Разброс в таблице показывает, насколько по-разному они
+проходили: у большинства событий есть и почти незаметные выходы, и
+десятикратные.</p>
+
+<h2>Другие события</h2>
+<ul class="more"><li><a href="/reaction/us-fed-rate.html">Решение ФРС по ставке</a> <span class="note">— 13.79× по USD/ZAR</span></li><li><a href="/reaction/us-nfp.html">Отчёт по занятости в США (Non-Farm Payrolls)</a> <span class="note">— 6.09× по USD/JPY</span></li><li><a href="/reaction/gb-boe-rate.html">Решение Банка Англии по ставке</a> <span class="note">— 3.60× по USD/JPY</span></li><li><a href="/reaction/us-jobless-claims.html">Первичные заявки на пособие по безработице в США</a> <span class="note">— 1.95× по EUR/GBP</span></li><li><a href="/reaction/gb-cpi.html">Инфляция в Великобритании</a> <span class="note">— 1.82× по EUR/USD</span></li></ul>
+
+<p><a href="/reaction/">Все события</a> ·
+<a href="/brief/">Утренние брифы</a> ·
+<a href="/">О компании</a> ·
+<a href="https://lp.sbfconsult.com/">Терминал</a></p>
+
+<footer>
+<p class="note">Пересчитано 30 сентября 2026. Страница обновляется: каждая новая
+публикация события добавляет наблюдение, поэтому числа здесь со временем
+уточняются — в отличие от <a href="/brief/">архива брифов</a>, который
+фиксирует конкретный день и не переписывается.</p>
+<p><b>Это не инвестиционная рекомендация.</b> Материал носит
+информационный характер. Историческая статистика не гарантирует будущих
+результатов. Торговля CFD и маржинальными инструментами сопряжена с
+высоким риском быстрой потери средств.</p>
+<p>«SBF COMPANY» S.R.L., Str. Alexei Sciusev 47, Кишинёв, Молдова.
+LEI 254900BW4MI5M0006I30. SBF не принимает средства клиентов и не хранит
+их: счёт открывается у партнёра.
+<a href="/risk.html">Предупреждение о рисках</a></p>
+</footer>
+</div>
+</body>
+</html>

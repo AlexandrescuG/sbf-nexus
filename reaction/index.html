@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Реакция рынка на экономические события — измерения SBF</title>
+<meta name="description" content="Насколько сильно двигается цена в первые 30 минут после публикации статистики: медиана, число наблюдений и разброс по каждому событию и инструменту.">
+<link rel="canonical" href="https://sbfconsult.com/reaction/">
+<link rel="icon" href="/assets/logo/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#241f18; --dim:#5f564a; --gold:#7c6110; --line:rgba(154,123,30,.2) }
+*{box-sizing:border-box} body{margin:0;background:#FBF6EF;color:var(--ink);
+ font:400 17px/1.6 'Archivo',system-ui,-apple-system,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:32px 20px 72px}
+a{color:var(--gold);text-underline-offset:3px}
+header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+.brand{font:600 13px/1 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--gold)}
+h1{font:400 30px/1.2 'Instrument Serif',Georgia,serif;margin:.5em 0 .2em}
+.date{font:500 12px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0}
+h2{font:400 22px/1.25 'Instrument Serif',Georgia,serif;margin:1.8em 0 .5em}
+.tier{border-left:3px solid var(--gold);padding:6px 0 6px 14px;margin:0 0 16px}
+.tier[data-t="media"]{border-left-color:rgba(154,123,30,.55)}
+.tier[data-t="social_unverified"]{border-left-color:rgba(154,123,30,.28)}
+.tier b{display:block;font:500 10px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tier i{display:block;font-style:normal;font-size:13px;color:var(--dim)}
+.tier p{margin:4px 0 0}
+table{width:100%;border-collapse:collapse;margin:0 0 1em}
+th,td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line);
+ vertical-align:top}
+th{font:500 10px/1.6 'JetBrains Mono',ui-monospace,monospace;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+td.n{text-align:right;white-space:nowrap;
+ font:500 15px/1.4 'JetBrains Mono',ui-monospace,monospace}
+td small{display:block;color:var(--dim);font-size:13px}
+.note{font-size:14px;color:var(--dim)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+ font-size:13px;color:var(--dim)}
+
+.lead{font-size:19px}
+.how{border-left:3px solid var(--line);padding:2px 0 2px 14px;margin:0 0 18px}
+.more{list-style:none;padding:0}
+.more li{padding:8px 0;border-bottom:1px solid var(--line)}
+td.sym{white-space:nowrap}
+/* На узком экране заголовки колонок сходились вплотную:
+   «ИНСТРУМЕНТМЕДИАНА». Разводим первую колонку от второй. */
+th:first-child,td:first-child{padding-right:16px}
+/* Подпись под числом — проза, и она обязана переноситься.
+   td.n в общем стиле стоит white-space:nowrap, чтобы не разрывались сами
+   числа; small это наследовал, строка «7 из 9 раз выше обычного · разброс
+   0.09—18.37» вытягивалась в 360 px и таблица вылезала за край экрана на
+   66 пикселей. Виновата была не вёрстка таблицы, а унаследованное
+   свойство — нашлось только замером ширины каждого элемента. */
+td.n small{white-space:normal;text-align:right}
+@media (max-width:560px){
+  h1{font-size:25px}
+  th,td{padding:10px 0}
+  td.n{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="/">SBF Consult<span> · реакция рынка</span></a></header>
+<h1>Реакция рынка на экономические события</h1>
+<p class="lead">На вопрос «насколько двигается рынок, когда выходит
+статистика» обычно отвечают словами «данные важны для рынка». Здесь —
+числом: медианный ход за первые 30 минут после публикации, в отношении к
+типичному получасу того же времени суток.</p>
+<p class="note">Рядом с каждым числом стоит, по скольким публикациям оно
+посчитано, и насколько по-разному они проходили. Направление цены мы не
+публикуем: при таком числе наблюдений это монетка. Календарь, из которого
+берутся даты публикаций, начинается 29 декабря 2025 — поэтому у месячных
+событий наблюдений меньше десятка, и это написано на каждой странице.</p>
+
+<ul class="more"><li><a href="/reaction/us-fed-rate.html">Решение ФРС по ставке</a><br><span class="note">USD/ZAR — 13.79× к обычному получасу, 6 наблюдений</span></li><li><a href="/reaction/us-nfp.html">Отчёт по занятости в США (Non-Farm Payrolls)</a><br><span class="note">USD/JPY — 6.09× к обычному получасу, 9 наблюдений</span></li><li><a href="/reaction/gb-boe-rate.html">Решение Банка Англии по ставке</a><br><span class="note">USD/JPY — 3.60× к обычному получасу, 6 наблюдений</span></li><li><a href="/reaction/us-jobless-claims.html">Первичные заявки на пособие по безработице в США</a><br><span class="note">EUR/GBP — 1.95× к обычному получасу, 18 наблюдений</span></li><li><a href="/reaction/gb-cpi.html">Инфляция в Великобритании</a><br><span class="note">EUR/USD — 1.82× к обычному получасу, 9 наблюдений</span></li><li><a href="/reaction/us-ppi.html">Цены производителей в США (PPI)</a><br><span class="note">Золото — 1.64× к обычному получасу, 10 наблюдений</span></li><li><a href="/reaction/us-crude-stocks.html">Запасы нефти в США (EIA)</a><br><span class="note">Биткоин — 1.54× к обычному получасу, 14 наблюдений</span></li><li><a href="/reaction/eu-cpi.html">Инфляция в еврозоне</a><br><span class="note">USD/CHF — 1.53× к обычному получасу, 8 наблюдений</span></li><li><a href="/reaction/us-cpi.html">Инфляция в США (CPI)</a><br><span class="note">EUR/USD — 1.52× к обычному получасу, 9 наблюдений</span></li><li><a href="/reaction/us-core-pce.html">Базовый индекс цен PCE в США</a><br><span class="note">USD/ZAR — 1.49× к обычному получасу, 9 наблюдений</span></li><li><a href="/reaction/us-gdp.html">ВВП США</a><br><span class="note">USD/ZAR — 1.49× к обычному получасу, 9 наблюдений</span></li><li><a href="/reaction/us-retail-sales.html">Розничные продажи в США</a><br><span class="note">USD/JPY — 1.19× к обычному получасу, 9 наблюдений</span></li></ul>
+
+<h2>Чего в списке нет</h2>
+<p class="note">Решения ЕЦБ. Ставку объявляют в 12:15 UTC — ровно посередине
+получасовой свечи, и окно измерения не совпало бы с подписью «получас
+после публикации»: свеча содержала бы пятнадцать минут до объявления.
+Лучше не публиковать, чем подписать измерение неверно.</p>
+
+<p><a href="/brief/">Утренние брифы</a> · <a href="/">О компании</a> ·
+<a href="https://lp.sbfconsult.com/">Терминал</a></p>
+<footer>
+<p><b>Это не инвестиционная рекомендация.</b> Материалы носят
+информационный характер. Историческая статистика не гарантирует будущих
+результатов.</p>
+<p>«SBF COMPANY» S.R.L., Кишинёв, Молдова. LEI 254900BW4MI5M0006I30.
+<a href="/risk.html">Предупреждение о рисках</a></p>
+</footer>
+</div>
+</body>
+</html>

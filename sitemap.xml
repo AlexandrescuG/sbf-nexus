@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Собирается hero-preview/build_brief_pages.py. Руками не
-     править: архив брифов дописывается сюда каждый день. -->
+<!-- Собирается hero-preview/build_sitemap.py сканированием
+     каталогов. Руками не править: правка исчезнет при первом
+     же прогоне любого из сборщиков страниц. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
@@ -15,6 +16,11 @@
   <url>
     <loc>https://sbfconsult.com/brief/</loc>
     <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
@@ -44,5 +50,65 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-retail-sales.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-ppi.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-nfp.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-jobless-claims.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-gdp.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-fed-rate.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-crude-stocks.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-cpi.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/us-core-pce.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/gb-cpi.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/gb-boe-rate.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/reaction/eu-cpi.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

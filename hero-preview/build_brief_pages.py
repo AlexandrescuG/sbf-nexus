@@ -393,45 +393,16 @@ def build_index():
 
 
 def build_sitemap(dates):
-    """Карта сайта собирается целиком здесь.
+    """Карта сайта живёт в build_sitemap.py и собирается сканированием диска.
 
-    Иначе она разъедется с архивом: страницы появляются каждый день, а
-    карту правит человек — и через неделю в ней будет вчерашняя правда.
-    Постоянная часть перечислена явно, архив добавляется сам."""
-    fixed = [
-        ('%s/' % SITE, 'daily', '1.0', True),
-        ('%s/brief/' % SITE, 'daily', '0.9', False),
-        ('%s/risk.html' % SITE, 'yearly', '0.5', False),
-        ('%s/cons-kz/' % SITE, 'monthly', '0.6', False),
-    ]
-    out = ['<?xml version="1.0" encoding="UTF-8"?>',
-           '<!-- Собирается hero-preview/build_brief_pages.py. Руками не',
-           '     править: архив брифов дописывается сюда каждый день. -->',
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-           '        xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    for loc, freq, prio, alts in fixed:
-        out.append('  <url>')
-        out.append('    <loc>%s</loc>' % loc)
-        if alts:
-            for lg in ('ru', 'en', 'ro'):
-                out.append('    <xhtml:link rel="alternate" hreflang="%s" '
-                           'href="%s/?lang=%s"/>' % (lg, SITE, lg))
-            out.append('    <xhtml:link rel="alternate" hreflang="x-default" '
-                       'href="%s/"/>' % SITE)
-        out.append('    <changefreq>%s</changefreq>' % freq)
-        out.append('    <priority>%s</priority>' % prio)
-        out.append('  </url>')
-    for d in dates:
-        out.append('  <url>')
-        out.append('    <loc>%s/brief/%s.html</loc>' % (SITE, d))
-        out.append('    <lastmod>%s</lastmod>' % d)
-        # Архивная страница не меняется — так и говорим.
-        out.append('    <changefreq>never</changefreq>')
-        out.append('    <priority>0.6</priority>')
-        out.append('  </url>')
-    out.append('</urlset>')
-    (ROOT / 'sitemap.xml').write_text('\n'.join(out) + '\n', encoding='utf-8')
-    return len(fixed) + len(dates)
+    Здесь она собиралась целиком, пока архив брифов был единственным
+    источником генерируемых страниц. Появился второй (реакция на события),
+    и писать один файл из двух мест стало ловушкой: прогнавшийся вторым
+    вычеркнул бы страницы первого — молча, оставив валидный XML без
+    половины сайта. Теперь источник правды — каталог, а не память скрипта,
+    поэтому порядок прогонов больше не важен."""
+    import build_sitemap as sm
+    return sm.write()
 
 
 def main():
