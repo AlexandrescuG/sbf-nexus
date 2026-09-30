@@ -1,0 +1,162 @@
+{
+ "_meta": {
+  "note": "Снимок полей из market-intel/web/data/partners.json (main, 30.09.2026) для страниц /about и /faq. Источник истины — partners.json; этот файл пересобирается tools/build_pages.py --partners <путь к partners.json>.",
+  "checked_in_source": null
+ },
+ "partners": [
+  {
+   "id": "xm",
+   "name": "XM",
+   "lp_url": "https://lp.sbfconsult.com/brokers/xm",
+   "min_deposit": {
+    "value": 5,
+    "currency": "USD",
+    "published": null,
+    "checked": "2026-07-29",
+    "source": "https://www.xm.com/account-types"
+   },
+   "entities": [
+    {
+     "legal_name": "XM Global Limited",
+     "jurisdiction": "BZ",
+     "regulator": "Financial Services Commission (Belize), Securities Industry Act 2021",
+     "licence_no": "8557558",
+     "serves": "клиентов по всему миру"
+    },
+    {
+     "legal_name": "Trading Point of Financial Instruments Limited",
+     "jurisdiction": "CY",
+     "regulator": "CySEC",
+     "licence_no": "120/10",
+     "serves": "клиентов из стран Европейской экономической зоны"
+    },
+    {
+     "legal_name": "Trading Point MENA Limited",
+     "jurisdiction": "AE-DIFC",
+     "regulator": "DFSA",
+     "licence_no": "F003484",
+     "serves": "клиентов Ближнего Востока и Северной Африки"
+    }
+   ]
+  },
+  {
+   "id": "avatrade",
+   "name": "AvaTrade",
+   "lp_url": "https://lp.sbfconsult.com/brokers/avatrade",
+   "min_deposit": {
+    "value": 100,
+    "currency": "USD",
+    "published": null,
+    "checked": "2026-08-06",
+    "source": "https://www.avatrade.com/about-avatrade/avatrade-withdrawals-deposits"
+   },
+   "entities": [
+    {
+     "legal_name": "Ava Trade Markets Ltd",
+     "jurisdiction": "VG",
+     "regulator": "BVI Financial Services Commission",
+     "licence_no": null,
+     "serves": "клиентов за пределами Европейской экономической зоны"
+    },
+    {
+     "legal_name": "AVA Trade EU Ltd",
+     "jurisdiction": "IE",
+     "regulator": "Central Bank of Ireland",
+     "licence_no": "C53877",
+     "serves": "клиентов из стран Европейской экономической зоны"
+    }
+   ]
+  },
+  {
+   "id": "fxpro",
+   "name": "FxPro",
+   "lp_url": "https://lp.sbfconsult.com/brokers/fxpro",
+   "min_deposit": {
+    "value": null,
+    "currency": null,
+    "published": "фиксированного минимума нет; рекомендуется от 1000 USD. Могут действовать минимумы конкретного способа оплаты.",
+    "checked": "2026-08-06",
+    "source": "https://www.fxpro.com/help-section/faq/accounting-and-vault"
+   },
+   "entities": [
+    {
+     "legal_name": "FxPro Markets Direct Costa Rica Latam, SRL",
+     "jurisdiction": "CR",
+     "regulator": null,
+     "licence_no": null,
+     "serves": "юрисдикция назначается по стране проживания — какая доступна вам, видно на форме регистрации"
+    },
+    {
+     "legal_name": "FxPro Global Markets Limited",
+     "jurisdiction": "BS",
+     "regulator": "Securities Commission of The Bahamas",
+     "licence_no": "SIA-F184",
+     "serves": "клиентов за пределами Европейского союза"
+    },
+    {
+     "legal_name": "FxPro UK Limited",
+     "jurisdiction": "GB",
+     "regulator": "FCA",
+     "licence_no": "509956",
+     "serves": "клиентов из Великобритании"
+    }
+   ]
+  },
+  {
+   "id": "naga",
+   "name": "NAGA",
+   "lp_url": "https://lp.sbfconsult.com/brokers/naga",
+   "min_deposit": {
+    "value": 10,
+    "currency": "USD",
+    "published": null,
+    "checked": "2026-08-06",
+    "source": "https://naga.com/en/trading/hours-and-fees"
+   },
+   "entities": [
+    {
+     "legal_name": "NAGA Markets Europe Ltd",
+     "jurisdiction": "CY",
+     "regulator": "CySEC",
+     "licence_no": "204/13",
+     "serves": "клиентов из стран Европейской экономической зоны, кроме Бельгии"
+    },
+    {
+     "legal_name": "NAGA Capital Ltd",
+     "jurisdiction": "SC",
+     "regulator": "Seychelles FSA",
+     "licence_no": "SD026",
+     "serves": "клиентов за пределами Европейской экономической зоны"
+    }
+   ]
+  },
+  {
+   "id": "instaforex",
+   "name": "InstaForex",
+   "lp_url": "https://lp.sbfconsult.com/brokers/instaforex",
+   "min_deposit": {
+    "value": 1,
+    "currency": "USD",
+    "published": null,
+    "checked": "2026-08-06",
+    "source": "https://www.instaforex.com/account_types"
+   },
+   "entities": [
+    {
+     "legal_name": "InstaFinance Ltd",
+     "jurisdiction": "VG",
+     "regulator": "BVI Financial Services Commission",
+     "licence_no": "SIBA/L/14/1082",
+     "serves": "клиентов по всему миру"
+    },
+    {
+     "legal_name": "Instant Trading EU Ltd",
+     "jurisdiction": "CY",
+     "regulator": "CySEC",
+     "licence_no": "266/15",
+     "serves": "клиентов из стран Европейской экономической зоны и ещё восьми стран за её пределами; Молдовы среди них нет"
+    }
+   ]
+  }
+ ]
+}
