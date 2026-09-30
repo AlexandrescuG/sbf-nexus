@@ -48,7 +48,26 @@ LANG_ALIASES = {
     # Украинский, белорусский и казахский версии не имеют; исторически
     # вели на русскую, так и оставляем — адрес живой, содержимое честное.
     '/uk': '/?lang=ru', '/be': '/?lang=ru', '/kk': '/?lang=ru',
+
+    # Наследство сайта на Wix. Ссылки на эти адреса живут в чужих
+    # публикациях и в поисковых индексах; 404 на них теряет и посетителя,
+    # и накопленный вес ссылки. Адреса взяты из аудита ИИ-видимости.
+    '/blank-2': '/risk.html',        # «Правила и условия» старого сайта
+
+    # Главная была доступна по двум адресам сразу: / и /index.html,
+    # оба с кодом 200 и одинаковым содержимым. Это тот же дубль, что и
+    # мягкий 404, только с приличным именем, и я его сегодня пропустил —
+    # щуп softly-404.py проверял несуществующие пути, а не существующие
+    # синонимы. Теперь канонический адрес один.
+    '/index.html': '/',
 }
+
+# Редиректы по началу пути: под /service-page/ и /book у старого сайта
+# лежал курс по трейдингу, теперь он на платформе.
+PREFIX_REDIRECTS = (
+    ('/service-page/', 'https://lp.sbfconsult.com/edu/'),
+    ('/book', 'https://lp.sbfconsult.com/edu/'),
+)
 
 # ── Журнал визитов краулеров ────────────────────────────────
 # Кого записываем. Имена — из User-Agent, ими же боты и представляются;
@@ -114,8 +133,17 @@ class NexusHandler(http.server.SimpleHTTPRequestHandler):
         location.replace('/'). Значит это редирект, а не страница, и
         отвечать на них должен сервер: краулер узнаёт канонический адрес
         без исполнения скриптов, а дубля содержимого не возникает вовсе."""
-        path = urllib.parse.unquote(self.path.split('?')[0]).rstrip('/')
-        return LANG_ALIASES.get(path.lower()) if path else None
+        raw = urllib.parse.unquote(self.path.split('?')[0])
+        path = raw.rstrip('/')
+        if not path:
+            return None
+        target = LANG_ALIASES.get(path.lower())
+        if target:
+            return target
+        for prefix, dest in PREFIX_REDIRECTS:
+            if raw.startswith(prefix):
+                return dest
+        return None
 
     def _redirect(self, target):
         self.send_response(301)

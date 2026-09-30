@@ -47,6 +47,14 @@ MISSING = [
 ALIASES = {
     '/ru': 'lang=ru', '/en': 'lang=en', '/ro': 'lang=ro',
     '/uk': 'lang=ru', '/be': 'lang=ru', '/kk': 'lang=ru',
+    # Наследство Wix и канонизация главной. /index.html особенно важен:
+    # главная отдавалась по двум адресам с кодом 200, и первая версия
+    # этого щупа такой дубль не ловила — она проверяла несуществующие
+    # пути, а не существующие синонимы одного и того же.
+    '/blank-2': '/risk.html',
+    '/index.html': '/',
+    '/service-page/kurs': 'lp.sbfconsult.com/edu/',
+    '/book': 'lp.sbfconsult.com/edu/',
 }
 
 ALIVE = ['/', '/risk.html', '/brief/', '/robots.txt', '/sitemap.xml',
