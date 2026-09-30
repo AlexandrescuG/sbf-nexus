@@ -19,6 +19,8 @@ XML, просто без половины сайта, и заметить это
     python3 hero-preview/build_sitemap.py
 """
 import pathlib
+import subprocess
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://sbfconsult.com'
@@ -82,6 +84,37 @@ def write():
     out.append('</urlset>')
     (ROOT / 'sitemap.xml').write_text('\n'.join(out) + '\n', encoding='utf-8')
     return n
+
+
+def ping_indexnow(urls):
+    """Сообщить Bing и Яндексу о новых адресах. Никогда не падать.
+
+    Скрипт живёт в market_intel (зелёная зона) — там же ключ и память об
+    уже отправленном, и второй копии быть не должно. Отсюда он только
+    вызывается.
+
+    Публикация страницы не должна зависеть от того, доступен ли чужой
+    сервис: страница уже на диске и уже отдаётся, а уведомление поисковика
+    — это ускорение, а не часть выпуска. Поэтому все отказы гасим и
+    печатаем строкой, но наверх не пробрасываем. Обратная схема уже
+    обошлась в двенадцать дней тишины, когда отказ одного внешнего шага
+    ронял конвейер целиком."""
+    if not urls:
+        return
+    script = pathlib.Path('/mnt/sbfdata/sbf-platform/market_intel/tools/indexnow.py')
+    if not script.exists():
+        print('  indexnow: скрипта нет (%s) — пропускаем' % script)
+        return
+    cmd = [sys.executable, str(script)]
+    for u in urls:
+        cmd += ['--url', u]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        out = (r.stdout or r.stderr or '').strip().splitlines()
+        print('  indexnow: %s' % (out[-1] if out else 'код %d' % r.returncode))
+    except Exception as exc:
+        print('  indexnow: не получилось (%s) — страницы это не затронуло'
+              % str(exc)[:60])
 
 
 if __name__ == '__main__':

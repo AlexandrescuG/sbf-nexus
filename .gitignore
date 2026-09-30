@@ -6,3 +6,6 @@ node_modules/
 assets/video/
 tools/shots-scene/
 tools/__pycache__/
+
+# состояние наблюдателя за пропусками архива — рантайм, не исходник
+hero-preview/.brief-gap-state.json

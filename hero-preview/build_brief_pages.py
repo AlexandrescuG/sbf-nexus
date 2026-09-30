@@ -240,6 +240,80 @@ def movers_block(movers):
             + ''.join(rows) + '</table>')
 
 
+# Слова, которыми модель сама помечает, что источник не проверен. Ищем их
+# в начале заголовка: «Соцсети: ФРС подняла ставку…» — именно так выглядел
+# выпуск 17.09.
+SOCIAL_MARKERS = ('соцсет', 'в соцсетях', 'слухи', 'ходят слухи',
+                  'неподтверж', 'twitter', 'телеграм-канал', 'x пишет')
+
+
+def quotes_headline(brief, human):
+    """Заголовок из того, что можно посмотреть самому.
+
+    Берём текст уровня quotes — это котировки, их видно на любом
+    терминале. Если его нет, собираем из движений; если нет и их, остаётся
+    дата. Ничего не выдумываем: все три источника уже есть в выпуске."""
+    for c in brief.get('context') or []:
+        if c.get('confidence') == 'quotes' and (c.get('text') or '').strip():
+            t = ' '.join(c['text'].split())
+            # Режем по границе предложения, а не по символу: обрубок
+            # «золото 4 277,70 (+0,1» хуже короткого заголовка.
+            if len(t) > 110:
+                cut = t[:110].rsplit('.', 1)[0]
+                t = (cut + '.') if len(cut) > 40 else t[:110].rsplit(' ', 1)[0]
+            return t
+    mov = brief.get('movers') or {}
+    names = [m.get('symbol') or m.get('name') for m in
+             (mov.get('up') or []) + (mov.get('down') or [])]
+    names = [n for n in names if n][:4]
+    if names:
+        return 'Шире обычного ходили ' + ', '.join(names) + ' — ' + human
+    return 'Утренние числа — %s' % human
+
+
+def safe_headline(brief, human):
+    """(заголовок, причина подмены). Причина пустая — заголовок свой.
+
+    Зачем. H1 и schema.org headline — ровно то, что цитируют: их берут
+    и поисковик, и ассистент, и превью в мессенджере. Утверждение,
+    источник которого мы не подтверждали, там стоять не должно, даже если
+    в самом разборе оно честно помечено «не проверено».
+
+    Выпуск 17.09 показал обе стороны этого правила. Заголовок гласил
+    «Соцсети: ФРС подняла ставку до 3,75–4%», и ставку ФРС действительно
+    подняла — 16.09, решение опубликовано на federalreserve.gov, это была
+    ошибка разметки, а не факта. То есть правило иногда снимает с витрины
+    верное утверждение. Мы всё равно его применяем: страница не умеет
+    отличить верное непроверенное от неверного непроверенного, а правило
+    о происхождении проверяемо. Сам разбор при этом никуда не девается —
+    он ниже, с исходной пометкой.
+
+    Совпадение с пунктом social_unverified проверяем отдельно от меток:
+    17.09 непроверенным пунктом был вывод войск из Ирана, а не ставка, и
+    одного сравнения текстов не хватило бы."""
+    head = ' '.join((brief.get('headline') or '').split())
+    if not head:
+        return quotes_headline(brief, human), 'пусто'
+
+    low = head.lower()
+    if any(low.startswith(m) for m in SOCIAL_MARKERS) or \
+            any(m in low[:40] for m in SOCIAL_MARKERS):
+        return quotes_headline(brief, human), 'помечен как соцсети'
+
+    for c in brief.get('context') or []:
+        if c.get('confidence') != 'social_unverified':
+            continue
+        txt = ' '.join((c.get('text') or '').split()).lower()
+        if not txt:
+            continue
+        # Совпадение по существу, а не по символам: берём длинные слова
+        # заголовка и смотрим, сколько их в непроверенном пункте.
+        words = [w.strip('.,;:«»"()') for w in low.split() if len(w) > 5]
+        if words and sum(1 for w in words if w in txt) >= max(2, len(words) // 2):
+            return quotes_headline(brief, human), 'совпал с непроверенным'
+    return head, ''
+
+
 def page(date, brief, macro):
     ctx = []
     for c in brief.get('context') or []:
@@ -250,17 +324,10 @@ def page(date, brief, macro):
         title, why = TIERS[conf]
         ctx.append('<div class="tier" data-t="%s"><b>%s</b><i>%s</i>'
                    '<p>%s</p></div>' % (esc(conf), esc(title), esc(why), esc(t)))
-    head = (brief.get('headline') or '').strip()
     human = ru_date(date)
+    head, why_replaced = safe_headline(brief, human)
+    degraded = why_replaced == 'пусто'
 
-    # День без разбора. Заголовок и уровни доверия пишет модель; если она
-    # в этот день не ответила, числа всё равно посчитаны, и страница
-    # выходит на них. Заголовок тогда не выдумываем — ставим дату, а
-    # отсутствие комментария называем прямо в тексте. Промолчать здесь
-    # значило бы выдать неполный выпуск за полный.
-    degraded = not head
-    if degraded:
-        head = 'Утренние числа — %s' % human
     lead = ('<p class="note">Разбор сделан утром %s и с тех пор не менялся. '
             'Страница — архивная копия: числа в ней относятся к этой дате, '
             'а не к сегодняшнему рынку.</p>' % esc(human))
@@ -271,6 +338,12 @@ def page(date, brief, macro):
                 '%s. Словесного разбора и разметки по уровням доверия за '
                 'этот день нет — и мы не подставляем на их место ничего '
                 'написанного задним числом.</p>' % esc(human))
+    elif why_replaced:
+        lead = ('<p class="note"><b>Заголовок собран из котировок.</b> '
+                'Разбор за %s опирался на сообщение, источник которого мы '
+                'не подтверждали, — такое утверждение не выносится в '
+                'заголовок страницы. Сам разбор ниже приведён полностью и '
+                'с исходной пометкой достоверности.</p>' % esc(human))
 
     ld = {
         '@context': 'https://schema.org',
@@ -460,11 +533,13 @@ def main():
 
     OUT.mkdir(exist_ok=True)
     target = OUT / ('%s.html' % date)
+    wrote_today = False
     if target.exists() and not force:
         # Не ошибка и не повод шуметь: за день сборка зовётся десятки раз.
         print('%s уже есть — архив не переписываем (--force, если надо)'
               % target.name)
     else:
+        wrote_today = True
         macro = load('macro.json') or {}
         target.write_text(page(date, brief, macro), encoding='utf-8')
         if degraded:
@@ -485,6 +560,19 @@ def main():
     dates = build_index()
     n = build_sitemap(dates)
     print('архив: %d выпусков, в карте сайта %d адресов' % (len(dates), n))
+
+    # Поисковикам сообщаем только о НОВОЙ странице. Скрипт помнит
+    # отправленное и повторов не шлёт, но звать его на каждом из десятков
+    # дневных прогонов всё равно незачем.
+    if wrote_today:
+        import build_sitemap as sm
+        sm.ping_indexnow(['%s/brief/%s.html' % (SITE, date),
+                          '%s/brief/' % SITE])
+
+    # Наблюдатель за пропусками. Стоит после публикации и ничего не
+    # поднимает наверх: если он сам сломается, выпуск всё равно вышел.
+    import brief_gap
+    brief_gap.check()
     return 0
 
 
