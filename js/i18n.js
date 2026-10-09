@@ -15,7 +15,7 @@ ru: {
     partners: 'Партнёры и лицензии', rights: 'Все права защищены.',
   },
   page_title: 'SBF Consult — Мы распознаём закономерности',
-  page_desc: 'Утренний бриф по рынкам, разметка на графике и статистика паттернов. Обучение, сопровождение счёта и доверительное управление через партнёров с лицензиями ЕС. «SBF COMPANY» S.R.L., Кишинёв.',
+  page_desc: 'Утренний бриф по рынкам, разметка на графике и статистика паттернов. Обучение, сопровождение счёта и доверительное управление через лицензированных брокеров-партнёров. «SBF COMPANY» S.R.L., Кишинёв.',
   nav: {
     analytics: 'Аналитика',
     trading:   'Торговля',
@@ -29,7 +29,7 @@ ru: {
   hero: {
     headline:  'Мир генерирует шум.<br><em>Мы распознаём закономерности</em>.',
     trust_lei:      'Bloomberg LEI',
-    trust_partners: 'Партнёры с лицензиями ЕС',
+    trust_partners: 'Лицензированные брокеры-партнёры',
     trust_office:   'Офис в Кишинёве',
     today:       'Сегодня · {d}',
     read_brief:  'читать бриф',
@@ -41,7 +41,7 @@ ru: {
     cta2:        'Связаться',
     scroll:      'Прокрутите вниз',
     kicker:      'SBF Company SRL · Кишинёв',
-    sub:         'Анализ от экспертов, сопровождение торговых счетов, доверительное управление через партнёров с лицензиями ЕС.',
+    sub:         'Анализ от экспертов, сопровождение торговых счетов, доверительное управление через лицензированных брокеров-партнёров.',
     side_t:      'Старт без риска',
     side_h:      'Опрос трейдера — 30 дней PRO',
     side_p:      'Карта не нужна. Автосписания нет. ~3 минуты.',
@@ -264,7 +264,7 @@ ru: {
     cta:          'ОСТАВИТЬ ЗАЯВКУ',
     platform_cta: 'Работать с платформой самостоятельно →',
   },
-  svc_du_disclaimer: 'SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через партнёров, регулируемых в ЕС (FCA, CySEC). SBF выступает консультантом и не принимает клиентские средства на свои счета.',
+  svc_du_disclaimer: 'SBF Company SRL не является лицензированным управляющим активами. Услуга реализуется исключительно через брокера-партнёра по партнёрскому контракту. Юрлицо брокера и его регулятор зависят от страны клиента. SBF выступает консультантом и не принимает клиентские средства на свои счета.',
   risk_warning: 'Торговля CFD и маржинальными инструментами сопряжена с высоким риском потери капитала и подходит не всем инвесторам.',
   sticky: 'Связаться',
   modal: {
@@ -374,7 +374,7 @@ en: {
     partners: 'Partners and licences', rights: 'All rights reserved.',
   },
   page_title: 'SBF Consult — We recognise patterns',
-  page_desc: 'Morning market brief, chart markup and pattern statistics. Education, account supervision and discretionary management through EU-licensed partners. «SBF COMPANY» S.R.L., Chișinău.',
+  page_desc: 'Morning market brief, chart markup and pattern statistics. Education, account supervision and discretionary management through licensed partner brokers. «SBF COMPANY» S.R.L., Chișinău.',
   nav: {
     analytics: 'Analytics',
     trading:   'Trading',
@@ -388,7 +388,7 @@ en: {
   hero: {
     headline:  'The world generates noise.<br><em>We recognise patterns</em>.',
     trust_lei:      'Bloomberg LEI',
-    trust_partners: 'EU-licensed partners',
+    trust_partners: 'Licensed partner brokers',
     trust_office:   'Office in Chișinău',
     today:       'Today · {d}',
     read_brief:  'read the brief',
@@ -400,7 +400,7 @@ en: {
     cta2:        'Contact Us',
     scroll:      'Scroll down',
     kicker:      'SBF Company SRL · Chișinău',
-    sub:         'Expert analysis, trading account support, and discretionary management through EU-licensed partners.',
+    sub:         'Expert analysis, trading account support, and discretionary management through licensed partner brokers.',
     side_t:      'Risk-free start',
     side_h:      'Trader survey — 30 days PRO',
     side_p:      'No card needed. No auto-charge. ~3 minutes.',
@@ -620,7 +620,7 @@ en: {
     cta:          'REQUEST A CALLBACK',
     platform_cta: 'Self-service on the platform →',
   },
-  svc_du_disclaimer: 'SBF Company SRL is not a licensed asset manager. The service is provided exclusively through EU-regulated partners (FCA, CySEC). SBF acts as a consultant and does not accept client funds into its own accounts.',
+  svc_du_disclaimer: 'SBF Company SRL is not a licensed asset manager. The service is provided exclusively through a partner broker under a partnership agreement. The broker’s legal entity and its regulator depend on the client’s country. SBF acts as a consultant and does not accept client funds into its own accounts.',
   risk_warning: 'Trading CFDs and margined instruments carries a high risk of capital loss and may not be suitable for all investors.',
   sticky: 'Contact',
   modal: {
@@ -730,7 +730,7 @@ ro: {
     partners: 'Parteneri și licențe', rights: 'Toate drepturile rezervate.',
   },
   page_title: 'SBF Consult — Recunoaștem tipare',
-  page_desc: 'Briefing de dimineață, marcaj pe grafic și statistica tiparelor. Instruire, însoțirea contului și administrare prin parteneri licențiați UE. «SBF COMPANY» S.R.L., Chișinău.',
+  page_desc: 'Briefing de dimineață, marcaj pe grafic și statistica tiparelor. Instruire, însoțirea contului și administrare prin brokeri parteneri licențiați. «SBF COMPANY» S.R.L., Chișinău.',
   nav: {
     analytics: 'Analiză',
     trading:   'Tranzacționare',
@@ -744,7 +744,7 @@ ro: {
   hero: {
     headline:    'Lumea generează zgomot.<br><em>Noi recunoaștem tipare</em>.',
     trust_lei:      'Bloomberg LEI',
-    trust_partners: 'Parteneri licențiați UE',
+    trust_partners: 'Brokeri parteneri licențiați',
     trust_office:   'Birou în Chișinău',
     today:       'Astăzi · {d}',
     read_brief:  'citește briefingul',
@@ -756,7 +756,7 @@ ro: {
     cta2:        'Contactează-ne',
     scroll:      'Derulați în jos',
     kicker:      'SBF Company SRL · Chișinău',
-    sub:         'Analiză de la experți, asistență pentru conturi de tranzacționare și administrare discreționară prin parteneri licențiați în UE.',
+    sub:         'Analiză de la experți, asistență pentru conturi de tranzacționare și administrare discreționară prin brokeri parteneri licențiați.',
     side_t:      'Start fără risc',
     side_h:      'Chestionar trader — 30 de zile PRO',
     side_p:      'Fără card. Fără debitare automată. ~3 minute.',
@@ -976,7 +976,7 @@ ro: {
     cta:          'SOLICITAȚI UN APEL',
     platform_cta: 'Lucrați pe platformă independent →',
   },
-  svc_du_disclaimer: 'SBF Company SRL nu este un administrator de active licențiat. Serviciul este furnizat exclusiv prin parteneri reglementați în UE (FCA, CySEC). SBF acționează ca consultant și nu acceptă fonduri ale clienților în propriile conturi.',
+  svc_du_disclaimer: 'SBF Company SRL nu este un administrator de active licențiat. Serviciul este furnizat exclusiv printr-un broker partener, în baza unui contract de parteneriat. Entitatea juridică a brokerului și autoritatea de supraveghere depind de țara clientului. SBF acționează ca consultant și nu acceptă fonduri ale clienților în propriile conturi.',
   risk_warning: 'Tranzacționarea cu CFD-uri și instrumente cu marjă implică un risc ridicat de pierdere a capitalului și poate să nu fie potrivită pentru toți investitorii.',
   sticky: 'Contact',
   modal: {
