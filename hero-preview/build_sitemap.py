@@ -43,6 +43,17 @@ SCAN = [
     ('reaction', 'weekly', '0.8', False),
 ]
 
+# Страницы о компании: каталог с index.html, один и тот же материал на
+# трёх языках. Перечислены именами, а не сканированием: каталогов в корне
+# много, и подметать их все под карту сайта — верный способ однажды
+# опубликовать черновик.
+#
+# Языковые версии связаны через hreflang. Это ровно тот случай, для
+# которого он и придуман: три адреса с одним содержанием на разных
+# языках. Без него поисковик считает их дублями и выбирает один сам.
+PAGES = ['about', 'team', 'methodology', 'faq']
+PAGE_LANGS = [('ru', ''), ('en', 'en/'), ('ro', 'ro/')]
+
 
 def url(loc, freq, prio, alts=False, lastmod=None):
     out = ['  <url>', '    <loc>%s%s</loc>' % (SITE, loc)]
@@ -71,6 +82,27 @@ def write():
     for loc, freq, prio, alts in FIXED:
         out += url(loc, freq, prio, alts=alts)
         n += 1
+    for page in PAGES:
+        live = [(lg, pre) for lg, pre in PAGE_LANGS
+                if (ROOT / pre / page / 'index.html').exists()]
+        if not live:
+            continue
+        for lg, pre in live:
+            out.append('  <url>')
+            out.append('    <loc>%s/%s%s/</loc>' % (SITE, pre, page))
+            # Альтернативы перечисляем у КАЖДОЙ версии, включая её саму —
+            # так требует спецификация, и половинчатая разметка работает
+            # хуже, чем никакой.
+            for lg2, pre2 in live:
+                out.append('    <xhtml:link rel="alternate" hreflang="%s" '
+                           'href="%s/%s%s/"/>' % (lg2, SITE, pre2, page))
+            out.append('    <xhtml:link rel="alternate" hreflang="x-default" '
+                       'href="%s/%s/"/>' % (SITE, page))
+            out.append('    <changefreq>monthly</changefreq>')
+            out.append('    <priority>0.7</priority>')
+            out.append('  </url>')
+            n += 1
+
     for folder, freq, prio, date_in_name in SCAN:
         d = ROOT / folder
         if not d.is_dir():

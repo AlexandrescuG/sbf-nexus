@@ -159,23 +159,23 @@ def about(яз: str) -> dict:
         f'<tr><th scope="row">{k}</th><td>{v if k in ("LEI", "Email") else esc(v)}</td></tr>' for k, v in реквизиты) + "</tbody></table>"
     t = {
         "ru": dict(
-            title="О компании SBF Company — Кишинёв, Молдова",
-            desc="SBF Company («SBF COMPANY» S.R.L., Кишинёв): анализ рынков, обучение трейдингу, сопровождение счетов у брокеров-партнёров. Реквизиты, IDNO, LEI.",
-            h1="О компании SBF Company",
+            title="О компании SBF Consult — Кишинёв, Молдова",
+            desc="SBF Consult («SBF COMPANY» S.R.L., Кишинёв): анализ рынков, обучение трейдингу, сопровождение счетов у брокеров-партнёров. Реквизиты, IDNO, LEI.",
+            h1="О компании SBF Consult",
             sections=[
                 ("", f'<p class="lead">{esc(E["description"]["ru"])}</p>'
-                     f'<p>SBF Company — бренд юрлица «SBF COMPANY» S.R.L. Прежнее название бренда — SBF Consult. '
+                     f'<p>SBF Consult — бренд юрлица «SBF COMPANY» S.R.L. '
                      f'Терминал рыночной аналитики компании называется <a href="{LP}/">SBF Intelligence</a>.</p>'),
                 ("Реквизиты", табл),
                 ("Чем мы занимаемся",
                  "<ul>"
                  f'<li><b>Обучение.</b> Курс «Биржевая торговля» из 15 глав; главы 1–5 открыты без регистрации, 6–15 — с аккаунтом. <a href="{LP}/edu/">Курс</a>.</li>'
                  "<li><b>Сопровождение торгового счёта.</b> Обзор позиций, информационная поддержка, статистические наблюдения. Решения по сделкам принимает клиент. Счёт открывается у брокера-партнёра.</li>"
-                 "<li><b>Доверительное управление</b> — только через брокера-партнёра FxPro по партнёрскому контракту. SBF Company не является лицензированным управляющим активами.</li>"
+                 "<li><b>Доверительное управление</b> — только через брокера-партнёра FxPro по партнёрскому контракту. SBF Consult не является лицензированным управляющим активами.</li>"
                  f'<li><b>Терминал SBF Intelligence</b>: утренний бриф, графики, экономический календарь, сравнение брокеров, журнал сделок. <a href="{LP}/">lp.sbfconsult.com</a>.</li>'
                  "</ul>"),
                 ("Как мы зарабатываем",
-                 "<p>Для клиента сопровождение бесплатно: SBF Company получает вознаграждение от брокера-партнёра за приведённый счёт. Мы раскрываем это прямо, чтобы было понятно, в чём наш интерес.</p>"),
+                 "<p>Для клиента сопровождение бесплатно: SBF Consult получает вознаграждение от брокера-партнёра за приведённый счёт. Мы раскрываем это прямо, чтобы было понятно, в чём наш интерес.</p>"),
                 ("Чего мы не делаем", не_делаем("ru")),
                 ("Брокеры-партнёры",
                  "<p>Юрлицо брокера и регулятор зависят от страны клиента. Клиент из Молдовы и других стран вне Европейской экономической зоны получает счёт у юрлица, указанного ниже, — не у европейского юрлица того же бренда. У европейских юрлиц другие условия (плечо, компенсационный фонд). Полные данные по каждому юрлицу — на <a href=\"" + LP + "/brokers\">странице сравнения брокеров</a>.</p>"
@@ -183,23 +183,23 @@ def about(яз: str) -> dict:
                 ("Офисы", офисы("ru")),
             ]),
         "en": dict(
-            title="About SBF Company — Chișinău, Moldova",
-            desc="SBF Company (SBF COMPANY S.R.L., Chișinău): market analysis, trading education, support for accounts at partner brokers. Registration details, IDNO, LEI.",
-            h1="About SBF Company",
+            title="About SBF Consult — Chișinău, Moldova",
+            desc="SBF Consult (SBF COMPANY S.R.L., Chișinău): market analysis, trading education, support for accounts at partner brokers. Registration details, IDNO, LEI.",
+            h1="About SBF Consult",
             sections=[
                 ("", f'<p class="lead">{esc(E["description"]["en"])}</p>'
-                     f'<p>SBF Company is the brand of the legal entity «SBF COMPANY» S.R.L. The former brand name is SBF Consult. '
+                     f'<p>SBF Consult is the brand of the legal entity «SBF COMPANY» S.R.L. '
                      f'The company’s market analytics terminal is called <a href="{LP}/en/">SBF Intelligence</a>.</p>'),
                 ("Company details", табл),
                 ("What we do",
                  "<ul>"
                  f'<li><b>Education.</b> A 15-chapter trading course; chapters 1–5 are open without registration, 6–15 require an account. <a href="{LP}/en/edu/">Course</a>.</li>'
                  "<li><b>Trading account support.</b> Position reviews, information support, statistical observations. The client makes all trading decisions. The account is opened with a partner broker.</li>"
-                 "<li><b>Discretionary management</b> — only through the partner broker FxPro under a partnership agreement. SBF Company is not a licensed asset manager.</li>"
+                 "<li><b>Discretionary management</b> — only through the partner broker FxPro under a partnership agreement. SBF Consult is not a licensed asset manager.</li>"
                  f'<li><b>SBF Intelligence terminal</b>: morning brief, charts, economic calendar, broker comparison, trade journal. <a href="{LP}/en/">lp.sbfconsult.com</a>.</li>'
                  "</ul>"),
                 ("How we earn",
-                 "<p>Account support is free for the client: SBF Company receives a fee from the partner broker for a referred account. We disclose this openly so that our interest is clear.</p>"),
+                 "<p>Account support is free for the client: SBF Consult receives a fee from the partner broker for a referred account. We disclose this openly so that our interest is clear.</p>"),
                 ("What we do not do", не_делаем("en")),
                 ("Partner brokers",
                  "<p>The broker’s legal entity and regulator depend on the client’s country. A client from Moldova or another country outside the European Economic Area gets an account with the entity listed below — not with the same brand’s European entity, which has different terms (leverage, compensation fund). Full details for each entity are on the <a href=\"" + LP + "/en/brokers\">broker comparison page</a>.</p>"
@@ -207,23 +207,23 @@ def about(яз: str) -> dict:
                 ("Offices", офисы("en")),
             ]),
         "ro": dict(
-            title="Despre SBF Company — Chișinău, Moldova",
-            desc="SBF Company (SBF COMPANY S.R.L., Chișinău): analiza piețelor, educație în trading, suport pentru conturi la brokeri parteneri. Date, IDNO, LEI.",
-            h1="Despre SBF Company",
+            title="Despre SBF Consult — Chișinău, Moldova",
+            desc="SBF Consult (SBF COMPANY S.R.L., Chișinău): analiza piețelor, educație în trading, suport pentru conturi la brokeri parteneri. Date, IDNO, LEI.",
+            h1="Despre SBF Consult",
             sections=[
                 ("", f'<p class="lead">{esc(E["description"]["ro"])}</p>'
-                     f'<p>SBF Company este brandul entității juridice «SBF COMPANY» S.R.L. Denumirea anterioară a brandului este SBF Consult. '
+                     f'<p>SBF Consult este brandul entității juridice «SBF COMPANY» S.R.L. '
                      f'Terminalul de analiză a pieței al companiei se numește <a href="{LP}/ro/">SBF Intelligence</a>.</p>'),
                 ("Date de identificare", табл),
                 ("Ce facem",
                  "<ul>"
                  f'<li><b>Educație.</b> Cursul de tranzacționare are 15 capitole; capitolele 1–5 sunt deschise fără înregistrare, 6–15 necesită cont. <a href="{LP}/ro/edu/">Curs</a>.</li>'
                  "<li><b>Suport pentru contul de tranzacționare.</b> Analiza pozițiilor, suport informativ, observații statistice. Deciziile de tranzacționare le ia clientul. Contul se deschide la un broker partener.</li>"
-                 "<li><b>Administrare discreționară</b> — doar prin brokerul partener FxPro, pe baza unui contract de parteneriat. SBF Company nu este un administrator de active licențiat.</li>"
+                 "<li><b>Administrare discreționară</b> — doar prin brokerul partener FxPro, pe baza unui contract de parteneriat. SBF Consult nu este un administrator de active licențiat.</li>"
                  f'<li><b>Terminalul SBF Intelligence</b>: brief de dimineață, grafice, calendar economic, comparația brokerilor, jurnal de tranzacții. <a href="{LP}/ro/">lp.sbfconsult.com</a>.</li>'
                  "</ul>"),
                 ("Cum câștigăm",
-                 "<p>Pentru client suportul este gratuit: SBF Company primește o remunerație de la brokerul partener pentru contul adus. Spunem asta deschis, ca să fie clar care este interesul nostru.</p>"),
+                 "<p>Pentru client suportul este gratuit: SBF Consult primește o remunerație de la brokerul partener pentru contul adus. Spunem asta deschis, ca să fie clar care este interesul nostru.</p>"),
                 ("Ce nu facem", не_делаем("ro")),
                 ("Brokeri parteneri",
                  "<p>Entitatea juridică a brokerului și autoritatea de supraveghere depind de țara clientului. Un client din Moldova sau din altă țară din afara Spațiului Economic European primește cont la entitatea de mai jos — nu la entitatea europeană a aceluiași brand, care are alte condiții (efect de levier, fond de compensare). Detaliile complete sunt pe <a href=\"" + LP + "/ro/brokers\">pagina de comparație a brokerilor</a>.</p>"
@@ -252,31 +252,31 @@ def team(яз: str) -> dict:
     роли = "<ul>" + "".join(f"<li>{esc(r)}</li>" for r in РОЛИ[яз]) + "</ul>"
     t = {
         "ru": dict(
-            title="Команда SBF Company",
-            desc="Направления работы команды SBF Company и кто отвечает за услуги компании. Решения по сделкам клиента принимает сам клиент.",
-            h1="Команда SBF Company",
+            title="Команда SBF Consult",
+            desc="Направления работы команды SBF Consult и кто отвечает за услуги компании. Решения по сделкам клиента принимает сам клиент.",
+            h1="Команда SBF Consult",
             sections=[
-                ("Направления работы", "<p>Команда SBF Company работает по направлениям:</p>" + роли),
+                ("Направления работы", "<p>Команда SBF Consult работает по направлениям:</p>" + роли),
                 ("Кто отвечает за услуги",
                  f"<p>Имена сотрудников на сайте сейчас не публикуются. Юридическую ответственность за услуги несёт «SBF COMPANY» S.R.L. — реквизиты на странице <a href=\"{путь('about', 'ru')}\">«О компании»</a>.</p>"
                  "<p>Решения по сделкам на счёте клиента принимает клиент. Доверительное управление осуществляется только через брокера-партнёра по партнёрскому контракту.</p>"),
             ]),
         "en": dict(
-            title="SBF Company team",
-            desc="The areas the SBF Company team works in and who is responsible for the company’s services. Trading decisions on a client account are made by the client.",
-            h1="SBF Company team",
+            title="SBF Consult team",
+            desc="The areas the SBF Consult team works in and who is responsible for the company’s services. Trading decisions on a client account are made by the client.",
+            h1="SBF Consult team",
             sections=[
-                ("Areas of work", "<p>The SBF Company team works in these areas:</p>" + роли),
+                ("Areas of work", "<p>The SBF Consult team works in these areas:</p>" + роли),
                 ("Who is responsible for the services",
                  f"<p>Staff names are not published on the site at the moment. Legal responsibility for the services lies with «SBF COMPANY» S.R.L. — see the details on the <a href=\"{путь('about', 'en')}\">About</a> page.</p>"
                  "<p>Trading decisions on a client’s account are made by the client. Discretionary management is carried out only through the partner broker under a partnership agreement.</p>"),
             ]),
         "ro": dict(
-            title="Echipa SBF Company",
-            desc="Direcțiile în care lucrează echipa SBF Company și cine răspunde de serviciile companiei. Deciziile de tranzacționare le ia clientul.",
-            h1="Echipa SBF Company",
+            title="Echipa SBF Consult",
+            desc="Direcțiile în care lucrează echipa SBF Consult și cine răspunde de serviciile companiei. Deciziile de tranzacționare le ia clientul.",
+            h1="Echipa SBF Consult",
             sections=[
-                ("Direcții de lucru", "<p>Echipa SBF Company lucrează pe direcțiile:</p>" + роли),
+                ("Direcții de lucru", "<p>Echipa SBF Consult lucrează pe direcțiile:</p>" + роли),
                 ("Cine răspunde de servicii",
                  f"<p>Numele angajaților nu sunt publicate deocamdată pe site. Răspunderea juridică pentru servicii o poartă «SBF COMPANY» S.R.L. — datele sunt pe pagina <a href=\"{путь('about', 'ro')}\">Despre noi</a>.</p>"
                  "<p>Deciziile de tranzacționare pe contul clientului le ia clientul. Administrarea discreționară se face doar prin brokerul partener, pe baza unui contract de parteneriat.</p>"),
@@ -418,9 +418,9 @@ def faq(яз: str) -> dict:
     lp_lang = "" if яз == "ru" else f"/{яз}"
     qa = {
         "ru": [
-            ("Что такое SBF Company?", f"<p>{esc(E['description']['ru'])} Юрлицо — «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. Прежнее название бренда — SBF Consult. Подробнее — <a href=\"{about}\">о компании</a>.</p>"),
-            ("SBF Company — брокер? Вы храните деньги клиентов?", "<p>Нет. SBF Company не брокер и не лицензированный управляющий активами. Мы не принимаем и не храним средства клиентов: счёт открывается у брокера-партнёра, деньги находятся у него.</p>"),
-            ("Как SBF Company зарабатывает?", "<p>Для клиента сопровождение бесплатно: SBF Company получает вознаграждение от брокера-партнёра за приведённый счёт.</p>"),
+            ("Что такое SBF Consult?", f"<p>{esc(E['description']['ru'])} Юрлицо — «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. Подробнее — <a href=\"{about}\">о компании</a>.</p>"),
+            ("SBF Consult — брокер? Вы храните деньги клиентов?", "<p>Нет. SBF Consult не брокер и не лицензированный управляющий активами. Мы не принимаем и не храним средства клиентов: счёт открывается у брокера-партнёра, деньги находятся у него.</p>"),
+            ("Как SBF Consult зарабатывает?", "<p>Для клиента сопровождение бесплатно: SBF Consult получает вознаграждение от брокера-партнёра за приведённый счёт.</p>"),
             ("Сколько стоит обучение?", f"<p>Утренний бриф, графики, котировки и главы 1–5 курса открыты без регистрации. Полный курс (главы 1–15) и журнал сделок входят в PRO; 30 дней PRO даются за короткий опрос, без карты и без автосписаний. <a href=\"{LP}{lp_lang}/edu/\">Курс</a>.</p>"),
             ("Можно ли начать без опыта?", f"<p>Да: курс начинается с основ, и первые пять глав открыты всем. <a href=\"{LP}{lp_lang}/edu/\">Начать с главы 1</a>.</p>"),
             ("Когда я начну зарабатывать?", "<p>Сроков и прибыли мы не обещаем. Результат в трейдинге зависит от капитала, риска и дисциплины; историческая статистика не гарантирует будущих результатов.</p>"),
@@ -432,9 +432,9 @@ def faq(яз: str) -> dict:
             ("Где находится компания?", f"<p>Головной офис — {esc(E['hq']['office'])}, {esc(E['hq']['street'])}, {esc(E['hq']['postal_code'])} {esc(E['hq']['locality'])}, Молдова. Офисы:</p>{офисы('ru')}"),
         ],
         "en": [
-            ("What is SBF Company?", f"<p>{esc(E['description']['en'])} Legal entity: «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. The former brand name is SBF Consult. More on the <a href=\"{about}\">About</a> page.</p>"),
-            ("Is SBF Company a broker? Do you hold client money?", "<p>No. SBF Company is neither a broker nor a licensed asset manager. We do not accept or hold client funds: the account is opened with a partner broker, and the money stays there.</p>"),
-            ("How does SBF Company earn?", "<p>Account support is free for the client: SBF Company receives a fee from the partner broker for a referred account.</p>"),
+            ("What is SBF Consult?", f"<p>{esc(E['description']['en'])} Legal entity: «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. More on the <a href=\"{about}\">About</a> page.</p>"),
+            ("Is SBF Consult a broker? Do you hold client money?", "<p>No. SBF Consult is neither a broker nor a licensed asset manager. We do not accept or hold client funds: the account is opened with a partner broker, and the money stays there.</p>"),
+            ("How does SBF Consult earn?", "<p>Account support is free for the client: SBF Consult receives a fee from the partner broker for a referred account.</p>"),
             ("How much does the education cost?", f"<p>The morning brief, charts, quotes and chapters 1–5 of the course are open without registration. The full course (chapters 1–15) and the trade journal are part of PRO; 30 days of PRO are given for a short survey, with no card and no auto-renewal. <a href=\"{LP}/en/edu/\">Course</a>.</p>"),
             ("Can I start without experience?", f"<p>Yes: the course starts from the basics, and the first five chapters are open to everyone. <a href=\"{LP}/en/edu/\">Start with chapter 1</a>.</p>"),
             ("When will I start earning?", "<p>We promise neither timelines nor profit. Trading results depend on capital, risk and discipline; historical statistics do not guarantee future results.</p>"),
@@ -446,9 +446,9 @@ def faq(яз: str) -> dict:
             ("Where is the company located?", f"<p>Head office: {esc(E['hq']['office'])}, {esc(E['hq']['street'])}, {esc(E['hq']['postal_code'])} {esc(E['hq']['locality'])}, Moldova. Offices:</p>{офисы('en')}"),
         ],
         "ro": [
-            ("Ce este SBF Company?", f"<p>{esc(E['description']['ro'])} Entitatea juridică: «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. Denumirea anterioară a brandului este SBF Consult. Detalii pe pagina <a href=\"{about}\">Despre noi</a>.</p>"),
-            ("SBF Company este broker? Păstrați banii clienților?", "<p>Nu. SBF Company nu este broker și nici administrator de active licențiat. Nu acceptăm și nu păstrăm fondurile clienților: contul se deschide la un broker partener, iar banii rămân la el.</p>"),
-            ("Cum câștigă SBF Company?", "<p>Pentru client suportul este gratuit: SBF Company primește o remunerație de la brokerul partener pentru contul adus.</p>"),
+            ("Ce este SBF Consult?", f"<p>{esc(E['description']['ro'])} Entitatea juridică: «SBF COMPANY» S.R.L., IDNO {ид['idno']}, LEI {ид['lei']}. Detalii pe pagina <a href=\"{about}\">Despre noi</a>.</p>"),
+            ("SBF Consult este broker? Păstrați banii clienților?", "<p>Nu. SBF Consult nu este broker și nici administrator de active licențiat. Nu acceptăm și nu păstrăm fondurile clienților: contul se deschide la un broker partener, iar banii rămân la el.</p>"),
+            ("Cum câștigă SBF Consult?", "<p>Pentru client suportul este gratuit: SBF Consult primește o remunerație de la brokerul partener pentru contul adus.</p>"),
             ("Cât costă educația?", f"<p>Brief-ul de dimineață, graficele, cotațiile și capitolele 1–5 ale cursului sunt deschise fără înregistrare. Cursul complet (capitolele 1–15) și jurnalul de tranzacții fac parte din PRO; 30 de zile PRO se oferă pentru un scurt chestionar, fără card și fără reînnoire automată. <a href=\"{LP}/ro/edu/\">Curs</a>.</p>"),
             ("Pot începe fără experiență?", f"<p>Da: cursul începe de la bază, iar primele cinci capitole sunt deschise tuturor. <a href=\"{LP}/ro/edu/\">Începe cu capitolul 1</a>.</p>"),
             ("Când voi începe să câștig?", "<p>Nu promitem nici termene, nici profit. Rezultatele în trading depind de capital, risc și disciplină; statistica istorică nu garantează rezultate viitoare.</p>"),
@@ -461,14 +461,14 @@ def faq(яз: str) -> dict:
         ],
     }[яз]
     head = {
-        "ru": dict(title="Вопросы и ответы — SBF Company",
-                   desc="Ответы на частые вопросы о SBF Company: кто мы, как зарабатываем, брокеры-партнёры, минимальный депозит, обучение и утренний бриф.",
+        "ru": dict(title="Вопросы и ответы — SBF Consult",
+                   desc="Ответы на частые вопросы о SBF Consult: кто мы, как зарабатываем, брокеры-партнёры, минимальный депозит, обучение и утренний бриф.",
                    h1="Вопросы и ответы"),
-        "en": dict(title="Frequently asked questions — SBF Company",
-                   desc="Answers to common questions about SBF Company: who we are, how we earn, partner brokers, minimum deposit, education and the morning brief.",
+        "en": dict(title="Frequently asked questions — SBF Consult",
+                   desc="Answers to common questions about SBF Consult: who we are, how we earn, partner brokers, minimum deposit, education and the morning brief.",
                    h1="Frequently asked questions"),
-        "ro": dict(title="Întrebări frecvente — SBF Company",
-                   desc="Răspunsuri la întrebările frecvente despre SBF Company: cine suntem, cum câștigăm, brokeri parteneri, depozit minim, educație și brief.",
+        "ro": dict(title="Întrebări frecvente — SBF Consult",
+                   desc="Răspunsuri la întrebările frecvente despre SBF Consult: cine suntem, cum câștigăm, brokeri parteneri, depozit minim, educație și brief.",
                    h1="Întrebări frecvente"),
     }[яз]
     head["sections"] = [("", "".join(f"<details><summary>{esc(q)}</summary>{a}</details>" for q, a in qa))]
@@ -538,7 +538,7 @@ def страница(стр: str, яз: str) -> str:
 {alt}
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="SBF Company">
+<meta property="og:site_name" content="SBF Consult">
 <meta property="og:title" content="{esc(t["title"])}">
 <meta property="og:description" content="{esc(t["desc"], quote=False)}">
 <meta property="og:url" content="{ДОМЕН}{путь(стр, яз)}">
@@ -552,8 +552,8 @@ def страница(стр: str, яз: str) -> str:
 </head>
 <body>
 <div class="wrap">
-<header class="top"><a class="brand" href="{главная}">SBF <span>Company</span></a><span class="langs">{языки}</span></header>
-<nav class="pages" aria-label="SBF Company">{меню}</nav>
+<header class="top"><a class="brand" href="{главная}">SBF <span>Consult</span></a><span class="langs">{языки}</span></header>
+<nav class="pages" aria-label="SBF Consult">{меню}</nav>
 <main>
 <h1>{esc(t["h1"])}</h1>
 {"".join(тело)}

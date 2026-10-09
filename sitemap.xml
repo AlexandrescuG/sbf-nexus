@@ -34,6 +34,114 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sbfconsult.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/ro/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/team/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/team/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/team/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/team/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/team/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/en/team/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/team/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/team/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/team/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/team/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/ro/team/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/team/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/team/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/team/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/team/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/methodology/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/en/methodology/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/ro/methodology/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/faq/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/en/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/faq/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sbfconsult.com/ro/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://sbfconsult.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/faq/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sbfconsult.com/brief/2026-10-09.html</loc>
     <lastmod>2026-10-09</lastmod>
     <changefreq>never</changefreq>

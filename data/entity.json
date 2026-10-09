@@ -1,12 +1,12 @@
 {
   "_meta": {
     "назначение": "Единственный источник фактов о компании. Из него собираются JSON-LD (index.html и др.) и секция «кто мы» в llms.txt — tools/build_entity.py. Правится этот файл, а не четыре копии.",
-    "обновлено": "2026-09-30",
+    "обновлено": "2026-10-09",
     "источники": {
       "legal_name, identifiers, hq": "market-intel/web/llms.txt (main, 30.09); JSON-LD sbfconsult.com; запись Bloomberg LEI",
       "offices, contacts": "sbf-nexus/index.html (блок контактов), js/data/contacts.js",
       "social": "ссылки на sbfconsult.com и в SBFAcademy_bot",
-      "brand, former_names, product": "решение владельца 30.09.2026 (docs/AI_VISIBILITY_AUDIT_2026-09.md в market-intel)"
+      "brand, former_names, product": "решение владельца 09.10.2026: бренд остаётся SBF Consult. Отменяет запись от 30.09 про переименование в SBF Company (docs/AI_VISIBILITY_AUDIT_2026-09.md в market-intel и SPEC_LOCAL_ROLLOUT_2026-09-30.md, где оно значилось как не подлежащее пересмотру). Юрлицо при этом так и называется «SBF COMPANY» S.R.L. — это регистрационное имя, и его менять не на что: бренд и юрлицо здесь просто разные вещи"
     },
     "подтвердить_у_владельца": [
       "founding_date — взята из записи LEI (дата регистрации юрлица); сверить с реестром ASP",
@@ -15,8 +15,8 @@
       "linkedin — компания упоминается в аудите, URL в репозиториях не найден, поэтому не включён"
     ]
   },
-  "brand": "SBF Company",
-  "former_names": ["SBF Consult"],
+  "brand": "SBF Consult",
+  "former_names": [],
   "legal_name": {
     "registry": "Societatea cu Răspundere Limitată \"SBF COMPANY\"",
     "short": "«SBF COMPANY» S.R.L.",
@@ -66,9 +66,9 @@
   },
   "logo": "https://sbfconsult.com/assets/logo/logo.svg",
   "description": {
-    "ru": "SBF Company — анализ финансовых рынков, обучение трейдингу и сопровождение торговых счетов, открытых у регулируемых брокеров-партнёров. Кишинёв, Молдова. Не брокер и не управляющий активами, средства клиентов не принимает.",
-    "en": "SBF Company — financial market analysis, trading education and support for trading accounts opened with regulated partner brokers. Chișinău, Moldova. Not a broker or asset manager; does not accept client funds.",
-    "ro": "SBF Company — analiza piețelor financiare, educație în trading și suport pentru conturi de tranzacționare deschise la brokeri parteneri reglementați. Chișinău, Moldova. Nu este broker sau administrator de active; nu acceptă fondurile clienților."
+    "ru": "SBF Consult — анализ финансовых рынков, обучение трейдингу и сопровождение торговых счетов, открытых у регулируемых брокеров-партнёров. Кишинёв, Молдова. Не брокер и не управляющий активами, средства клиентов не принимает.",
+    "en": "SBF Consult — financial market analysis, trading education and support for trading accounts opened with regulated partner brokers. Chișinău, Moldova. Not a broker or asset manager; does not accept client funds.",
+    "ro": "SBF Consult — analiza piețelor financiare, educație în trading și suport pentru conturi de tranzacționare deschise la brokeri parteneri reglementați. Chișinău, Moldova. Nu este broker sau administrator de active; nu acceptă fondurile clienților."
   },
   "does_not": {
     "ru": ["Не продаём торговые сигналы", "Не гарантируем прибыль и не публикуем винрейты", "Не даём инвестиционных рекомендаций в юридическом смысле", "Не принимаем и не храним средства клиентов: счёт открывается у брокера-партнёра"],
