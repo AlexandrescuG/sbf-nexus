@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "назначение": "Единственный источник фактов о компании. Из него собираются JSON-LD (index.html и др.) и секция «кто мы» в llms.txt — tools/build_entity.py. Правится этот файл, а не четыре копии.",
+    "обновлено": "2026-09-30",
+    "источники": {
+      "legal_name, identifiers, hq": "market-intel/web/llms.txt (main, 30.09); JSON-LD sbfconsult.com; запись Bloomberg LEI",
+      "offices, contacts": "sbf-nexus/index.html (блок контактов), js/data/contacts.js",
+      "social": "ссылки на sbfconsult.com и в SBFAcademy_bot",
+      "brand, former_names, product": "решение владельца 30.09.2026 (docs/AI_VISIBILITY_AUDIT_2026-09.md в market-intel)"
+    },
+    "подтвердить_у_владельца": [
+      "founding_date — взята из записи LEI (дата регистрации юрлица); сверить с реестром ASP",
+      "area_served — KZ и ZA есть в живом JSON-LD, но офисных адресов для них на сайте нет",
+      "offices[PT].address — на сайте написано «Lisabon» (опечатка?), здесь оставлено как на сайте",
+      "linkedin — компания упоминается в аудите, URL в репозиториях не найден, поэтому не включён"
+    ]
+  },
+  "brand": "SBF Company",
+  "former_names": ["SBF Consult"],
+  "legal_name": {
+    "registry": "Societatea cu Răspundere Limitată \"SBF COMPANY\"",
+    "short": "«SBF COMPANY» S.R.L.",
+    "latin": "SBF Company SRL"
+  },
+  "identifiers": {
+    "idno": "1025600035871",
+    "lei": "254900BW4MI5M0006I30",
+    "lei_url": "https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30"
+  },
+  "founding_date": "2025-06-10",
+  "hq": {
+    "street": "Str. Alexei Sciusev 47",
+    "office": "Office 1",
+    "locality": "Chișinău",
+    "postal_code": "MD-2012",
+    "country": "MD",
+    "geo": { "lat": 47.0177661, "lng": 28.830598 },
+    "maps_url": "https://www.google.com/maps/place/SBF+Company+SRL/@47.0177661,28.8280231,17z"
+  },
+  "contacts": {
+    "phone": "+37369000520",
+    "phone_display": "+373 (69) 000-520",
+    "email": "contact@sbf.md"
+  },
+  "offices": [
+    { "country": "MD", "city": "Chișinău", "address": "Office 1, str. Alexei Sciusev 47, Chișinău", "phone": "+37360887735", "channel": "WhatsApp", "hq": true },
+    { "country": "CH", "city": "Obfelden", "address": "Raihaltenstrasse 79, 8912 Obfelden", "phone": "+41755731626", "channel": "WhatsApp" },
+    { "country": "PT", "city": "Lisboa", "address": "Praceta José Figueiredo da Fonseca, nr. 183, Lisabon", "phone": "+351939953919", "channel": "phone" },
+    { "country": "AE", "city": "Dubai", "address": "Office 4301, Mazaya Business Avenue AA-1, JLT, Dubai", "phone": "+971507193055", "channel": "Telegram" }
+  ],
+  "area_served": ["MD", "KZ", "ZA", "AE", "CH", "PT"],
+  "languages": ["ru", "en", "ro"],
+  "domains": {
+    "company": "https://sbfconsult.com/",
+    "terminal": "https://lp.sbfconsult.com/",
+    "legal_entity_site": "https://www.sbf.md/"
+  },
+  "product": {
+    "name": "SBF Intelligence",
+    "url": "https://lp.sbfconsult.com/",
+    "category": "FinanceApplication"
+  },
+  "social": {
+    "telegram_channel": "https://t.me/SBFEconomics",
+    "telegram_bot": "https://t.me/SBFAcademy_bot"
+  },
+  "logo": "https://sbfconsult.com/assets/logo/logo.svg",
+  "description": {
+    "ru": "SBF Company — анализ финансовых рынков, обучение трейдингу и сопровождение торговых счетов, открытых у регулируемых брокеров-партнёров. Кишинёв, Молдова. Не брокер и не управляющий активами, средства клиентов не принимает.",
+    "en": "SBF Company — financial market analysis, trading education and support for trading accounts opened with regulated partner brokers. Chișinău, Moldova. Not a broker or asset manager; does not accept client funds.",
+    "ro": "SBF Company — analiza piețelor financiare, educație în trading și suport pentru conturi de tranzacționare deschise la brokeri parteneri reglementați. Chișinău, Moldova. Nu este broker sau administrator de active; nu acceptă fondurile clienților."
+  },
+  "does_not": {
+    "ru": ["Не продаём торговые сигналы", "Не гарантируем прибыль и не публикуем винрейты", "Не даём инвестиционных рекомендаций в юридическом смысле", "Не принимаем и не храним средства клиентов: счёт открывается у брокера-партнёра"],
+    "en": ["We do not sell trading signals", "We do not guarantee profit and do not publish win rates", "We do not give investment advice in the legal sense", "We do not accept or hold client funds: the account is opened with a partner broker"],
+    "ro": ["Nu vindem semnale de tranzacționare", "Nu garantăm profit și nu publicăm rate de câștig", "Nu oferim consultanță de investiții în sens juridic", "Nu acceptăm și nu păstrăm fondurile clienților: contul se deschide la un broker partener"]
+  }
+}

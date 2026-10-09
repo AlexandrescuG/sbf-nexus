@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SBF Intelligence methodology — how we measure</title>
+<meta name="description" content="How SBF Intelligence measures market reaction to events, normal volatility and pattern statistics: data, thresholds and limitations.">
+<link rel="canonical" href="https://sbfconsult.com/en/methodology/">
+<link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"><link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"><link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"><link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SBF Company">
+<meta property="og:title" content="SBF Intelligence methodology — how we measure">
+<meta property="og:description" content="How SBF Intelligence measures market reaction to events, normal volatility and pattern statistics: data, thresholds and limitations.">
+<meta property="og:url" content="https://sbfconsult.com/en/methodology/">
+<link rel="icon" href="/assets/logo/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "@id": "https://sbfconsult.com/en/methodology/#page",
+ "url": "https://sbfconsult.com/en/methodology/",
+ "name": "SBF Intelligence methodology — how we measure",
+ "description": "How SBF Intelligence measures market reaction to events, normal volatility and pattern statistics: data, thresholds and limitations.",
+ "inLanguage": "en",
+ "isPartOf": {
+  "@id": "https://sbfconsult.com/#website"
+ },
+ "publisher": {
+  "@id": "https://sbfconsult.com/#org"
+ },
+ "headline": "SBF Intelligence methodology",
+ "author": {
+  "@id": "https://sbfconsult.com/#org"
+ }
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="/?lang=en">SBF <span>Company</span></a><span class="langs"><a href="/methodology/" hreflang="ru" lang="ru">RU</a><a href="/en/methodology/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/ro/methodology/" hreflang="ro" lang="ro">RO</a></span></header>
+<nav class="pages" aria-label="SBF Company"><a href="/en/about/">About</a><a href="/en/team/">Team</a><a href="/en/methodology/" aria-current="page">Methodology</a><a href="/en/faq/">FAQ</a><a href="/risk.html">Risks</a></nav>
+<main>
+<h1>SBF Intelligence methodology</h1>
+<p class="lead">Every number in the brief and on the terminal is computed by code from price data. A language model writes only the headline and three context points for an already computed brief — it adds and changes no numbers. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/llm_context.py" rel="noopener">analyze/llm_context.py</a></span></p><p>Below is what exactly is measured, from which data and with which thresholds. Each item links to the code that computes it.</p><h2>Data</h2><ul><li>Prices: intraday and daily bars from the MT5 trading terminal (history since July 2021). The quote line refreshes every 15 seconds. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/quotes_loop.py" rel="noopener">quotes_loop.py</a></span></li><li>Macro: Federal Reserve Bank of St. Louis (FRED) series — CPI inflation, unemployment, Fed funds rate, 10y–2y spread, breakeven inflation, WTI oil, trade-weighted dollar. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/fred.py" rel="noopener">core/fred.py</a></span></li><li>Economic calendar: official sources, ForexFactory and TradingView; one release seen in several sources is counted once. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></li><li>News flow: RSS feeds, X and the SBF Economics Telegram channel. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></li></ul><h2>Market reaction to an event</h2><p>For each event type (for example, a rate decision) and each related instrument we take past releases. The 30-minute move is the absolute difference between the open and close of the 30-minute bar starting at the release time.</p><p>We take the median over all past cases and divide it by the instrument’s daily ATR(14), so moves are comparable across instruments. The move is also compared with the typical move of the same hour of day: 38 points at 15:30 UTC and at 03:00 UTC are different events. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></p><p>The brief shows the number only if there are at least five past releases; otherwise it says “too few past releases yet”. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><h2>Who moved wider than usual</h2><p>For each instrument the move of the last closed day is divided by its own norm — Wilder’s 14-day average true range (ATR14). A ratio above one means a wider-than-usual move. Data older than three days is not used: that is a data gap, not “yesterday”. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/movers.py" rel="noopener">core/movers.py</a></span> <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/focus.py" rel="noopener">core/focus.py</a></span></p><h2>Pattern statistics</h2><p>Patterns are searched over the full available history on the H1, H4 and D1 timeframes. For each case we check whether price moved in the pattern’s direction after 3, 5 and 10 candles. Cases closer than six candles to each other count as one. Recomputed weekly. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/pattern_stats_job.py" rel="noopener">pattern_stats_job.py</a></span></p><p>The brief shows a pattern only with statistics of at least 15 cases. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><p>What our measurements showed: agreement of classic candlestick and chart patterns with the direction of the next five bars is 46.8–51.3% across instruments, statistically indistinguishable from 50%. We show this in the course rather than hide it. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/tools/edu_build/pattern_reality.py" rel="noopener">tools/edu_build/pattern_reality.py</a></span></p><h2>News bursts</h2><p>A burst is when at least five news items about an instrument appeared in the last hour, and at least three times the average hourly count over the last seven days. Checked every 15 minutes. This is attention, not price. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></p><h2>How far to trust an item in the brief</h2><p>Each context item in the brief is labelled with its source: “from quotes” — visible in prices; “from media” — with a link to the outlet; “from social media, unverified” — shown because the market reacts to it, but not confirmed. <span class="src">code: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/prompt.md" rel="noopener">analyze/prompt.md</a></span></p><h2>Limitations</h2><ul><li>Historical statistics describe the past and do not guarantee future results.</li><li>Small samples give a wide spread, so every number has a minimum-cases threshold.</li><li>Gaps in price data are possible; stale data is never presented as yesterday’s.</li><li>None of this is investment advice: the trading decision is yours.</li></ul>
+</main>
+<footer><p>The materials are for information only and are not investment advice. Trading CFDs and margin instruments carries a high risk of losing money rapidly.</p><p>«SBF COMPANY» S.R.L., Str. Alexei Sciusev 47, MD-2012 Chișinău, Moldova · IDNO 1025600035871 · LEI <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" rel="noopener">254900BW4MI5M0006I30</a></p></footer>
+</div>
+</body>
+</html>

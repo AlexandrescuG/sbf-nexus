@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodologia SBF Intelligence — cum măsurăm</title>
+<meta name="description" content="Cum măsoară SBF Intelligence reacția pieței la evenimente, volatilitatea normală și statistica tiparelor: date, praguri și limitări.">
+<link rel="canonical" href="https://sbfconsult.com/ro/methodology/">
+<link rel="alternate" hreflang="ru" href="https://sbfconsult.com/methodology/"><link rel="alternate" hreflang="en" href="https://sbfconsult.com/en/methodology/"><link rel="alternate" hreflang="ro" href="https://sbfconsult.com/ro/methodology/"><link rel="alternate" hreflang="x-default" href="https://sbfconsult.com/methodology/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SBF Company">
+<meta property="og:title" content="Metodologia SBF Intelligence — cum măsurăm">
+<meta property="og:description" content="Cum măsoară SBF Intelligence reacția pieței la evenimente, volatilitatea normală și statistica tiparelor: date, praguri și limitări.">
+<meta property="og:url" content="https://sbfconsult.com/ro/methodology/">
+<link rel="icon" href="/assets/logo/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "@id": "https://sbfconsult.com/ro/methodology/#page",
+ "url": "https://sbfconsult.com/ro/methodology/",
+ "name": "Metodologia SBF Intelligence — cum măsurăm",
+ "description": "Cum măsoară SBF Intelligence reacția pieței la evenimente, volatilitatea normală și statistica tiparelor: date, praguri și limitări.",
+ "inLanguage": "ro",
+ "isPartOf": {
+  "@id": "https://sbfconsult.com/#website"
+ },
+ "publisher": {
+  "@id": "https://sbfconsult.com/#org"
+ },
+ "headline": "Metodologia SBF Intelligence",
+ "author": {
+  "@id": "https://sbfconsult.com/#org"
+ }
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="/?lang=ro">SBF <span>Company</span></a><span class="langs"><a href="/methodology/" hreflang="ru" lang="ru">RU</a><a href="/en/methodology/" hreflang="en" lang="en">EN</a><a href="/ro/methodology/" hreflang="ro" lang="ro" aria-current="true">RO</a></span></header>
+<nav class="pages" aria-label="SBF Company"><a href="/ro/about/">Despre noi</a><a href="/ro/team/">Echipa</a><a href="/ro/methodology/" aria-current="page">Metodologie</a><a href="/ro/faq/">Întrebări frecvente</a><a href="/risk.html">Riscuri</a></nav>
+<main>
+<h1>Metodologia SBF Intelligence</h1>
+<p class="lead">Toate cifrele din brief și din terminal sunt calculate de cod pe baza datelor de preț. Modelul lingvistic scrie doar titlul și trei puncte de context pentru un brief deja calculat — nu adaugă și nu modifică cifre. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/llm_context.py" rel="noopener">analyze/llm_context.py</a></span></p><p>Mai jos — ce anume se măsoară, pe ce date și cu ce praguri. Fiecare punct are un link la codul de calcul.</p><h2>Date</h2><ul><li>Prețuri: bare intraday și zilnice din terminalul de tranzacționare MT5 (istoric din iulie 2021). Linia de cotații se actualizează la fiecare 15 secunde. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/quotes_loop.py" rel="noopener">quotes_loop.py</a></span></li><li>Macroeconomie: serii ale Băncii Rezervei Federale din St. Louis (FRED) — inflația CPI, șomajul, rata Fed, spread-ul 10y–2y, inflația așteptată, petrolul WTI, dolarul ponderat comercial. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/fred.py" rel="noopener">core/fred.py</a></span></li><li>Calendar economic: surse oficiale, ForexFactory și TradingView; o publicare văzută în mai multe surse se numără o singură dată. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></li><li>Fluxul de știri: fluxuri RSS, X și canalul Telegram SBF Economics. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></li></ul><h2>Reacția pieței la un eveniment</h2><p>Pentru fiecare tip de eveniment (de exemplu, decizia privind rata) și fiecare instrument legat de el se iau publicările anterioare. Mișcarea în 30 de minute este diferența absolută dintre deschiderea și închiderea barei de 30 de minute care începe la momentul publicării.</p><p>Se ia mediana tuturor cazurilor anterioare și se împarte la ATR(14) zilnic al instrumentului, ca mișcările să fie comparabile între instrumente. Mișcarea se compară și cu mișcarea tipică a aceleiași ore din zi: 38 de puncte la 15:30 UTC și la 03:00 UTC sunt evenimente diferite. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/event_reactions_job.py" rel="noopener">event_reactions_job.py</a></span></p><p>În brief cifra apare doar dacă există cel puțin cinci publicări anterioare; altfel scriem „prea puține publicări anterioare deocamdată”. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><h2>Cine s-a mișcat mai larg decât de obicei</h2><p>Pentru fiecare instrument mișcarea ultimei zile închise se împarte la propria normă — intervalul real mediu Wilder pe 14 zile (ATR14). Un raport peste unu înseamnă o mișcare mai largă decât de obicei. Datele mai vechi de trei zile nu se folosesc: este o lipsă în date, nu „ieri”. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/movers.py" rel="noopener">core/movers.py</a></span> <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/core/focus.py" rel="noopener">core/focus.py</a></span></p><h2>Statistica tiparelor</h2><p>Tiparele se caută pe tot istoricul disponibil pe intervalele H1, H4 și D1. Pentru fiecare caz se verifică dacă prețul a mers în direcția tiparului după 3, 5 și 10 lumânări. Cazurile mai apropiate de șase lumânări unul de altul se numără ca unul. Recalculare săptămânală. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/pattern_stats_job.py" rel="noopener">pattern_stats_job.py</a></span></p><p>În brief un tipar apare doar cu o statistică de cel puțin 15 cazuri. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/build_brief_v2.py" rel="noopener">analyze/build_brief_v2.py</a></span></p><p>Ce au arătat măsurătorile noastre: concordanța tiparelor clasice de lumânări și grafice cu direcția următoarelor cinci bare este de 46,8–51,3% pe instrumente, indistinctă statistic de 50%. O arătăm în curs, nu o ascundem. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/tools/edu_build/pattern_reality.py" rel="noopener">tools/edu_build/pattern_reality.py</a></span></p><h2>Valuri de știri</h2><p>Un val este atunci când în ultima oră au apărut cel puțin cinci știri despre un instrument și de cel puțin trei ori mai multe decât media orară din ultimele șapte zile. Verificare la fiecare 15 minute. Este atenție, nu preț. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/news_burst_job.py" rel="noopener">news_burst_job.py</a></span></p><h2>Cât de mult poți avea încredere într-un punct din brief</h2><p>Fiecare punct de context din brief este marcat cu sursa: „din cotații” — se vede în prețuri; „din presă” — cu link la publicație; „din rețele sociale, neverificat” — îl arătăm pentru că piața reacționează, dar nu îl confirmăm. <span class="src">cod: <a href="https://github.com/AlexandrescuG/market-intel/blob/main/analyze/prompt.md" rel="noopener">analyze/prompt.md</a></span></p><h2>Limitări</h2><ul><li>Statistica istorică descrie trecutul și nu garantează rezultate viitoare.</li><li>Eșantioanele mici dau o dispersie mare, de aceea fiecare cifră are un prag minim de cazuri.</li><li>Lipsurile în datele de preț sunt posibile; datele vechi nu sunt prezentate drept ale zilei de ieri.</li><li>Nimic din acestea nu este o recomandare de investiții: decizia de tranzacționare îți aparține.</li></ul>
+</main>
+<footer><p>Materialele au caracter informativ și nu constituie o recomandare de investiții. Tranzacționarea CFD și a instrumentelor în marjă implică un risc ridicat de pierdere rapidă a banilor.</p><p>«SBF COMPANY» S.R.L., Str. Alexei Sciusev 47, MD-2012 Chișinău, Moldova · IDNO 1025600035871 · LEI <a href="https://lei.bloomberg.com/leis/view/254900BW4MI5M0006I30" rel="noopener">254900BW4MI5M0006I30</a></p></footer>
+</div>
+</body>
+</html>
