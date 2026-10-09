@@ -380,6 +380,13 @@ def main():
     import build_sitemap
     n = build_sitemap.write()
     print('в карте сайта адресов: %d' % n)
+
+    # Страницы пересчитаны — значит изменились, и об этом стоит сказать.
+    # Оглавление первым: по нему поисковик дойдёт до остальных, даже если
+    # часть адресов не примут.
+    build_sitemap.ping_indexnow(
+        ['%s/reaction/' % SITE] +
+        ['%s/reaction/%s.html' % (SITE, e['slug']) for e in events])
     return 0
 
 

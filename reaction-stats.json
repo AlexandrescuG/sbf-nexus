@@ -1,7 +1,7 @@
 {
- "built_at": "2026-09-30T07:54:33Z",
+ "built_at": "2026-10-09T07:10:18Z",
  "calendar_from": "2025-12-29",
- "calendar_to": "2026-09-30",
+ "calendar_to": "2026-10-09",
  "baseline": {
   "window_days": 90,
   "min_bars": 20,
@@ -33,10 +33,10 @@
    "country": "US",
    "event_type": "nfp",
    "title": "Отчёт по занятости в США (Non-Farm Payrolls)",
-   "releases": 9,
+   "releases": 10,
    "period": [
     "2026-01-09",
-    "2026-09-04"
+    "2026-10-02"
    ],
    "times_utc": [
     "12:30",
@@ -54,58 +54,58 @@
    "rows": [
     {
      "symbol": "USDJPY",
-     "n": 9,
-     "median_ratio": 6.09,
-     "above": 7,
+     "n": 10,
+     "median_ratio": 5.62,
+     "above": 8,
      "min_ratio": 0.09,
-     "max_ratio": 18.37,
-     "median_move": 34.4,
+     "max_ratio": 17.68,
+     "median_move": 35.2,
      "unit": "пипс",
      "period": [
       "2026-01-09",
-      "2026-09-04"
+      "2026-10-02"
      ]
     },
     {
      "symbol": "GOLD",
-     "n": 8,
-     "median_ratio": 4.53,
-     "above": 7,
+     "n": 9,
+     "median_ratio": 4.11,
+     "above": 8,
      "min_ratio": 0.16,
-     "max_ratio": 9.42,
-     "median_move": 39.31,
+     "max_ratio": 9.46,
+     "median_move": 31.59,
      "unit": "пункт",
      "period": [
       "2026-01-09",
-      "2026-09-04"
+      "2026-10-02"
      ]
     },
     {
      "symbol": "EURUSD",
-     "n": 9,
-     "median_ratio": 2.81,
-     "above": 6,
+     "n": 10,
+     "median_ratio": 4.08,
+     "above": 7,
      "min_ratio": 0.26,
-     "max_ratio": 11.98,
-     "median_move": 14.6,
+     "max_ratio": 12.11,
+     "median_move": 19.35,
      "unit": "пипс",
      "period": [
       "2026-01-09",
-      "2026-09-04"
+      "2026-10-02"
      ]
     },
     {
      "symbol": "USDZAR",
-     "n": 9,
-     "median_ratio": 1.26,
-     "above": 6,
+     "n": 10,
+     "median_ratio": 2.56,
+     "above": 7,
      "min_ratio": 0.19,
-     "max_ratio": 7.74,
-     "median_move": 229.5,
+     "max_ratio": 7.85,
+     "median_move": 391.75,
      "unit": "пипс",
      "period": [
       "2026-01-09",
-      "2026-09-04"
+      "2026-10-02"
      ]
     }
    ]
@@ -137,7 +137,7 @@
      "median_ratio": 1.52,
      "above": 6,
      "min_ratio": 0.61,
-     "max_ratio": 8.35,
+     "max_ratio": 8.44,
      "median_move": 7.0,
      "unit": "пипс",
      "period": [
@@ -151,7 +151,7 @@
      "median_ratio": 1.09,
      "above": 5,
      "min_ratio": 0.22,
-     "max_ratio": 7.14,
+     "max_ratio": 6.43,
      "median_move": 7.5,
      "unit": "пипс",
      "period": [
@@ -165,7 +165,7 @@
      "median_ratio": 0.89,
      "above": 4,
      "min_ratio": 0.42,
-     "max_ratio": 5.72,
+     "max_ratio": 5.78,
      "median_move": 8.1,
      "unit": "пункт",
      "period": [
@@ -179,7 +179,7 @@
      "median_ratio": 0.49,
      "above": 4,
      "min_ratio": 0.19,
-     "max_ratio": 3.73,
+     "max_ratio": 3.87,
      "median_move": 107.5,
      "unit": "пипс",
      "period": [
@@ -208,7 +208,7 @@
     {
      "symbol": "USDZAR",
      "n": 6,
-     "median_ratio": 13.79,
+     "median_ratio": 14.12,
      "above": 6,
      "min_ratio": 2.6,
      "max_ratio": 21.55,
@@ -236,10 +236,10 @@
     {
      "symbol": "USDJPY",
      "n": 6,
-     "median_ratio": 6.25,
+     "median_ratio": 6.45,
      "above": 6,
      "min_ratio": 1.49,
-     "max_ratio": 18.19,
+     "max_ratio": 18.54,
      "median_move": 16.4,
      "unit": "пипс",
      "period": [
@@ -250,7 +250,7 @@
     {
      "symbol": "GOLD",
      "n": 6,
-     "median_ratio": 6.04,
+     "median_ratio": 6.11,
      "above": 5,
      "min_ratio": 0.88,
      "max_ratio": 19.78,
@@ -292,7 +292,7 @@
      "median_ratio": 1.64,
      "above": 8,
      "min_ratio": 0.1,
-     "max_ratio": 3.49,
+     "max_ratio": 3.53,
      "median_move": 15.29,
      "unit": "пункт",
      "period": [
@@ -306,7 +306,7 @@
      "median_ratio": 1.13,
      "above": 5,
      "min_ratio": 0.23,
-     "max_ratio": 4.37,
+     "max_ratio": 4.42,
      "median_move": 5.95,
      "unit": "пипс",
      "period": [
@@ -320,7 +320,7 @@
      "median_ratio": 0.82,
      "above": 3,
      "min_ratio": 0.15,
-     "max_ratio": 2.69,
+     "max_ratio": 2.73,
      "median_move": 165.45,
      "unit": "пипс",
      "period": [
@@ -334,7 +334,7 @@
      "median_ratio": 0.55,
      "above": 3,
      "min_ratio": 0.07,
-     "max_ratio": 3.27,
+     "max_ratio": 2.88,
      "median_move": 3.7,
      "unit": "пипс",
      "period": [
@@ -366,23 +366,9 @@
    ],
    "rows": [
     {
-     "symbol": "USDJPY",
-     "n": 9,
-     "median_ratio": 1.19,
-     "above": 5,
-     "min_ratio": 0.44,
-     "max_ratio": 5.86,
-     "median_move": 7.7,
-     "unit": "пипс",
-     "period": [
-      "2026-01-14",
-      "2026-09-16"
-     ]
-    },
-    {
      "symbol": "EURUSD",
      "n": 9,
-     "median_ratio": 1.08,
+     "median_ratio": 1.09,
      "above": 5,
      "min_ratio": 0.07,
      "max_ratio": 2.81,
@@ -399,8 +385,22 @@
      "median_ratio": 1.06,
      "above": 5,
      "min_ratio": 0.04,
-     "max_ratio": 2.82,
+     "max_ratio": 2.85,
      "median_move": 218.1,
+     "unit": "пипс",
+     "period": [
+      "2026-01-14",
+      "2026-09-16"
+     ]
+    },
+    {
+     "symbol": "USDJPY",
+     "n": 9,
+     "median_ratio": 1.0,
+     "above": 4,
+     "min_ratio": 0.44,
+     "max_ratio": 5.86,
+     "median_move": 7.7,
      "unit": "пипс",
      "period": [
       "2026-01-14",
@@ -410,7 +410,7 @@
     {
      "symbol": "GOLD",
      "n": 9,
-     "median_ratio": 0.92,
+     "median_ratio": 0.95,
      "above": 4,
      "min_ratio": 0.12,
      "max_ratio": 3.86,
@@ -428,10 +428,10 @@
    "country": "US",
    "event_type": "core pce price index mom",
    "title": "Базовый индекс цен PCE в США",
-   "releases": 9,
+   "releases": 10,
    "period": [
     "2026-01-22",
-    "2026-08-26"
+    "2026-09-30"
    ],
    "times_utc": [
     "12:30",
@@ -441,6 +441,7 @@
    "also_at_same_time": [
     "core pce price index annual change",
     "core pce prices qoq",
+    "corporate profits",
     "gdp",
     "jobless_claims_4wk_avg",
     "jobless_claims_continuing",
@@ -455,59 +456,59 @@
    ],
    "rows": [
     {
-     "symbol": "USDZAR",
-     "n": 9,
-     "median_ratio": 1.49,
-     "above": 5,
-     "min_ratio": 0.14,
-     "max_ratio": 4.86,
-     "median_move": 220.0,
-     "unit": "пипс",
-     "period": [
-      "2026-01-22",
-      "2026-08-26"
-     ]
-    },
-    {
-     "symbol": "EURUSD",
-     "n": 9,
-     "median_ratio": 1.21,
-     "above": 7,
-     "min_ratio": 0.22,
-     "max_ratio": 3.88,
-     "median_move": 6.8,
-     "unit": "пипс",
-     "period": [
-      "2026-01-22",
-      "2026-08-26"
-     ]
-    },
-    {
      "symbol": "USDJPY",
-     "n": 9,
-     "median_ratio": 1.21,
-     "above": 5,
+     "n": 10,
+     "median_ratio": 1.43,
+     "above": 6,
      "min_ratio": 0.39,
-     "max_ratio": 5.66,
-     "median_move": 8.7,
+     "max_ratio": 4.8,
+     "median_move": 9.1,
      "unit": "пипс",
      "period": [
       "2026-01-22",
-      "2026-08-26"
+      "2026-09-30"
      ]
     },
     {
      "symbol": "GOLD",
-     "n": 9,
-     "median_ratio": 1.1,
-     "above": 5,
+     "n": 10,
+     "median_ratio": 1.37,
+     "above": 6,
      "min_ratio": 0.51,
      "max_ratio": 5.35,
-     "median_move": 10.35,
+     "median_move": 13.01,
      "unit": "пункт",
      "period": [
       "2026-01-22",
-      "2026-08-26"
+      "2026-09-30"
+     ]
+    },
+    {
+     "symbol": "USDZAR",
+     "n": 10,
+     "median_ratio": 1.23,
+     "above": 5,
+     "min_ratio": 0.14,
+     "max_ratio": 4.86,
+     "median_move": 195.05,
+     "unit": "пипс",
+     "period": [
+      "2026-01-22",
+      "2026-09-30"
+     ]
+    },
+    {
+     "symbol": "EURUSD",
+     "n": 10,
+     "median_ratio": 1.2,
+     "above": 7,
+     "min_ratio": 0.22,
+     "max_ratio": 3.88,
+     "median_move": 6.55,
+     "unit": "пипс",
+     "period": [
+      "2026-01-22",
+      "2026-09-30"
      ]
     }
    ]
@@ -517,10 +518,10 @@
    "country": "US",
    "event_type": "gdp",
    "title": "ВВП США",
-   "releases": 9,
+   "releases": 10,
    "period": [
     "2026-01-22",
-    "2026-08-26"
+    "2026-09-30"
    ],
    "times_utc": [
     "12:30",
@@ -544,59 +545,59 @@
    ],
    "rows": [
     {
-     "symbol": "USDZAR",
-     "n": 9,
-     "median_ratio": 1.49,
-     "above": 5,
-     "min_ratio": 0.14,
-     "max_ratio": 4.86,
-     "median_move": 220.0,
-     "unit": "пипс",
-     "period": [
-      "2026-01-22",
-      "2026-08-26"
-     ]
-    },
-    {
      "symbol": "USDJPY",
-     "n": 9,
-     "median_ratio": 1.21,
-     "above": 5,
-     "min_ratio": 0.03,
-     "max_ratio": 5.66,
-     "median_move": 8.7,
-     "unit": "пипс",
-     "period": [
-      "2026-01-22",
-      "2026-08-26"
-     ]
-    },
-    {
-     "symbol": "EURUSD",
-     "n": 9,
-     "median_ratio": 1.19,
+     "n": 10,
+     "median_ratio": 1.43,
      "above": 6,
-     "min_ratio": 0.22,
-     "max_ratio": 3.88,
-     "median_move": 6.3,
+     "min_ratio": 0.03,
+     "max_ratio": 4.8,
+     "median_move": 9.1,
      "unit": "пипс",
      "period": [
       "2026-01-22",
-      "2026-08-26"
+      "2026-09-30"
      ]
     },
     {
      "symbol": "GOLD",
-     "n": 9,
-     "median_ratio": 1.1,
-     "above": 5,
+     "n": 10,
+     "median_ratio": 1.37,
+     "above": 6,
      "min_ratio": 0.51,
      "max_ratio": 5.35,
-     "median_move": 10.35,
+     "median_move": 13.01,
      "unit": "пункт",
      "period": [
       "2026-01-22",
-      "2026-08-26"
+      "2026-09-30"
+     ]
+    },
+    {
+     "symbol": "USDZAR",
+     "n": 10,
+     "median_ratio": 1.23,
+     "above": 5,
+     "min_ratio": 0.14,
+     "max_ratio": 4.86,
+     "median_move": 195.05,
+     "unit": "пипс",
+     "period": [
+      "2026-01-22",
+      "2026-09-30"
+     ]
+    },
+    {
+     "symbol": "EURUSD",
+     "n": 10,
+     "median_ratio": 1.12,
+     "above": 6,
+     "min_ratio": 0.22,
+     "max_ratio": 3.88,
+     "median_move": 5.9,
+     "unit": "пипс",
+     "period": [
+      "2026-01-22",
+      "2026-09-30"
      ]
     }
    ]
@@ -606,10 +607,10 @@
    "country": "US",
    "event_type": "jobless_claims_initial",
    "title": "Первичные заявки на пособие по безработице в США",
-   "releases": 39,
+   "releases": 41,
    "period": [
     "2025-12-31",
-    "2026-09-24"
+    "2026-10-08"
    ],
    "times_utc": [
     "12:30",
@@ -621,92 +622,50 @@
    ],
    "rows": [
     {
-     "symbol": "EURGBP",
-     "n": 18,
-     "median_ratio": 1.95,
-     "above": 13,
-     "min_ratio": 0.05,
-     "max_ratio": 7.74,
-     "median_move": 3.7,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-24"
-     ]
-    },
-    {
-     "symbol": "NZDUSD",
-     "n": 18,
-     "median_ratio": 1.76,
-     "above": 12,
-     "min_ratio": 0.05,
-     "max_ratio": 7.92,
-     "median_move": 6.5,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-24"
-     ]
-    },
-    {
      "symbol": "BTC",
-     "n": 14,
-     "median_ratio": 1.7,
-     "above": 10,
-     "min_ratio": 0.32,
-     "max_ratio": 7.35,
-     "median_move": 198.9,
+     "n": 16,
+     "median_ratio": 1.53,
+     "above": 12,
+     "min_ratio": 0.31,
+     "max_ratio": 7.21,
+     "median_move": 178.4,
      "unit": "пункт",
      "period": [
       "2026-06-25",
-      "2026-09-24"
-     ]
-    },
-    {
-     "symbol": "NASDAQ",
-     "n": 19,
-     "median_ratio": 1.52,
-     "above": 12,
-     "min_ratio": 0.0,
-     "max_ratio": 4.52,
-     "median_move": 56.5,
-     "unit": "пункт",
-     "period": [
-      "2026-05-21",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "USDCHF",
-     "n": 18,
+     "n": 20,
      "median_ratio": 1.51,
-     "above": 13,
+     "above": 15,
      "min_ratio": 0.26,
      "max_ratio": 5.92,
      "median_move": 8.55,
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "SILVER",
-     "n": 19,
+     "n": 21,
      "median_ratio": 1.48,
      "above": 13,
-     "min_ratio": 0.11,
-     "max_ratio": 5.26,
-     "median_move": 0.42,
+     "min_ratio": 0.12,
+     "max_ratio": 5.38,
+     "median_move": 0.41,
      "unit": "пункт",
      "period": [
       "2026-05-21",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "GBPUSD",
-     "n": 18,
+     "n": 20,
      "median_ratio": 1.44,
      "above": 12,
      "min_ratio": 0.26,
@@ -715,147 +674,189 @@
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-24"
+      "2026-10-08"
+     ]
+    },
+    {
+     "symbol": "EURGBP",
+     "n": 20,
+     "median_ratio": 1.38,
+     "above": 13,
+     "min_ratio": 0.05,
+     "max_ratio": 7.54,
+     "median_move": 2.65,
+     "unit": "пипс",
+     "period": [
+      "2026-05-28",
+      "2026-10-08"
+     ]
+    },
+    {
+     "symbol": "USDCAD",
+     "n": 20,
+     "median_ratio": 1.37,
+     "above": 14,
+     "min_ratio": 0.02,
+     "max_ratio": 6.04,
+     "median_move": 7.0,
+     "unit": "пипс",
+     "period": [
+      "2026-05-28",
+      "2026-10-08"
+     ]
+    },
+    {
+     "symbol": "NZDUSD",
+     "n": 20,
+     "median_ratio": 1.36,
+     "above": 12,
+     "min_ratio": 0.05,
+     "max_ratio": 7.92,
+     "median_move": 5.05,
+     "unit": "пипс",
+     "period": [
+      "2026-05-28",
+      "2026-10-08"
      ]
     },
     {
      "symbol": "AUDUSD",
-     "n": 18,
+     "n": 20,
      "median_ratio": 1.34,
-     "above": 13,
-     "min_ratio": 0.1,
+     "above": 14,
+     "min_ratio": 0.05,
      "max_ratio": 9.68,
      "median_move": 5.5,
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-24"
+      "2026-10-08"
+     ]
+    },
+    {
+     "symbol": "NASDAQ",
+     "n": 21,
+     "median_ratio": 1.32,
+     "above": 13,
+     "min_ratio": 0.0,
+     "max_ratio": 4.58,
+     "median_move": 47.5,
+     "unit": "пункт",
+     "period": [
+      "2026-05-21",
+      "2026-10-08"
      ]
     },
     {
      "symbol": "DXY",
-     "n": 20,
+     "n": 22,
      "median_ratio": 1.31,
-     "above": 12,
+     "above": 13,
      "min_ratio": 0.37,
      "max_ratio": 11.0,
      "median_move": 0.05,
      "unit": "пункт",
      "period": [
       "2026-05-14",
-      "2026-09-24"
-     ]
-    },
-    {
-     "symbol": "USDCAD",
-     "n": 18,
-     "median_ratio": 1.27,
-     "above": 12,
-     "min_ratio": 0.02,
-     "max_ratio": 5.98,
-     "median_move": 6.5,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-24"
-     ]
-    },
-    {
-     "symbol": "GOLD",
-     "n": 39,
-     "median_ratio": 1.23,
-     "above": 24,
-     "min_ratio": 0.1,
-     "max_ratio": 6.38,
-     "median_move": 10.35,
-     "unit": "пункт",
-     "period": [
-      "2025-12-31",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "USDJPY",
-     "n": 39,
-     "median_ratio": 1.21,
-     "above": 22,
+     "n": 41,
+     "median_ratio": 1.27,
+     "above": 24,
      "min_ratio": 0.03,
      "max_ratio": 7.18,
-     "median_move": 8.3,
+     "median_move": 8.7,
      "unit": "пипс",
      "period": [
       "2025-12-31",
-      "2026-09-24"
+      "2026-10-08"
+     ]
+    },
+    {
+     "symbol": "GOLD",
+     "n": 41,
+     "median_ratio": 1.24,
+     "above": 25,
+     "min_ratio": 0.09,
+     "max_ratio": 6.37,
+     "median_move": 10.35,
+     "unit": "пункт",
+     "period": [
+      "2025-12-31",
+      "2026-10-08"
      ]
     },
     {
      "symbol": "SPX",
-     "n": 19,
+     "n": 21,
      "median_ratio": 1.2,
-     "above": 12,
+     "above": 13,
      "min_ratio": 0.05,
      "max_ratio": 4.52,
      "median_move": 6.0,
      "unit": "пункт",
      "period": [
       "2026-05-21",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "USDZAR",
-     "n": 39,
-     "median_ratio": 1.2,
+     "n": 41,
+     "median_ratio": 1.16,
      "above": 23,
      "min_ratio": 0.04,
-     "max_ratio": 6.99,
-     "median_move": 212.0,
+     "max_ratio": 7.05,
+     "median_move": 182.0,
      "unit": "пипс",
      "period": [
       "2025-12-31",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "DJI",
-     "n": 19,
+     "n": 21,
      "median_ratio": 1.09,
-     "above": 10,
+     "above": 11,
      "min_ratio": 0.14,
-     "max_ratio": 4.4,
-     "median_move": 50.0,
+     "max_ratio": 4.3,
+     "median_move": 48.0,
      "unit": "пункт",
      "period": [
       "2026-05-21",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "EURUSD",
-     "n": 39,
+     "n": 41,
      "median_ratio": 1.0,
-     "above": 18,
+     "above": 19,
      "min_ratio": 0.0,
-     "max_ratio": 11.98,
+     "max_ratio": 12.11,
      "median_move": 5.2,
      "unit": "пипс",
      "period": [
       "2025-12-31",
-      "2026-09-24"
+      "2026-10-08"
      ]
     },
     {
      "symbol": "WTI",
-     "n": 19,
-     "median_ratio": 1.0,
+     "n": 21,
+     "median_ratio": 0.97,
      "above": 9,
-     "min_ratio": 0.04,
-     "max_ratio": 4.11,
-     "median_move": 0.19,
+     "min_ratio": 0.05,
+     "max_ratio": 4.59,
+     "median_move": 0.16,
      "unit": "пункт",
      "period": [
       "2026-05-21",
-      "2026-09-24"
+      "2026-10-08"
      ]
     }
    ]
@@ -865,10 +866,10 @@
    "country": "US",
    "event_type": "crude oil stocks change",
    "title": "Запасы нефти в США (EIA)",
-   "releases": 40,
+   "releases": 42,
    "period": [
     "2025-12-30",
-    "2026-09-23"
+    "2026-10-07"
    ],
    "times_utc": [
     "14:30",
@@ -889,241 +890,241 @@
    ],
    "rows": [
     {
-     "symbol": "BTC",
-     "n": 14,
-     "median_ratio": 1.54,
-     "above": 8,
-     "min_ratio": 0.46,
-     "max_ratio": 3.69,
-     "median_move": 217.0,
-     "unit": "пункт",
-     "period": [
-      "2026-06-24",
-      "2026-09-23"
-     ]
-    },
-    {
-     "symbol": "USDCHF",
-     "n": 18,
-     "median_ratio": 1.47,
-     "above": 10,
-     "min_ratio": 0.03,
-     "max_ratio": 5.65,
-     "median_move": 5.45,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-23"
-     ]
-    },
-    {
-     "symbol": "DXY",
-     "n": 20,
-     "median_ratio": 1.42,
-     "above": 12,
-     "min_ratio": 0.29,
-     "max_ratio": 5.0,
-     "median_move": 0.04,
-     "unit": "пункт",
-     "period": [
-      "2026-05-13",
-      "2026-09-23"
-     ]
-    },
-    {
      "symbol": "SILVER",
-     "n": 18,
-     "median_ratio": 1.4,
-     "above": 11,
-     "min_ratio": 0.31,
+     "n": 20,
+     "median_ratio": 1.38,
+     "above": 12,
+     "min_ratio": 0.3,
      "max_ratio": 4.01,
      "median_move": 0.27,
      "unit": "пункт",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "USDCHF",
+     "n": 20,
+     "median_ratio": 1.37,
+     "above": 11,
+     "min_ratio": 0.03,
+     "max_ratio": 5.5,
+     "median_move": 5.2,
+     "unit": "пипс",
+     "period": [
+      "2026-05-28",
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "DXY",
+     "n": 22,
+     "median_ratio": 1.35,
+     "above": 13,
+     "min_ratio": 0.29,
+     "max_ratio": 4.62,
+     "median_move": 0.04,
+     "unit": "пункт",
+     "period": [
+      "2026-05-13",
+      "2026-10-07"
      ]
     },
     {
      "symbol": "USDZAR",
-     "n": 40,
-     "median_ratio": 1.32,
-     "above": 22,
-     "min_ratio": 0.1,
-     "max_ratio": 5.05,
-     "median_move": 133.4,
+     "n": 42,
+     "median_ratio": 1.29,
+     "above": 24,
+     "min_ratio": 0.09,
+     "max_ratio": 4.53,
+     "median_move": 139.9,
      "unit": "пипс",
      "period": [
       "2025-12-30",
-      "2026-09-23"
-     ]
-    },
-    {
-     "symbol": "USDCAD",
-     "n": 18,
-     "median_ratio": 1.3,
-     "above": 11,
-     "min_ratio": 0.06,
-     "max_ratio": 5.79,
-     "median_move": 6.4,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
      "symbol": "USDJPY",
-     "n": 40,
+     "n": 42,
      "median_ratio": 1.27,
-     "above": 24,
+     "above": 25,
      "min_ratio": 0.04,
      "max_ratio": 7.49,
      "median_move": 6.85,
      "unit": "пипс",
      "period": [
       "2025-12-30",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
      "symbol": "GBPUSD",
-     "n": 18,
-     "median_ratio": 1.19,
-     "above": 10,
+     "n": 20,
+     "median_ratio": 1.22,
+     "above": 12,
      "min_ratio": 0.0,
-     "max_ratio": 5.48,
-     "median_move": 7.2,
+     "max_ratio": 5.34,
+     "median_move": 7.5,
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
-     "symbol": "SPX",
-     "n": 18,
-     "median_ratio": 1.17,
-     "above": 9,
-     "min_ratio": 0.03,
-     "max_ratio": 5.18,
-     "median_move": 9.75,
-     "unit": "пункт",
-     "period": [
-      "2026-05-28",
-      "2026-09-23"
-     ]
-    },
-    {
-     "symbol": "NASDAQ",
-     "n": 18,
-     "median_ratio": 1.16,
+     "symbol": "USDCAD",
+     "n": 20,
+     "median_ratio": 1.18,
      "above": 11,
-     "min_ratio": 0.36,
-     "max_ratio": 4.29,
-     "median_move": 70.75,
-     "unit": "пункт",
+     "min_ratio": 0.06,
+     "max_ratio": 5.96,
+     "median_move": 5.65,
+     "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "BTC",
+     "n": 16,
+     "median_ratio": 1.14,
+     "above": 8,
+     "min_ratio": 0.26,
+     "max_ratio": 3.73,
+     "median_move": 159.1,
+     "unit": "пункт",
+     "period": [
+      "2026-06-24",
+      "2026-10-07"
      ]
     },
     {
      "symbol": "AUDUSD",
-     "n": 18,
-     "median_ratio": 1.13,
-     "above": 10,
+     "n": 20,
+     "median_ratio": 1.1,
+     "above": 11,
      "min_ratio": 0.11,
-     "max_ratio": 5.72,
-     "median_move": 3.8,
+     "max_ratio": 5.57,
+     "median_move": 3.95,
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
-     "symbol": "WTI",
-     "n": 18,
-     "median_ratio": 1.11,
-     "above": 10,
-     "min_ratio": 0.0,
-     "max_ratio": 3.16,
-     "median_move": 0.39,
+     "symbol": "NASDAQ",
+     "n": 20,
+     "median_ratio": 1.09,
+     "above": 11,
+     "min_ratio": 0.02,
+     "max_ratio": 4.29,
+     "median_move": 66.38,
      "unit": "пункт",
      "period": [
       "2026-05-28",
-      "2026-09-23"
-     ]
-    },
-    {
-     "symbol": "NZDUSD",
-     "n": 18,
-     "median_ratio": 1.06,
-     "above": 9,
-     "min_ratio": 0.1,
-     "max_ratio": 3.29,
-     "median_move": 3.05,
-     "unit": "пипс",
-     "period": [
-      "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
      "symbol": "GOLD",
-     "n": 40,
+     "n": 42,
      "median_ratio": 1.05,
      "above": 24,
      "min_ratio": 0.03,
      "max_ratio": 5.26,
-     "median_move": 7.23,
+     "median_move": 6.91,
      "unit": "пункт",
      "period": [
       "2025-12-30",
-      "2026-09-23"
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "NZDUSD",
+     "n": 20,
+     "median_ratio": 1.01,
+     "above": 10,
+     "min_ratio": 0.1,
+     "max_ratio": 3.14,
+     "median_move": 3.05,
+     "unit": "пипс",
+     "period": [
+      "2026-05-28",
+      "2026-10-07"
      ]
     },
     {
      "symbol": "EURGBP",
-     "n": 18,
+     "n": 20,
      "median_ratio": 1.0,
-     "above": 8,
+     "above": 9,
      "min_ratio": 0.09,
      "max_ratio": 7.74,
-     "median_move": 2.05,
+     "median_move": 2.1,
      "unit": "пипс",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     },
     {
      "symbol": "EURUSD",
-     "n": 40,
-     "median_ratio": 0.99,
+     "n": 42,
+     "median_ratio": 0.98,
      "above": 20,
      "min_ratio": 0.04,
-     "max_ratio": 4.44,
+     "max_ratio": 4.39,
      "median_move": 4.25,
      "unit": "пипс",
      "period": [
       "2025-12-30",
-      "2026-09-23"
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "WTI",
+     "n": 20,
+     "median_ratio": 0.97,
+     "above": 10,
+     "min_ratio": 0.0,
+     "max_ratio": 3.26,
+     "median_move": 0.34,
+     "unit": "пункт",
+     "period": [
+      "2026-05-28",
+      "2026-10-07"
+     ]
+    },
+    {
+     "symbol": "SPX",
+     "n": 20,
+     "median_ratio": 0.91,
+     "above": 9,
+     "min_ratio": 0.03,
+     "max_ratio": 5.18,
+     "median_move": 7.5,
+     "unit": "пункт",
+     "period": [
+      "2026-05-28",
+      "2026-10-07"
      ]
     },
     {
      "symbol": "DJI",
-     "n": 18,
-     "median_ratio": 0.88,
+     "n": 20,
+     "median_ratio": 0.87,
      "above": 8,
-     "min_ratio": 0.17,
+     "min_ratio": 0.11,
      "max_ratio": 4.03,
      "median_move": 51.5,
      "unit": "пункт",
      "period": [
       "2026-05-28",
-      "2026-09-23"
+      "2026-10-07"
      ]
     }
    ]
@@ -1133,10 +1134,10 @@
    "country": "EU",
    "event_type": "inflation rate",
    "title": "Инфляция в еврозоне",
-   "releases": 18,
+   "releases": 19,
    "period": [
     "2026-01-07",
-    "2026-09-17"
+    "2026-10-02"
    ],
    "times_utc": [
     "09:00",
@@ -1149,148 +1150,134 @@
    ],
    "rows": [
     {
-     "symbol": "USDCHF",
-     "n": 8,
-     "median_ratio": 1.53,
-     "above": 5,
-     "min_ratio": 0.48,
-     "max_ratio": 6.1,
-     "median_move": 4.45,
-     "unit": "пипс",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
      "symbol": "EURGBP",
-     "n": 8,
-     "median_ratio": 1.46,
-     "above": 6,
+     "n": 9,
+     "median_ratio": 1.77,
+     "above": 7,
      "min_ratio": 0.0,
      "max_ratio": 5.5,
-     "median_move": 1.95,
+     "median_move": 2.3,
      "unit": "пипс",
      "period": [
       "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "USDJPY",
-     "n": 18,
-     "median_ratio": 1.42,
-     "above": 10,
-     "min_ratio": 0.09,
-     "max_ratio": 31.7,
-     "median_move": 3.75,
-     "unit": "пипс",
-     "period": [
-      "2026-01-07",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "GOLD",
-     "n": 18,
-     "median_ratio": 1.32,
-     "above": 13,
-     "min_ratio": 0.03,
-     "max_ratio": 26.77,
-     "median_move": 5.27,
-     "unit": "пункт",
-     "period": [
-      "2026-01-07",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "EURUSD",
-     "n": 18,
-     "median_ratio": 1.19,
-     "above": 9,
-     "min_ratio": 0.24,
-     "max_ratio": 4.17,
-     "median_move": 3.65,
-     "unit": "пипс",
-     "period": [
-      "2026-01-07",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "SPX",
-     "n": 8,
-     "median_ratio": 1.17,
-     "above": 5,
-     "min_ratio": 0.17,
-     "max_ratio": 3.58,
-     "median_move": 3.5,
-     "unit": "пункт",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "AUDUSD",
-     "n": 8,
-     "median_ratio": 1.17,
-     "above": 5,
-     "min_ratio": 0.2,
-     "max_ratio": 3.75,
-     "median_move": 2.35,
-     "unit": "пипс",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "USDCAD",
-     "n": 8,
-     "median_ratio": 1.09,
-     "above": 4,
-     "min_ratio": 0.17,
-     "max_ratio": 2.74,
-     "median_move": 2.5,
-     "unit": "пипс",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "USDZAR",
-     "n": 18,
-     "median_ratio": 1.05,
-     "above": 9,
-     "min_ratio": 0.17,
-     "max_ratio": 4.62,
-     "median_move": 87.5,
-     "unit": "пипс",
-     "period": [
-      "2026-01-07",
-      "2026-09-17"
+      "2026-10-02"
      ]
     },
     {
      "symbol": "SILVER",
-     "n": 8,
-     "median_ratio": 1.0,
-     "above": 4,
+     "n": 9,
+     "median_ratio": 1.38,
+     "above": 5,
      "min_ratio": 0.03,
      "max_ratio": 2.7,
-     "median_move": 0.11,
+     "median_move": 0.09,
      "unit": "пункт",
      "period": [
       "2026-06-02",
-      "2026-09-17"
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "USDCHF",
+     "n": 9,
+     "median_ratio": 1.34,
+     "above": 5,
+     "min_ratio": 0.48,
+     "max_ratio": 5.8,
+     "median_move": 4.1,
+     "unit": "пипс",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "GOLD",
+     "n": 19,
+     "median_ratio": 1.31,
+     "above": 13,
+     "min_ratio": 0.03,
+     "max_ratio": 26.77,
+     "median_move": 5.19,
+     "unit": "пункт",
+     "period": [
+      "2026-01-07",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "USDJPY",
+     "n": 19,
+     "median_ratio": 1.29,
+     "above": 11,
+     "min_ratio": 0.09,
+     "max_ratio": 30.19,
+     "median_move": 3.8,
+     "unit": "пипс",
+     "period": [
+      "2026-01-07",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "AUDUSD",
+     "n": 9,
+     "median_ratio": 1.15,
+     "above": 5,
+     "min_ratio": 0.2,
+     "max_ratio": 3.75,
+     "median_move": 2.3,
+     "unit": "пипс",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "GBPUSD",
+     "n": 9,
+     "median_ratio": 1.09,
+     "above": 5,
+     "min_ratio": 0.08,
+     "max_ratio": 2.49,
+     "median_move": 3.8,
+     "unit": "пипс",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "SPX",
+     "n": 9,
+     "median_ratio": 1.08,
+     "above": 5,
+     "min_ratio": 0.0,
+     "max_ratio": 3.58,
+     "median_move": 3.25,
+     "unit": "пункт",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "EURUSD",
+     "n": 19,
+     "median_ratio": 1.0,
+     "above": 9,
+     "min_ratio": 0.24,
+     "max_ratio": 4.1,
+     "median_move": 3.2,
+     "unit": "пипс",
+     "period": [
+      "2026-01-07",
+      "2026-10-02"
      ]
     },
     {
      "symbol": "DXY",
-     "n": 9,
+     "n": 10,
      "median_ratio": 1.0,
      "above": 4,
      "min_ratio": 0.0,
@@ -1299,91 +1286,105 @@
      "unit": "пункт",
      "period": [
       "2026-05-20",
-      "2026-09-17"
+      "2026-10-02"
      ]
     },
     {
-     "symbol": "NZDUSD",
-     "n": 8,
-     "median_ratio": 0.95,
-     "above": 4,
-     "min_ratio": 0.13,
-     "max_ratio": 3.42,
-     "median_move": 2.25,
+     "symbol": "USDZAR",
+     "n": 19,
+     "median_ratio": 0.98,
+     "above": 9,
+     "min_ratio": 0.1,
+     "max_ratio": 4.62,
+     "median_move": 81.0,
      "unit": "пипс",
      "period": [
-      "2026-06-02",
-      "2026-09-17"
+      "2026-01-07",
+      "2026-10-02"
      ]
     },
     {
-     "symbol": "GBPUSD",
-     "n": 8,
-     "median_ratio": 0.86,
+     "symbol": "USDCAD",
+     "n": 9,
+     "median_ratio": 0.93,
      "above": 4,
-     "min_ratio": 0.09,
-     "max_ratio": 2.49,
-     "median_move": 3.2,
-     "unit": "пипс",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "NASDAQ",
-     "n": 8,
-     "median_ratio": 0.86,
-     "above": 4,
-     "min_ratio": 0.0,
-     "max_ratio": 2.84,
-     "median_move": 18.5,
-     "unit": "пункт",
-     "period": [
-      "2026-06-02",
-      "2026-09-17"
-     ]
-    },
-    {
-     "symbol": "WTI",
-     "n": 8,
-     "median_ratio": 0.84,
-     "above": 4,
-     "min_ratio": 0.04,
+     "min_ratio": 0.18,
      "max_ratio": 2.74,
-     "median_move": 0.18,
-     "unit": "пункт",
+     "median_move": 2.1,
+     "unit": "пипс",
      "period": [
       "2026-06-02",
-      "2026-09-17"
+      "2026-10-02"
      ]
     },
     {
      "symbol": "BTC",
-     "n": 6,
-     "median_ratio": 0.84,
+     "n": 7,
+     "median_ratio": 0.66,
      "above": 2,
-     "min_ratio": 0.24,
-     "max_ratio": 1.54,
-     "median_move": 73.05,
+     "min_ratio": 0.22,
+     "max_ratio": 1.45,
+     "median_move": 61.1,
      "unit": "пункт",
      "period": [
       "2026-07-01",
-      "2026-09-17"
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "NASDAQ",
+     "n": 9,
+     "median_ratio": 0.59,
+     "above": 4,
+     "min_ratio": 0.0,
+     "max_ratio": 2.71,
+     "median_move": 13.25,
+     "unit": "пункт",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
      ]
     },
     {
      "symbol": "DJI",
-     "n": 8,
-     "median_ratio": 0.71,
+     "n": 9,
+     "median_ratio": 0.59,
      "above": 3,
-     "min_ratio": 0.39,
+     "min_ratio": 0.08,
      "max_ratio": 3.29,
-     "median_move": 17.0,
+     "median_move": 15.0,
      "unit": "пункт",
      "period": [
       "2026-06-02",
-      "2026-09-17"
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "WTI",
+     "n": 9,
+     "median_ratio": 0.56,
+     "above": 4,
+     "min_ratio": 0.04,
+     "max_ratio": 2.74,
+     "median_move": 0.12,
+     "unit": "пункт",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
+     ]
+    },
+    {
+     "symbol": "NZDUSD",
+     "n": 9,
+     "median_ratio": 0.24,
+     "above": 4,
+     "min_ratio": 0.13,
+     "max_ratio": 3.73,
+     "median_move": 0.5,
+     "unit": "пипс",
+     "period": [
+      "2026-06-02",
+      "2026-10-02"
      ]
     }
    ]
@@ -1421,7 +1422,7 @@
      "n": 9,
      "median_ratio": 1.82,
      "above": 5,
-     "min_ratio": 0.14,
+     "min_ratio": 0.13,
      "max_ratio": 3.54,
      "median_move": 6.9,
      "unit": "пипс",
@@ -1493,7 +1494,7 @@
     {
      "symbol": "USDJPY",
      "n": 6,
-     "median_ratio": 3.6,
+     "median_ratio": 3.44,
      "above": 5,
      "min_ratio": 0.4,
      "max_ratio": 20.74,
@@ -1509,7 +1510,7 @@
      "n": 6,
      "median_ratio": 2.22,
      "above": 5,
-     "min_ratio": 0.17,
+     "min_ratio": 0.16,
      "max_ratio": 3.35,
      "median_move": 282.55,
      "unit": "пипс",
@@ -1524,7 +1525,7 @@
      "median_ratio": 1.09,
      "above": 3,
      "min_ratio": 0.48,
-     "max_ratio": 2.13,
+     "max_ratio": 2.09,
      "median_move": 3.9,
      "unit": "пипс",
      "period": [
